@@ -10,6 +10,8 @@
         <!--  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet"> -->
         <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat&display=swap" rel="stylesheet">
         <link href = "css/style.css" rel = "stylesheet">
+
+        <script src = "../public/js/log-in.js"></script>
     </head>
     <body>
         <div class = "d-flex align-items-stretch bg-image">
@@ -21,15 +23,15 @@
                 <h1 class = "fw-bold h1 mt-5 text-center">WELCOME</h1>
                 
                 <div class = "d-flex aligns-items-center justify-content-center">
-                    <form id = "login-form" class = "mt-4 w-75">
+                    <form id = "login-form" class = "mt-4 w-75" method = "POST">
                         <div class = "mb-3">
                             <label for = "login-username" class = "form-label">Username</label>
-                            <input id = "login-username" name = "login-username" type = "text" placeholder = "Username" class = "form-control rounded-pill" required>
+                            <input id = "login-username" name = "loginUsername" type = "text" placeholder = "Username" class = "form-control rounded-pill" required>
                         </div>
                         
                         <div class = "mb-3">
                             <label for = "login-password" class = "form-label">Password</label>   
-                            <input id = "login-password" name = "login-password" type = "password" placeholder = "Password" class = "form-control rounded-pill" required>
+                            <input id = "login-password" name = "loginPassword" type = "password" placeholder = "Password" class = "form-control rounded-pill" required>
                         </div>
                         
                         <div id = "invalid-login" class = "invalid-feedback">
@@ -42,7 +44,7 @@
                     </form>
                 </div>
                 
-                <p class = "fw-bold text-center">Don't have an account? <a href = "/register">Sign Up</a></p>
+                <p class = "fw-bold text-center">Don't have an account? <a href = "/getRegister">Sign Up</a></p>
             </div>
         </div>
     </body>
