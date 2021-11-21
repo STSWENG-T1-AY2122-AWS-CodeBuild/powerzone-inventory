@@ -15,4 +15,4 @@ const registerController = {
 	}
 }
 
-module.exports = indexController;
+module.exports = registerController;

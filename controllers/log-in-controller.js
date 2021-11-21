@@ -3,7 +3,7 @@
 /* The db file is used to display the landing page */
 const db = require('../models/db.js');
 
-const registerController = {
+const logInController = {
 	/**
 	 * Gets the log in page
 	 * 
@@ -15,4 +15,4 @@ const registerController = {
 	}
 }
 
-module.exports = indexController;
+module.exports = logInController;

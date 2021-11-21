@@ -11,7 +11,6 @@ const powerzone = express();
 const db = require('../models/db.js');
 
 /* Call the controllers for each of the web application features */
-const indexController = require('../controllers/index-controller.js');
 const registerController = require('../controllers/register-controller.js');
 const logInController = require('../controllers/log-in-controller.js');
 /* Call the validation file */
