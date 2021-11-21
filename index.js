@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 const express = require('express');
 const exphbs = require('express-handlebars');
 const nocache = require("nocache");
@@ -16,7 +16,6 @@ const db = require('./models/db.js');
 
 const powerzone = express();
 
-dotenv.config();
 port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME || 3000;
 url = process.env.DB_URL;
