@@ -19,7 +19,9 @@ dotenv.config();
 
 powerzone.get('/', logInController.getLogIn);
 
-powerzone.get('/register', registerController.getRegister);
-powerzone.get('/logIn', logInController.getLogIn);
+powerzone.get('/getRegister', registerController.getRegister);
+
+powerzone.get('/getLogIn', logInController.getLogIn);
+powerzone.post('/postLogin', logInController.postLogIn);
 
 module.exports = powerzone;
