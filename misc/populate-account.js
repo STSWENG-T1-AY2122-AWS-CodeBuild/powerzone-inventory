@@ -23,7 +23,7 @@ bcrypt.hash("password123", saltRounds, function (err, hash) {
 		email: "administrator@gmail.com",
         name: "Powerzone Admin",
         username: "powerzoneadmin",
-        role: "Administrator",
+        role: "administrator",
         password: hash
 	};
 

@@ -9,6 +9,9 @@
      <!--   <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet"> -->
         <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat&display=swap" rel="stylesheet">
         <link href = "css/style.css" rel = "stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src = "/js/register.js"></script>
     </head>
     
     <body>
@@ -21,10 +24,10 @@
                 <h1 class = "fw-bold h1 mt-5 text-center">CREATE AN ACCOUNT</h1>
                 
                 <div class = "d-flex aligns-items-center justify-content-center">
-                    <form id = "signup-form" class = "mt-4 w-75">
+                    <form id = "signup-form" class = "mt-4 w-75" method = "POST">
                         <div class = "mb-3">
                             <label for = "signup-email" class = "form-label">Email</label>
-                            <input id = "signup-email" name = "signup-email" type = "email" placeholder = "Email" class = "form-control rounded-pill" required>
+                            <input id = "signup-email" name = "signupEmail" type = "email" placeholder = "Email" class = "form-control rounded-pill" required>
                             
                             <div id = "invalid-blank-email" class = "invalid-feedback">
                                 Kindly input a valid email
@@ -37,7 +40,7 @@
     
                         <div class = "mb-3">
                             <label for = "signup-fname" class = "form-label">First Name</label>
-                            <input id = "signup-fname" name = "signup-fname" type = "text" placeholder = "First Name" class = "form-control rounded-pill" required>
+                            <input id = "signup-fname" name = "signupFname" type = "text" placeholder = "First Name" class = "form-control rounded-pill" required>
                            
                             <div id = "invalid-blank-fname" class = "invalid-feedback">
                                 Kindly input a first name
@@ -46,7 +49,7 @@
                         
                         <div class = "mb-3">
                             <label for = "signup-lname" class = "form-label">Last Name</label>
-                            <input id = "signup-lname" name = "signup-lname" type = "text" placeholder = "Last Name" class = "form-control rounded-pill" required>
+                            <input id = "signup-lname" name = "signupLname" type = "text" placeholder = "Last Name" class = "form-control rounded-pill" required>
                            
                             <div id = "invalid-blank-lname" class = "invalid-feedback">
                                 Kindly input a last name
@@ -55,7 +58,7 @@
     
                         <div class = "mb-3">
                             <label for = "signup-username" class = "form-label">Username</label>
-                            <input id = "signup-username" name = "signup-username" type = "text" placeholder = "Username" class = "form-control rounded-pill" required>
+                            <input id = "signup-username" name = "signupUsername" type = "text" placeholder = "Username" class = "form-control rounded-pill" required>
                             
                             <div id = "invalid-blank-username" class = "invalid-feedback">
                                 Kindly input a username
@@ -72,7 +75,7 @@
                         
                         <div class = "mb-3">
                             <label for = "signup-role" class = "form-label">Role</label>
-                            <select id = "signup-role" class = "form-select rounded-pill" required>
+                            <select id = "signup-role" name = "signupRole" class = "form-select rounded-pill" required>
                                 <option selected disabled value = "">Select role</option>
                                 <option value = "inventory-manager">Inventory Manager</option>
                                 <option value = "transaction-cashier">Transaction Cashier</option>
@@ -85,7 +88,7 @@
     
                         <div class = "mb-4">
                             <label for = "signup-password" class = "form-label">Password</label>   
-                            <input id = "signup-password" name = "signup-password" type = "password" placeholder = "Password" class = "form-control rounded-pill" required>
+                            <input id = "signup-password" name = "signupPassword" type = "password" placeholder = "Password" class = "form-control rounded-pill" required>
                             
                             <div id = "invalid-blank-password" class = "invalid-feedback">
                                 Kindly input a password

@@ -20,6 +20,7 @@ dotenv.config();
 powerzone.get('/', logInController.getLogIn);
 
 powerzone.get('/getRegister', registerController.getRegister);
+powerzone.post('/postRegister', registerController.postRegister);
 
 powerzone.get('/getLogIn', logInController.getLogIn);
 powerzone.post('/postLogin', logInController.postLogIn);

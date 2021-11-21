@@ -34,7 +34,7 @@ const logInController = {
 		let query = {username: username};
 
 		/* Retrieve the user's corresponding data from the database */
-		db.findOne(Account, query, '', function(result) {
+		db.findOne(Account, query, '', function (result) {
 			if (result) {
 				let userDetails = {
 					email: result.email,
