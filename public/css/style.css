@@ -1,0 +1,33 @@
+:root {
+    --primary-color: #00407C; /*dark navy blue*/
+    --secondary-color: #ADCDE9; /*light blue*/
+}
+
+.bg-image {
+    background-image: url("./assets/blue-blue-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+h1, button {
+    color: var(--primary-color);
+    font-family: "Bungee", cursive;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #FFFF00;
+}

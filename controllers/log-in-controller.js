@@ -11,7 +11,7 @@ const logInController = {
 	 * @param res object that contains information on the HTTP response from the server 
 	 */
 	getLogIn: function(req, res) {
-		
+		res.render('login');
 	}
 }
 
