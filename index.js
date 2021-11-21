@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const mongoose = require('mongoose');
-const session = require('express-session');
+/*const session = require('express-session');*/
 //const mongoStore = require('connect-mongo')(session);
 
 const routes = require('./routes/routes.js');
@@ -35,13 +35,14 @@ powerzone.use(express.urlencoded({extended:true}));
 
 powerzone.use(nocache());
 
+/*
 powerzone.use(session({
 	secret: process.env.session_secret,
 	resave: false,
 	saveUninitialized: false,
 //	store: new mongoStore({mongooseConnection: mongoose.connection})
 }));
-
+*/
 powerzone.use('/',routes);
 
 powerzone.listen(port, hostname, function() {

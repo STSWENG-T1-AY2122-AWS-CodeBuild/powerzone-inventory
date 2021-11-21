@@ -11,7 +11,7 @@ const registerController = {
 	 * @param res object that contains information on the HTTP response from the server 
 	 */
 	getRegister: function(req, res) {
-		
+		res.render('register');
 	}
 }
 
