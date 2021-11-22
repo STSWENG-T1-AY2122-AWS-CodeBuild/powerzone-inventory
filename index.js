@@ -7,7 +7,7 @@ const path = require('path');
 
 const mongoose = require('mongoose');
 const session = require('express-session');
-const mongoStore = require('connect-mongo')(session);
+const mongoStore = require('connect-mongo')(session); 
 
 const routes = require('./routes/routes.js');
 const db = require('./models/db.js');
@@ -24,7 +24,7 @@ powerzone.set('view engine','hbs');
 powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());
 powerzone.use(express.urlencoded({
-	extended:true
+	extended:true	
 }));
 
 powerzone.use(nocache());

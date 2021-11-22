@@ -31,3 +31,7 @@ h1, button {
     background-color: var(--primary-color);
     color: #FFFF00;
 }
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
