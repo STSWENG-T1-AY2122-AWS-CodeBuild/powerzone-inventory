@@ -14,48 +14,54 @@
     </head>
     <body class = "bg-secondary">
         <nav class = "bg-primary navbar">
-            <a href = "/home" class = "navbar-brand text-primary">POWERZONE</a>
+            <a href = "/getHome" class = "navbar-brand text-warning">POWERZONE</a>
 
-            <a href = "/home" class = "nav-link text-primary">Home</a>
-            <a href = "" class = "nav-link text-primary">Account</a>
-            <a href = "/getLogIn" class = "nav-link text-primary">Log Out</a>
+            <a href = "/getHome" class = "nav-link text-end text-warning">Home</a>
+            <a href = "" class = "nav-link text-end text-warning">Account</a>
+            <a href = "/getLogIn" class = "nav-link text-end text-warning">Log Out</a>
         </nav>
 
-        <div>
-            <table class = "table">
-                <thead>
-                    <tr>
-                        <th>GASOLINE</th>
-                        <th>PREMIUM GASOLINE 95</th>
-                        <th>DIESEL</th>
-                        <th>PREMIUM GASOLINE 97</th>
-                        <th>KEROSONE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>P 59.039</td>
-                        <td>P 59.039</td>
-                        <td>P 59.039</td>
-                        <td>P 59.039</td>
-                        <td>P 59.039</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class = "bg-primary border border-primary border-5 mt-5 mx-5 text-center ">
+            <div class = "border border-primary border-5">
+                <table class = "table">
+                    <thead class = "text-white">
+                        <tr>
+                            <th>GASOLINE</th>
+                            <th>PREMIUM GASOLINE 95</th>
+                            <th>DIESEL</th>
+                            <th>PREMIUM GASOLINE 97</th>
+                            <th>KEROSONE</th>
+                        </tr>
+                    </thead>
+                    <tbody class = "bg-secondary">
+                        <tr>
+                            <td>P 59.039</td>
+                            <td>P 59.039</td>
+                            <td>P 59.039</td>
+                            <td>P 59.039</td>
+                            <td>P 59.039</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div>
-            <button id = "deliveries-btn" class = "btn-primary p-5 w-25">
+        <div class = "mx-5 mb-5">
+            <button id = "edit-price-btn" class = "float-end">edit</button>
+        </div>
+
+        <div class = "d-flex aligns-items-center justify-content-center">
+            <button id = "deliveries-btn" class = "btn-primary m-3 p-3 w-25">
                 <img src = "assets/fast.png" class = "w-50 h-50">
                 <p>DELIVERIES</p>
             </button>
             
-            <button id = "deliveries-btn" class = "btn-primary p-5 w-25">
+            <button id = "deliveries-btn" class = "btn-primary m-3 p-3 w-25">
                 <img src = "assets/transaction.png" class = "w-50 h-50">
                 <p>TRANSACTIONS</p>
             </button>
 
-            <button id = "deliveries-btn" class = "btn-primary p-5 w-25">
+            <button id = "deliveries-btn" class = "btn-primary m-3 p-3 w-25">
                 <img src = "assets/inventory.png" class = "w-50 h-50">
                 <p>INVENTORY</p>
             </button>

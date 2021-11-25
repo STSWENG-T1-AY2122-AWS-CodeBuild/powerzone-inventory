@@ -41,3 +41,7 @@ h1, button {
 .text-warning {
     color: var(--text-warning-color) !important;
 }
+
+.border-primary {
+    border-color: var(--bg-primary-color) !important;
+}
