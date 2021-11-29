@@ -1,6 +1,8 @@
 :root {
-    --primary-color: #00407C; /*dark navy blue*/
-    --secondary-color: #ADCDE9; /*light blue*/
+    --bg-primary-color: #00407C; /*dark navy blue*/
+    --bg-secondary-color: #ADCDE9; /*light blue*/
+    --text-primary-color: #00407C; /*dark navy blue*/
+    --text-warning-color: #FFFF00 /*yellow*/
 }
 
 .bg-image {
@@ -15,19 +17,27 @@ body {
 }
 
 h1, button {
-    color: var(--primary-color);
+    color: var(--bg-primary-color);
     font-family: "Bungee", cursive;
 }
 
 .bg-primary {
-    background-color: var(--primary-color) !important;
+    background-color: var(--bg-primary-color) !important;
 }
 
 .bg-secondary {
-    background-color: var(--secondary-color) !important;
+    background-color: var(--bg-secondary-color) !important;
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
-    color: #FFFF00;
+    background-color: var(--bg-primary-color);
+    color: var(--text-warning-color) !important;
+}
+
+.text-primary {
+    color: var(--text-primary-color) !important;
+}
+
+.text-warning {
+    color: var(--text-warning-color) !important;
 }
