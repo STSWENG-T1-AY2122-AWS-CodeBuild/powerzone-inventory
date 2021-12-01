@@ -12,38 +12,40 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src = "/js/log-in.js"></script>
     </head>
-    <body>
-        <div class = "align-items-stretch bg-image d-flex ">
-            <div class = "col">
-                <img src = "assets/logotext.png" alt = "Powerzone Logo" class = "img-fluid">
-            </div>
-
-            <div class = "bg-secondary col">
-                <h1 class = "fw-bold h1 mt-5 text-center">WELCOME</h1>
-                
-                <div class = "aligns-items-center d-flex justify-content-center">
-                    <form id = "login-form needs-validation" class = "mt-4 w-75" method = "POST" novalidate>
-                        <div class = "mb-3">
-                            <label for = "login-username" class = "form-label fw-bold text-primary">Username</label>
-                            <input id = "login-username" name = "loginUsername" type = "text" placeholder = "Username" class = "form-control rounded-pill" required>
-                        </div>
-                        
-                        <div class = "mb-3">
-                            <label for = "login-password" class = "form-label fw-bold text-primary">Password</label>   
-                            <input id = "login-password" name = "loginPassword" type = "password" placeholder = "Password" class = "form-control rounded-pill" required>
-                        </div>
-                        
-                        <div id = "invalid-login" class = "invalid-feedback">
-                            Invalid credentials
-                        </div>
-
-                        <div class = "text-center mb-5">
-                            <button id = "login-btn" type = "submit" class = "btn-primary fw-bold rounded-pill">LOG IN</button>
-                        </div>
-                    </form>
+    <body class = "bg-log-reg">
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class = "col mt-4">
+                    <img src = "/assets/logotext.png" class = "img-fluid">
                 </div>
+
+                <div class = "col mt-2">
+                    <h1 class = "bungee-font fw-bold h1 mt-5 text-center text-primary">WELCOME</h1>
                 
-                <p class = "fw-bold text-center">Don't have an account? <a href = "/getRegister">Sign Up</a></p>
+                    <div class = "d-flex aligns-items-center justify-content-center">
+                        <form id = "login-form" class = "mt-4 w-75" method = "POST">
+                            <div class = "mb-3">
+                                <label for = "login-username" class = "form-label fw-bold text-primary">Username</label>
+                                <input id = "login-username" name = "loginUsername" type = "text" placeholder = "Username" class = "form-control p-2 rounded-pill" required>
+                            </div>
+                            
+                            <div class = "mb-4">
+                                <label for = "login-password" class = "form-label fw-bold text-primary">Password</label>   
+                                <input id = "login-password" name = "loginPassword" type = "password" placeholder = "Password" class = "form-control p-2 rounded-pill" required>
+                            </div>
+                            
+                            <div id = "invalid-login" class = "invalid-feedback">
+                                Invalid credentials
+                            </div>
+
+                            <div class = "text-center my-3">
+                                <button id = "login-btn" type = "submit" class = "btn btn-primary bungee-font px-5 py-2 rounded-pill text-warning">LOG IN</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <p class = "pb-3 text-center text-secondary">Don't have an account? <a href = "/getRegister" class = "fw-bold text-decoration-none text-primary">Sign Up</a></p>
+                </div>
             </div>
         </div>
     </body>
