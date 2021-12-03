@@ -38,4 +38,5 @@ jobs:
       with:
         node-version: 17.1.0
         cache: 'npm'
+    - run: npm ci
     - run: npm test
