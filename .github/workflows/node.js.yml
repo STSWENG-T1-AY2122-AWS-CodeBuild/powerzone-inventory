@@ -6,9 +6,13 @@ name: Node.js CI
 on: [push, pull_request]
 
 jobs:
+  
   build:
 
     runs-on: ubuntu-latest
+    
+    strategy: 
+      max-parallel: 1
 
     steps:
     - uses: actions/checkout@v2
@@ -23,6 +27,9 @@ jobs:
   test:
   
     runs-on: ubuntu-latest
+    
+    strategy: 
+      max-parallel: 1
 
     steps:
     - uses: actions/checkout@v2
