@@ -1,8 +1,10 @@
 :root {
     --bg-primary-color: #00407C; /*dark navy blue*/
     --bg-secondary-color: #ADCDE9; /*light blue*/
+    --bg-light-color: #E6F0F8; /*lighter white*/
     --text-primary-color: #00407C; /*dark navy blue*/
-    --text-warning-color: #FFFF00 /*yellow*/
+    --text-warning-color: #FFFF00; /*yellow*/
+    --text-info-color: #5C8AB1; /*grayish*/
 }
 
 body, html {
@@ -39,6 +41,10 @@ body {
     background-color: var(--bg-secondary-color) !important;
 }
 
+.bg-light {
+    background-color: var(--bg-light-color) !important;
+}
+
 .btn-primary {
     background-color: var(--bg-primary-color) !important;
 }
@@ -51,6 +57,22 @@ body {
     color: var(--text-warning-color) !important;
 }
 
+.text-info {
+    color: var(--text-info-color) !important;
+}
+
 .border-primary {
     border-color: var(--bg-primary-color) !important;
+}
+
+.table-block {
+    display: block;
+    position: relative;
+    height: 500px;
+    overflow: auto;
+}
+
+.edit-account-btn, .status-account {
+    max-width: 10%;
+    height: auto;
 }
