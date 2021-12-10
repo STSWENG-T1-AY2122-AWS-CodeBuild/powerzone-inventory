@@ -24,44 +24,46 @@
         </nav>
         
         <div class = "m-4">
-            <h1 class = "fw-bold text-center text-info text-muted">ACCOUNTS</h1>
+            <h1 class = "fs-1 fw-bolder text-center text-info text-muted">ACCOUNTS</h1>
         </div>
 
-        <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block text-center table-responsive">
+       <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block text-center table-responsive">
             <table class = "table table-hover">
-                <thead class = "bg-primary text-white">
+                <thead class = "bg-primary table-fixed table-header text-white">
                     <tr>
-                        <th scope = "col">NAME</th>
-                        <th scope = "col">USERNAME</th>
-                        <th scope = "col">ROLE</th>
-                        <th scope = "col">STATUS</th>
-                        <th scope = "col">EDIT</th>
+                        <th scope = "col" class = "w-20">NAME</th>
+                        <th scope = "col" class = "w-20">USERNAME</th>
+                        <th scope = "col" class = "w-20">ROLE</th>
+                        <th scope = "col" class = "w-20">STATUS</th>
+                        <th scope = "col" class = "w-20">EDIT</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class = "users-list">
                     <tr>
                         <td>Angeli Dianne Mata</td>
                         <td>adiannem</td>
                         <td>Regular User</td>
-                        <td><img src = "/assets/check.png" alt = "approved" class = "status-account"></td>
-                        <td><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-btn"></td>
+                        <td><a href = "/getEditStatusAccount"><img src = "/assets/check.png" alt = "approved" class = "status-account-link"></a></td>
+                        <td><a href = "/getEditAccount"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-link"></a></td>
                     </tr>
 
                     <tr>
-                        <td>Angeli Dianne Mata</td>
-                        <td>adiannem</td>
-                        <td>Regular User</td>
-                        <td><img src = "/assets/time.png" alt = "pending" class = "status-account"></td>
-                        <td><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-btn"></td>
+                        <td>Kim Myung Soo</td>
+                        <td>kim_msl</td>
+                        <td>Kpop Idol</td>
+                        <td><a href = "/getEditStatusAccount"><img src = "/assets/time.png" alt = "pending" class = "status-account-link"></a></td>
+                        <td><a href = "/getEditAccount"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-link"></a></td>
                     </tr>
 
                     <tr>
-                        <td>Angeli Dianne Mata</td>
-                        <td>adiannem</td>
-                        <td>Regular User</td>
-                        <td><img src = "/assets/delete-button.png" alt = "deleted" class = "status-account"></td>
-                        <td><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-btn"></td>
+                        <td>Kim Hee Chul</td>
+                        <td>heenim</td>
+                        <td>Variety</td>
+                        <td><a href = "/getEditStatusAccount"><img src = "/assets/delete-button.png" alt = "removed" class = "status-account-link"></a></td>
+                        <td><a href = "/getEditAccount"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-link"></a></td>
                     </tr>
+
+                   
                 </tbody>
             </table>
         </div>

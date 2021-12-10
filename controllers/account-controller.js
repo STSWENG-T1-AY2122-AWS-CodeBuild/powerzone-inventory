@@ -9,6 +9,10 @@ const accountController = {
 	 */
 	getAccount: function(req, res) {
 		res.render('account');
+	},
+
+	getEditAccount: function(req, res){
+		res.render('edit-account');
 	}
 }
 
