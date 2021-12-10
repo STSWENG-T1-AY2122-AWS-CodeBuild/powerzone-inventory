@@ -12,25 +12,27 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
     </head>
-    <body class = "bg-secondary">
-        <nav class = "bg-primary navbar">
-            <a href = "/getHome" class = "navbar-brand text-warning">POWERZONE</a>
-
-            <a href = "/getHome" class = "nav-link text-end text-warning">Home</a>
-            <a href = "" class = "nav-link text-end text-warning">Account</a>
-            <a href = "/getLogIn" class = "nav-link text-end text-warning">Log Out</a>
+    <body class = "bg-home">
+        <nav class = "bg-primary navbar px-3">
+            <a href = "/getHome" class = "bungee-font navbar-brand text-warning">POWERZONE</a>
+            
+            <div class = "d-flex">
+                <a href = "/getHome" class = "fw-bold nav-link text-end text-warning">Home</a>
+                <a href = "/getAccount" class = "nav-link text-end text-warning">Account</a>
+                <a href = "/getLogIn" class = "nav-link text-end text-warning">Log Out</a>
+            </div>
         </nav>
 
-        <div class = "bg-primary border border-primary border-5 mt-5 mx-5 text-center ">
-            <div class = "border border-primary border-5">
+        <div class = "bg-primary border border-primary border-5 mt-5 mx-5 text-center">
+            <div class = "border border-primary border-5 table-responsive">
                 <table class = "table">
                     <thead class = "text-white">
                         <tr>
-                            <th>GASOLINE</th>
-                            <th>PREMIUM GASOLINE 95</th>
-                            <th>DIESEL</th>
-                            <th>PREMIUM GASOLINE 97</th>
-                            <th>KEROSONE</th>
+                            <th scope = "col">GASOLINE</th>
+                            <th scope = "col">PREMIUM GASOLINE 95</th>
+                            <th scope = "col">DIESEL</th>
+                            <th scope = "col">PREMIUM GASOLINE 97</th>
+                            <th scope = "col">KEROSONE</th>
                         </tr>
                     </thead>
                     <tbody class = "bg-secondary">
@@ -45,26 +47,40 @@
                 </table>
             </div>
         </div>
+    
+        <div class = "me-5 my-3 text-end"> 
+            <button id = "edit-price-btn" class = "btn btn-primary fw-bold text-white px-5 shadow-sm">Edit</button>
+        </div> 
 
-        <div class = "mx-5 mb-5">
-            <button id = "edit-price-btn" class = "float-end">edit</button>
-        </div>
+        <div class = "container">
+            <div class = "row text-center">
+                <div class = "bg-primary col m-5 p-1">
+                    <a href = "#" class = "bungee-font text-decoration-none text-warning">
+                        <div>
+                            <img src = "/assets/fast.png" class = "m-2 p-3 w-50 h-50">
+                            <p>DELIVERIES</p>
+                        </div>
+                    </a>
+                </div> 
 
-        <div class = "d-flex aligns-items-center justify-content-center">
-            <button id = "deliveries-btn" class = "btn-primary m-3 p-3 w-25">
-                <img src = "assets/fast.png" class = "w-50 h-50">
-                <p>DELIVERIES</p>
-            </button>
-            
-            <button id = "deliveries-btn" class = "btn-primary m-3 p-3 w-25">
-                <img src = "assets/transaction.png" class = "w-50 h-50">
-                <p>TRANSACTIONS</p>
-            </button>
+                <div class = "bg-primary col m-5 p-1">
+                    <a href = "#" class = "bungee-font text-decoration-none text-warning">
+                        <div>
+                            <img src = "/assets/transaction.png" class = "m-2 p-3 w-50 h-50">
+                            <p>TRANSACTIONS</p>
+                        </div>
+                    </a>
+                </div>
 
-            <button id = "deliveries-btn" class = "btn-primary m-3 p-3 w-25">
-                <img src = "assets/inventory.png" class = "w-50 h-50">
-                <p>INVENTORY</p>
-            </button>
+                <div class = "bg-primary col m-5 p-1">
+                    <a href = "#" class = "bungee-font text-decoration-none text-warning">
+                        <div>
+                            <img src = "/assets/inventory.png" class = "m-2 p-3 w-50 h-50">
+                            <p>INVENTORY</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </body>
 </html>
