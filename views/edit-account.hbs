@@ -27,110 +27,102 @@
             <h1 class = "fs-1 fw-bolder text-center text-info text-muted">EDIT ACCOUNT</h1>
         </div>
 
-        <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block text-center table-responsive">
-            <table class = "table table-hover">
-                <thead class = "bg-primary table-header text-white">
-                    <tr>
-                        <th scope = "col" class = "visually-hidden">EDIT ACCOUNT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!--
-                    <form id = "signup-form" class = "mt-4 w-75 needs-validation" method = "POST" novalidate>
-                            <div class = "mb-3">
-                                <label for = "signup-email" class = "form-label fw-bold text-primary">Email</label>
-                                <input id = "signup-email" name = "signupEmail" type = "email" placeholder = "Email" class = "form-control rounded-pill" required>
-                                
-                                <div id = "invalid-blank-email" class = "invalid-feedback">
-                                    Kindly input a valid email
-                                </div>
-        
-                                <div id = "invalid-unique-email" class = "invalid-feedback">
-                                    Email has been taken
-                                </div>
-                            </div>
-        
-                            <div class = "mb-3">
-                                <label for = "signup-fname" class = "form-label fw-bold text-primary">First Name</label>
-                                <input id = "signup-fname" name = "signupFname" type = "text" placeholder = "First Name" class = "form-control rounded-pill" required>
-                            
-                                <div id = "invalid-blank-fname" class = "invalid-feedback">
-                                    Kindly input a first name
-                                </div>
-                            </div>
-                            
-                            <div class = "mb-3">
-                                <label for = "signup-lname" class = "form-label fw-bold text-primary">Last Name</label>
-                                <input id = "signup-lname" name = "signupLname" type = "text" placeholder = "Last Name" class = "form-control rounded-pill" required>
-                            
-                                <div id = "invalid-blank-lname" class = "invalid-feedback">
-                                    Kindly input a last name
-                                </div>
-                            </div>
-        
-                            <div class = "mb-3">
-                                <label for = "signup-username" class = "form-label fw-bold text-primary">Username</label>
-                                <input id = "signup-username" name = "signupUsername" type = "text" placeholder = "Username" class = "form-control rounded-pill" required>
-                                
-                                <div id = "invalid-blank-username" class = "invalid-feedback">
-                                    Kindly input a username
-                                </div>
-        
-                                <div id = "invalid-unique-username" class = "invalid-feedback">
-                                    Username has been taken
-                                </div>
-        
-                                <div id = "invalid-char-username" class = "invalid-feedback">
-                                    Username should contain lower case, upper case, numbers and punctations
-                                </div>
-                            </div>
-                            
-                            <div class = "mb-3">
-                                <label for = "signup-role" class = "form-label fw-bold text-primary">Role</label>
-                                <select id = "signup-role" name = "signupRole" class = "form-select rounded-pill" required>
-                                    <option selected disabled value = "">Select role</option>
-                                    <option value = "inventory-manager">Inventory Manager</option>
-                                    <option value = "transaction-cashier">Transaction Cashier</option>
-                                    <option value = "delivery-manager">Delivery Manager</option>
-                                </select>
-                                <div id = "invalid-blank-role" class = "invalid-feedback">
-                                    Kindly select a role
-                                </div>
-                            </div>
-        
-                            <div class = "mb-4">
-                                <label for = "signup-password" class = "form-label fw-bold text-primary">Password</label>   
-                                <input id = "signup-password" name = "signupPassword" type = "password" placeholder = "Password" class = "form-control rounded-pill" required>
-                                
-                                <div id = "invalid-blank-password" class = "invalid-feedback">
-                                    Kindly input a password
-                                </div>
-                                
-                                <div id = "invalid-length-password" class = "invalid-feedback">
-                                    Password should at least have 12 characters
-                                </div>
-        
-                                <div id = "invalid-char-password" class = "invalid-feedback">
-                                    Password should contain lower case, upper case, numbers and punctations
-                                </div>
-                            </div>
-        
-                            <div class = "text-center my-3">
-                                <button id = "signup-btn" type = "submit" class = "btn btn-primary bungee-font px-5 py-2 rounded-pill text-warning">SIGN UP</button>
-                            </div>
-                        </form>
-                    -->
-                </tbody>
-            </table>
-        </div>
 
-        <div class = "mx-5 my-3"> 
-            <button id = "cancel-edit-account-btn" class = "btn btn-primary fw-bold float-start text-white px-5 shadow-sm">Cancel</button>
-            <button id = "confirm-edit-account-btn" class = "btn btn-primary fw-bold float-end text-white px-5 shadow-sm">Confirm</button>
-        </div> 
+        <form id = "edit-account-form" class = "">
+            <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block table-responsive">
+                <div class = "bg-primary mb-4 h-9 row">
 
-        <div class = "me-5 my-3 text-end"> 
-            
-        </div> 
+                </div>
+
+                <div class = "mt-5 m-4 row">
+                    <div class = "col me-5">
+                        <label for = "edit-account-email" class = "form-label fw-bold text-primary">Email</label>
+                        <input id = "edit-account-email" name = "editAccountEmail" type = "email" placeholder = "Email" class = "form-control p-2 rounded-pill" required>
+
+                        <div id = "edit-invalid-blank-email" class = "invalid-feedback">
+                            Kindly input a valid email
+                        </div>
+
+                        <div id = "edit-invalid-unique-email" class = "invalid-feedback">
+                            Email has been taken
+                        </div> 
+                    </div>
+
+                    <div class = "col me-5">
+                        <label for = "edit-account-role" class = "form-label fw-bold text-primary">Role</label>
+                        <input id = "edit-account-role" name = "edit-name" type = "text" placeholder = "Role" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                    </div>
+                </div>
+
+                <div class = "m-4 row">
+                    <div class = "col me-5">
+                        <label for = "edit-account-name" class = "form-label fw-bold text-primary">Name</label>
+                        <input id = "edit-account-name" name = "edit-name" type = "text" placeholder = "Name" class = "form-control p-2 rounded-pill" required>
+                    
+                        <div id = "edit-invalid-blank-name" class = "invalid-feedback">
+                            Kindly input a name
+                        </div>
+                    </div>
+
+                    <div class = "col me-5">
+                        <label for = "edit-acccount-new-pw" class = "form-label fw-bold text-primary">New Password</label>   
+                        <input id = "edit-account-new-pw" name = "editAccountNewPassword" type = "password" placeholder = "Leave to keep current password" class = "form-control p-2 rounded-pill" required>
+
+                        <div id = "edit-invalid-blank-new-pw" class = "invalid-feedback">
+                            Kindly input a password
+                        </div>
+                        
+                        <div id = "edit-invalid-length-new-pw" class = "invalid-feedback">
+                            Password should at least have 12 characters
+                        </div>
+
+                        <div id = "edit-invalid-char-new-pw" class = "invalid-feedback">
+                            Password should contain lower case, upper case, numbers and punctations
+                        </div>    
+                    </div>
+                </div>
+
+                <div class = "m-4 row">
+                    <div class = "col me-5">
+                        <label for = "edit-account-username" class = "form-label fw-bold text-primary">Username</label>
+                        <input id = "edit-account-username" name = "editAccountUsername" type = "text" placeholder = "Username" class = "form-control p-2 rounded-pill" required>
+                        
+                        <div id = "edit-invalid-blank-username" class = "invalid-feedback">
+                            Kindly input a username
+                        </div>
+
+                        <div id = "edit-invalid-unique-username" class = "invalid-feedback">
+                            Username has been taken
+                        </div>
+
+                        <div id = "edit-invalid-char-username" class = "invalid-feedback">
+                            Username should contain lower case, upper case, numbers and punctations
+                        </div>
+                    </div>
+
+                    <div class = "col me-5">
+                        <label for = "edit-acccount-confirm-pw" class = "form-label fw-bold text-primary">Confirm Password</label>   
+                        <input id = "edit-account-confirm-pw" name = "editAccountNewPassword" type = "password" placeholder = "Leave to keep current password" class = "form-control p-2 rounded-pill" required>
+
+                        <div id = "edit-invalid-blank-confirm-pw" class = "invalid-feedback">
+                            Kindly input a password
+                        </div>
+                        
+                        <div id = "edit-invalid-length-confirm-pw" class = "invalid-feedback">
+                            Password should at least have 12 characters
+                        </div>
+
+                        <div id = "edit-invalid-char-confirm-pw" class = "invalid-feedback">
+                            Password should contain lower case, upper case, numbers and punctations
+                        </div>    
+                    </div>
+                </div>
+            </div>
+
+            <div class = "mx-5 my-3"> 
+                <button id = "cancel-edit-account-btn" class = "btn btn-primary fw-bold float-start text-white px-5 shadow-sm"><a href = "/getAccount" class = "text-decoration-none text-white">Cancel</a></button>
+                <button id = "confirm-edit-account-btn" type = "submit" class = "btn btn-primary fw-bold float-end text-white px-5 shadow-sm">Confirm</button>
+            </div> 
+        </form>
     </body>
 </html>
