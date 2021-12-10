@@ -13,7 +13,7 @@ $(function() {
 
 				/* If the log in is successful, redirect the user to the landing page. */
 				200: function() {
-					location.href = '/getRegister';
+					location.href = '/getHome';
 				},
 				
 				/* Otherwise, display an error message. */
