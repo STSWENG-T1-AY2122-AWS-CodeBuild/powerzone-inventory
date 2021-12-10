@@ -44,7 +44,6 @@ body {
 }
 
 .bg-light {
-  /*background-color: rgba(var(--bg-light-color), var(--bg-light-color-opacity)) !important;*/
   background-color: var(--bg-light-color) !important;
 }
 
@@ -85,8 +84,8 @@ body {
 }
 
 .edit-account-link, .status-account-link {
-    max-width: 15%;
-    height: auto;
+    /*max-width: 15%;*/
+    height: 40px;
 }
 
 .h-9 {
