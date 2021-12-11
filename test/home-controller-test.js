@@ -1,5 +1,6 @@
 const assert = require('chai').assert;
 const sinon = require('sinon');
+
 const homeController = require('../controllers/home-controller.js');
 
 describe('the function to get the home page', function() {
