@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit --timeout 10000"
+    "test": "nyc mocha --exit --timeout 10000"
+  },
+  "nyc": {
+    "exclude": "public/js/validator.min.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +35,8 @@
     "multer": "^1.4.3",
     "multer-gridfs-storage": "^5.0.2",
     "nocache": "^3.0.1",
-    "nodemailer": "^6.7.1"
+    "nodemailer": "^6.7.1",
+    "nyc": "^15.1.0"
   },
   "devDependencies": {
     "chai": "^4.3.4",
