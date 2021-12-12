@@ -32,4 +32,8 @@ jobs:
         node-version: 12.16.3
         cache: 'npm'
     - run: npm ci
-    - run: robot selenium_tests
+    - uses: joonvena/robotframework-docker-action@v0.1
+      env:
+        BROWSER: chrome
+        ROBOT_TESTS_DIR: ${{ github.workspace }}/selenium_tests
+        ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
