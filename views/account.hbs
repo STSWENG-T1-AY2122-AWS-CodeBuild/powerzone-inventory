@@ -10,64 +10,96 @@
         <link href = "css/style.css" rel = "stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
+        <script src = "/js/account.js"></script>
     </head>
+
     <body class = "bg-home">
-        <nav class = "bg-primary navbar px-3">
-            <a href = "/getHome" class = "bungee-font navbar-brand text-warning">POWERZONE</a>
+        <div id = "overlay">
+            <nav class = "bg-primary navbar px-3">
+                <a href = "/getHome" class = "bungee-font navbar-brand text-warning">POWERZONE</a>
+                
+                <div class = "d-flex">
+                    <a href = "/getHome" class = "nav-link text-end text-warning">Home</a>
+                    <a href = "/getAccount" class = "fw-bold nav-link text-end text-warning">Account</a>
+                    <a href = "/getLogIn" class = "nav-link text-end text-warning">Log Out</a>
+                </div>
+            </nav>
             
-            <div class = "d-flex">
-                <a href = "/getHome" class = "nav-link text-end text-warning">Home</a>
-                <a href = "/getAccount" class = "fw-bold nav-link text-end text-warning">Account</a>
-                <a href = "/getLogIn" class = "nav-link text-end text-warning">Log Out</a>
+            <div class = "m-4">
+                <h1 class = "fs-1 fw-bolder text-center text-info text-muted">ACCOUNTS</h1>
             </div>
-        </nav>
-        
-        <div class = "m-4">
-            <h1 class = "fs-1 fw-bolder text-center text-info text-muted">ACCOUNTS</h1>
-        </div>
 
-       <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block text-center table-responsive">
-            <table class = "align-middle table table-hover">
-                <thead class = "bg-primary table-fixed table-header text-white">
-                    <tr>
-                        <th scope = "col" class = "w-20">NAME</th>
-                        <th scope = "col" class = "w-20">USERNAME</th>
-                        <th scope = "col" class = "w-20">ROLE</th>
-                        <th scope = "col" class = "w-20">STATUS</th>
-                        <th scope = "col" class = "w-20">EDIT</th>
-                    </tr>
-                </thead>
-                <tbody class = "users-list">
-                    <tr>
-                        <td>Angeli Dianne Mata</td>
-                        <td>adiannem</td>
-                        <td>Regular User</td>
-                        <td><button class = "btn shadow-none"><img src = "/assets/check.png" alt = "approved" class = "status-account-link"></button></td>
-                        <td><a href = "/getEditAccount"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-link"></a></td>
-                    </tr>
+            <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block text-center table-responsive">
+                <div id = "status-div" class = "d-none position-absolute">
+                    <div class = "bg-primary border border-3 border-white m-5">
+                        <div class = "text-end">
+                            <button class = "btn close-status-btn fs-5 fw-bold text-white">X</button>
+                        </div>
 
-                    <tr>
-                        <td>Kim Myung Soo</td>
-                        <td>kim_msl</td>
-                        <td>Kpop Idol</td>
-                        <td><button class = "btn shadow-none"><img src = "/assets/time.png" alt = "pending" class = "status-account-link"></button></td>
-                        <td><a href = "/getEditAccount"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-link"></a></td>
-                    </tr>
+                        <div class = "bg-secondary p-2 text-center">
+                            <h4 class = "fw-bold pt-2 status-name text-primary">Angeli Dianne Mata</h4>
+                            <h5 class = "status-role text-primary">Regular User</h5>
+                        </div>
 
-                    <tr>
-                        <td>Kim Hee Chul</td>
-                        <td>heenim</td>
-                        <td>Variety</td>
-                        <td><button class = "btn shadow-none"><img src = "/assets/delete-button.png" alt = "reject" class = "status-account-link"></button></td>
-                        <td><a href = "/getEditAccount"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-link"></a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        <div class = "mt-4 mb-2 mx-3 row text-center">
+                            <div class = "col">
+                                <button id = "reject-account" class = "btn btn-white fw-bold px-5 text-primary">Reject</button>
+                            </div>
+                            
+                            <div class = "col">
+                                <button id = "accept-account" class = "btn btn-white fw-bold px-5 text-primary">Accept</button>
+                            </div>
+                        </div>
 
-        <div class = "me-5 my-3 text-end"> 
-            <button id = "add-account-btn" class = "btn btn-primary fw-bold text-white px-5 shadow-sm">+Add Account</button>
+                        <div class = "mb-4 mx-3 row text-center">
+                            <div class = "col">
+                                <button id = "pend-account" class = "btn btn-white fw-bold px-5 text-primary">Pending</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <table class = "align-middle table table-hover">
+                    <thead class = "bg-primary table-fixed table-header text-white">
+                        <tr>
+                            <th scope = "col" class = "w-20">NAME</th>
+                            <th scope = "col" class = "w-20">USERNAME</th>
+                            <th scope = "col" class = "w-20">ROLE</th>
+                            <th scope = "col" class = "w-20">STATUS</th>
+                            <th scope = "col" class = "w-20">EDIT</th>
+                        </tr>
+                    </thead>
+                    <tbody id = "users-list">
+                        <tr class = "user">
+                            <td>Angeli Dianne Mata</td>
+                            <td>adiannem</td>
+                            <td>Regular User</td>
+                            <td><button class = "btn shadow-none status-account-btn"><img src = "/assets/check.png" alt = "approved" class = "status-account-link"></button></td>
+                            <td><a href = "/getEditAccount"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-link"></a></td>
+                        </tr>
+
+                        <tr class = "user">
+                            <td>Kim Myung Soo</td>
+                            <td>kim_msl</td>
+                            <td>Kpop Idol</td>
+                            <td><button class = "btn shadow-none status-account-btn"><img src = "/assets/time.png" alt = "pending" class = "status-account-link"></button></td>
+                            <td><a href = "/getEditAccount"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-link"></a></td>
+                        </tr>
+
+                        <tr class = "user">
+                            <td>Kim Hee Chul</td>
+                            <td>heenim</td>
+                            <td>Variety</td>
+                            <td><button class = "btn shadow-none status-account-btn"><img src = "/assets/delete-button.png" alt = "reject" class = "status-account-link"></button></td>
+                            <td><a href = "/getEditAccount"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-link"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class = "me-5 my-3 text-end"> 
+                <button id = "add-account-btn" class = "btn btn-primary fw-bold text-white px-5 shadow-sm">+Add Account</button>
+            </div>
         </div> 
     </body>
 </html>

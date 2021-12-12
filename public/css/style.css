@@ -2,7 +2,8 @@
     --bg-primary-color: #00407C; /*dark navy blue*/
     --bg-secondary-color: #ADCDE9; /*light blue*/
     --bg-light-color: #E6F0F8; /*lighter white*/
-    --bg-light-color-opacity: 0.6; /*lighter white transparency*/
+    --btn-primary-color: #00407C; /*dark navy blue*/
+    --btn-white-color: #FFFFFF; /*white*/
     --text-primary-color: #00407C; /*dark navy blue*/
     --text-warning-color: #FFFF00; /*yellow*/
     --text-info-color: #5C8AB1; /*grayish*/
@@ -48,7 +49,11 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--bg-primary-color) !important;
+    background-color: var(--btn-primary-color) !important;
+}
+
+.btn-white {
+    background-color: var(--btn-white-color) !important;
 }
 
 .text-primary {
@@ -91,3 +96,22 @@ body {
 .h-9 {
     height: 9%;
 }
+
+#status-div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+/*
+.blur {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.remove-blur {
+    filter: blur(0px);
+}
+*/
