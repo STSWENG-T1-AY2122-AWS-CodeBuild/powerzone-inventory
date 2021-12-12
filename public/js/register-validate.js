@@ -1,3 +1,6 @@
+/* Override definition of console.log to hide debug message from browser console. */
+console.log = function() {}
+
 import { 
     isPasswordLengthValid,
     isPasswordFormatValid,
@@ -39,7 +42,7 @@ $(function() {
         }
 
         $.get('/getCheckEmail', {email: email}, function(res) {
-            if (res.email != email) {
+            if (res.email == null) {
                 if (field.is(emailField)) {
                     hideErrorMessage(nonUniqueEmail);
                     isEmailStillValid = true;
@@ -70,7 +73,7 @@ $(function() {
             }
 
             $.get('/getCheckUsername', {username: username}, function(res) {
-                if (res.username != username) {
+                if (res.username == null) {
                     if (field.is(usernameField)) {
                         hideErrorMessage(nonUniqueUsername);
                         isUsernameStillValid = true;
