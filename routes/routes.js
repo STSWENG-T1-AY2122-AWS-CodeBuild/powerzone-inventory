@@ -15,6 +15,7 @@ const registerController = require('../controllers/register-controller.js');
 const logInController = require('../controllers/log-in-controller.js');
 const homeController = require('../controllers/home-controller.js');
 const logOutController = require('../controllers/log-out-controller.js');
+const accountController = require('../controllers/account-controller.js');
 
 /* Call the validation file */
 const validation = require('../helpers/validation.js');
@@ -34,5 +35,7 @@ powerzone.post('/postLogin', logInController.postLogIn);
 powerzone.get('/getHome', homeController.getHome);
 
 powerzone.get('/getLogOut', logOutController.getLogOut);
+powerzone.get('/getAccount', accountController.getAccount);
+powerzone.get('/getEditAccount', accountController.getEditAccount);
 
 module.exports = powerzone;
