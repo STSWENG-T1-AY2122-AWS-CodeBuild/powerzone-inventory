@@ -17,13 +17,14 @@ const homeController = require('../controllers/home-controller.js');
 const logOutController = require('../controllers/log-out-controller.js');
 
 /* Call the validation file */
+const validation = require('../helpers/validation.js');
 
 dotenv.config();
 
 powerzone.get('/', logInController.getLogIn);
 
 powerzone.get('/getRegister', registerController.getRegister);
-powerzone.post('/postRegister', registerController.postRegister);
+powerzone.post('/postRegister', validation.registerValidation(), registerController.postRegister);
 powerzone.get('/getCheckUsername', registerController.getCheckUsername);
 powerzone.get('/getCheckEmail', registerController.getCheckEmail);
 
