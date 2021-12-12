@@ -11,8 +11,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src = "/js/register.js"></script>
-        <script src = "/js/register-validate-util.js" type = "module"></script>
-        <script src = "/js/register-validate.js"></script>
+        <script src = "/js/register-validate.js" type = "module"></script>
     </head>
     
     <body class = "bg-log-reg">
@@ -26,7 +25,7 @@
                     <h1 class = "bungee-font fw-bold h1 mt-5 text-center text-primary">CREATE AN ACCOUNT</h1>
                 
                     <div class = "d-flex aligns-items-center justify-content-center">
-                        <form id = "signup-form" class = "mt-4 w-75 needs-validation" method = "POST" novalidate>
+                        <form id = "signup-form" class = "mt-4 w-75 needs-validation" method = "POST">
                             <div class = "mb-3">
                                 <label for = "signup-email" class = "form-label fw-bold text-primary">Email</label>
                                 <input id = "signup-email" name = "signupEmail" type = "email" placeholder = "Email" class = "form-control rounded-pill" required>
@@ -69,10 +68,6 @@
                                 <div id = "invalid-unique-username" class = "invalid-feedback">
                                     Username has been taken
                                 </div>
-        
-                                <div id = "invalid-char-username" class = "invalid-feedback">
-                                    Username should contain lower case, upper case, numbers and punctations
-                                </div>
                             </div>
                             
                             <div class = "mb-3">
@@ -97,16 +92,16 @@
                                 </div>
                                 
                                 <div id = "invalid-length-password" class = "invalid-feedback">
-                                    Password should at least have 12 characters
+                                    Should have at least 12 characters
                                 </div>
         
                                 <div id = "invalid-char-password" class = "invalid-feedback">
-                                    Password should contain lower case, upper case, numbers and punctations
+                                    Should contain lowercase and uppercase letters, numbers and punctations
                                 </div>
                             </div>
         
                             <div class = "text-center my-3">
-                                <button id = "signup-btn" type = "submit" class = "btn btn-primary bungee-font px-5 py-2 rounded-pill text-warning">SIGN UP</button>
+                                <button id = "signup-btn" type = "submit" class = "btn btn-primary bungee-font px-5 py-2 rounded-pill text-warning" disabled>SIGN UP</button>
                             </div>
                         </form>
                     </div>

@@ -49,8 +49,8 @@ const logInController = {
                  */
 				bcrypt.compare(password, result.password, function (err, equal) {
 					if (equal) {
-					//	req.session.username = result.username;
-					//	req.session.role = result.role;
+						req.session.username = result.username;
+						req.session.role = result.role;
 
 						res.status(200).json("Log in successful");
 						res.send();

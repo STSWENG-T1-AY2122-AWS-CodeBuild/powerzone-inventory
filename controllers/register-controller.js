@@ -48,10 +48,13 @@ const registerController = {
 				name: name,
 				username: username,
 				role: role,
-				password: password
+				password: hash
 			}
 
 			db.insertOne(Account, account, function (flag) {
+				req.session.username = account.username;
+				req.session.role = account.role;
+
 				res.status(200).json("Account added successfully");
 				res.send();
 			});

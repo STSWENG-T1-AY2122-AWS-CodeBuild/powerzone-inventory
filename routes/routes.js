@@ -13,6 +13,9 @@ const db = require('../models/db.js');
 /* Call the controllers for each of the web application features */
 const registerController = require('../controllers/register-controller.js');
 const logInController = require('../controllers/log-in-controller.js');
+const homeController = require('../controllers/home-controller.js');
+const logOutController = require('../controllers/log-out-controller.js');
+
 /* Call the validation file */
 
 dotenv.config();
@@ -21,8 +24,14 @@ powerzone.get('/', logInController.getLogIn);
 
 powerzone.get('/getRegister', registerController.getRegister);
 powerzone.post('/postRegister', registerController.postRegister);
+powerzone.get('/getCheckUsername', registerController.getCheckUsername);
+powerzone.get('/getCheckEmail', registerController.getCheckEmail);
 
 powerzone.get('/getLogIn', logInController.getLogIn);
 powerzone.post('/postLogin', logInController.postLogIn);
+
+powerzone.get('/getHome', homeController.getHome);
+
+powerzone.get('/getLogOut', logOutController.getLogOut);
 
 module.exports = powerzone;
