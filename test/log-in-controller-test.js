@@ -2,13 +2,13 @@ const assert = require('chai').assert;
 const sinon = require('sinon');
 
 const logInController = require('../controllers/log-in-controller.js');
-
+const db = require('../models/db.js');
 
 describe('the function to get the log-in page', function() {
     it('should render the log-in page only once if the user is not logged in', function() {
         let req = {
             session: {
-                username: 'bettina'
+                username: null
             }
         };
 
@@ -17,9 +17,49 @@ describe('the function to get the log-in page', function() {
             redirect: sinon.spy()
         };
         
-        logInController.getHome(req, res);
+        logInController.getLogIn(req, res);
 
         assert.isTrue(res.render.calledOnce);
-        assert.equal(res.render.firstCall.args[0], 'home');
+        assert.equal(res.render.firstCall.args[0], 'log-in');
+    });
+});
+
+describe('the function to log a user into the application', function() {
+    let req, dbResult, res, expectedResult;
+
+    beforeEach(function() {
+        req = {
+            loginUsername: 'hello',
+            loginPassword: 'hello'
+        };
+
+        dbResult = {
+            body: {
+                email: 'hello@gmail.com',
+				name: 'hello',
+				username: 'hello',
+				role: 'inventory-manager',
+				password: 'hello'
+            }
+        };
+
+        res = {
+            status: sinon.stub().returns({
+                json: sinon.spy()
+            })
+        };
+
+        expectedResult = dbResult.body;
+    });
+
+    it('should return a created user account', function() {
+        sinon.stub(db, 'findOne').yields(expectedResult);
+        logInController.postLogIn(req, res);
+
+        assert.isTrue(db.findOne.calledOnce);
+        assert.isTrue(res.status(401).json.calledOnce);
+        // assert.equal(db.findOne.firstCall.args[2], sinon.match({
+        //     logInUsername: req.body.logInUsername
+        // }));
     });
 });
