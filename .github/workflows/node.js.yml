@@ -32,7 +32,7 @@ jobs:
         node-version: 12.16.3
         cache: 'npm'
     - run: npm ci
-    - run: supervisor index.js
+    - run: npm run build --if-present
     - uses: joonvena/robotframework-docker-action@v0.1
       env:
         BROWSER: chrome
