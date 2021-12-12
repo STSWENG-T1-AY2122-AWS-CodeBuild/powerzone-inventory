@@ -96,7 +96,7 @@ const registerController = {
 	getCheckEmail: function(req, res) {
 
 		/* Retrieve the pertinent user input. */
-		let email = req.query.email;
+		let email = req.query.email.toLowerCase();
 
 		/* Use the user input as a query. */
 		let query = {email: email};
