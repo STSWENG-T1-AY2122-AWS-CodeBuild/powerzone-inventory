@@ -44,6 +44,7 @@ jobs:
         node-version: 12.16.3
         cache: 'npm'
     - run: npm ci
+    - run: node misc/populate-account.js
     - uses: joonvena/robotframework-docker-action@v0.1
       env:
         ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
