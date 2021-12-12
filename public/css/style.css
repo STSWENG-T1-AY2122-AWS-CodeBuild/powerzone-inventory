@@ -1,0 +1,56 @@
+:root {
+    --bg-primary-color: #00407C; /*dark navy blue*/
+    --bg-secondary-color: #ADCDE9; /*light blue*/
+    --text-primary-color: #00407C; /*dark navy blue*/
+    --text-warning-color: #FFFF00 /*yellow*/
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+.bg-log-reg {
+    background-image: url("/assets/blue-blue-bg.png");
+    background-size: cover;
+    height: 100vh;
+}
+
+.bg-home {
+    background-color: var(--bg-secondary-color);
+    background-image: url("/assets/Home.png");
+    background-size: cover;
+    height: 100vh;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.bungee-font {
+    font-family: "Bungee", cursive;
+}
+
+.bg-primary {
+    background-color: var(--bg-primary-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--bg-secondary-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--bg-primary-color) !important;
+}
+
+.text-primary {
+    color: var(--text-primary-color) !important;
+}
+
+.text-warning {
+    color: var(--text-warning-color) !important;
+}
+
+.border-primary {
+    border-color: var(--bg-primary-color) !important;
+}
