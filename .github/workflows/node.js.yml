@@ -36,4 +36,5 @@ jobs:
       env:
         BROWSER: chrome
         ROBOT_TESTS_DIR: ${{ github.workspace }}/selenium_tests
-        ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
+        REPORT_PATH: ${{ github.workspace }}/reports
+        ROBOT_REPORTS_DIR: ${{ github.workspace }}/report
