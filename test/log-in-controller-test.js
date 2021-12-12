@@ -104,12 +104,16 @@ describe('the function to log a user into the application', function() {
 			role: 'inventory-manager',
 			password: 'hello'
         };
+
+        sinon.stub(db, 'findOne').yields(expectedResult);
+        logInController.postLogIn(req, res);
+    });
+
+    afterEach(function() {
+        db.findOne.restore();
     });
 
     it('should search the database for the username only once', function() {
-        sinon.stub(db, 'findOne').yields(expectedResult);
-        logInController.postLogIn(req, res);
-
         assert.isTrue(db.findOne.calledOnce);
         assert.equal(db.findOne.firstCall.args[0], Account);
         expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({username: req.body.loginUsername});
