@@ -11,7 +11,7 @@ import {
     disableButton
 } from './general-util.js';
 
-$(function(){
+$(function() {
     let isUsernameStillValid = false;
     let didUsernameChange = true;
 
