@@ -1,7 +1,11 @@
+const deepEqualInAnyOrder = require('deep-equal-in-any-order');
+require('chai').use(deepEqualInAnyOrder);
 const assert = require('chai').assert;
+const expect = require('chai').expect;
 const sinon = require('sinon');
 
 const logInController = require('../controllers/log-in-controller.js');
+const Account = require('../models/account-schema.js');
 const db = require('../models/db.js');
 
 describe('the function to get the log-in page', function() {
@@ -25,41 +29,37 @@ describe('the function to get the log-in page', function() {
 });
 
 describe('the function to log a user into the application', function() {
-    let req, dbResult, res, expectedResult;
+    let req, res, expectedResult, error;
 
     beforeEach(function() {
         req = {
-            loginUsername: 'hello',
-            loginPassword: 'hello'
-        };
-
-        dbResult = {
             body: {
-                email: 'hello@gmail.com',
-				name: 'hello',
-				username: 'hello',
-				role: 'inventory-manager',
-				password: 'hello'
+                loginUsername: 'hello',
+                loginPassword: 'hello'
             }
         };
 
         res = {
-            status: sinon.stub().returns({
-                json: sinon.spy()
-            })
+            status: sinon.stub().returnsThis(),
+            json: sinon.stub(),
+            send: sinon.stub()
         };
 
-        expectedResult = dbResult.body;
+        expectedResult = {
+            email: 'hello@gmail.com',
+			name: 'hello',
+			username: 'hello',
+			role: 'inventory-manager',
+			password: 'hello'
+        };
     });
 
-    it('should return a created user account', function() {
+    it('should search the database for the username once', function() {
         sinon.stub(db, 'findOne').yields(expectedResult);
         logInController.postLogIn(req, res);
 
         assert.isTrue(db.findOne.calledOnce);
-        assert.isTrue(res.status(401).json.calledOnce);
-        // assert.equal(db.findOne.firstCall.args[2], sinon.match({
-        //     logInUsername: req.body.logInUsername
-        // }));
+        assert.equal(db.findOne.firstCall.args[0], Account);
+        expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({username: req.body.loginUsername});
     });
 });
