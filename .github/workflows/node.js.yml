@@ -35,6 +35,6 @@ jobs:
     - uses: joonvena/robotframework-docker-action@v0.1
       env:
         BROWSER: chrome
-        ROBOT_TESTS_DIR: ${{ github.workspace }}/selenium_tests
+        ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
         REPORT_PATH: ${{ github.workspace }}/reports
         ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
