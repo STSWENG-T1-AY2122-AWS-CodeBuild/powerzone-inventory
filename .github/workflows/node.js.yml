@@ -23,9 +23,7 @@ jobs:
   test:
   
     runs-on: ubuntu-latest
-    container:
-      image: node:12.16.3
-      options: --network-alias localhost
+    
     env:
       SELENIUM_HUB_HOST: localhost
       TEST_HOST: localhost
@@ -33,7 +31,7 @@ jobs:
       hub:
         image: selenium/hub:3.141.59-gold
       chrome:
-        image: selenium/node-firefox:3.141.59-gold
+        image: selenium/node-chrome:3.141.59-gold
         env:
           HUB_HOST: localhost
           HUB_PORT: 3000
@@ -46,8 +44,6 @@ jobs:
         node-version: 12.16.3
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present
     - uses: joonvena/robotframework-docker-action@v0.1
       env:
-        BROWSER: chrome
         ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
