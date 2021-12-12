@@ -54,7 +54,7 @@ describe('the function to log a user into the application', function() {
         };
     });
 
-    it('should search the database for the username once', function() {
+    it('should search the database for the username only once', function() {
         sinon.stub(db, 'findOne').yields(expectedResult);
         logInController.postLogIn(req, res);
 
