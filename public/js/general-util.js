@@ -14,9 +14,18 @@ const disableButton = function(button) {
     button.prop('disabled', true);
 }
 
+const isBlankField = function(field, trimmed) {
+    if (trimmed) {
+        return field.val().trim().length == 0;
+    }
+
+    return field.val().length == 0
+}
+
 export {
     displayErrorMessage,
     hideErrorMessage,
     enableButton,
-    disableButton
+    disableButton,
+    isBlankField
 };
