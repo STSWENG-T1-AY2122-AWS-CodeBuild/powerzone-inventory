@@ -81,7 +81,7 @@ describe('the function to get the log-in page', function() {
 });
 
 describe('the function to log a user into the application', function() {
-    let req, res, expectedResult, error;
+    let req, res, expectedResult;
 
     beforeEach(function() {
         req = {
