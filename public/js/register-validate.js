@@ -11,7 +11,7 @@ import {
     disableButton
 } from './general-util.js';
 
-$(function(){
+$(function() {
     let isUsernameStillValid = false;
     let didUsernameChange = true;
 
@@ -128,14 +128,14 @@ $(function(){
 					if (isPasswordValid(field) && isUsernameValid && isEmailValid) {
 						enableButton($('#signup-btn'));
 					} else {	
-						$('#signup-btn').prop('disabled', true);
+						disableButton($('#signup-btn'));
 					}
 				});
             } else {
                 if (isPasswordValid(field) && isEmailValid) {	
 					enableButton($('#signup-btn'));
 				} else {	
-					$('#signup-btn').prop('disabled', true);
+					disableButton($('#signup-btn'));
 				}
             }
 
@@ -157,14 +157,14 @@ $(function(){
 					if (isPasswordValid(field) && isUsernameValid && isEmailStillValid) {
 						enableButton($('#signup-btn'));
 					} else {	
-						$('#signup-btn').prop('disabled', true);
+						disableButton($('#signup-btn'));
 					}
 				});
             } else {
                 if (isPasswordValid(field) && isEmailStillValid) {	
 					enableButton($('#signup-btn'));
 				} else {	
-					$('#signup-btn').prop('disabled', true);
+					disableButton($('#signup-btn'));
 				}
             }
 
@@ -186,14 +186,14 @@ $(function(){
 					if (isPasswordValid(field) && isUsernameValid) {
 						enableButton($('#signup-btn'));
 					} else {	
-						$('#signup-btn').prop('disabled', true);
+						disableButton($('#signup-btn'));
 					}
 				});
             } else {
                 if (isPasswordValid(field)) {	
 					enableButton($('#signup-btn'));
 				} else {	
-					$('#signup-btn').prop('disabled', true);
+					disableButton($('#signup-btn'));
 				}
             }
 

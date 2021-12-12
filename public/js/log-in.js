@@ -1,5 +1,7 @@
 /* JavaScript file for handling the front end of the log in page */
 
+import { displayErrorMessage } from "./general-util.js";
+
 $(function() {
 	$('#login-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
@@ -29,6 +31,7 @@ $(function() {
 	 * concerning the user's input.
 	 */
 	function logInError() {
-		alert("Log in error");
+		displayErrorMessage($('#invalid-login'));
+		$('#login-password').val('');
 	}
 });
