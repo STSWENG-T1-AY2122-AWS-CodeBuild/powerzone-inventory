@@ -35,7 +35,8 @@ jobs:
     - name: Run Robot Tests
       run: |
         docker run
-        -v ${{ github.workspace }}/robot_tests:Z
+        -v ${PWD}/reports:/opt/robotframework/reports:Z
+        -v ${{ github.workspace }}/:/opt/robotframework/tests:Z
         --user $(id -u):$(id -g)
         ppodgorsek/robot-framework:latest
       env:
