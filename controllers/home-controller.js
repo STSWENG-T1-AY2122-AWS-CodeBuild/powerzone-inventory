@@ -8,7 +8,12 @@ const homeController = {
 	 * @param res Object that contains information on the HTTP response from the server.
 	 */
 	getHome: function(req, res) {
-		res.render('home');
+		if (req.session.username != null) {
+			res.render('home');
+		} else {
+			/* If the user is not logged in, redirect them to the log in page. */
+			res.redirect('/');
+		}
 	}
 }
 
