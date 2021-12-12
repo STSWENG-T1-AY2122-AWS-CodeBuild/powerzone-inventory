@@ -1,17 +1,8 @@
-<<<<<<< HEAD
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests
 
 name: Node.js CI
 
 on: [pull_request, workflow_dispatch]
-=======
-# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
-
-on: pull_request
->>>>>>> 9b03a5288f75b3fc2e1a5e22006920d289bf47ce
 
 jobs:
   
@@ -21,17 +12,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-<<<<<<< HEAD
     - name: Use Node.js 12.16.3
       uses: actions/setup-node@v2
       with:
         node-version: 12.16.3
-=======
-    - name: Use Node.js 17.1.0
-      uses: actions/setup-node@v2
-      with:
-        node-version: 17.1.0
->>>>>>> 9b03a5288f75b3fc2e1a5e22006920d289bf47ce
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
@@ -42,17 +26,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-<<<<<<< HEAD
     - name: Use Node.js 12.16.3
       uses: actions/setup-node@v2
       with:
         node-version: 12.16.3
-=======
-    - name: Use Node.js 17.1.0
-      uses: actions/setup-node@v2
-      with:
-        node-version: 17.1.0
->>>>>>> 9b03a5288f75b3fc2e1a5e22006920d289bf47ce
         cache: 'npm'
     - run: npm ci
     - run: npm test
