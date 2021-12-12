@@ -26,6 +26,58 @@ describe('the function to get the log-in page', function() {
         assert.isTrue(res.render.calledOnce);
         assert.equal(res.render.firstCall.args[0], 'log-in');
     });
+
+    it('should not redirect to the home page if the user is not logged in', function() {
+        let req = {
+            session: {
+                username: null
+            }
+        };
+
+        let res = {
+            render: sinon.spy(),
+            redirect: sinon.spy()
+        };
+
+        logInController.getLogIn(req, res);
+
+        assert.isTrue(res.redirect.notCalled);
+    });
+
+    it('should redirect to the home page if the user is logged in', function() {
+        let req = {
+            session: {
+                username: 'bettina'
+            }
+        };
+
+        let res = {
+            render: sinon.spy(),
+            redirect: sinon.spy()
+        };
+
+        logInController.getLogIn(req, res);
+
+        assert.isTrue(res.redirect.calledOnce);
+        assert.equal(res.redirect.firstCall.args[0], '/getHome');
+    });
+
+    it('should not render the log-in page if the user is not logged in', function() {
+        let req = {
+            session: {
+                username: 'bettina'
+            }
+        };
+
+        let res = {
+            render: sinon.spy(),
+            redirect: sinon.spy()
+        };
+
+        logInController.getLogIn(req, res);
+
+        assert.isTrue(res.render.notCalled);
+    });
 });
 
 describe('the function to log a user into the application', function() {
