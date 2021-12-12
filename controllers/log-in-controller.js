@@ -15,7 +15,13 @@ const logInController = {
 	 * @param res Object that contains information on the HTTP response from the server.
 	 */
 	getLogIn: function(req, res) {
-		res.render('log-in');
+		if (req.session.username == null) {
+			res.render('log-in');
+		} else {
+			/* If the user is already logged in, redirect them to the home page. */
+			res.redirect('/getHome');
+		}
+		
 	},
 
 	/**
@@ -49,8 +55,8 @@ const logInController = {
                  */
 				bcrypt.compare(password, result.password, function (err, equal) {
 					if (equal) {
-					//	req.session.username = result.username;
-					//	req.session.role = result.role;
+						req.session.username = result.username;
+						req.session.role = result.role;
 
 						res.status(200).json("Log in successful");
 						res.send();

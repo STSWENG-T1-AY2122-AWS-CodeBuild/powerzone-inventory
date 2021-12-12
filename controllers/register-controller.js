@@ -18,7 +18,13 @@ const registerController = {
 	 * @param res Object that contains information on the HTTP response from the server.
 	 */
 	getRegister: function(req, res) {
-		res.render('register');
+		if (req.session.username == null) {
+			res.render('register');
+		} else {
+			/* If the user is already logged in, redirect them to the home page. */
+			res.redirect('/getHome');
+		}
+		
 	},
 
 	/**
@@ -48,10 +54,13 @@ const registerController = {
 				name: name,
 				username: username,
 				role: role,
-				password: password
+				password: hash
 			}
 
 			db.insertOne(Account, account, function (flag) {
+				req.session.username = account.username;
+				req.session.role = account.role;
+
 				res.status(200).json("Account added successfully");
 				res.send();
 			});
@@ -87,7 +96,7 @@ const registerController = {
 	getCheckEmail: function(req, res) {
 
 		/* Retrieve the pertinent user input. */
-		let email = req.query.email;
+		let email = req.query.email.toLowerCase();
 
 		/* Use the user input as a query. */
 		let query = {email: email};

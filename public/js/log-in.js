@@ -1,5 +1,7 @@
 /* JavaScript file for handling the front end of the log in page */
 
+import { displayErrorMessage } from "./general-util.js";
+
 $(function() {
 	$('#login-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
@@ -13,7 +15,7 @@ $(function() {
 
 				/* If the log in is successful, redirect the user to the landing page. */
 				200: function() {
-					location.href = '/getRegister';
+					location.href = '/getHome';
 				},
 				
 				/* Otherwise, display an error message. */
@@ -29,6 +31,7 @@ $(function() {
 	 * concerning the user's input.
 	 */
 	function logInError() {
-		alert("Log in error");
+		displayErrorMessage($('#invalid-login'));
+		$('#login-password').val('');
 	}
 });
