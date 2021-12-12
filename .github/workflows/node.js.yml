@@ -1,0 +1,40 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests
+
+name: Staging CI
+
+on: pull_request
+
+jobs:
+  
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12.16.3
+      uses: actions/setup-node@v2
+      with:
+        node-version: 12.16.3
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+
+  test:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12.16.3
+      uses: actions/setup-node@v2
+      with:
+        node-version: 12.16.3
+        cache: 'npm'
+    - run: npm ci
+    - uses: joonvena/robotframework-docker-action@v0.1
+      env:
+        BROWSER: chrome
+        ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
+        REPORT_PATH: ${{ github.workspace }}/reports
+        ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
