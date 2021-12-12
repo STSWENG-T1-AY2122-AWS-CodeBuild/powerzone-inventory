@@ -47,27 +47,35 @@ const logInController = {
 					name: result.name,
 					username: result.username,
 					role: result.role,
-					password: result.password
+					password: result.password,
+					status: result.status
 				}
 
-				/* If the entered password matches the password stored in the database, open a session for 
-                 * the user.
-                 */
-				bcrypt.compare(password, result.password, function (err, equal) {
-					if (equal) {
-						req.session.username = result.username;
-						req.session.role = result.role;
+				/* If the user account has been accepted, proceed to checking their log in credentials. */
+				if (userDetails.status == "Accepted") {
+					/* If the entered password matches the password stored in the database, open a session for 
+					* the user.
+					*/
+					bcrypt.compare(password, result.password, function (err, equal) {
+						if (equal) {
+							req.session.username = result.username;
+							req.session.role = result.role;
 
-						res.status(200).json("Log in successful");
-						res.send();
+							res.status(200).json("Log in successful");
+							res.send();
 
-					/* If the entered password does not match, send an error message. */
-					} else {
-						res.status(401).json("Incorrect username and/or password");
-						res.send();
-					}
-				});
-			
+						/* If the entered password does not match, send an error message. */
+						} else {
+							res.status(401).json("Incorrect username and/or password");
+							res.send();
+						}
+					});
+					
+				} else {
+					res.status(401).json("Account not accepted");
+					res.send();
+				}
+
 			/* If the entered username is not in the database, send an error message. */
 			} else {
 				res.status(401).json("Incorrect username and/or password");
