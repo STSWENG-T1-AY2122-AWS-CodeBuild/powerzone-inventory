@@ -23,6 +23,7 @@ $(function() {
     let didEmailChange = true;
 
     function isThereBlankField() {
+        /* Do not trim the password. */
         return isBlankField($('#signup-email'), true) ||
             isBlankField($('#signup-fname'), true) ||
             isBlankField($('#signup-lname'), true) ||
