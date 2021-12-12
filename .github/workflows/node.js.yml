@@ -24,17 +24,17 @@ jobs:
   
     runs-on: ubuntu-latest
     
-    env:
-      SELENIUM_HUB_HOST: localhost
-      TEST_HOST: localhost
-    services:
-      hub:
-        image: selenium/hub:3.141.59-gold
-      chrome:
-        image: selenium/node-chrome:3.141.59-gold
-        env:
-          HUB_HOST: localhost
-          HUB_PORT: 3000
+    #env:
+    #  SELENIUM_HUB_HOST: localhost
+    #  TEST_HOST: localhost
+    #services:
+    #  hub:
+    #    image: selenium/hub:3.141.59-gold
+    #  chrome:
+    #    image: selenium/node-chrome:3.141.59-gold
+    #    env:
+    #      HUB_HOST: localhost
+    #      HUB_PORT: 3000
 
     steps:
     - uses: actions/checkout@v2
