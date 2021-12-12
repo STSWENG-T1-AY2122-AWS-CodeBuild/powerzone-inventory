@@ -7,7 +7,7 @@ Library         SeleniumLibrary
 
 *** Variables ***
 ${SERVER}           localhost:3000
-${BROWSER}          chrome
+${BROWSER}          headlesschrome
 ${DELAY}            0.5
 ${VALID USER}       powerzoneadmin
 ${INVALID USER}  powerzone
