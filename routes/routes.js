@@ -36,7 +36,6 @@ powerzone.get('/getHome', homeController.getHome);
 
 powerzone.get('/getLogOut', logOutController.getLogOut);
 powerzone.get('/getAccount', accountController.getAccount);
-powerzone.get('/getUserAccount', accountController.getUserAccount);
 powerzone.get('/getEditAccount', accountController.getEditAccount);
 
 module.exports = powerzone;
