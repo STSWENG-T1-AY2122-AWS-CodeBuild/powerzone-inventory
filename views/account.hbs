@@ -22,33 +22,98 @@
                 <h1 class = "fs-1 fw-bolder text-center text-info text-muted">ACCOUNTS</h1>
             </div>
 
-            <div class = "modal" id = "edit-status-account-modal">
+            <div class = "modal" id = "edit-account-status-modal">
                 <div class = "modal-dialog modal-dialog-centered">
                     <div class = "bg-primary border border-white border-3 modal-content">
                         <div class = "text-end">
                             <button class = "btn fs-5 fw-bold m-1 shadow-none text-white" data-bs-dismiss = "modal">X</button>
                         </div>
-        
-                        <div class = "bg-secondary p-2 text-center">
-                            <h4 class = "fw-bold pt-2 status-name text-primary">Angeli Dianne Mata</h4>
-                            <h5 class = "status-role text-primary">Regular User</h5>
+                        
+                        <form id = "edit-account-status-form">
+                            <div class = "bg-secondary p-2 text-center">
+                                <h4 class = "fw-bold pt-2 status-name text-primary">Angeli Dianne Mata</h4>
+                                <h5 class = "status-role text-primary">Regular User</h5>
+                            </div>
+
+                            <div class = "mt-4 mb-2 mx-3 row text-center">
+                                <div class = "col">
+                                    <button id = "reject-account-btn" type = "submit" class = "btn btn-white fw-bold m-1 px-5 text-primary rounded-pill">Reject</button>
+                                </div>
+                                
+                                <div class = "col">
+                                    <button id = "accept-account-btn" type = "submit" class = "btn btn-white fw-bold m-1 px-5 text-primary rounded-pill">Accept</button>
+                                </div>
+                            </div>
+
+                            <div class = "mb-4 mx-3 row text-center">
+                                <div class = "col">
+                                    <button id = "pend-account-btn" type = "submit" class = "btn btn-white fw-bold px-5 text-primary rounded-pill">Pending</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "modal" id = "edit-account-role-modal">
+                <div class = "modal-dialog modal-dialog-centered">
+                    <div class = "bg-primary border border-white border-3 modal-content">
+                        <div class = "text-end">
+                            <button class = "btn fs-5 fw-bold m-1 shadow-none text-white" data-bs-dismiss = "modal">X</button>
                         </div>
 
-                        <div class = "mt-4 mb-2 mx-3 row text-center">
-                            <div class = "col">
-                                <button id = "reject-account" class = "btn btn-white fw-bold m-1 px-5 text-primary">Reject</button>
+                        <form id = "edit-account-role-form">
+                            <div class = "bg-secondary p-2 text-center">
+                                <h4 class = "fw-bold pt-2 status-name text-primary">Angeli Dianne Mata</h4>
+                                <h5 class = "status-role text-primary">Regular User</h5>
                             </div>
-                            
-                            <div class = "col">
-                                <button id = "accept-account" class = "btn btn-white fw-bold m-1 px-5 text-primary">Accept</button>
+                        
+                            <div class = "mx-5 my-4">
+                                <label for = "edit-account-role" class = "form-label text-white">Role</label>
+                                <select id = "edit-account-role" name = "editAccountRole" class = "form-select rounded-pill" required>
+                                    <option selected value = "inventory-manager">Inventory Manager</option>
+                                    <option value = "transaction-cashier">Transaction Cashier</option>
+                                    <option value = "delivery-manager">Delivery Manager</option>
+                                </select>
                             </div>
+
+                            <div class = "my-4 mx-3 row text-center">
+                                <div class = "col">
+                                    <button id = "confirm-edit-account-role-btn" type = "submit" class = "btn btn-white fw-bold px-5 rounded-pill text-primary">Confirm</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "modal" id = "delete-account-modal">
+                <div class = "modal-dialog modal-dialog-centered">
+                    <div class = "bg-primary border border-white border-3 modal-content">
+                        <div class = "text-end">
+                            <button class = "btn fs-5 fw-bold m-1 shadow-none text-white" data-bs-dismiss = "modal">X</button>
                         </div>
 
-                        <div class = "mb-4 mx-3 row text-center">
-                            <div class = "col">
-                                <button id = "pend-account" class = "btn btn-white fw-bold px-5 text-primary">Pending</button>
+                        <form id = "delete-account-form">
+                            <div class = "bg-secondary p-2 text-center">
+                                <h4 class = "fw-bold pt-2 status-name text-primary">Angeli Dianne Mata</h4>
+                                <h5 class = "status-role text-primary">Regular User</h5>
                             </div>
-                        </div>
+
+                            <div class = "m-3 text-center">
+                                <span class = "text-white">Are you sure you want to remove this user?</span>
+                            </div>
+
+                            <div class = "m-3 row text-center">
+                                <div class = "col">
+                                    <button id = "cancel-delete-account-btn" class = "btn btn-white fw-bold m-1 px-5 text-primary rounded-pill" data-bs-dismiss = "modal">Cancel</button>
+                                </div>
+                                
+                                <div class = "col">
+                                    <button id = "confirm-delete-account-btn" type = "submit" class = "btn btn-white fw-bold m-1 px-5 text-primary rounded-pill">Yes</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -70,27 +135,27 @@
                             <td>Angeli Dianne Mata</td>
                             <td>adiannem</td>
                             <td>Regular User</td>
-                            <td><img src = "/assets/check.png" alt = "approved" class = "status-account"></td>
-                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-status-account-modal"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-status"></button></td>
-                            <td><button class = "btn shadow-none delete-account-btn"><img src = "/assets/pencil.png" alt = "edit" class = "delete-account-status"></button></td>
+                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-status-modal"><img src = "/assets/check.png" alt = "approved" class = "edit-account-status"></button></td>
+                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-role-modal"><img src = "/assets/pencil.png" alt = "edit-account" class = "edit-account-role"></button></td>
+                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#delete-account-modal"><img src = "/assets/bin.png" alt = "delete-account" class = "delete-account"></button></td>
                         </tr>
 
                         <tr class = "user">
                             <td>Kim Myung Soo</td>
                             <td>kim_msl</td>
                             <td>Kpop Idol</td>
-                            <td><img src = "/assets/time.png" alt = "pending" class = "status-account"></td>
-                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-status-account-modal"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-status"></button></td>
-                            <td><button class = "btn shadow-none delete-account-btn"><img src = "/assets/pencil.png" alt = "edit" class = "delete-account-status"></button></td>
+                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-status-modal"><img src = "/assets/time.png" alt = "pending" class = "edit-account-status"></button></td>
+                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-role-modal"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-role"></button></td>
+                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#delete-account-modal"><img src = "/assets/bin.png" alt = "delete-account" class = "delete-account"></button></td>
                         </tr>
 
                         <tr class = "user">
                             <td>Kim Hee Chul</td>
                             <td>heenim</td>
                             <td>Variety</td>
-                            <td><img src = "/assets/delete-button.png" alt = "reject" class = "status-account"></td>
-                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-status-account-modal"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-status"></button></td>
-                            <td><button class = "btn shadow-none delete-account-btn"><img src = "/assets/pencil.png" alt = "edit" class = "delete-account-status"></button></td>
+                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-status-modal"><img src = "/assets/delete-button.png" alt = "reject" class = "edit-account-status"></button></td>
+                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-role-modal"><img src = "/assets/pencil.png" alt = "edit" class = "edit-account-role"></button></td>
+                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#delete-account-modal"><img src = "/assets/bin.png" alt = "delete-account" class = "delete-account"></button></td>
                         </tr>
                     </tbody>
                 </table>
