@@ -2,6 +2,7 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const exphbs = require('express-handlebars');
 const nocache = require("nocache");
+const hbs = require('hbs');
 
 const path = require('path');
 
@@ -21,6 +22,7 @@ url = process.env.DB_URL;
 db.connect();
 
 powerzone.set('view engine','hbs');
+hbs.registerPartials(__dirname + '/views/partials');
 powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());
 powerzone.use(express.urlencoded({

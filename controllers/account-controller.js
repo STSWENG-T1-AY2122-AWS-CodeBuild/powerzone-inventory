@@ -11,6 +11,10 @@ const accountController = {
 		res.render('account');
 	},
 
+	getUserAccount: function(req, res){
+		res.render('user-account');
+	},
+
 	getEditAccount: function(req, res){
 		res.render('edit-account');
 	}

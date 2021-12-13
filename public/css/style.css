@@ -88,7 +88,11 @@ body {
     width: 20%;
 }
 
-.edit-account-link, .status-account-link {
+.w-10 {
+    width: 10%;
+}
+
+.edit-account-status, .delete-account-status, .status-account {
     /*max-width: 15%;*/
     height: 40px;
 }
@@ -96,22 +100,3 @@ body {
 .h-9 {
     height: 9%;
 }
-
-#status-div {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-}
-
-/*
-.blur {
-    backdrop-filter: blur(8px);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.remove-blur {
-    filter: blur(0px);
-}
-*/
