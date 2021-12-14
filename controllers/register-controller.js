@@ -102,6 +102,10 @@ const registerController = {
 		db.findOne(Account, query, 'email', function(result) {			
 			res.send(result);
 		});
+	},
+
+	getSuccessfulRegistration: function(req, res) {
+		res.render('successful-signup');
 	}
 }
 
