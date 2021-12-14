@@ -18,7 +18,7 @@ db.connect();
 
 /* Add the admin account to the database. */
 bcrypt.hash("password123", saltRounds, function (err, hash) {
-	/* Initialize customer account details */
+	/* Initialize admin account details */
 	let adminAccount = {
 		email: "administrator@gmail.com",
         name: "Powerzone Admin",
