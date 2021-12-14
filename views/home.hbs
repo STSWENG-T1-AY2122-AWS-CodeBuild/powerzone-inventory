@@ -10,18 +10,92 @@
         <link href = "css/style.css" rel = "stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body class = "bg-home">
-        <nav class = "bg-primary navbar px-3">
-            <a href = "/getHome" class = "bungee-font navbar-brand text-warning">POWERZONE</a>
-            
-            <div class = "d-flex">
-                <a href = "/getHome" class = "fw-bold nav-link text-end text-warning">Home</a>
-                <a href = "/getAccount" class = "nav-link text-end text-warning">Account</a>
-                <a href = "/getLogOut" class = "nav-link text-end text-warning">Log Out</a>
+        {{>navbar adminflag = true home-page = true account-page = false}}
+
+        <div class = "modal" id = "edit-price-modal">
+            <div class = "modal-dialog modal-dialog-centered">
+                <div class = "bg-primary border border-white border-3 modal-content">
+                    <div class = "text-end">
+                        <button class = "btn fs-5 fw-bold m-1 shadow-none text-white" data-bs-dismiss = "modal">X</button>
+                    </div>
+
+                    <div class = "fs-5 fw-bold text-center mb-3 mx-3 text-white">
+                        <span>EDIT PRICES</span>
+                        <hr class = "bg-light border-4 border-top">
+                    </div>
+
+                    <form id = "edit-price-form">
+                        <div class = "bg-secondary mb-3 p-2">
+                            <div class = "align-items-center row">
+                                <div class = "col">
+                                    <label for = "edit-gasoline-price" class = "form-label fw-bold text-primary">Gasoline</label>
+                                </div>
+
+                                <div class = "col">
+                                    <input id = "edit-gasoline-price" name = "editGasolinePrice" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                </div>  
+                            </div>   
+                        </div>
+
+                        <div class = "bg-secondary mb-3 p-2">
+                            <div class = "align-items-center row">
+                                <div class = "col">
+                                    <label for = "edit-premium-gasoline-95-price" class = "form-label fw-bold text-primary">PREMIUM GASOLINE 95</label>
+                                </div>
+
+                                <div class = "col">
+                                    <input id = "edit-premium-gasoline-95-price" name = "editPremiumGasoline95Price" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                </div>  
+                            </div>
+                        </div>
+
+                        <div class = "bg-secondary mb-3 p-2">
+                            <div class = "align-items-center row">
+                                <div class = "col">
+                                    <label for = "edit-diesel-price" class = "form-label fw-bold text-primary">DIESEL</label>
+                                </div>
+
+                                <div class = "col">
+                                    <input id = "edit-diesel-price" name = "editDieselPrice" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                </div>  
+                            </div>
+                        </div>
+
+                        <div class = "bg-secondary mb-3 p-2">
+                            <div class = "align-items-center row">
+                                <div class = "col">
+                                    <label for = "edit-premium-gasoline-97-price" class = "form-label fw-bold text-primary">PREMIUM GASOLINE 97</label>
+                                </div>
+
+                                <div class = "col">
+                                    <input id = "edit-premium-gasoline-97-price" name = "editPremiumGasoline97Price" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                </div>  
+                            </div>
+                        </div>
+
+                        <div class = "bg-secondary mb-3 p-2">
+                            <div class = "align-items-center row">
+                                <div class = "col">
+                                    <label for = "edit-kerosene-price" class = "form-label fw-bold text-primary">KEROSENE</label>
+                                </div>
+
+                                <div class = "col">
+                                    <input id = "edit-kerosene-price" name = "editPremiumGasoline95Price" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                </div>  
+                            </div>
+                        </div>
+
+                        <div class = "mx-3 my-4">
+                            <button id = "cancel-edit-price" class = "btn btn-white float-start fw-bold m-1 px-5 rounded-pill text-primary" data-bs-dismiss = "modal">Cancel</button>
+                            <button id = "confirm-edit-price" type = "submit" class = "btn btn-white float-end fw-bold m-1 mb-3 px-5 rounded-pill text-primary">Confirm</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </nav>
+        </div>
 
         <div class = "bg-primary border border-primary border-5 mt-5 mx-5 text-center">
             <div class = "border border-primary border-5 table-responsive">
@@ -32,7 +106,7 @@
                             <th scope = "col">PREMIUM GASOLINE 95</th>
                             <th scope = "col">DIESEL</th>
                             <th scope = "col">PREMIUM GASOLINE 97</th>
-                            <th scope = "col">KEROSONE</th>
+                            <th scope = "col">KEROSENE</th>
                         </tr>
                     </thead>
                     <tbody class = "bg-secondary">
@@ -47,14 +121,14 @@
                 </table>
             </div>
         </div>
-    
+
         <div class = "me-5 my-3 text-end"> 
-            <button id = "edit-price-btn" class = "btn btn-primary fw-bold text-white px-5 shadow-sm">Edit</button>
+            <button id = "edit-price-btn" class = "btn btn-primary fw-bold px-5 rounded-pill shadow-sm text-white" data-bs-toggle = "modal" data-bs-target = "#edit-price-modal">Edit</button>
         </div> 
 
         <div class = "container">
             <div class = "row text-center">
-                <div class = "bg-primary col m-5 p-1">
+                <div class = "bg-primary col m-5 p-1 rounded">
                     <a href = "#" class = "bungee-font text-decoration-none text-warning">
                         <div>
                             <img src = "/assets/fast.png" class = "m-2 p-3 w-50 h-50">
@@ -63,7 +137,7 @@
                     </a>
                 </div> 
 
-                <div class = "bg-primary col m-5 p-1">
+                <div class = "bg-primary col m-5 p-1 rounded">
                     <a href = "#" class = "bungee-font text-decoration-none text-warning">
                         <div>
                             <img src = "/assets/transaction.png" class = "m-2 p-3 w-50 h-50">
@@ -72,7 +146,7 @@
                     </a>
                 </div>
 
-                <div class = "bg-primary col m-5 p-1">
+                <div class = "bg-primary col m-5 p-1 rounded">
                     <a href = "#" class = "bungee-font text-decoration-none text-warning">
                         <div>
                             <img src = "/assets/inventory.png" class = "m-2 p-3 w-50 h-50">
