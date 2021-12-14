@@ -20,38 +20,12 @@ const accountController = {
 			let projection = '_id name username role status';
 
 			db.findMany(Account, query, projection, function(result) {
-				/* Store data in parallel arrays. */
-				let ids = [];
-				let names = [];
-				let usernames = [];
-				let roles = [];
-				let statuses = [];
-
 				/* Assign the result of the database retrieval to the variable accounts. */
 				let accounts = result;
 
-				/* For each account, push each detail to its respective array if the account
+				/* For each account, push its details to the array array if the account
 				 * does not belong to the administrator. 
 				 */
-/*				for (let i = 0; i < accounts.length; i++) {
-					if (accounts[i].role != "administrator") {
-						ids.push(accounts[i]._id);
-						names.push(accounts[i].name);
-						usernames.push(accounts[i].username);
-						roles.push(accounts[i].role);
-						statuses.push(accounts[i].status);
-					}
-				}
-*/
-				/* The retrieved account details are passed for display. */
-/*				let accountDetails = {
-					ids: ids,
-					names: names,
-					usernames: usernames,
-					roles: roles,
-					statuses: statuses
-				}
-*/
 				let accountDetails = [];
 				for (let i = 0; i < accounts.length; i++) {
 					if (accounts[i].role != "administrator") {
@@ -59,6 +33,7 @@ const accountController = {
 					}
 				}
 
+				/* Pass the retrieved account details through the data variable. */
 				let data = {
 					accountDetails: accountDetails
 				}
