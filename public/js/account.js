@@ -60,7 +60,7 @@ $(function() {
 			data: $('#edit-account-status-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the landing page. */
+				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
 					location.href = '/getAccount';
 				},
@@ -83,7 +83,7 @@ $(function() {
 			data: $('#edit-account-status-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the landing page. */
+				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
 					location.href = '/getAccount';
 				},
@@ -106,7 +106,7 @@ $(function() {
 			data: $('#edit-account-status-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the landing page. */
+				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
 					location.href = '/getAccount';
 				},
@@ -129,7 +129,7 @@ $(function() {
 			data: $('#edit-account-role-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the landing page. */
+				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
 					location.href = '/getAccount';
 				},
@@ -152,7 +152,7 @@ $(function() {
 			data: $('#delete-account-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the landing page. */
+				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
 					location.href = '/getAccount';
 				},

@@ -4,6 +4,12 @@
 const db = require('../models/db.js');
 const Account = require('../models/account-schema.js');
 
+/* Bcrypt is used to deal with password hashing. */
+const bcrypt = require('bcrypt');
+
+/* Use ten salt rounds for password hashing. */
+const saltRounds = 10;
+
 const accountController = {
 	/**
 	 * Gets the account page.
@@ -17,7 +23,7 @@ const accountController = {
 			
 			/* Retrieve the account details visible to the administrator of all accounts. */
 			let query = {};
-			let projection = '_id name username role status';
+			let projection = '_id firstName lastName username role status';
 
 			db.findMany(Account, query, projection, function(result) {
 				/* Assign the result of the database retrieval to the variable accounts. */
@@ -41,12 +47,35 @@ const accountController = {
 				res.render('account', data);
 			});
 		} else {
-			res.render('account');
-		}		
-	},
+			/* Retrieve the account details of the logged in user if a regular user accesses the account tab. */
+			accountUsername = req.session.username;
 
-	getEditAccount: function(req, res){
-		res.render('edit-account');
+			/* Retrieve account details from the database matching the username of the current user. */
+			query = {username: accountUsername};
+			projection = 'email firstName lastName role password';
+
+			db.findOne(Account, query, projection, function(result) {
+				/* Store the retrieved data in local variables. */
+				let email = result.email;
+				let firstName = result.firstName;
+				let lastName = result.lastName;
+				let username = req.session.username;
+				let role = result.role;
+				let password = result.password;
+
+				/* Store the retrieved data in the variable data. */
+				let data = {
+					email: email,
+					firstName: firstName,
+					lastName: lastName,
+					username: username,
+					role: role,
+					password: password
+				}
+
+				res.render('edit-account', data);
+			});
+		}		
 	},
 
 	/**
@@ -155,7 +184,53 @@ const accountController = {
 			res.status(200).json("Account deleted successfully!");
 			res.send();
 		});
-	}
+	},
+
+	/**
+	 * Updates the account details of the current user account.
+	 * 
+	 * @param req Object that contains information on the HTTP request from the client.
+	 * @param res Object that contains information on the HTTP response from the server.
+	 */
+	 postEditAccount: function(req, res) {
+		/* Retrieve the updated details of the user account. */
+		let email = req.body.editAccountEmail.trim();
+		let newUsername = req.body.editAccountUsername.trim();
+		let firstName = req.body.editAccountFName.trim();
+		let lastName = req.body.editAccountLName.trim();
+		let newPassword = req.body.editAccountNewPassword;
+		let confirmPassword = req.body.editAccountConfirmPassword;
+		
+		/* If the entered passwords match, update the user account details. */
+		if (JSON.stringify(newPassword) === JSON.stringify(confirmPassword)) {
+
+			/* Hash the password using bcrypt. */
+			bcrypt.hash(newPassword, saltRounds, function(err, hash) {
+				
+				/* Assign the new details to the update variable. */
+				let update = {
+					email: email,
+					firstName: firstName,
+					lastName: lastName,
+					username: newUsername,
+					password: hash,
+				}
+
+				/* Search for the user's account details based on their original username */
+				let filter = {username: req.session.username};
+
+				db.updateOne(Account, filter, update, function(flag) {
+					res.status(200).json("Account details updated successfully!");
+					res.send();
+				});
+			});
+
+		/* If the entered passwords do not match, send an error message. */	
+		} else {
+			res.status(401).json("Passwords do not match");
+			res.send();
+		}
+	},
 }
 
 module.exports = accountController;

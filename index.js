@@ -40,6 +40,9 @@ hbs.handlebars.registerHelper('getStatus', function(status) {
 	else 
 		return "/assets/rejected.png"
 })
+hbs.handlebars.registerHelper('getFullName', function(firstName, lastName) {
+	return firstName.concat(" ", lastName);
+})
 
 powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());

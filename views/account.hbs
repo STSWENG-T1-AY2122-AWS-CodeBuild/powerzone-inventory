@@ -136,7 +136,7 @@
                     <tbody id = "users-list">
                         {{#each accountDetails}}
                         <tr class = "user">
-                            <td id = "name-{{this._id}}">{{this.name}}</td>
+                            <td id = "name-{{this._id}}">{{getFullName this.firstName this.lastName}}</td>
                             <td id = "username-{{this._id}}">{{this.username}}</td>
                             <td id = "role-{{this._id}}">{{getRole this.role}}</td>
                             <td><button id = "edit-status-{{this._id}}" class = "edit-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-status-modal"><img src = "{{getStatus this.status}}" class = "edit-account-status"></button></td>

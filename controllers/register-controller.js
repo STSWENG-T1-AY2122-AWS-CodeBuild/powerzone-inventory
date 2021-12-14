@@ -43,15 +43,14 @@ const registerController = {
 		let role = req.body.signupRole;
 		let password = req.body.signupPassword;
 
-		/* Concatenate the user's last name and first name. */
-		let name = lastName + " " + firstName;
-
-		bcrypt.hash(password, saltRounds, function (err, hash) {
+		/* Hash the password using bcrypt. */
+		bcrypt.hash(password, saltRounds, function(err, hash) {
 
 			/* Assign the data to the account variable. */
 			let account = {
 				email: email,
-				name: name,
+				firstName: firstName,
+				lastName: lastName,
 				username: username,
 				role: role,
 				password: hash,

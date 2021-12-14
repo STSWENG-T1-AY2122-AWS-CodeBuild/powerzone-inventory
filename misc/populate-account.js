@@ -21,7 +21,8 @@ bcrypt.hash("password123", saltRounds, function (err, hash) {
 	/* Initialize admin account details */
 	let adminAccount = {
 		email: "administrator@gmail.com",
-        name: "Powerzone Admin",
+        firstName: "Powerzone",
+		lastName: "Admin",
         username: "powerzoneadmin",
         role: "administrator",
         password: hash,

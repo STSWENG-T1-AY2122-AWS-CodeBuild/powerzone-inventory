@@ -10,8 +10,14 @@ const accountSchema = new mongoose.Schema({
         required: true
     },
 
-    /* Account name */
-    name: {
+    /* Account first name */
+    firstName: {
+        type: String,
+        required: true
+    },
+
+    /* Account last name */
+    lastName: {
         type: String,
         required: true
     },
