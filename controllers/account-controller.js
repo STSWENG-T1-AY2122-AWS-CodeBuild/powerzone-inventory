@@ -19,7 +19,7 @@ const accountController = {
 	 */
 	getAccount: function(req, res) {
 		/* Retrieve all details needed for account management if the admin accesses the account tab. */
-		if (req.session.username == "powerzoneadmin") {
+		if (req.session.role == "administrator") {
 			
 			/* Retrieve the account details visible to the administrator of all accounts. */
 			let query = {};
@@ -231,6 +231,16 @@ const accountController = {
 			res.send();
 		}
 	},
+
+	/**
+	 * Gets the successful edit page.
+	 * 
+	 * @param req Object that contains information on the HTTP request from the client.
+	 * @param res Object that contains information on the HTTP response from the server.
+	 */
+	getSuccessfulEdit: function(req, res) {
+		res.render('successful-edit');
+	}
 }
 
 module.exports = accountController;

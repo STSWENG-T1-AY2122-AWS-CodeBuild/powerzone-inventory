@@ -45,5 +45,6 @@ powerzone.post('/postEditStatusAccept', accountController.postEditStatusAccept);
 powerzone.post('/postEditRole', accountController.postEditRole);
 powerzone.post('/postDeleteAccount', accountController.postDeleteAccount);
 powerzone.post('/postEditAccount', accountController.postEditAccount);
+powerzone.get('/getSuccessfulEdit', accountController.getSuccessfulEdit);
 
 module.exports = powerzone;
