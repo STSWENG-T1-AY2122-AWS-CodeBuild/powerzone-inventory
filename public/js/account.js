@@ -1,6 +1,7 @@
 /* JavaScript file for handling the front end of the account page */
 
 import { extractId } from "./general-util.js";
+import { getRoleValue } from "./account-util.js";
 
 $(function() {
     $('.edit-status').on('click', function() {
@@ -17,6 +18,8 @@ $(function() {
         $('#edit-account-role-form-id').val(accountId);
         $('#edit-account-role-form-name').text($('#name-' + accountId).text());
         $('#edit-account-role-form-role').text($('#role-' + accountId).text());
+
+        $('#edit-account-role').val(getRoleValue($('#role-' + accountId).text()));
     });
 
     $('.delete').on('click', function() {
