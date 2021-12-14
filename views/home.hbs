@@ -11,6 +11,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src = "/js/home.js" type = "module"></script>
     </head>
     <body class = "bg-home">
         {{>navbar adminflag = true home-page = true account-page = false}}
@@ -27,7 +28,7 @@
                         <hr class = "bg-light border-4 border-top">
                     </div>
 
-                    <form id = "edit-price-form">
+                    <form id = "edit-price-form" method = "POST">
                         <div class = "bg-secondary mb-3 p-2">
                             <div class = "align-items-center row">
                                 <div class = "col">
@@ -35,7 +36,7 @@
                                 </div>
 
                                 <div class = "col">
-                                    <input id = "edit-gasoline-price" name = "editGasolinePrice" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                    <input id = "edit-gasoline-price" name = "editGasolinePrice" type = "number" step = "0.01" value = {{gasoline}} class = "form-control p-2" required>
                                 </div>  
                             </div>   
                         </div>
@@ -43,11 +44,11 @@
                         <div class = "bg-secondary mb-3 p-2">
                             <div class = "align-items-center row">
                                 <div class = "col">
-                                    <label for = "edit-premium-gasoline-95-price" class = "form-label fw-bold text-primary">PREMIUM GASOLINE 95</label>
+                                    <label for = "edit-premium-gasoline-95-price" class = "form-label fw-bold text-primary">Premium Gasoline 95</label>
                                 </div>
 
                                 <div class = "col">
-                                    <input id = "edit-premium-gasoline-95-price" name = "editPremiumGasoline95Price" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                    <input id = "edit-premium-gasoline-95-price" name = "editPremiumGasoline95Price" type = "number" step = "0.01" value = {{premiumGasoline95}} class = "form-control p-2" required>
                                 </div>  
                             </div>
                         </div>
@@ -55,11 +56,11 @@
                         <div class = "bg-secondary mb-3 p-2">
                             <div class = "align-items-center row">
                                 <div class = "col">
-                                    <label for = "edit-diesel-price" class = "form-label fw-bold text-primary">DIESEL</label>
+                                    <label for = "edit-diesel-price" class = "form-label fw-bold text-primary">Diesel</label>
                                 </div>
 
                                 <div class = "col">
-                                    <input id = "edit-diesel-price" name = "editDieselPrice" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                    <input id = "edit-diesel-price" name = "editDieselPrice" type = "number" step = "0.01" value = {{diesel}} class = "form-control p-2" required>
                                 </div>  
                             </div>
                         </div>
@@ -67,11 +68,11 @@
                         <div class = "bg-secondary mb-3 p-2">
                             <div class = "align-items-center row">
                                 <div class = "col">
-                                    <label for = "edit-premium-gasoline-97-price" class = "form-label fw-bold text-primary">PREMIUM GASOLINE 97</label>
+                                    <label for = "edit-premium-gasoline-97-price" class = "form-label fw-bold text-primary">Premium Gasoline 97</label>
                                 </div>
 
                                 <div class = "col">
-                                    <input id = "edit-premium-gasoline-97-price" name = "editPremiumGasoline97Price" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                    <input id = "edit-premium-gasoline-97-price" name = "editPremiumGasoline97Price" type = "number" step = "0.01" value = {{premiumGasoline97}} class = "form-control p-2" required>
                                 </div>  
                             </div>
                         </div>
@@ -79,11 +80,11 @@
                         <div class = "bg-secondary mb-3 p-2">
                             <div class = "align-items-center row">
                                 <div class = "col">
-                                    <label for = "edit-kerosene-price" class = "form-label fw-bold text-primary">KEROSENE</label>
+                                    <label for = "edit-kerosene-price" class = "form-label fw-bold text-primary">Kerosene</label>
                                 </div>
 
                                 <div class = "col">
-                                    <input id = "edit-kerosene-price" name = "editPremiumGasoline95Price" type = "text" placeholder = "P 50.059" class = "form-control p-2" required>
+                                    <input id = "edit-kerosene-price" name = "editKerosenePrice" type = "number" step = "0.01" value = {{kerosene}} class = "form-control p-2" required>
                                 </div>  
                             </div>
                         </div>
@@ -99,6 +100,7 @@
 
         <div class = "bg-primary border border-primary border-5 mt-5 mx-5 text-center">
             <div class = "border border-primary border-5 table-responsive">
+                <input type = "hidden" id = "user-role" name = "userRole" value = {{role}}>
                 <table class = "table">
                     <thead class = "text-white">
                         <tr>
@@ -111,11 +113,11 @@
                     </thead>
                     <tbody class = "bg-secondary">
                         <tr>
-                            <td>P 59.039</td>
-                            <td>P 59.039</td>
-                            <td>P 59.039</td>
-                            <td>P 59.039</td>
-                            <td>P 59.039</td>
+                            <td>P {{gasoline}}</td>
+                            <td>P {{premiumGasoline95}}</td>
+                            <td>P {{diesel}}</td>
+                            <td>P {{premiumGasoline97}}</td>
+                            <td>P {{kerosene}}</td>
                         </tr>
                     </tbody>
                 </table>

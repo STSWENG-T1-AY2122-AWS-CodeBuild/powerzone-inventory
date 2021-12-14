@@ -22,7 +22,28 @@ url = process.env.DB_URL;
 db.connect();
 
 powerzone.set('view engine','hbs');
+
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.handlebars.registerHelper('getRole', function(dbRole) {
+	if (dbRole == "inventory-manager")
+		return "Inventory Manager"
+	else if (dbRole == "transaction-cashier")
+		return "Transaction Cashier"
+	else 
+		return "Delivery Manager"
+})
+hbs.handlebars.registerHelper('getStatus', function(status) {
+	if (status == "Accepted")
+		return "/assets/accepted.png"
+	else if (status == "Pending")
+		return "/assets/pending.png"
+	else 
+		return "/assets/rejected.png"
+})
+hbs.handlebars.registerHelper('getFullName', function(firstName, lastName) {
+	return firstName.concat(" ", lastName);
+})
+
 powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());
 powerzone.use(express.urlencoded({

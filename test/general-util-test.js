@@ -7,7 +7,8 @@ const {
     hideErrorMessage,
     enableButton,
     disableButton,
-    isBlankField
+    isBlankField,
+    extractId
 } = require('.././public/js/general-util.js')
 
 describe('the function to display an error message', function() {
@@ -130,5 +131,12 @@ describe('the function to check if a field is blank', function() {
         $('#fname').val(' asdfasd   ');
         const result = isBlankField($('#fname'), false);
         assert.isFalse(result);
+    });
+});
+
+describe('the function to extract the database object ID from a browser element ID', function() {
+    it('should return the database object ID (substring after the last hyphen delimiter)', function() {
+        const result = extractId('edit-role-12345');
+        assert.equal(result, '12345');
     });
 });

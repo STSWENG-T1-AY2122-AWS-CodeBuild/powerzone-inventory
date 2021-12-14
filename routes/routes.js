@@ -33,9 +33,16 @@ powerzone.get('/getLogIn', logInController.getLogIn);
 powerzone.post('/postLogin', logInController.postLogIn);
 
 powerzone.get('/getHome', homeController.getHome);
+powerzone.post('/postEditPrices', homeController.postEditPrices);
 
 powerzone.get('/getLogOut', logOutController.getLogOut);
+
 powerzone.get('/getAccount', accountController.getAccount);
-powerzone.get('/getEditAccount', accountController.getEditAccount);
+powerzone.post('/postEditStatusReject', accountController.postEditStatusReject);
+powerzone.post('/postEditStatusPending', accountController.postEditStatusPending);
+powerzone.post('/postEditStatusAccept', accountController.postEditStatusAccept);
+powerzone.post('/postEditRole', accountController.postEditRole);
+powerzone.post('/postDeleteAccount', accountController.postDeleteAccount);
+powerzone.post('/postEditAccount', accountController.postEditAccount);
 
 module.exports = powerzone;

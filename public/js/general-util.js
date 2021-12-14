@@ -22,10 +22,17 @@ const isBlankField = function(field, trimmed) {
     return field.val().length == 0
 }
 
+const extractId = function(id) {
+    const idSplit = id.split('-');
+
+    return idSplit[idSplit.length - 1];
+}
+
 export {
     displayErrorMessage,
     hideErrorMessage,
     enableButton,
     disableButton,
-    isBlankField
+    isBlankField,
+    extractId
 };
