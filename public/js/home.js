@@ -1,6 +1,13 @@
 /* JavaScript file for handling the front end of the home page */
 
+import { isAllowedToEdit } from "./home-util.js";
+
+
 $(function() {
+	if (!isAllowedToEdit($('#user-role').val())) {
+		$('#edit-price-btn').hide();
+	}
+
 	$('#edit-price-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
