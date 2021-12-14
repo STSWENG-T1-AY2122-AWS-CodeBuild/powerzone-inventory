@@ -72,6 +72,10 @@ body {
     border-color: var(--bg-primary-color) !important;
 }
 
+.successful-img {
+    width: 20%;
+}
+
 .table-block {
     display: block;
     position: relative;

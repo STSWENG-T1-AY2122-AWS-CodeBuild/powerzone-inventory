@@ -26,6 +26,7 @@ powerzone.get('/', logInController.getLogIn);
 
 powerzone.get('/getRegister', registerController.getRegister);
 powerzone.post('/postRegister', validation.registerValidation(), registerController.postRegister);
+powerzone.get('/getSuccessfulRegistration', registerController.getSuccessfulRegistration);
 powerzone.get('/getCheckUsername', registerController.getCheckUsername);
 powerzone.get('/getCheckEmail', registerController.getCheckEmail);
 
