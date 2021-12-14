@@ -12,6 +12,7 @@ db.connect();
 
 /* Initialize prices */
 let prices = {
+    label: "Prices",
     gasoline: 59.04,
     premiumGasoline95: 59.04,
     diesel: 59.04, 

@@ -33,6 +33,7 @@ powerzone.get('/getLogIn', logInController.getLogIn);
 powerzone.post('/postLogin', logInController.postLogIn);
 
 powerzone.get('/getHome', homeController.getHome);
+powerzone.post('/postEditPrices', homeController.postEditPrices);
 
 powerzone.get('/getLogOut', logOutController.getLogOut);
 powerzone.get('/getAccount', accountController.getAccount);

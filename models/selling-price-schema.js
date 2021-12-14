@@ -4,6 +4,12 @@
 const mongoose = require('mongoose');
 
 const priceSchema = new mongoose.Schema({
+    /* Label of the database entry for database retrieval */
+    label: {
+        type: String,
+        required: true
+    },
+    
     /* Price for gasoline */
     gasoline: {
         type: Number,

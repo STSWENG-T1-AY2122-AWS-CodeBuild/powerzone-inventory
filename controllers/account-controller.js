@@ -33,7 +33,7 @@ const accountController = {
 					}
 				}
 
-				/* Pass the retrieved account details through the data variable. */
+				/* Store the retrieved account details in the variable data. */
 				let data = {
 					accountDetails: accountDetails
 				}
