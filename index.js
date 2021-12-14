@@ -38,7 +38,7 @@ hbs.handlebars.registerHelper('getStatus', function(status) {
 	else if (status == "Pending")
 		return "/assets/pending.png"
 	else 
-		return "/assets/deleted.png"
+		return "/assets/rejected.png"
 })
 
 powerzone.use(express.static(path.join(__dirname, '/public')));
