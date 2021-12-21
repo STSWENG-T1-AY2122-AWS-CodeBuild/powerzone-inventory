@@ -16,6 +16,7 @@ const logInController = require('../controllers/log-in-controller.js');
 const homeController = require('../controllers/home-controller.js');
 const logOutController = require('../controllers/log-out-controller.js');
 const accountController = require('../controllers/account-controller.js');
+const deliveryController = require('../controllers/delivery-controller.js');
 
 /* Call the validation file */
 const validation = require('../helpers/validation.js');
@@ -46,4 +47,5 @@ powerzone.post('/postEditRole', accountController.postEditRole);
 powerzone.post('/postDeleteAccount', accountController.postDeleteAccount);
 powerzone.post('/postEditAccount', accountController.postEditAccount);
 
+powerzone.get('/getDelivery', deliveryController.getDelivery);
 module.exports = powerzone;

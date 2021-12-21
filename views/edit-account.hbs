@@ -14,16 +14,8 @@
         
     </head>
     <body class = "bg-home">
-        <nav class = "bg-primary navbar px-3">
-            <a href = "/getHome" class = "bungee-font navbar-brand text-warning">POWERZONE</a>
-            
-            <div class = "d-flex">
-                <a href = "/getHome" class = "nav-link text-end text-warning">Home</a>
-                <a href = "/getAccount" class = "fw-bold nav-link text-end text-warning">Account</a>
-                <a href = "/getLogIn" class = "nav-link text-end text-warning">Log Out</a>
-            </div>
-        </nav>
-        
+        {{>navbar adminflag = false home-page = false account-page = true}}
+
         <div class = "m-4">
             <h1 class = "fs-1 fw-bolder text-center text-info text-muted">EDIT ACCOUNT</h1>
         </div>

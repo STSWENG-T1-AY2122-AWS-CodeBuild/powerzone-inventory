@@ -96,8 +96,12 @@ body {
     width: 10%;
 }
 
-.edit-account-status, .edit-account-role, .delete-account {
-    /*max-width: 15%;*/
+.w-15 {
+    width: 15%;
+}
+
+.edit-account-status, .edit-account-role, .delete-account,
+.edit-delivery-status, .view-delivery-more-info, .edit-delivery-details{
     height: 35px;
 }
 
