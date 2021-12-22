@@ -10,8 +10,6 @@
         <link href = "css/style.css" rel = "stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src = "/js/edit-account.js" type = "module"></script>
-        
     </head>
     <body class = "bg-home">
         <!-- as of now, its set to non-admin ung nav, but admin should be included -->
@@ -21,7 +19,7 @@
             <h1 class = "fs-1 fw-bolder text-center text-info text-muted">ADD DELIVERY</h1>
         </div>
 
-        <form id = "add-delivery-form" class = "needs-validate">
+        <form id = "add-delivery-form">
             <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block table-responsive">
                 <div class = "bg-primary mb-4 h-9 row">
                 </div>
@@ -40,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div class = "col me-5">
+                    <div class = "col">
                         <label for = "add-delivery-warehouse" class = "form-label fw-bold text-primary">Warehouse Location</label>
                         <input id = "add-delivery-warehouse" name = "addDeliveryWarehouse" type = "text" placeholder = "Warehouse Location" class = "form-control p-2 rounded-pill" required>
                         
@@ -61,7 +59,7 @@
                         </div>
                     </div>
 
-                    <div class = "col me-5">
+                    <div class = "col">
                         <label for = "add-delivery-dropoff" class = "form-label fw-bold text-primary">Drop-Off Location</label>
                         <input id = "add-delivery-dropoff" name = "addDeliveryDropoff" type = "text" placeholder = "Drop-Off Location" class = "form-control p-2 rounded-pill" required>
                         
@@ -85,7 +83,7 @@
                         </div>
                     </div>
 
-                    <div class = "col me-5">
+                    <div class = "col">
                         <label for = "add-delivery-manager" class = "form-label fw-bold text-primary">New Password</label>   
                         <input id = "add-delivery-manager" name = "addDeliveryManager" type = "text" placeholder = "Delivery Manager" class = "form-control p-2 rounded-pill" required>
 
@@ -105,7 +103,7 @@
                         </div>
                     </div>
 
-                    <div class = "col me-5">
+                    <div class = "col">
                         <label for = "add-delivery-driver" class = "form-label fw-bold text-primary">Driver</label>   
                         <input id = "add-delivery-driver" name = "addDeliveryDriver" type = "text" placeholder = "Driver" class = "form-control p-2 rounded-pill" required>
 
