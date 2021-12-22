@@ -48,4 +48,5 @@ powerzone.post('/postDeleteAccount', accountController.postDeleteAccount);
 powerzone.post('/postEditAccount', accountController.postEditAccount);
 
 powerzone.get('/getDelivery', deliveryController.getDelivery);
+powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
 module.exports = powerzone;
