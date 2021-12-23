@@ -50,5 +50,6 @@ powerzone.post('/postEditAccount', accountController.postEditAccount);
 powerzone.get('/getDelivery', deliveryController.getDelivery);
 powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
 powerzone.get('/getEditDelivery', deliveryController.getEditDelivery);
+powerzone.get('/getMoreInfoDelivery', deliveryController.getMoreInfoDelivery);
 
 module.exports = powerzone;

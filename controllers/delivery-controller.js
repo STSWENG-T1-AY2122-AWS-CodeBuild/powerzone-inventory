@@ -17,6 +17,10 @@ const deliveryController = {
 
 	getEditDelivery: function(req, res){
 		res.render('edit-delivery');
+	},
+
+	getMoreInfoDelivery: function(req, res){
+		res.render('more-info-delivery');
 	}
 }
 
