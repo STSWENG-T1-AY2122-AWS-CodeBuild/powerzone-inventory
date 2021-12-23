@@ -83,6 +83,13 @@ body {
     overflow: auto;
 }
 
+.table-block-300 {
+    display: block;
+    position: relative;
+    height: 333px;
+    overflow: auto;
+}
+
 .table-header {
     position: sticky;
     top: 0;
@@ -101,7 +108,8 @@ body {
 }
 
 .edit-account-status, .edit-account-role, .delete-account,
-.edit-delivery-status, .view-delivery-more-info, .edit-delivery-details{
+.edit-delivery-status, .view-delivery-more-info, .edit-delivery-details,
+.view-stock-more-info, .edit-stock-details{
     height: 35px;
 }
 

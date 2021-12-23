@@ -17,6 +17,7 @@ const homeController = require('../controllers/home-controller.js');
 const logOutController = require('../controllers/log-out-controller.js');
 const accountController = require('../controllers/account-controller.js');
 const deliveryController = require('../controllers/delivery-controller.js');
+const inventoryController = require('../controllers/inventory-controller.js');
 
 /* Call the validation file */
 const validation = require('../helpers/validation.js');
@@ -53,5 +54,10 @@ powerzone.get('/getDelivery', deliveryController.getDelivery);
 powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
 powerzone.get('/getEditDelivery', deliveryController.getEditDelivery);
 powerzone.get('/getMoreInfoDelivery', deliveryController.getMoreInfoDelivery);
+
+powerzone.get('/getInventory', inventoryController.getInventory);
+powerzone.get('/getAddStock', inventoryController.getAddStock);
+powerzone.get('/getEditStock', inventoryController.getEditStock);
+powerzone.get('/getMoreInfoStock', inventoryController.getMoreInfoStock);
 
 module.exports = powerzone;
