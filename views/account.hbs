@@ -138,9 +138,9 @@
                         <td id = "name-{{this._id}}">{{getFullName this.firstName this.lastName}}</td>
                         <td id = "username-{{this._id}}">{{this.username}}</td>
                         <td id = "role-{{this._id}}">{{getRole this.role}}</td>
-                        <td><button id = "edit-status-{{this._id}}" class = "edit-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-status-modal"><img src = "{{getStatus this.status}}" class = "edit-account-status"></button></td>
-                        <td><button id = "edit-role-{{this._id}}"class = "edit-role btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-role-modal"><img src = "/assets/pencil.png" alt = "edit-account" class = "edit-account-role"></button></td>
-                        <td><button id = "delete-{{this._id}}" class = "delete btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#delete-account-modal"><img src = "/assets/bin.png" alt = "delete-account" class = "delete-account"></button></td>
+                        <td><button id = "edit-status-{{this._id}}" class = "edit-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-status-modal"><img src = "{{getStatus this.status}}" class = "edit-account-status table-icon"></button></td>
+                        <td><button id = "edit-role-{{this._id}}"class = "edit-role btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-role-modal"><img src = "/assets/pencil.png" alt = "edit-account" class = "edit-account-role table-icon"></button></td>
+                        <td><button id = "delete-{{this._id}}" class = "delete btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#delete-account-modal"><img src = "/assets/bin.png" alt = "delete-account" class = "delete-account table-icon"></button></td>
                     </tr>
                     {{/each}}
                 </tbody>
