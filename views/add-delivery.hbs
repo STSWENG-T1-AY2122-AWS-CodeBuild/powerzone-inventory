@@ -21,97 +21,106 @@
 
         <form id = "add-delivery-form">
             <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block table-responsive">
-                <div class = "bg-primary mb-4 h-9 row">
-                </div>
+                <table class = "align-middle table table-borderless">
+                    <thead class = "bg-primary table-fixed table-header text-primary">
+                        <th>ADD DELIVERY</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "add-delivery-id" class = "form-label fw-bold text-primary">Transaction ID</label>
+                                        <input id = "add-delivery-id" name = "addDeliveryId" type = "text" placeholder = "Transaction ID" class = "form-control p-2 rounded-pill" required>
 
-                <div class = "m-4 row">
-                    <div class = "col me-5">
-                        <label for = "add-delivery-id" class = "form-label fw-bold text-primary">Transaction ID</label>
-                        <input id = "add-delivery-id" name = "addDeliveryId" type = "text" placeholder = "Transaction ID" class = "form-control p-2 rounded-pill" required>
+                                        <div id = "add-delivery-invalid-blank-id" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the Transaction ID
+                                        </div>
 
-                        <div id = "add-delivery-invalid-blank-id" class = "fw-bold invalid-feedback text-center">
-                            Kindly input the Transaction ID
-                        </div>
+                                        <div id = "add-delivery-invalid-id" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input a valid and existing Transaction ID
+                                        </div>
+                                    </div>
 
-                        <div id = "add-delivery-invalid-id" class = "fw-bold invalid-feedback text-center">
-                            Kindly input a valid and existing Transaction ID
-                        </div>
-                    </div>
-
-                    <div class = "col">
-                        <label for = "add-delivery-warehouse" class = "form-label fw-bold text-primary">Warehouse Location</label>
-                        <input id = "add-delivery-warehouse" name = "addDeliveryWarehouse" type = "text" placeholder = "Warehouse Location" class = "form-control p-2 rounded-pill" required>
-                        
-                        <div id = "add-delivery-invalid-blank-warehouse" class = "fw-bold invalid-feedback text-center">
-                            Kindly input the warehouse location
-                        </div>
-                    </div>
-                </div>
+                                    <div class = "col">
+                                        <label for = "add-delivery-warehouse" class = "form-label fw-bold text-primary">Warehouse Location</label>
+                                        <input id = "add-delivery-warehouse" name = "addDeliveryWarehouse" type = "text" placeholder = "Warehouse Location" class = "form-control p-2 rounded-pill" required>
+                                        
+                                        <div id = "add-delivery-invalid-blank-warehouse" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the warehouse location
+                                        </div>
+                                    </div>
+                                </div>
 
 
-                <div class = "m-4 row">
-                    <div class = "col me-5">
-                        <label for = "add-delivery-customer-name" class = "form-label fw-bold text-primary">Customer Name</label>
-                        <input id = "add-delivery-customer-name" name = "addDeliveryCustomerName" type = "text" placeholder = "Customer Name" class = "form-control p-2 rounded-pill" required>
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "add-delivery-customer-name" class = "form-label fw-bold text-primary">Customer Name</label>
+                                        <input id = "add-delivery-customer-name" name = "addDeliveryCustomerName" type = "text" placeholder = "Customer Name" class = "form-control p-2 rounded-pill" required>
 
-                        <div id = "add-delivery-invalid-blank-customer-name" class = "fw-bold invalid-feedback text-center">
-                            Kindly input the customer name
-                        </div>
-                    </div>
+                                        <div id = "add-delivery-invalid-blank-customer-name" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the customer name
+                                        </div>
+                                    </div>
 
-                    <div class = "col">
-                        <label for = "add-delivery-dropoff" class = "form-label fw-bold text-primary">Drop-Off Location</label>
-                        <input id = "add-delivery-dropoff" name = "addDeliveryDropoff" type = "text" placeholder = "Drop-Off Location" class = "form-control p-2 rounded-pill" required>
-                        
-                        <div id = "add-delivery-invalid-blank-dropoff" class = "fw-bold invalid-feedback text-center">
-                            Kindly input the drop-off location
-                        </div>
-                    </div>
-                </div>
+                                    <div class = "col">
+                                        <label for = "add-delivery-dropoff" class = "form-label fw-bold text-primary">Drop-Off Location</label>
+                                        <input id = "add-delivery-dropoff" name = "addDeliveryDropoff" type = "text" placeholder = "Drop-Off Location" class = "form-control p-2 rounded-pill" required>
+                                        
+                                        <div id = "add-delivery-invalid-blank-dropoff" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the drop-off location
+                                        </div>
+                                    </div>
+                                </div>
 
-                <div class = "m-4 row">
-                    <div class = "col me-5">
-                        <label for = "add-delivery-customer-number" class = "form-label fw-bold text-primary">Customer Phone Number</label>
-                        <input id = "add-delivery-customer-number" name = "addDeliveryCustomerNumber" type = "number" placeholder = "Customer Phone Number" class = "form-control p-2 rounded-pill" required>
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "add-delivery-customer-number" class = "form-label fw-bold text-primary">Customer Phone Number</label>
+                                        <input id = "add-delivery-customer-number" name = "addDeliveryCustomerNumber" type = "number" placeholder = "Customer Phone Number" class = "form-control p-2 rounded-pill" required>
+                                    
+                                        <div id = "add-delivery-invalid-blank-customer-number" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the customer's phone number
+                                        </div>
+                                        
+                                        <div id = "add-delivery-invalid-customer-number" class = "fw-bold invalid-feedback text-center">
+                                            The customer's phone number should only contain 10 integers
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "add-delivery-manager" class = "form-label fw-bold text-primary">New Password</label>   
+                                        <input id = "add-delivery-manager" name = "addDeliveryManager" type = "text" placeholder = "Delivery Manager" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "add-delivery-invalid-blank-manager" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the delivery manager
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "add-delivery-date" class = "form-label fw-bold text-primary">Delivery Date</label>
+                                        <input id = "add-delivery-date" name = "addDeliveryDate" type = "date" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "add-delivery-invalid-blank-date" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the delivery date
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "add-delivery-driver" class = "form-label fw-bold text-primary">Driver</label>   
+                                        <input id = "add-delivery-driver" name = "addDeliveryDriver" type = "text" placeholder = "Driver" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "add-delivery-invalid-blank-driver" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the driver
+                                        </div>
+                                    </div>
+                                </div>
                     
-                        <div id = "add-delivery-invalid-blank-customer-number" class = "fw-bold invalid-feedback text-center">
-                            Kindly input the customer's phone number
-                        </div>
-                        
-                        <div id = "add-delivery-invalid-customer-number" class = "fw-bold invalid-feedback text-center">
-                            The customer's phone number should only contain 10 integers
-                        </div>
-                    </div>
-
-                    <div class = "col">
-                        <label for = "add-delivery-manager" class = "form-label fw-bold text-primary">New Password</label>   
-                        <input id = "add-delivery-manager" name = "addDeliveryManager" type = "text" placeholder = "Delivery Manager" class = "form-control p-2 rounded-pill" required>
-
-                        <div id = "add-delivery-invalid-blank-manager" class = "fw-bold invalid-feedback text-center">
-                            Kindly input the delivery manager
-                        </div>
-                    </div>
-                </div>
-
-                <div class = "m-4 row">
-                    <div class = "col me-5">
-                        <label for = "add-delivery-date" class = "form-label fw-bold text-primary">Delivery Date</label>
-                        <input id = "add-delivery-date" name = "addDeliveryDate" type = "date" class = "form-control p-2 rounded-pill" required>
-
-                        <div id = "add-delivery-invalid-blank-date" class = "fw-bold invalid-feedback text-center">
-                            Kindly input the delivery date
-                        </div>
-                    </div>
-
-                    <div class = "col">
-                        <label for = "add-delivery-driver" class = "form-label fw-bold text-primary">Driver</label>   
-                        <input id = "add-delivery-driver" name = "addDeliveryDriver" type = "text" placeholder = "Driver" class = "form-control p-2 rounded-pill" required>
-
-                        <div id = "add-delivery-invalid-blank-driver" class = "fw-bold invalid-feedback text-center">
-                            Kindly input the driver
-                        </div>
-                    </div>
-                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class = "mx-5 my-3"> 
