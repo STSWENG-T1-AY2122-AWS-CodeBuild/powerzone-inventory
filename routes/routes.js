@@ -47,6 +47,8 @@ powerzone.post('/postEditRole', accountController.postEditRole);
 powerzone.post('/postDeleteAccount', accountController.postDeleteAccount);
 powerzone.post('/postEditAccount', accountController.postEditAccount);
 
+powerzone.get('/getEditAccount', accountController.getEditAccount);
+
 powerzone.get('/getDelivery', deliveryController.getDelivery);
 powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
 powerzone.get('/getEditDelivery', deliveryController.getEditDelivery);

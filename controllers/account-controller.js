@@ -231,6 +231,10 @@ const accountController = {
 			res.send();
 		}
 	},
+
+	getEditAccount: function(req, res){
+		res.render('edit-account');
+	}
 }
 
 module.exports = accountController;
