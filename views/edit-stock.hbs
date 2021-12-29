@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <title>Edit Stock</title>
+
+        <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">       
+        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href = "css/style.css" rel = "stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body class = "bg-home">
+        <!-- as of now, its set to non-admin ung nav, but admin should be included -->
+        {{>navbar adminflag = false home-page = true account-page = false}}
+
+        <div class = "m-4">
+            <h1 class = "fs-1 fw-bolder text-center text-info text-muted">EDIT STOCK</h1>
+        </div>
+
+        <form id = "edit-stock-form">
+            <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block table-responsive">
+                <table class = "align-middle table table-borderless">
+                    <thead class = "bg-primary table-fixed table-header text-primary">
+                        <th>EDIT STOCK</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "edit-stock-name" class = "form-label fw-bold text-primary">Name</label>
+                                        <select id = "edit-stock-name" name = "editStockName" class = "form-select rounded-pill" required>
+                                            <option value = "gasoline" selected>Gasoline</option>
+                                            <option value = "premium-gasoline-95">Premium Gasoline 95</option>
+                                            <option value = "diesel">Diesel</option>
+                                            <option value = "premium-gasoline-97">Premium Gasoline 97</option>
+                                            <option value = "kerosene">Kerosene</option>
+                                        </select>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "edit-stock-quantity" class = "form-label fw-bold text-primary">Quantity (L)</label>
+                                        <input id = "edit-stock-quantity" name = "editStockQuantity" type = "number" placeholder = "Quantity" value = "55000" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-stock-invalid-blank-quantity" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the quantity
+                                        </div>
+
+                                        <div id = "edit-stock-invalid-decimal-quantity" class = "fw-bold invalid-feedback text-center">
+                                            Quantity should have only up to 2 decimal points
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "edit-stock-supplier" class = "form-label fw-bold text-primary">Supplier</label>
+                                        <input id = "edit-stock-supplier" name = "editStockSupplier" type = "text" placeholder = "Supplier" value = "Angeli Dianne Mata" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-stock-invalid-blank-supplier" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the supplier
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "edit-stock-price-purchased" class = "form-label fw-bold text-primary">Price Purchased (P)</label>
+                                        <input id = "edit-stock-price-purchased" name = "editStockPricePurchased" type = "number" placeholder = "Price Purchased (P)" value = "55.00" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-stock-invalid-blank-price-purchased" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the price purchased
+                                        </div>
+
+                                        <div id = "edit-stock-invalid-decimal-price-purchased" class = "fw-bold invalid-feedback text-center">
+                                            Price should have only up to 2 decimal points
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "edit-stock-storage" class = "form-label fw-bold text-primary">Storage Location</label>
+                                        <input id = "edit-stock-storage" name = "editStockStorage" type = "text" placeholder = "Storage Location" value = "Secret" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-stock-invalid-blank-storage" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the storage location
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "edit-stock-date-purchased" class = "form-label fw-bold text-primary">Date Purchased</label>   
+                                        <input id = "edit-stock-date-purchased" name = "editStockDatePurchased" type = "date" placeholder = "Date Purchased" class = "form-control p-2 rounded-pill" required>
+                                    
+                                        <div id = "edit-stock-invalid-date-purchased" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the date purchased
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class = "mx-5 my-3"> 
+                <a href = "/getInventory" class = "btn btn-primary fw-bold float-start px-5 rounded-pill shadow-sm text-white">Cancel</a>
+                <button id = "confirm-edit-stock-btn" type = "submit" class = "btn btn-primary fw-bold float-end px-5 rounded-pill shadow-sm text-white">Confirm</button>
+            </div> 
+        </form>
+    </body>
+</html>

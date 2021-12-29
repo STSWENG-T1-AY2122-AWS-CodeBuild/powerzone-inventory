@@ -1,0 +1,19 @@
+<nav class = "bg-primary navbar px-3">
+    <a href = "/getHome" class = "bungee-font navbar-brand text-warning">POWERZONE</a>
+    
+    <div class = "d-flex">
+        {{#if home-page}}
+            <a href = "/getHome" class = "fw-bold nav-link text-end text-warning">Home</a>
+        {{else}}
+            <a href = "/getHome" class = "nav-link text-end text-warning">Home</a>
+        {{/if}}
+
+        {{#if account-page}}
+            <a href = "/getAccount" class = "fw-bold nav-link text-end text-warning">Account</a>
+        {{else}}
+            <a href = "/getAccount" class = "nav-link text-end text-warning">Account</a>
+        {{/if}}
+
+        <a href = "/getLogOut" class = "nav-link text-end text-warning">Log Out</a>
+    </div>
+</nav>
