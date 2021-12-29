@@ -240,6 +240,10 @@ const accountController = {
 	 */
 	getSuccessfulEdit: function(req, res) {
 		res.render('successful-edit');
+	},
+	
+	getEditAccount: function(req, res){
+		res.render('edit-account');
 	}
 }
 

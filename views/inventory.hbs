@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <title>View Inventory</title>
+
+        <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">       
+        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href = "css/style.css" rel = "stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+       
+    </head>
+
+    <body class = "bg-home">
+        <!-- as of now, its set to non-admin ung nav, but admin should be included -->
+        {{>navbar adminflag = true home-page = true account-page = false}}
+
+        <div class = "m-4">
+            <h1 class = "fs-1 fw-bolder text-center text-info text-muted">INVENTORY</h1>
+        </div> 
+        
+        <div class = "d-flex">
+            <div class = "bg-primary border border-primary border-5 fw-bold mt-3 me-4 table-block table-responsive">
+                <div class = "m-2">
+                    <p class = "text-warning"><i>FILTER INVENTORY</i></p>
+                    
+                    <div class = "mb-4">
+                        <span class = "text-warning">NAME:</span>
+                        <br>
+
+                        <input id = "sort-inventory-diesel" name = "sortInventoryGasName" type = "checkbox" value = "Diesel">
+                        <label for = "sort-inventory-diesel" class = "text-white">DIESEL</label>
+                        <br>
+
+                        <input id = "sort-inventory-premium-gas-95" name = "sortInventoryGasName" type = "checkbox" value = "Premium Gas 95">
+                        <label for = "sort-inventory-premium-gas-95" class = "text-white">PREMIUM GAS 95</label>
+                        <br>
+
+                        <input id = "sort-inventory-gasoline" name = "sortInventoryGasName" type = "checkbox" value = "Gasoline">
+                        <label for = "sort-inventory-gasoline" class = "text-white">GASOLINE</label>
+                        <br>
+
+                        <input id = "sort-inventory-premium-gas-97" name = "sortInventoryGasName" type = "checkbox" value = "Premium Gas 97">
+                        <label for = "sort-inventory-premium-gas-97" class = "text-white">PREMIUM GAS 97</label>
+                        <br>
+
+                        <input id = "sort-inventory-kerosene" name = "sortInventoryGasName" type = "checkbox" value = "Kerosene">
+                        <label for = "sort-inventory-kerosene" class = "text-white">KEROSENE</label>
+                        <br>
+                        <br>
+                        
+                        <input id = "sort-inventory-name-az" name = "sortInventoryName" type = "radio" value = "A TO Z">
+                        <label for = "sort-inventory-name-az" class = "me-4 text-white">A TO Z</label>
+                        
+                        <input id = "sort-inventory-name-za" name = "sortInventoryName" type = "radio" value = "Z to A">
+                        <label for = "sort-inventory-name-za" class = "text-white">Z TO A</label>
+                    </div>
+                        
+                    <div class = "mb-4">
+                        <span class = "text-warning">DATE PURCHASED:</span>
+                        <br>
+                        
+                        <input id = "inventory-purchased-date" name = "inventoryPurchasedDate" type = "date">
+                    </div>
+                    
+                    <div class = "mb-4">
+                        <span class = "fw-bold text-warning">PRICE PURCHASED: </span>
+                        <br>
+
+                        <input id = "sort-inventory-price-purchased-hilo" name = "sortInventoryPricePurchased" type = "radio" value = "HIGHEST TO LOWEST">
+                        <label for = "sort-inventory-price-purchased-hilo" class = "text-white">HIGHEST TO LOWEST</label>
+                        <br>
+
+                        <input id = "sort-inventory-price-purchased-lohi" name = "sortInventoryPricePurchased" type = "radio" value = "LOWEST TO HIGHEST">
+                        <label for = "sort-inventory-price-purchased-lohi" class = "text-white">LOWEST TO HIGHEST</label>
+                    </div>    
+
+                    <button id = "reset-sort-inventory" class = "btn float-end fw-bold text-white">X RESET</button>
+                </div>   
+            </div>
+
+            <div class = "flex-fill">
+                <div class = "bg-primary border border-primary border-5 mt-3 me-5 text-center">
+                    <div class = "border border-primary border-5 table-responsive">
+                        <table class = "table">
+                            <thead class = "text-white">
+                                <tr>
+                                    <th scope = "col">GASOLINE</th>
+                                    <th scope = "col">PREMIUM GASOLINE 95</th>
+                                    <th scope = "col">DIESEL</th>
+                                    <th scope = "col">PREMIUM GASOLINE 97</th>
+                                    <th scope = "col">KEROSENE</th>
+                                </tr>
+                            </thead>
+                            <tbody class = "bg-secondary">
+                                <tr>
+                                    <td>59039 L</td>
+                                    <td>59039 L</td>
+                                    <td>59039 L</td>
+                                    <td>59039 L</td>
+                                    <td>59039 L</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class = "bg-light border border-primary border-5 mt-5 me-5 table-block-300 text-center table-responsive">
+                    <table class = "align-middle table table-hover">
+                        <thead class = "bg-primary table-fixed table-header text-white">
+                            <tr>
+                                <th scope = "col" class = "w-15">NAME</th>
+                                <th scope = "col" class = "w-15">DATE PURCHASED</th>
+                                <th scope = "col" class = "w-20">SUPPLIER</th>
+                                <th scope = "col" class = "w-15">PRICE PURCHASED</th>
+                                <th scope = "col" class = "w-15">STATUS</th>
+                                <th scope = "col" class = "w-10">MORE INFO</th>
+                                <th scope = "col" class = "w-10">EDIT</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "inventory-list">
+                            <tr class = "stock">
+                                <td>Diesel</td>
+                                <td>12/17/2021</td>
+                                <td>Shell</td>
+                                <td>P 55.00</td>
+                                <td>In Stock</td>
+                                <td><a href = "/getMoreInfoStock"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
+                                <td><a href = "/getEditStock"><img src = "/assets/pencil.png" alt = "edit-stock-details" class = "edit-stock-details table-icon"></a></td>
+                            </tr>
+
+                            <tr class = "stock">
+                                <td>Premium Gasoline 95</td>
+                                <td>12/17/2021</td>
+                                <td>Angeli Dianne Mata</td>
+                                <td>P 60.00</td>
+                                <td>Critically Low</td>
+                                <td><a href = "/getMoreInfoStock"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
+                                <td><a href = "/getEditStock"><img src = "/assets/pencil.png" alt = "edit-stock-details" class = "edit-stock-details table-icon"></a></td>
+                            </tr>
+
+                            <tr class = "stock">
+                                <td>Kerosene</td>
+                                <td>12/17/2021</td>
+                                <td>Someone</td>
+                                <td>P 49.25</td>
+                                <td>Depleted</td>
+                                <td><a href = "/getMoreInfoStock"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
+                                <td><a href = "/getEditStock"><img src = "/assets/pencil.png" alt = "edit-stock-details" class = "edit-stock-details table-icon"></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class = "mx-5 my-3"> 
+            <a href = "/getAddStock" class = "btn btn-primary fw-bold float-end px-5 rounded-pill shadow-sm text-white">+ Add Stock</a>
+        </div>
+    </body>
+</html>

@@ -83,6 +83,13 @@ body {
     overflow: auto;
 }
 
+.table-block-300 {
+    display: block;
+    position: relative;
+    height: 333px;
+    overflow: auto;
+}
+
 .table-header {
     position: sticky;
     top: 0;
@@ -96,13 +103,12 @@ body {
     width: 10%;
 }
 
-.edit-account-status, .edit-account-role, .delete-account {
-    /*max-width: 15%;*/
-    height: 35px;
+.w-15 {
+    width: 15%;
 }
 
-.h-9 {
-    height: 9%;
+.table-icon {
+    height: 35px;
 }
 
 .rounded {
