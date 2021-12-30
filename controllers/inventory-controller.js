@@ -228,6 +228,7 @@ const inventoryController = {
 
 			/* Store the purchase details in the variable data. */
 			let data = {
+				id: id,
 				type: result.type,
 				supplier: result.supplier,
 				location: result.location,
@@ -241,6 +242,42 @@ const inventoryController = {
 	},
 
 	/**
+	 * Registers the details of a stock or purchase.
+	 * 
+	 * @param req Object that contains information on the HTTP request from the client.
+	 * @param res Object that contains information on the HTTP response from the server.
+	 */
+	 postEditStock: function(req, res) {
+
+		/* Retrieve the purchase details from the user input. */
+		let id = req.body.editStockId;
+		let type = req.body.editStockName.trim();
+		let supplier = req.body.editStockSupplier.trim();
+		let location = req.body.editStockStorage.trim();
+		let quantity = req.body.editStockQuantity;
+		let price = req.body.editStockPricePurchased;
+		let date = req.body.editStockDatePurchased;
+
+		/* Convert the retrieved purchase ID to an ObjectID for database retrieval. */
+		let filter = {_id: db.convertToObjectId(id)};
+
+		/* Assign the updated details to the update variable. */
+		let update = {
+			type: type,
+			supplier: supplier,
+			location: location,
+			quantity: quantity,
+			price: price,
+			date: date
+		}
+
+		db.updateOne(Inventory, filter, update, function(flag) {
+			res.status(200).json("Stock details updated successfully!");
+			res.send();
+		});
+	 },
+
+	/**
 	 * Gets the page for adding a new stock or purchase.
 	 * 
 	 * @param req Object that contains information on the HTTP request from the client.
@@ -248,6 +285,39 @@ const inventoryController = {
 	 */
 	getAddStock: function(req, res){
 		res.render('add-stock');
+	},
+
+	/**
+	 * Adds a new stock or purchase to the database.
+	 * 
+	 * @param req Object that contains information on the HTTP request from the client.
+	 * @param res Object that contains information on the HTTP response from the server.
+	 */
+	 postAddStock: function(req, res){
+		/* Retrieve the purchase details from the user input. */
+		let type = req.body.addStockName.trim();
+		let supplier = req.body.addStockSupplier.trim();
+		let location = req.body.addStockStorage.trim();
+		let quantity = req.body.addStockQuantity;
+		let price = req.body.addStockPricePurchased;
+		let date = req.body.addStockDatePurchased;
+
+		/* Assign the purchase details to the purchase variable. */
+		let purchase = {
+			type: type,
+			supplier: supplier,
+			location: location,
+			quantity: quantity,
+			price: price,
+			date: date
+		}
+
+		console.log(purchase);
+
+		db.insertOne(Inventory, purchase, function (flag) {
+			res.status(200).json("Stock added successfully.");
+			res.send();
+		});
 	}
 }
 

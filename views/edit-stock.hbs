@@ -10,9 +10,9 @@
         <link href = "css/style.css" rel = "stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src = "/js/edit-stock.js" type = "module"></script>
     </head>
     <body class = "bg-home">
-        <!-- as of now, its set to non-admin ung nav, but admin should be included -->
         {{>navbar adminflag = false home-page = true account-page = false}}
 
         <div class = "m-4">
@@ -41,6 +41,8 @@
                                     </div>
 
                                     <div class = "col">
+                                        <input id = "edit-stock-id" name = "editStockId" type = "hidden" value = "{{id}}">
+                                        
                                         <label for = "edit-stock-quantity" class = "form-label fw-bold text-primary">Quantity (L)</label>
                                         <input id = "edit-stock-quantity" name = "editStockQuantity" type = "number" placeholder = "Quantity" value = "{{quantity}}" class = "form-control p-2 rounded-pill" required>
 

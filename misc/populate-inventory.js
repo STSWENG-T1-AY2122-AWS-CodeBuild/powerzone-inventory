@@ -12,7 +12,7 @@ db.connect();
 
 /* Initialize inventory purchase details */
 let purchase = {
-    type: "Diesel",
+    type: "diesel",
     date: "01/01/2022",
     supplier: "Supplier One",
     price: 60.00,

@@ -43,6 +43,18 @@ hbs.handlebars.registerHelper('getStatus', function(status) {
 hbs.handlebars.registerHelper('getFullName', function(firstName, lastName) {
 	return firstName.concat(" ", lastName);
 })
+hbs.handlebars.registerHelper('getType', function(type) {
+	if (type == "gasoline")
+		return "Gasoline"
+	else if (type == "premium-gasoline-95")
+		return "Premium Gasoline 95"
+	else if (type == "diesel")
+		return "Diesel"
+	else if (type == "premium-gasoline-97")
+		return "Premium Gasoline 97"
+	else
+		return "Kerosene"
+})
 
 powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());

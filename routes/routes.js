@@ -53,9 +53,11 @@ powerzone.get('/getSuccessfulEdit', accountController.getSuccessfulEdit);
 powerzone.get('/getEditAccount', accountController.getEditAccount);
 
 powerzone.get('/getInventory', inventoryController.getInventory);
-powerzone.get('/getAddStock', inventoryController.getAddStock);
 powerzone.get('/getEditStock/:id', inventoryController.getEditStock);
+powerzone.post('/postEditStock', inventoryController.postEditStock);
 powerzone.get('/getMoreInfoStock/:id', inventoryController.getMoreInfoStock);
+powerzone.get('/getAddStock', inventoryController.getAddStock);
+powerzone.post('/postAddStock', inventoryController.postAddStock);
 
 powerzone.get('/getDelivery', deliveryController.getDelivery);
 powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
