@@ -29,7 +29,7 @@ const accountController = {
 				/* Assign the result of the database retrieval to the variable accounts. */
 				let accounts = result;
 
-				/* For each account, push its details to the array array if the account
+				/* For each account, push its details to the accountDetails array if the account
 				 * does not belong to the administrator. 
 				 */
 				let accountDetails = [];

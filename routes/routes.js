@@ -52,6 +52,11 @@ powerzone.get('/getSuccessfulEdit', accountController.getSuccessfulEdit);
 
 powerzone.get('/getEditAccount', accountController.getEditAccount);
 
+powerzone.get('/getInventory', inventoryController.getInventory);
+powerzone.get('/getAddStock', inventoryController.getAddStock);
+powerzone.get('/getEditStock/:id', inventoryController.getEditStock);
+powerzone.get('/getMoreInfoStock/:id', inventoryController.getMoreInfoStock);
+
 powerzone.get('/getDelivery', deliveryController.getDelivery);
 powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
 powerzone.get('/getEditDelivery', deliveryController.getEditDelivery);
@@ -62,9 +67,6 @@ powerzone.get('/getAddTransaction', transactionController.getAddTransaction);
 powerzone.get('/getEditTransaction', transactionController.getEditTransaction);
 powerzone.get('/getMoreInfoTransaction', transactionController.getMoreInfoTransaction);
 
-powerzone.get('/getInventory', inventoryController.getInventory);
-powerzone.get('/getAddStock', inventoryController.getAddStock);
-powerzone.get('/getEditStock', inventoryController.getEditStock);
-powerzone.get('/getMoreInfoStock', inventoryController.getMoreInfoStock);
+
 
 module.exports = powerzone;

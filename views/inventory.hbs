@@ -97,11 +97,11 @@
                             </thead>
                             <tbody class = "bg-secondary">
                                 <tr>
-                                    <td>59039 L</td>
-                                    <td>59039 L</td>
-                                    <td>59039 L</td>
-                                    <td>59039 L</td>
-                                    <td>59039 L</td>
+                                    <td>{{totalGasoline}} L</td>
+                                    <td>{{totalPremiumGasoline95}} L</td>
+                                    <td>{{totalDiesel}} L</td>
+                                    <td>{{totalPremiumGasoline97}} L</td>
+                                    <td>{{totalKerosene}} L</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -122,35 +122,17 @@
                             </tr>
                         </thead>
                         <tbody id = "inventory-list">
+                            {{#each inventoryIds}}
                             <tr class = "stock">
-                                <td>Diesel</td>
-                                <td>12/17/2021</td>
-                                <td>Shell</td>
-                                <td>P 55.00</td>
-                                <td>In Stock</td>
-                                <td><a href = "/getMoreInfoStock"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
-                                <td><a href = "/getEditStock"><img src = "/assets/pencil.png" alt = "edit-stock-details" class = "edit-stock-details table-icon"></a></td>
+                                <td>{{lookup ../inventoryTypes @index}}</td>
+                                <td>{{lookup ../inventoryDates @index}}</td>
+                                <td>{{lookup ../inventorySuppliers @index}}</td>
+                                <td>P {{lookup ../inventoryPrices @index}}</td>
+                                <td>{{lookup ../inventoryQuantities @index}} L</td>
+                                <td><a href = "/getMoreInfoStock/{{this}}"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
+                                <td><a href = "/getEditStock/{{this}}"><img src = "/assets/pencil.png" alt = "edit-stock-details" class = "edit-stock-details table-icon"></a></td>
                             </tr>
-
-                            <tr class = "stock">
-                                <td>Premium Gasoline 95</td>
-                                <td>12/17/2021</td>
-                                <td>Angeli Dianne Mata</td>
-                                <td>P 60.00</td>
-                                <td>Critically Low</td>
-                                <td><a href = "/getMoreInfoStock"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
-                                <td><a href = "/getEditStock"><img src = "/assets/pencil.png" alt = "edit-stock-details" class = "edit-stock-details table-icon"></a></td>
-                            </tr>
-
-                            <tr class = "stock">
-                                <td>Kerosene</td>
-                                <td>12/17/2021</td>
-                                <td>Someone</td>
-                                <td>P 49.25</td>
-                                <td>Depleted</td>
-                                <td><a href = "/getMoreInfoStock"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
-                                <td><a href = "/getEditStock"><img src = "/assets/pencil.png" alt = "edit-stock-details" class = "edit-stock-details table-icon"></a></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>
