@@ -45,7 +45,7 @@ body {
 }
 
 .bg-light {
-  background-color: var(--bg-light-color) !important;
+    background-color: var(--bg-light-color) !important;
 }
 
 .btn-primary {
