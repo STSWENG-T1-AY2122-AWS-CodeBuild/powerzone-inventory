@@ -107,9 +107,7 @@ body {
     width: 15%;
 }
 
-.edit-account-status, .edit-account-role, .delete-account,
-.edit-delivery-status, .view-delivery-more-info, .edit-delivery-details,
-.view-stock-more-info, .edit-stock-details{
+.table-icon {
     height: 35px;
 }
 

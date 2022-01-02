@@ -7,12 +7,12 @@
 
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">       
         <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
-        <link href = "css/style.css" rel = "stylesheet">
+        <link href = "/css/style.css" rel = "stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src = "/js/add-stock.js" type = "module"></script>
     </head>
     <body class = "bg-home">
-        <!-- as of now, its set to non-admin ung nav, but admin should be included -->
         {{>navbar adminflag = false home-page = true account-page = false}}
 
         <div class = "m-4">
@@ -23,7 +23,7 @@
             <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block table-responsive">
                 <table class = "align-middle table table-borderless">
                     <thead class = "bg-primary table-fixed table-header text-primary">
-                        <th>ADD STOCK</th>
+                        <th scope = "col">ADD STOCK</th>
                     </thead>
                     <tbody>
                         <tr>

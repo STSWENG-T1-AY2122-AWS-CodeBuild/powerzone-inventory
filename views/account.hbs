@@ -7,7 +7,7 @@
 
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">       
         <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
-        <link href = "css/style.css" rel = "stylesheet">
+        <link href = "/css/style.css" rel = "stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -138,9 +138,9 @@
                         <td id = "name-{{this._id}}">{{getFullName this.firstName this.lastName}}</td>
                         <td id = "username-{{this._id}}">{{this.username}}</td>
                         <td id = "role-{{this._id}}">{{getRole this.role}}</td>
-                        <td><button id = "edit-status-{{this._id}}" class = "edit-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-status-modal"><img src = "{{getStatus this.status}}" class = "edit-account-status"></button></td>
-                        <td><button id = "edit-role-{{this._id}}"class = "edit-role btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-role-modal"><img src = "/assets/pencil.png" alt = "edit-account" class = "edit-account-role"></button></td>
-                        <td><button id = "delete-{{this._id}}" class = "delete btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#delete-account-modal"><img src = "/assets/bin.png" alt = "delete-account" class = "delete-account"></button></td>
+                        <td><button id = "edit-status-{{this._id}}" class = "edit-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-status-modal"><img src = "{{getStatus this.status}}" class = "edit-account-status table-icon"></button></td>
+                        <td><button id = "edit-role-{{this._id}}"class = "edit-role btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-account-role-modal"><img src = "/assets/pencil.png" alt = "edit-account" class = "edit-account-role table-icon"></button></td>
+                        <td><button id = "delete-{{this._id}}" class = "delete btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#delete-account-modal"><img src = "/assets/bin.png" alt = "delete-account" class = "delete-account table-icon"></button></td>
                     </tr>
                     {{/each}}
                 </tbody>

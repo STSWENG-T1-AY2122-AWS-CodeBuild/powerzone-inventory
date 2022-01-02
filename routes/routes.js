@@ -17,6 +17,7 @@ const homeController = require('../controllers/home-controller.js');
 const logOutController = require('../controllers/log-out-controller.js');
 const accountController = require('../controllers/account-controller.js');
 const deliveryController = require('../controllers/delivery-controller.js');
+const transactionController = require('../controllers/transaction-controller.js');
 const inventoryController = require('../controllers/inventory-controller.js');
 
 /* Call the validation file */
@@ -47,17 +48,27 @@ powerzone.post('/postEditStatusAccept', accountController.postEditStatusAccept);
 powerzone.post('/postEditRole', accountController.postEditRole);
 powerzone.post('/postDeleteAccount', accountController.postDeleteAccount);
 powerzone.post('/postEditAccount', accountController.postEditAccount);
+powerzone.get('/getSuccessfulEdit', accountController.getSuccessfulEdit);
 
 powerzone.get('/getEditAccount', accountController.getEditAccount);
+
+powerzone.get('/getInventory', inventoryController.getInventory);
+powerzone.get('/getEditStock/:id', inventoryController.getEditStock);
+powerzone.post('/postEditStock', inventoryController.postEditStock);
+powerzone.get('/getMoreInfoStock/:id', inventoryController.getMoreInfoStock);
+powerzone.get('/getAddStock', inventoryController.getAddStock);
+powerzone.post('/postAddStock', inventoryController.postAddStock);
 
 powerzone.get('/getDelivery', deliveryController.getDelivery);
 powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
 powerzone.get('/getEditDelivery', deliveryController.getEditDelivery);
 powerzone.get('/getMoreInfoDelivery', deliveryController.getMoreInfoDelivery);
 
-powerzone.get('/getInventory', inventoryController.getInventory);
-powerzone.get('/getAddStock', inventoryController.getAddStock);
-powerzone.get('/getEditStock', inventoryController.getEditStock);
-powerzone.get('/getMoreInfoStock', inventoryController.getMoreInfoStock);
+powerzone.get('/getTransaction', transactionController.getTransaction);
+powerzone.get('/getAddTransaction', transactionController.getAddTransaction);
+powerzone.get('/getEditTransaction', transactionController.getEditTransaction);
+powerzone.get('/getMoreInfoTransaction', transactionController.getMoreInfoTransaction);
+
+
 
 module.exports = powerzone;
