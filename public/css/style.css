@@ -79,6 +79,10 @@ body {
     padding-left: 0px !important;
 }
 
+table {
+    border-collapse: collapse;
+    border: none;
+}
 .table-block {
     display: block;
     height: 500px;
