@@ -48,8 +48,16 @@ powerzone.post('/postEditStatusAccept', accountController.postEditStatusAccept);
 powerzone.post('/postEditRole', accountController.postEditRole);
 powerzone.post('/postDeleteAccount', accountController.postDeleteAccount);
 powerzone.post('/postEditAccount', accountController.postEditAccount);
+powerzone.get('/getSuccessfulEdit', accountController.getSuccessfulEdit);
 
 powerzone.get('/getEditAccount', accountController.getEditAccount);
+
+powerzone.get('/getInventory', inventoryController.getInventory);
+powerzone.get('/getEditStock/:id', inventoryController.getEditStock);
+powerzone.post('/postEditStock', inventoryController.postEditStock);
+powerzone.get('/getMoreInfoStock/:id', inventoryController.getMoreInfoStock);
+powerzone.get('/getAddStock', inventoryController.getAddStock);
+powerzone.post('/postAddStock', inventoryController.postAddStock);
 
 powerzone.get('/getDelivery', deliveryController.getDelivery);
 powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
@@ -61,9 +69,6 @@ powerzone.get('/getAddTransaction', transactionController.getAddTransaction);
 powerzone.get('/getEditTransaction', transactionController.getEditTransaction);
 powerzone.get('/getMoreInfoTransaction', transactionController.getMoreInfoTransaction);
 
-powerzone.get('/getInventory', inventoryController.getInventory);
-powerzone.get('/getAddStock', inventoryController.getAddStock);
-powerzone.get('/getEditStock', inventoryController.getEditStock);
-powerzone.get('/getMoreInfoStock', inventoryController.getMoreInfoStock);
+
 
 module.exports = powerzone;

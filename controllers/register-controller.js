@@ -42,26 +42,38 @@ const registerController = {
 		let username = req.body.signupUsername.trim();
 		let role = req.body.signupRole;
 		let password = req.body.signupPassword;
+		let confirmPassword = req.body.signupConfirmPassword;
 
-		/* Hash the password using bcrypt. */
-		bcrypt.hash(password, saltRounds, function(err, hash) {
+		/* If the entered passwords match, proceed with the account registration. */
+		if (JSON.stringify(password) === JSON.stringify(confirmPassword)) {
+			/* Hash the password using bcrypt. */
+			bcrypt.hash(password, saltRounds, function(err, hash) {
 
-			/* Assign the data to the account variable. */
-			let account = {
-				email: email,
-				firstName: firstName,
-				lastName: lastName,
-				username: username,
-				role: role,
-				password: hash,
-				status: "Pending"
-			}
+				/* Assign the data to the account variable. New accounts are automatically pending until the 
+				 * administrator approves their registration.
+				 */
+				let account = {
+					email: email,
+					firstName: firstName,
+					lastName: lastName,
+					username: username,
+					role: role,
+					password: hash,
+					status: "Pending"
+				}
 
-			db.insertOne(Account, account, function (flag) {
-				res.status(200).json("Account added successfully");
-				res.send();
+				db.insertOne(Account, account, function (flag) {
+					res.status(200).json("Account added successfully.");
+					res.send();
+				});
 			});
-		});
+
+		/* If the entered passwords do not match, send an error message. */
+		} else {
+			res.status(401).json("Passwords do not match.");
+			res.send();
+		}
+		
 	},
 
 	/**
@@ -104,6 +116,12 @@ const registerController = {
 		});
 	},
 
+	/**
+	 * Gets the successful registration page.
+	 * 
+	 * @param req Object that contains information on the HTTP request from the client.
+	 * @param res Object that contains information on the HTTP response from the server.
+	 */
 	getSuccessfulRegistration: function(req, res) {
 		res.render('successful-signup');
 	}
