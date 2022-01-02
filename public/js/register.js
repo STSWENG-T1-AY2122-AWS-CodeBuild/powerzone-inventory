@@ -11,9 +11,9 @@ $(function() {
 			data: $('#signup-form').serialize(),
 			statusCode: {
 
-				/* If the log in is successful, redirect the user to the landing page. */
+				/* If the log in is successful, redirect the user to the successful sign up page. */
 				200: function() {
-					location.href = '/getHome';
+					location.href = '/getSuccessfulRegistration';
 				},
 				
 				/* Otherwise, display an error message. */

@@ -22,11 +22,11 @@ const homeController = {
 				/* Store the retrieved selling prices in the variable data. */
 				let data = {
 					role: req.session.role,
-					gasoline: result.gasoline,
-					premiumGasoline95: result.premiumGasoline95,
-					diesel: result.diesel,
-					premiumGasoline97: result.premiumGasoline97,
-					kerosene: result.kerosene
+					gasoline: result.gasoline.toFixed(2),
+					premiumGasoline95: result.premiumGasoline95.toFixed(2),
+					diesel: result.diesel.toFixed(2),
+					premiumGasoline97: result.premiumGasoline97.toFixed(2),
+					kerosene: result.kerosene.toFixed(2)
 				}
 
 				res.render('home', data);
