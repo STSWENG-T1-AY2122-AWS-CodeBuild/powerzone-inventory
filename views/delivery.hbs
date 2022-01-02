@@ -55,100 +55,106 @@
             </div>
         </div>    
         
-        <div class = "d-flex">
-            <div class = "bg-primary p-2 fw-bold mt-3 me-4 table-block table-responsive">
-                <div class = "m-2">
-                    <p class = "text-warning"><i>FILTER DELIVERY</i></p>
-                    
-                    <div class = "mb-4">
-                        <span class = "text-warning">CUSTOMER NAME:</span>
-                        <br>
+        <div class = "fluid-container">
+            <div class = "row">
+                <div class = "col-auto">
+                    <div class = "bg-primary p-2 fw-bold mt-3 me-4 table-block table-responsive">
+                        <div class = "m-2">
+                            <p class = "text-warning"><i>FILTER DELIVERY</i></p>
+                            
+                            <div class = "mb-4">
+                                <span class = "text-warning">CUSTOMER NAME:</span>
+                                <br>
 
-                        <input id = "sort-delivery-customer-name-az" name = "sortDeliveryCustomerName" type = "radio" value = "A TO Z">
-                        <label for = "sort-delivery-customer-name-az" class = "text-white">A TO Z</label>
-                        <br>
+                                <input id = "sort-delivery-customer-name-az" name = "sortDeliveryCustomerName" type = "radio" value = "A TO Z">
+                                <label for = "sort-delivery-customer-name-az" class = "text-white">A TO Z</label>
+                                <br>
 
-                        <input id = "sort-delivery-customer-name-za" name = "sortDeliveryCustomerName" type = "radio" value = "Z to A">
-                        <label for = "sort-delivery-customer-name-za" class = "text-white">Z TO A</label>
+                                <input id = "sort-delivery-customer-name-za" name = "sortDeliveryCustomerName" type = "radio" value = "Z to A">
+                                <label for = "sort-delivery-customer-name-za" class = "text-white">Z TO A</label>
+                            </div>
+                                
+                            <div class = "mb-4">
+                                <span class = "text-warning">DELIVERY DATE:</span>
+                                <br>
+                                
+                                <input id = "delivery-date" name = "deliveryDate" type = "date">
+                            </div>
+                            
+                            <div class = "mb-4">
+                                <span class = "fw-bold text-warning">STATUS: </span>
+                                <br>
+
+                                <input id = "sort-delivery-pending-status" name = "sortDeliveryStatus" type = "checkbox" value = "Pending Status">
+                                <label for = "sort-delivery-pending-status" class = "text-white">PENDING</label>
+                                <br>
+
+                                <input id = "sort-delivery-completed-status" name = "sortDeliveryStatus" type = "checkbox" value = "Completed Status">
+                                <label for = "sort-delivery-completed-status" class = "text-white">COMPLETED</label>
+                                <br>
+
+                                <input id = "sort-delivery-cancelled-status" name = "sortDeliveryStatus" type = "checkbox" value = "Cancelled Status">
+                                <label for = "sort-delivery-cancelled-status" class = "text-white">CANCELLED</label>
+                            </div>    
+
+                            <button id = "reset-sort-delivery" class = "btn float-end fw-bold text-white">X RESET</button>
+                        </div>   
                     </div>
-                        
-                    <div class = "mb-4">
-                        <span class = "text-warning">DELIVERY DATE:</span>
-                        <br>
-                        
-                        <input id = "delivery-date" name = "deliveryDate" type = "date">
+                </div>
+
+                <div class = "col">
+                    <div class = "bg-light border border-primary border-5 mt-3 me-5 table-block text-center table-responsive">
+                        <table class = "align-middle table table-hover">
+                            <thead class = "bg-primary table-fixed table-header text-white">
+                                <tr>
+                                    <th scope = "col" class = "w-15">ID</th>
+                                    <th scope = "col" class = "w-15">DATE</th>
+                                    <th scope = "col" class = "w-20">CUSTOMER NAME</th>
+                                    <th scope = "col" class = "w-20">DROP-OFF LOCATION</th>
+                                    <th scope = "col" class = "w-10">STATUS</th>
+                                    <th scope = "col" class = "w-10">MORE INFO</th>
+                                    <th scope = "col" class = "w-10">EDIT</th>
+                                </tr>
+                            </thead>
+                            <tbody id = "delivery-list">
+                                <tr class = "delivery">
+                                    <td>11753242</td>
+                                    <td>12/17/2021</td>
+                                    <td>Shell</td>
+                                    <td>Manila</td>
+                                    <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-delivery-status-modal"><img src = "/assets/accepted.png" alt = "completed" class = "edit-delivery-status table-icon"></button></td>
+                                    <td><a href = "/getMoreInfoDelivery"><img src = "/assets/more.png" alt = "view-delivery-more-info" class = "view-delivery-more-info table-icon"></a></td>
+                                    <td><a href = "/getEditDelivery"><img src = "/assets/pencil.png" alt = "edit-delivery-details" class = "edit-delivery-details table-icon"></a></td>
+                                </tr>
+                                
+                                <tr class = "delivery">
+                                    <td>11753242</td>
+                                    <td>12/17/2021</td>
+                                    <td>Angeli Dianne Mata</td>
+                                    <td>Nueva Ecija</td>
+                                    <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-delivery-status-modal"><img src = "/assets/pending.png" alt = "pending" class = "edit-delivery-status table-icon"></button></td>
+                                    <td><a href = "/getMoreInfoDelivery"><img src = "/assets/more.png" alt = "view-delivery-more-info" class = "view-delivery-more-info table-icon"></a></td>
+                                    <td><a href = "/getEditDelivery"><img src = "/assets/pencil.png" alt = "edit-delivery-details" class = "edit-delivery-details table-icon"></a></td>
+                                </tr>
+
+                                <tr class = "delivery">
+                                    <td>11753242</td>
+                                    <td>12/17/2021</td>
+                                    <td>Someone</td>
+                                    <td>South Korea</td>
+                                    <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-delivery-status-modal"><img src = "/assets/rejected.png" alt = "cancelled" class = "edit-delivery-status table-icon"></button></td>
+                                    <td><a href = "/getMoreInfoDelivery"><img src = "/assets/more.png" alt = "view-delivery-more-info" class = "view-delivery-more-info table-icon"></a></td>
+                                    <td><a href = "/getEditDelivery"><img src = "/assets/pencil.png" alt = "edit-delivery-details" class = "edit-delivery-details table-icon"></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    
-                    <div class = "mb-4">
-                        <span class = "fw-bold text-warning">STATUS: </span>
-                        <br>
-
-                        <input id = "sort-delivery-pending-status" name = "sortDeliveryStatus" type = "checkbox" value = "Pending Status">
-                        <label for = "sort-delivery-pending-status" class = "text-white">PENDING</label>
-                        <br>
-
-                        <input id = "sort-delivery-completed-status" name = "sortDeliveryStatus" type = "checkbox" value = "Completed Status">
-                        <label for = "sort-delivery-completed-status" class = "text-white">COMPLETED</label>
-                        <br>
-
-                        <input id = "sort-delivery-cancelled-status" name = "sortDeliveryStatus" type = "checkbox" value = "Cancelled Status">
-                        <label for = "sort-delivery-cancelled-status" class = "text-white">CANCELLED</label>
-                    </div>    
-
-                    <button id = "reset-sort-delivery" class = "btn float-end fw-bold text-white">X RESET</button>
-                </div>   
+                </div>
             </div>
 
-            <div class = "bg-light border border-primary border-5 flex-fill mt-3 me-5 table-block text-center table-responsive">
-                <table class = "align-middle table table-hover">
-                    <thead class = "bg-primary table-fixed table-header text-white">
-                        <tr>
-                            <th scope = "col" class = "w-15">ID</th>
-                            <th scope = "col" class = "w-15">DATE</th>
-                            <th scope = "col" class = "w-20">CUSTOMER NAME</th>
-                            <th scope = "col" class = "w-20">DROP-OFF LOCATION</th>
-                            <th scope = "col" class = "w-10">STATUS</th>
-                            <th scope = "col" class = "w-10">MORE INFO</th>
-                            <th scope = "col" class = "w-10">EDIT</th>
-                        </tr>
-                    </thead>
-                    <tbody id = "delivery-list">
-                        <tr class = "delivery">
-                            <td>11753242</td>
-                            <td>12/17/2021</td>
-                            <td>Shell</td>
-                            <td>Manila</td>
-                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-delivery-status-modal"><img src = "/assets/accepted.png" alt = "completed" class = "edit-delivery-status table-icon"></button></td>
-                            <td><a href = "/getMoreInfoDelivery"><img src = "/assets/more.png" alt = "view-delivery-more-info" class = "view-delivery-more-info table-icon"></a></td>
-                            <td><a href = "/getEditDelivery"><img src = "/assets/pencil.png" alt = "edit-delivery-details" class = "edit-delivery-details table-icon"></a></td>
-                        </tr>
-                        
-                        <tr class = "delivery">
-                            <td>11753242</td>
-                            <td>12/17/2021</td>
-                            <td>Angeli Dianne Mata</td>
-                            <td>Nueva Ecija</td>
-                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-delivery-status-modal"><img src = "/assets/pending.png" alt = "pending" class = "edit-delivery-status table-icon"></button></td>
-                            <td><a href = "/getMoreInfoDelivery"><img src = "/assets/more.png" alt = "view-delivery-more-info" class = "view-delivery-more-info table-icon"></a></td>
-                            <td><a href = "/getEditDelivery"><img src = "/assets/pencil.png" alt = "edit-delivery-details" class = "edit-delivery-details table-icon"></a></td>
-                        </tr>
-
-                        <tr class = "delivery">
-                            <td>11753242</td>
-                            <td>12/17/2021</td>
-                            <td>Someone</td>
-                            <td>South Korea</td>
-                            <td><button class = "btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-delivery-status-modal"><img src = "/assets/rejected.png" alt = "cancelled" class = "edit-delivery-status table-icon"></button></td>
-                            <td><a href = "/getMoreInfoDelivery"><img src = "/assets/more.png" alt = "view-delivery-more-info" class = "view-delivery-more-info table-icon"></a></td>
-                            <td><a href = "/getEditDelivery"><img src = "/assets/pencil.png" alt = "edit-delivery-details" class = "edit-delivery-details table-icon"></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <div class = "mx-5 my-3"> 
+                <a href = "/getAddDelivery" class = "btn btn-primary fw-bold float-end px-5 rounded-pill shadow-sm text-white">+ Add Delivery</a>
+            </div> 
         </div>
-
-        <div class = "mx-5 my-3"> 
-            <a href = "/getAddDelivery" class = "btn btn-primary fw-bold float-end px-5 rounded-pill shadow-sm text-white">+ Add Delivery</a>
-        </div> 
     </body>
 </html>
