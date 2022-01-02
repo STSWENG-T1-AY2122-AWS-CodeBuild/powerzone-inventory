@@ -4,10 +4,9 @@
     --bg-light-color: #E6F0F8; /*lighter white*/
     --btn-primary-color: #00407C; /*dark navy blue*/
     --btn-white-color: #FFFFFF; /*white*/
+    --text-info-color: #5C8AB1; /*grayish*/
     --text-primary-color: #00407C; /*dark navy blue*/
     --text-warning-color: #FFFF00; /*yellow*/
-    --text-info-color: #5C8AB1; /*grayish*/
-
 }
 
 body, html {
@@ -76,11 +75,26 @@ body {
     width: 20%;
 }
 
+.container-fluid {
+    padding-left: 0px !important;
+}
+
+table {
+    border-collapse: collapse;
+    border: none;
+}
 .table-block {
     display: block;
-    position: relative;
     height: 500px;
     overflow: auto;
+    position: relative;
+}
+
+.table-block-300 {
+    display: block;
+    height: 333px;
+    overflow: auto;
+    position: relative;
 }
 
 .table-header {
@@ -100,8 +114,7 @@ body {
     width: 15%;
 }
 
-.edit-account-status, .edit-account-role, .delete-account,
-.edit-delivery-status, .view-delivery-more-info, .edit-delivery-details{
+.table-icon {
     height: 35px;
 }
 

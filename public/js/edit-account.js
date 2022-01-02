@@ -15,7 +15,7 @@ $(function() {
 
 				/* If the editing is successful, log the user out. */
 				200: function() {
-					location.href = '/getLogOut';
+					location.href = '/getSuccessfulEdit';
 				},
 				
 				/* Otherwise, display an error message. */
