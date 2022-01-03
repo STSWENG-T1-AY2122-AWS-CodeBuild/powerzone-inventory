@@ -25,15 +25,23 @@ powerzone.set('view engine', 'hbs');
 
 hbs.registerPartials(__dirname + '/views/partials');
 hbs.handlebars.registerHelper('getRole', function (dbRole) {
-	if (dbRole == 'inventory-manager') return 'Inventory Manager';
-	else if (dbRole == 'transaction-cashier') return 'Transaction Cashier';
-	else return 'Delivery Manager';
+	if (dbRole == 'inventory-manager') {
+		return 'Inventory Manager';
+	} else if (dbRole == 'transaction-cashier') {
+		return 'Transaction Cashier';
+	} else {
+		return 'Delivery Manager';
+	}
 });
 
 hbs.handlebars.registerHelper('getStatus', function (status) {
-	if (status == 'Accepted') return '/assets/accepted.png';
-	else if (status == 'Pending') return '/assets/pending.png';
-	else return '/assets/rejected.png';
+	if (status == 'Accepted') {
+		return '/assets/accepted.png';
+	} else if (status == 'Pending') {
+		return '/assets/pending.png';
+	} else {
+		return '/assets/rejected.png';
+	}
 });
 
 hbs.handlebars.registerHelper('getFullName', function (firstName, lastName) {
@@ -41,11 +49,17 @@ hbs.handlebars.registerHelper('getFullName', function (firstName, lastName) {
 });
 
 hbs.handlebars.registerHelper('getType', function (type) {
-	if (type == 'gasoline') return 'Gasoline';
-	else if (type == 'premium-gasoline-95') return 'Premium Gasoline 95';
-	else if (type == 'diesel') return 'Diesel';
-	else if (type == 'premium-gasoline-97') return 'Premium Gasoline 97';
-	else return 'Kerosene';
+	if (type == 'gasoline') {
+		return 'Gasoline';
+	} else if (type == 'premium-gasoline-95') {
+		return 'Premium Gasoline 95';
+	} else if (type == 'diesel') {
+		return 'Diesel';
+	} else if (type == 'premium-gasoline-97') {
+		return 'Premium Gasoline 97';
+	} else {
+		return 'Kerosene';
+	}
 });
 
 powerzone.use(express.static(path.join(__dirname, '/public')));
