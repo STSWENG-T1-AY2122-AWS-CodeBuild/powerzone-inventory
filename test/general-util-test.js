@@ -8,7 +8,8 @@ const {
     enableButton,
     disableButton,
     isBlankField,
-    extractId
+    extractId,
+    toTwoDecimalPlaces
 } = require('.././public/js/general-util.js')
 
 describe('the function to display an error message', function() {
@@ -138,5 +139,32 @@ describe('the function to extract the database object ID from a browser element 
     it('should return the database object ID (substring after the last hyphen delimiter)', function() {
         const result = extractId('edit-role-12345');
         assert.equal(result, '12345');
+    });
+});
+
+describe('the function to display a number to two decimal places', function() {
+    it('should return a string', function() {
+        const result = toTwoDecimalPlaces(24.3);
+        assert.isString(result);
+    });
+
+    it('should append .00 if the number is an integer', function() {
+        const result = toTwoDecimalPlaces(24);
+        assert.equal(result, '24.00');
+    });
+
+    it('should append a trailing zero if the number only has one decimal place', function() {
+        const result = toTwoDecimalPlaces(24.3);
+        assert.equal(result, '24.30');
+    });
+
+    it('should output the same number if the number has exactly two decimal places', function() {
+        const result = toTwoDecimalPlaces(24.32);
+        assert.equal(result, '24.32');
+    });
+
+    it('should round the number to two decimal places if it has more than two decimal places', function() {
+        const result = toTwoDecimalPlaces(24.336);
+        assert.equal(result, '24.34');
     });
 });
