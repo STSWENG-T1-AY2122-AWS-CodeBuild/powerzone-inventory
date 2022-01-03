@@ -4,7 +4,7 @@ const {
     isPasswordLengthValid,
     isPasswordFormatValid,
     isUsernameLengthValid,
-    isConfirmPasswordValid
+    arePasswordsMatching
 } = require('.././public/js/register-validate-util.js')
 
 describe('the function to check if the password has at least 12 characters', function() {
@@ -115,27 +115,27 @@ describe('the function to check if the trimmed username has at least one charact
 
 describe('the function to check if passwords match', function() {
     it('should return a Boolean', function() {
-        const result = isConfirmPasswordValid('hello', 'hello');
+        const result = arePasswordsMatching('hello', 'hello');
         assert.isBoolean(result);
     });
 
     it('should return false if the passwords do not match', function() {
-        const result = isConfirmPasswordValid('hellO', 'nihao');
+        const result = arePasswordsMatching('hellO', 'nihao');
         assert.isFalse(result);
     });
 
     it('should return false if the passwords contain the same characters but with different capitalization', function() {
-        const result = isConfirmPasswordValid('hellO', 'hEllo');
+        const result = arePasswordsMatching('hellO', 'hEllo');
         assert.isFalse(result);
     });
 
     it('should return false if the passwords are identical except for trailing spaces', function() {
-        const result = isConfirmPasswordValid('hello ', 'hello');
+        const result = arePasswordsMatching('hello ', 'hello');
         assert.isFalse(result);
     });
 
     it('should return true if the passwords match', function() {
-        const result = isConfirmPasswordValid('hello', 'hello');
+        const result = arePasswordsMatching('hello', 'hello');
         assert.isTrue(result);
     });
 });
