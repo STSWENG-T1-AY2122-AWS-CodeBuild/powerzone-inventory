@@ -108,7 +108,7 @@
 
                         <div class = "m-3 row text-center">
                             <div class = "col">
-                                <button id = "cancel-delete-account-btn" class = "btn btn-white fw-bold m-1 px-5 text-primary rounded-pill" data-bs-dismiss = "modal">Cancel</button>
+                                <button id = "cancel-delete-account-btn" type = "button" class = "btn btn-white fw-bold m-1 px-5 text-primary rounded-pill" data-bs-dismiss = "modal">Cancel</button>
                             </div>
                             
                             <div class = "col">
@@ -134,7 +134,7 @@
                 </thead>
                 <tbody id = "users-list">
                     {{#each accountDetails}}
-                    <tr class = "user">
+                    <tr class = "user" id = "entry-{{this._id}}">
                         <td id = "name-{{this._id}}">{{getFullName this.firstName this.lastName}}</td>
                         <td id = "username-{{this._id}}">{{this.username}}</td>
                         <td id = "role-{{this._id}}">{{getRole this.role}}</td>

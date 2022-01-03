@@ -132,6 +132,7 @@ $(function() {
 
     $('#delete-account-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
+		const id = $('#delete-account-form-id').val();
 		e.preventDefault();
 			
 		$.ajax({
@@ -142,7 +143,8 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
-					location.href = '/getAccount';
+					$('#delete-account-modal').modal('hide');
+					$('#entry-' + id).remove();
 				},
 				
 				/* Otherwise, display an error message. */
