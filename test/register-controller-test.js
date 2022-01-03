@@ -97,7 +97,8 @@ describe('the function to register a new account', function() {
                 signupLname: 'hello',
                 signupUsername: 'hello',
                 signupRole: 'inventory-manager',
-                signupPassword: 'hello'
+                signupPassword: 'hello',
+                signupConfirmPassword: 'hello'
             }
         };
 
