@@ -1,7 +1,7 @@
 /* JavaScript file for handling the front end of the home page */
 
+import { toTwoDecimalPlaces } from "./general-util.js";
 import { isAllowedToEdit } from "./home-util.js";
-
 
 $(function() {
 	if (!isAllowedToEdit($('#user-role').val())) {
@@ -20,7 +20,8 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the landing page. */
 				200: function() {
-					location.href = '/getHome';
+					$('#edit-price-modal').modal('hide');
+					updatePrices();
 				},
 				
 				/* Otherwise, display an error message. */
@@ -30,4 +31,11 @@ $(function() {
 			}
 		});
 	});
+
+	function updatePrices() {
+		const fuels = ['gasoline', 'premium-gasoline-95', 'diesel', 'premium-gasoline-97', 'kerosene'];
+		for (const fuel of fuels) {
+			$('#' + fuel + '-price').text(toTwoDecimalPlaces($('#edit-' + fuel + '-price').val()));
+		}
+	}
 });
