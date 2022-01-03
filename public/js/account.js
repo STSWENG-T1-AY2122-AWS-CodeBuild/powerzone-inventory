@@ -32,6 +32,7 @@ $(function() {
 
     $('#reject-account-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
+		const id = $('#edit-account-status-form-id').val();
 		e.preventDefault();
 			
 		$.ajax({
@@ -42,7 +43,8 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the landing page. */
 				200: function() {
-					location.href = '/getAccount';
+					$('#status-img-' + id).attr('src', '/assets/rejected.png');
+					$('#edit-account-status-modal').modal('hide');
 				},
 				
 				/* Otherwise, display an error message. */
@@ -55,6 +57,7 @@ $(function() {
 
     $('#accept-account-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
+		const id = $('#edit-account-status-form-id').val();
 		e.preventDefault();
 			
 		$.ajax({
@@ -65,7 +68,8 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
-					location.href = '/getAccount';
+					$('#status-img-' + id).attr('src', '/assets/accepted.png');
+					$('#edit-account-status-modal').modal('hide');
 				},
 				
 				/* Otherwise, display an error message. */
@@ -78,6 +82,7 @@ $(function() {
 
     $('#pend-account-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
+		const id = $('#edit-account-status-form-id').val();
 		e.preventDefault();
 			
 		$.ajax({
@@ -88,30 +93,8 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
-					location.href = '/getAccount';
-				},
-				
-				/* Otherwise, display an error message. */
-				401: function() {
-					alert("Error!");
-				}
-			}
-		});
-	});
-
-    $('#accept-account-btn').on('click', function(e) {
-		/* Override the default submit behavior and insert AJAX. */
-		e.preventDefault();
-			
-		$.ajax({
-			url: '/postEditStatusAccept',
-			method: 'POST',
-			data: $('#edit-account-status-form').serialize(),
-			statusCode: {
-
-				/* If the editing is successful, redirect the user to the account page. */
-				200: function() {
-					location.href = '/getAccount';
+					$('#status-img-' + id).attr('src', '/assets/pending.png');
+					$('#edit-account-status-modal').modal('hide');
 				},
 				
 				/* Otherwise, display an error message. */
@@ -124,6 +107,7 @@ $(function() {
 
     $('#edit-account-role-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
+		const id = $('#edit-account-role-form-id').val();
 		e.preventDefault();
 			
 		$.ajax({
@@ -134,7 +118,8 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
-					location.href = '/getAccount';
+					$('#edit-account-role-modal').modal('hide');
+					$('#role-' + id).text($('#edit-account-role :selected').text());
 				},
 				
 				/* Otherwise, display an error message. */
@@ -147,6 +132,7 @@ $(function() {
 
     $('#delete-account-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
+		const id = $('#delete-account-form-id').val();
 		e.preventDefault();
 			
 		$.ajax({
@@ -157,7 +143,8 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the account page. */
 				200: function() {
-					location.href = '/getAccount';
+					$('#delete-account-modal').modal('hide');
+					$('#entry-' + id).remove();
 				},
 				
 				/* Otherwise, display an error message. */

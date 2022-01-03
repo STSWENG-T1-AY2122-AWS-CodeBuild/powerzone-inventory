@@ -28,11 +28,16 @@ const extractId = function(id) {
     return idSplit[idSplit.length - 1];
 }
 
+const toTwoDecimalPlaces = function(number) {
+    return (Math.round(number * 100) / 100).toFixed(2);
+}
+
 export {
     displayErrorMessage,
     hideErrorMessage,
     enableButton,
     disableButton,
     isBlankField,
-    extractId
+    extractId,
+    toTwoDecimalPlaces
 };
