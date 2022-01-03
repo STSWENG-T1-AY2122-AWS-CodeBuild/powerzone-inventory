@@ -56,6 +56,16 @@ const validation = {
                 } else {
                     throw new Error('Should contain lowercase and uppercase letters, numbers, and punctuations');
                 }
+            }),
+
+            /* Check the confirmatory password. Do not trim its value. */
+            check('signupConfirmPassword', 'Kindly confirm your password').notEmpty(),
+            check('signupConfirmPassword').custom(function(value, {req}) {
+                if (value == req.body.signupPassword) {
+                    return true;
+                } else {
+                    throw new Error('Passwords do not match');
+                }
             })
         ]
 

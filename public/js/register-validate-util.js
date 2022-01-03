@@ -11,8 +11,13 @@ const isUsernameLengthValid = function(username) {
     return username.trim().length >= 1;
 }
 
+const arePasswordsMatching = function(password, confirmPassword) {
+    return password === confirmPassword;
+}
+
 export {
     isPasswordLengthValid,
     isPasswordFormatValid,
-    isUsernameLengthValid
+    isUsernameLengthValid,
+    arePasswordsMatching
 };
