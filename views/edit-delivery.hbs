@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <title>Edit Delivery</title>
+
+        <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">       
+        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href = "/css/style.css" rel = "stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body class = "bg-home">
+        <!-- as of now, its set to non-admin ung nav, but admin should be included -->
+        {{>navbar adminflag = false home-page = true account-page = false}}
+
+        <div class = "m-4">
+            <h1 class = "fs-1 fw-bolder text-center text-info text-muted">EDIT DELIVERY</h1>
+        </div>
+
+        <form id = "edit-delivery-form">
+            <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block table-responsive">
+                <table class = "align-middle table table-borderless">
+                    <thead class = "bg-primary table-fixed table-header text-primary">
+                        <th scope = "col">EDIT DELIVERY</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "edit-delivery-id" class = "form-label fw-bold text-primary">Transaction ID</label>
+                                        <input id = "edit-delivery-id" name = "editDeliveryId" type = "text" placeholder = "Transaction ID" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-delivery-invalid-blank-id" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the Transaction ID
+                                        </div>
+
+                                        <div id = "edit-delivery-invalid-id" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input a valid and existing Transaction ID
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "edit-delivery-warehouse" class = "form-label fw-bold text-primary">Warehouse Location</label>
+                                        <input id = "edit-delivery-warehouse" name = "editDeliveryWarehouse" type = "text" placeholder = "Warehouse Location" class = "form-control p-2 rounded-pill" required>
+                                        
+                                        <div id = "edit-delivery-invalid-blank-warehouse" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the warehouse location
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "edit-delivery-customer-name" class = "form-label fw-bold text-primary">Customer Name</label>
+                                        <input id = "edit-delivery-customer-name" name = "editDeliveryCustomerName" type = "text" placeholder = "Customer Name" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-delivery-invalid-blank-customer-name" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the customer name
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "edit-delivery-dropoff" class = "form-label fw-bold text-primary">Drop-Off Location</label>
+                                        <input id = "edit-delivery-dropoff" name = "editDeliveryDropoff" type = "text" placeholder = "Drop-Off Location" class = "form-control p-2 rounded-pill" required>
+                                        
+                                        <div id = "edit-delivery-invalid-blank-dropoff" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the drop-off location
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "edit-delivery-customer-number" class = "form-label fw-bold text-primary">Customer Phone Number</label>
+                                        <input id = "edit-delivery-customer-number" name = "editDeliveryCustomerNumber" type = "number" placeholder = "Customer Phone Number" class = "form-control p-2 rounded-pill" required>
+                                    
+                                        <div id = "edit-delivery-invalid-blank-customer-number" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the customer's phone number
+                                        </div>
+                                        
+                                        <div id = "edit-delivery-invalid-customer-number" class = "fw-bold invalid-feedback text-center">
+                                            The customer's phone number should only contain 10 integers
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "edit-delivery-manager" class = "form-label fw-bold text-primary">New Password</label>   
+                                        <input id = "edit-delivery-manager" name = "editDeliveryManager" type = "text" placeholder = "Delivery Manager" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-delivery-invalid-blank-manager" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the delivery manager
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "edit-delivery-date" class = "form-label fw-bold text-primary">Delivery Date</label>
+                                        <input id = "edit-delivery-date" name = "editDeliveryDate" type = "date" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-delivery-invalid-blank-date" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the delivery date
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "edit-delivery-driver" class = "form-label fw-bold text-primary">Driver</label>   
+                                        <input id = "edit-delivery-driver" name = "editDeliveryDriver" type = "text" placeholder = "Driver" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-delivery-invalid-blank-driver" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the driver
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class = "mx-5 my-3"> 
+                <a href = "/getDelivery" class = "btn btn-primary fw-bold float-start px-5 rounded-pill shadow-sm text-white">Cancel</a>
+                <button id = "confirm-edit-delivery-btn" type = "submit" class = "btn btn-primary fw-bold float-end px-5 rounded-pill shadow-sm text-white">Confirm</button>
+            </div> 
+        </form>
+    </body>
+</html>
