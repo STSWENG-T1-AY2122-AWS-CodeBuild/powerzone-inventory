@@ -131,8 +131,8 @@
                                         <td>{{getType this}}</td>
                                         <td>{{lookup ../inventoryDates @index}}</td>
                                         <td>{{lookup ../inventorySuppliers @index}}</td>
-                                        <td>P {{lookup ../inventoryPrices @index}}</td>
-                                        <td>{{lookup ../inventoryQuantities @index}} L</td>
+                                        <td>₱ {{lookup ../inventoryPrices @index}}</td>
+                                        <td>{{lookup ../inventoryStatuses @index}}</td>
                                         <td><a href = "/getMoreInfoStock/{{lookup ../inventoryIds @index}}"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
                                         <td><a href = "/getEditStock/{{lookup ../inventoryIds @index}}"><img src = "/assets/pencil.png" alt = "edit-stock-details" class = "edit-stock-details table-icon"></a></td>
                                     </tr>
