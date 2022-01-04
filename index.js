@@ -62,6 +62,14 @@ hbs.handlebars.registerHelper('getType', function (type) {
 	}
 });
 
+hbs.handlebars.registerHelper('validInventoryRole', function (role) {
+	if (role == 'administrator' || role == 'inventory-manager') {
+		return true;
+	} else {
+		return false;
+	}
+});
+
 powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());
 powerzone.use(

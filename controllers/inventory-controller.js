@@ -105,7 +105,10 @@ const inventoryController = {
 				inventorySuppliers: suppliers,
 				inventoryPrices: prices,
 				inventoryLocations: locations,
-				inventoryStatuses: statuses
+				inventoryStatuses: statuses,
+
+				/* Additionally, store the role of the account to authorize the add and edit stock features. */
+				role: req.session.role
 			}
 
 			res.render('inventory', data);
