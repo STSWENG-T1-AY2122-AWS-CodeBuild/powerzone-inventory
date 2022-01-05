@@ -47,7 +47,7 @@ powerzone.post('/postEditStatusPending', accountController.postEditStatusPending
 powerzone.post('/postEditStatusAccept', accountController.postEditStatusAccept);
 powerzone.post('/postEditRole', accountController.postEditRole);
 powerzone.post('/postDeleteAccount', accountController.postDeleteAccount);
-powerzone.post('/postEditAccount', accountController.postEditAccount);
+powerzone.post('/postEditAccount', validation.editAccountValidation(), accountController.postEditAccount);
 powerzone.get('/getSuccessfulEdit', accountController.getSuccessfulEdit);
 
 powerzone.get('/getEditAccount', accountController.getEditAccount);

@@ -31,7 +31,7 @@ const database = {
                 .then(function() {
                     mongoose.connect(urlTest, options, function(error) {
                         if (error) throw error;
-                        console.log('Connected to: ' + url);
+                        
                     });
                     
                     var connection = mongoose.createConnection(urlTest);
@@ -41,7 +41,7 @@ const database = {
 
             mongoose.connect(url, options, function(error) {
                 if (error) throw error;
-                console.log('Connected to: ' + url);
+                
             });
             
             var connection = mongoose.createConnection(url);           
@@ -59,7 +59,7 @@ const database = {
     insertOne: function(model, doc, callback) {
         model.create (doc, function(error, result) {
             if (error) return callback(false);
-            console.log('Added ' + result);
+            
             return callback(result);
         });
     },
@@ -75,7 +75,7 @@ const database = {
     insertMany: function (model, docs, callback) {
         model.insertMany (docs, function(error, result) {
             if(error) return callback(false);
-            console.log('Added ' + result);
+            
             return callback(true);
         });
     },
@@ -124,7 +124,7 @@ const database = {
     updateOne: function(model, filter, update, callback) {
         model.updateOne (filter, update, function(error, result) {
             if (error) return callback(false);
-            console.log('Document modified: ' + result.nModified);
+            
             return callback(true);
         });
     },
@@ -141,7 +141,7 @@ const database = {
     updateMany: function(model, filter, update, callback) {
         model.updateMany (filter, update, function(error, result) {
             if (error) return callback(false);
-            console.log('Documents modified: ' + result.nModified);
+            
             return callback(true);
         });
     },
@@ -157,7 +157,7 @@ const database = {
     deleteOne: function(model, conditions, callback) {
         model.deleteOne (conditions, function (error, result) {
             if(error) return callback(false);
-            console.log('Document deleted: ' + result.deletedCount);
+            
             return callback(true);
         });
     },
@@ -173,7 +173,7 @@ const database = {
     deleteMany: function(model, conditions, callback) {
         model.deleteMany (conditions, function (error, result) {
             if(error) return callback(false);
-            console.log('Document deleted: ' + result.deletedCount);
+            
             return callback(true);
         });
     },
