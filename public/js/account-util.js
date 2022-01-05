@@ -1,11 +1,11 @@
 const getRoleValue = function(role) {
 	switch (role) {
-		case "Inventory Manager":
-			return "inventory-manager";
-		case "Transaction Cashier":
-			return "transaction-cashier";
+		case 'Inventory Manager':
+			return 'inventory-manager';
+		case 'Transaction Cashier':
+			return 'transaction-cashier';
 		default:
-			return "delivery-manager";
+			return 'delivery-manager';
 	}
 }
 
