@@ -1,6 +1,3 @@
-/* Override definition of console.log to hide debug message from browser console. */
-console.log = function () {};
-
 import {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
@@ -172,10 +169,10 @@ $(function () {
 						isEmailValid &&
 						!isThereBlankField()
 					) {
-						console.log('debug-a');
+						
 						enableButton($('#signup-btn'));
 					} else {
-						console.log('debug-b');
+						
 						disableButton($('#signup-btn'));
 					}
 				});
@@ -185,10 +182,10 @@ $(function () {
 					isConfirmPasswordValid(field) &&
 					isEmailValid
 				) {
-					console.log('debug-c');
+					
 					enableButton($('#signup-btn'));
 				} else {
-					console.log('debug-d');
+					
 					disableButton($('#signup-btn'));
 				}
 			}
@@ -200,10 +197,10 @@ $(function () {
 				isEmailValid &&
 				!isThereBlankField()
 			) {
-				console.log('debug-e');
+				
 				enableButton($('#signup-btn'));
 			} else {
-				console.log('debug-f');
+				
 				disableButton($('#signup-btn'));
 			}
 		}
@@ -222,10 +219,10 @@ $(function () {
 						isEmailStillValid &&
 						!isThereBlankField()
 					) {
-						console.log('debug-g');
+						
 						enableButton($('#signup-btn'));
 					} else {
-						console.log('debug-h');
+						
 						disableButton($('#signup-btn'));
 					}
 				});
@@ -236,10 +233,10 @@ $(function () {
 					isEmailStillValid &&
 					!isThereBlankField()
 				) {
-					console.log('debug-i');
+					
 					enableButton($('#signup-btn'));
 				} else {
-					console.log('debug-j');
+					
 					disableButton($('#signup-btn'));
 				}
 			}
@@ -251,10 +248,10 @@ $(function () {
 				isEmailStillValid &&
 				!isThereBlankField()
 			) {
-				console.log('debug-k');
+				
 				enableButton($('#signup-btn'));
 			} else {
-				console.log('debug-l');
+				
 				disableButton($('#signup-btn'));
 			}
 		}
@@ -272,19 +269,19 @@ $(function () {
 						isUsernameValid &&
 						!isThereBlankField()
 					) {
-						console.log('debug-m');
+						
 						enableButton($('#signup-btn'));
 					} else {
-						console.log('debug-n');
+						
 						disableButton($('#signup-btn'));
 					}
 				});
 			} else {
 				if (isPasswordValid(field) && isConfirmPasswordValid(field)) {
-					console.log('debug-o');
+					
 					enableButton($('#signup-btn'));
 				} else {
-					console.log('debug-p');
+					
 					disableButton($('#signup-btn'));
 				}
 			}
@@ -296,10 +293,10 @@ $(function () {
 				isEmailValid &&
 				!isThereBlankField()
 			) {
-				console.log('debug-q');
+				
 				enableButton($('#signup-btn'));
 			} else {
-				console.log('debug-r');
+				
 				disableButton($('#signup-btn'));
 			}
 		}
@@ -310,16 +307,16 @@ $(function () {
 			didEmailChange = false;
 
 			if (!didEmailChange) {
-				console.log('debug-r');
+				
 				isEmailValid(field, function (isEmailValid) {
 					validateWithEmail(field, isEmailValid);
 				});
 			} else {
-				console.log('debug-s');
+				
 				validateWithoutEmail(field);
 			}
 		} else {
-			console.log('debug-t');
+			
 			validateWithGlobalEmailVar(field);
 		}
 	}

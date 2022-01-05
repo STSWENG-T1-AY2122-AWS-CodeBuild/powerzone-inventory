@@ -312,7 +312,7 @@ const inventoryController = {
 			date: date
 		}
 
-		console.log(purchase);
+		
 
 		db.insertOne(Inventory, purchase, function (flag) {
 			res.status(200).json("Stock added successfully.");
