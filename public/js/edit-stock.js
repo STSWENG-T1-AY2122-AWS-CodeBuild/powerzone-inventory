@@ -1,5 +1,5 @@
 $(function() {
-	$('')
+	$('#edit-stock-name').val($('#edit-stock-type').val());
 
     $('#edit-stock-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */

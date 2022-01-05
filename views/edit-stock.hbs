@@ -10,6 +10,7 @@
         <link href = "/css/style.css" rel = "stylesheet">
 
         <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <script src = "/js/edit-stock.js" type = "module"></script>
     </head>
     <body class = "bg-home">
@@ -30,9 +31,11 @@
                             <td>
                                 <div class = "m-4 row">
                                     <div class = "col me-5">
+                                        <input id = "edit-stock-type" type = "hidden" value = "{{type}}">
+
                                         <label for = "edit-stock-name" class = "form-label fw-bold text-primary">Name</label>
                                         <select id = "edit-stock-name" name = "editStockName" class = "form-select rounded-pill" required>
-                                            <option value = "gasoline" selected>Gasoline</option>
+                                            <option value = "gasoline">Gasoline</option>
                                             <option value = "premium-gasoline-95">Premium Gasoline 95</option>
                                             <option value = "diesel">Diesel</option>
                                             <option value = "premium-gasoline-97">Premium Gasoline 97</option>
