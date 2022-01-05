@@ -14,15 +14,10 @@ const inventoryController = {
 	getInventory: function(req, res) {
 		/* Store the total quantities and statuses of each type of fuel. */
 		let totalGasoline = 0;
-		let statusGasoline = "In Stock";
 		let totalPremiumGasoline95 = 0;
-		let statusPremiumGasoline95 = "In Stock";
 		let totalDiesel = 0;
-		let statusDiesel = "In Stock";
 		let totalPremiumGasoline97 = 0;
-		let statusPremiumGasoline97 = "In Stock";
 		let totalKerosene = 0;
-		let statusKerosene = "In Stock";
 
 		/* Store the details of all purchases in individual arrays to allow for further formatting. */
 		let ids = [];
@@ -32,6 +27,7 @@ const inventoryController = {
 		let prices = [];
 		let locations = [];
 		let quantities = [];
+		let statuses = [];
 
 		/* Retrieve the details of all inventory purchases. */
 		let query = {};
@@ -43,78 +39,55 @@ const inventoryController = {
 			let purchases = result;
 
 			/* For each purchase, update the total fuel quantities accordingly and store the purchase
-			 * details in the purchaseDetails array. 
+			 * details in the individual arrays. 
 			 */
 			let purchaseDetails = [];
 			for (let i = 0; i < purchases.length; i++) {
-				if (purchases[i].type == "Gasoline") {
-					totalGasoline += purchases[i].quantity;
-				} else if (purchases[i].type == "Premium Gasoline 95") {
-					totalPremiumGasoline95 += purchases[i].quantity;
-				} else if (purchases[i].type == "Diesel") {
-					totalDiesel += purchases[i].quantity;
-				} else if (purchases[i].type == "Premium Gasoline 97") {
-					totalPremiumGasoline97 += purchases[i].quantity;
-				} else {
-					totalKerosene += purchases[i].quantity;
-				}
-
-				/* Format the display of the purchase date from the Date object
-				 * stored in the database
+				/* Following the feature specifications, display only stocks with quantities above 0
+				 * in the application.
 				 */
-				let month = purchases[i].date.getMonth() + 1;
-				let formattedMonth = month;
-				if (month.toString().length < 2) {
-					formattedMonth = "0" + month.toString();
+				if (purchases[i].quantity > 0) {
+					if (purchases[i].type == "Gasoline") {
+						totalGasoline += purchases[i].quantity;
+					} else if (purchases[i].type == "Premium Gasoline 95") {
+						totalPremiumGasoline95 += purchases[i].quantity;
+					} else if (purchases[i].type == "Diesel") {
+						totalDiesel += purchases[i].quantity;
+					} else if (purchases[i].type == "Premium Gasoline 97") {
+						totalPremiumGasoline97 += purchases[i].quantity;
+					} else {
+						totalKerosene += purchases[i].quantity;
+					}
+
+					/* Format the display of the purchase date from the Date object
+					 * stored in the database
+					 */
+					let month = purchases[i].date.getMonth() + 1;
+					let formattedMonth = month;
+					if (month.toString().length < 2) {
+						formattedMonth = "0" + month.toString();
+					}
+
+					let date = purchases[i].date.getDate();
+					let formattedDate = date;
+					if (date.toString().length < 2) {
+						formattedDate = "0" + date.toString();
+					}
+
+					let year = purchases[i].date.getFullYear();
+
+					/* Set all statuses to "In Stock" as depleted stocks are no longer displayed. */
+					let status = "In Stock";
+
+					/* Store the purchase details in their respective arrays. */
+					ids[i] = purchases[i]._id;
+					types[i] = purchases[i].type;
+					dates[i] = formattedMonth + "/" + formattedDate + "/" + year;
+					suppliers[i] = purchases[i].supplier;
+					prices[i] = purchases[i].price;
+					locations[i] = purchases[i].location;
+					statuses[i] = status;
 				}
-
-				let date = purchases[i].date.getDate();
-				let formattedDate = date;
-				if (date.toString().length < 2) {
-					formattedDate = "0" + date.toString();
-				}
-
-				let year = purchases[i].date.getFullYear();
-
-				/* Store the purchase details in their respective arrays. */
-				ids[i] = purchases[i]._id;
-				types[i] = purchases[i].type;
-				dates[i] = formattedMonth + "/" + formattedDate + "/" + year;
-				suppliers[i] = purchases[i].supplier;
-				prices[i] = purchases[i].price;
-				locations[i] = purchases[i].location;
-				quantities[i] = purchases[i].quantity;
-			}
-
-			/* Update the statuses of each fuel type based on their computed total quantities. */
-			if (totalGasoline == 0) {
-				statusGasoline = "Depleted";
-			} else if (totalGasoline <= 10) {
-				statusGasoline = "Critically Low";
-			}
-
-			if (totalPremiumGasoline95 == 0) {
-				statusPremiumGasoline95 = "Depleted";
-			} else if (totalPremiumGasoline95 <= 10) {
-				statusPremiumGasoline95 = "Critically Low";
-			}
-
-			if (totalDiesel == 0) {
-				statusDiesel = "Depleted";
-			} else if (totalDiesel <= 10) {
-				statusDiesel = "Critically Low";
-			}
-
-			if (totalPremiumGasoline97 == 0) {
-				statusPremiumGasoline97 = "Depleted";
-			} else if (totalPremiumGasoline97 <= 10) {
-				statusPremiumGasoline97 = "Critically Low";
-			}
-
-			if (totalKerosene == 0) {
-				statusKerosene = "Depleted";
-			} else if (totalKerosene <= 10) {
-				statusKerosene = "Critically Low";
 			}
 
 			/* Store the total fuel quantities, fuel statuses, and retrieved inventory details 
@@ -122,22 +95,20 @@ const inventoryController = {
 			 */
 			let data = {
 				totalGasoline: totalGasoline,
-				statusGasoline: statusGasoline,
 				totalPremiumGasoline95: totalPremiumGasoline95,
-				statusPremiumGasoline95: statusPremiumGasoline95,
 				totalDiesel: totalDiesel,
-				statusDiesel: statusDiesel,
 				totalPremiumGasoline97: totalPremiumGasoline97,
-				statusPremiumGasoline97: statusPremiumGasoline97,
 				totalKerosene: totalKerosene,
-				statusKerosene: statusKerosene,
 				inventoryIds: ids,
 				inventoryTypes: types,
 				inventoryDates: dates,
 				inventorySuppliers: suppliers,
 				inventoryPrices: prices,
 				inventoryLocations: locations,
-				inventoryQuantities: quantities
+				inventoryStatuses: statuses,
+
+				/* Additionally, store the role of the account to authorize the add and edit stock features. */
+				role: req.session.role
 			}
 
 			res.render('inventory', data);
@@ -312,7 +283,7 @@ const inventoryController = {
 			date: date
 		}
 
-		console.log(purchase);
+		
 
 		db.insertOne(Inventory, purchase, function (flag) {
 			res.status(200).json("Stock added successfully.");

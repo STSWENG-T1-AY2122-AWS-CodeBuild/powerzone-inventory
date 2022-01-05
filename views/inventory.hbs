@@ -115,7 +115,8 @@
                         <div class = "bg-light h-100 table-responsive">
                             <table class = "align-middle table table-hover">
                                 <thead class = "bg-primary table-fixed table-header text-white">
-                                    <tr>
+                                    {{#if (validInventoryRole role)}}
+                                    <tr>    
                                         <th scope = "col" class = "w-15">NAME</th>
                                         <th scope = "col" class = "w-15">DATE PURCHASED</th>
                                         <th scope = "col" class = "w-20">SUPPLIER</th>
@@ -124,19 +125,40 @@
                                         <th scope = "col" class = "w-10">MORE INFO</th>
                                         <th scope = "col" class = "w-10">EDIT</th>
                                     </tr>
+                                    {{else}}
+                                    <tr>    
+                                        <th scope = "col" class = "w-15">NAME</th>
+                                        <th scope = "col" class = "w-15">DATE PURCHASED</th>
+                                        <th scope = "col" class = "w-20">SUPPLIER</th>
+                                        <th scope = "col" class = "w-15">PRICE PURCHASED</th>
+                                        <th scope = "col" class = "w-15">STATUS</th>
+                                        <th scope = "col" class = "w-10">MORE INFO</th>
+                                    </tr>
+                                    {{/if}}
                                 </thead>
                                 <tbody id = "inventory-list">
-                                    {{#each inventoryTypes}}
+                                {{#each inventoryTypes}}
+                                    {{#if (validInventoryRole ../role)}}
                                     <tr class = "stock">
                                         <td>{{getType this}}</td>
                                         <td>{{lookup ../inventoryDates @index}}</td>
                                         <td>{{lookup ../inventorySuppliers @index}}</td>
-                                        <td>P {{lookup ../inventoryPrices @index}}</td>
-                                        <td>{{lookup ../inventoryQuantities @index}} L</td>
+                                        <td>₱ {{lookup ../inventoryPrices @index}}</td>
+                                        <td>{{lookup ../inventoryStatuses @index}}</td>
                                         <td><a href = "/getMoreInfoStock/{{lookup ../inventoryIds @index}}"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
                                         <td><a href = "/getEditStock/{{lookup ../inventoryIds @index}}"><img src = "/assets/pencil.png" alt = "edit-stock-details" class = "edit-stock-details table-icon"></a></td>
                                     </tr>
-                                    {{/each}}
+                                    {{else}}
+                                    <tr class = "stock">
+                                        <td>{{getType this}}</td>
+                                        <td>{{lookup ../inventoryDates @index}}</td>
+                                        <td>{{lookup ../inventorySuppliers @index}}</td>
+                                        <td>₱ {{lookup ../inventoryPrices @index}}</td>
+                                        <td>{{lookup ../inventoryStatuses @index}}</td>
+                                        <td><a href = "/getMoreInfoStock/{{lookup ../inventoryIds @index}}"><img src = "/assets/more.png" alt = "view-stock-more-info" class = "view-stock-more-info table-icon"></a></td>
+                                    </tr>
+                                    {{/if}}
+                                {{/each}}
                                 </tbody>
                             </table>
                         </div>
@@ -144,10 +166,11 @@
                 </div>
             </div>
             
-
+        {{#if (validInventoryRole role)}}
             <div class = "mx-5 my-3"> 
                 <a href = "/getAddStock" class = "btn btn-primary fw-bold float-end px-5 rounded-pill shadow-sm text-white">+ Add Stock</a>
             </div>
+        {{/if}}
         </div>
     </body>
 </html>
