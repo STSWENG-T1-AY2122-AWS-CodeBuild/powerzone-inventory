@@ -1,10 +1,11 @@
 const getRoleValue = function(role) {
-    if (role == "Inventory Manager")
+    if (role == "Inventory Manager") {
 		return "inventory-manager";
-	else if (role == "Transaction Cashier")
+	} else if (role == "Transaction Cashier") {
 		return "transaction-cashier";
-	else 
-		return "delivery-manager";
+	} 
+	
+	return "delivery-manager";
 }
 
 export {
