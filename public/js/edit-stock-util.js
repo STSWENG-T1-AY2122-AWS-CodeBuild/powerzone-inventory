@@ -1,13 +1,18 @@
 const getFuelValue = function(fuel) {
-    if (fuel == "Inventory Manager") {
-		return "inventory-manager";
-	} else if (fuel == "Transaction Cashier") {
-		return "transaction-cashier";
-	} 
-	
-	return "delivery-manager";
+    switch (fuel) {
+        case 'Gasoline':
+            return 'gasoline';
+        case 'Premium Gasoline 95':
+            return 'premium-gasoline-95';
+        case 'Diesel':
+            return 'diesel';
+        case 'Premium Gasoline 97':
+            return 'premium-gasoline-97';
+        default:
+            return 'kerosene';
+    }
 }
 
 export {
-    getRoleValue
+    getFuelValue
 };

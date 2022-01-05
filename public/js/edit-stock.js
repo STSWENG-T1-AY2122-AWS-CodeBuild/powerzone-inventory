@@ -1,4 +1,6 @@
 $(function() {
+	$('')
+
     $('#edit-stock-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
