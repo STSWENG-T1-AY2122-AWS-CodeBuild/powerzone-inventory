@@ -19,7 +19,7 @@ describe('the function to get the register page', function() {
 		const req = {
 			session: {
 				username: null,
-			},
+			}
 		};
 
 		const res = {
@@ -37,7 +37,7 @@ describe('the function to get the register page', function() {
 		const req = {
 			session: {
 				username: null,
-			},
+			}
 		};
 
 		const res = {
@@ -54,7 +54,7 @@ describe('the function to get the register page', function() {
 		const req = {
 			session: {
 				username: 'bettina',
-			},
+			}
 		};
 
 		const res = {
@@ -72,7 +72,7 @@ describe('the function to get the register page', function() {
 		const req = {
 			session: {
 				username: 'bettina',
-			},
+			}
 		};
 
 		const res = {
@@ -113,7 +113,7 @@ describe('the function to register a new account', function() {
 				signupRole: 'inventory-manager',
 				signupPassword: 'hello',
 				signupConfirmPassword: 'hello',
-			},
+			}
 		};
 
 		hash = 'fasdfasdfa';
@@ -135,7 +135,7 @@ describe('the function to register a new account', function() {
 				signupRole: 'inventory-manager',
 				signupPassword: 'hello',
 				signupConfirmPassword: 'hello',
-			},
+			}
 		};
 
 		hash = 'fasdfasdfa';
@@ -156,7 +156,7 @@ describe('the function to register a new account', function() {
 				signupRole: 'inventory-manager',
 				signupPassword: 'hello',
 				signupConfirmPassword: 'hi',
-			},
+			}
 		};
 
 		hash = 'fasdfasdfa';
@@ -177,7 +177,7 @@ describe('the function to verify whether a username is unique', function() {
 			query: {
 				username: 'hello',
 				email: 'hello@gmail.com',
-			},
+			}
 		};
 
 		res = {
