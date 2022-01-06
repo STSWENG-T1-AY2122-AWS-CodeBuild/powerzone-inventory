@@ -93,3 +93,49 @@ describe('the function to get the home page', function() {
 		assert.isTrue(res.render.notCalled);
 	});
 });
+
+describe('the function to edit the selling prices displayed on the home page', function() {
+	let req;
+	let res;
+	let update;
+
+	beforeEach(function() {
+		req = {
+			body: {
+				editGasolinePrice: '67',
+				editPremiumGasoline95Price: '78',
+				editDieselPrice: '89',
+				editPremiumGasoline97Price: '10',
+				editKerosenePrice: '12'
+			}
+		};	
+
+		res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub(),
+		};
+
+		update = {
+			gasoline: req.body.editGasolinePrice,
+			premiumGasoline95: req.body.editPremiumGasoline95Price,
+			diesel: req.body.editDieselPrice,
+			premiumGasoline97: req.body.editPremiumGasoline97Price,
+			kerosene: req.body.editKerosenePrice,
+		};
+	});
+
+	afterEach(function() {
+		db.updateOne.restore();
+	});
+
+	it('should update the database with the correct prices only once', function() {
+		sinon.stub(db, 'updateOne').yields({});
+		homeController.postEditPrices(req, res);
+
+		assert.isTrue(db.updateOne.calledOnce);
+		assert.equal(db.updateOne.firstCall.args[0], SellingPrice);
+		expect(db.updateOne.firstCall.args[1]).to.deep.equalInAnyOrder({label: 'Prices'});
+		expect(db.updateOne.firstCall.args[2]).to.deep.equalInAnyOrder(update);
+	});
+});
