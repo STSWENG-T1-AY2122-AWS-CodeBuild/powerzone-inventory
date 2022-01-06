@@ -44,13 +44,13 @@ const inventoryController = {
 				 * in the application.
 				 */
 				if (purchases[i].quantity > 0) {
-					if (purchases[i].type == 'Gasoline') {
+					if (purchases[i].type == 'gasoline') {
 						totalGasoline += purchases[i].quantity;
-					} else if (purchases[i].type == 'Premium Gasoline 95') {
+					} else if (purchases[i].type == 'premium-gasoline-95') {
 						totalPremiumGasoline95 += purchases[i].quantity;
-					} else if (purchases[i].type == 'Diesel') {
+					} else if (purchases[i].type == 'diesel') {
 						totalDiesel += purchases[i].quantity;
-					} else if (purchases[i].type == 'Premium Gasoline 97') {
+					} else if (purchases[i].type == 'premium-gasoline-97') {
 						totalPremiumGasoline97 += purchases[i].quantity;
 					} else {
 						totalKerosene += purchases[i].quantity;
