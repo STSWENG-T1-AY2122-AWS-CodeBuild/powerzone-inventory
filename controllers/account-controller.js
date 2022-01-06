@@ -239,6 +239,12 @@ const accountController = {
 		res.render('successful-edit');
 	},
 
+	/**
+	 * Gets the edit account page.
+	 *
+	 * @param req Object that contains information on the HTTP request from the client.
+	 * @param res Object that contains information on the HTTP response from the server.
+	 */
 	getEditAccount: function(req, res) {
 		res.render('edit-account');
 	},
