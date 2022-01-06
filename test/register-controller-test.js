@@ -87,7 +87,9 @@ describe('the function to get the register page', function() {
 });
 
 describe('the function to register a new account', function() {
-	let req; let res; let hash;
+	let req;
+	let res;
+	let hash;
 
 	beforeEach(function() {
 		req = {
@@ -129,7 +131,8 @@ describe('the function to register a new account', function() {
 });
 
 describe('the function to verify whether a username is unique', function() {
-	let req; let expectedResult;
+	let req;
+	let expectedResult;
 
 	beforeEach(function() {
 		req = {
@@ -170,7 +173,8 @@ describe('the function to verify whether a username is unique', function() {
 });
 
 describe('the function to verify whether an email address is unique', function() {
-	let req; let expectedResult;
+	let req;
+	let expectedResult;
 
 	beforeEach(function() {
 		req = {
