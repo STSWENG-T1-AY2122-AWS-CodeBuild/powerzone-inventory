@@ -9,87 +9,87 @@ const SellingPrice = require('../models/selling-price-schema.js');
 const db = require('../models/db.js');
 
 describe('the function to get the home page', function() {
-    it('should search the database for the selling prices only once', function() {
-        let req = {
-            session: {
-                username: 'bettina'
-            }
-        };
+	it('should search the database for the selling prices only once', function() {
+		const req = {
+			session: {
+				username: 'bettina',
+			},
+		};
 
-        let res = {
-            render: sinon.spy(),
-            redirect: sinon.spy()
-        };
+		const res = {
+			render: sinon.spy(),
+			redirect: sinon.spy(),
+		};
 
-        let expectedResult = {
-            role: 'inventory-manager',
+		const expectedResult = {
+			role: 'inventory-manager',
 			gasoline: '6.23',
 			premiumGasoline95: '6.23',
 			diesel: '6.23',
 			premiumGasoline97: '6.23',
-			kerosene: '6.23'
-        };
-        
-        sinon.stub(db, 'findOne').yields(expectedResult);
-        homeController.getHome(req, res);
+			kerosene: '6.23',
+		};
 
-        assert.isTrue(db.findOne.calledOnce);
-        assert.equal(db.findOne.firstCall.args[0], SellingPrice);
-        expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({label: "Prices"});
-        assert.equal(db.findOne.firstCall.args[2], 'gasoline premiumGasoline95 diesel premiumGasoline97 kerosene');
+		sinon.stub(db, 'findOne').yields(expectedResult);
+		homeController.getHome(req, res);
 
-        db.findOne.restore();
-    });
+		assert.isTrue(db.findOne.calledOnce);
+		assert.equal(db.findOne.firstCall.args[0], SellingPrice);
+		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({label: 'Prices'});
+		assert.equal(db.findOne.firstCall.args[2], 'gasoline premiumGasoline95 diesel premiumGasoline97 kerosene');
 
-    it('should not redirect to the log-in page if the user is logged in', function() {
-        let req = {
-            session: {
-                username: 'bettina'
-            }
-        };
+		db.findOne.restore();
+	});
 
-        let res = {
-            render: sinon.spy(),
-            redirect: sinon.spy()
-        };
-        
-        homeController.getHome(req, res);
+	it('should not redirect to the log-in page if the user is logged in', function() {
+		const req = {
+			session: {
+				username: 'bettina',
+			},
+		};
 
-        assert.isTrue(res.redirect.notCalled);
-    });
+		const res = {
+			render: sinon.spy(),
+			redirect: sinon.spy(),
+		};
 
-    it('should redirect to the log-in page only once if the user is not logged in', function() {
-        let req = {
-            session: {
-                username: null
-            }
-        };
+		homeController.getHome(req, res);
 
-        let res = {
-            render: sinon.spy(),
-            redirect: sinon.spy()
-        };
-        
-        homeController.getHome(req, res);
+		assert.isTrue(res.redirect.notCalled);
+	});
 
-        assert.isTrue(res.redirect.calledOnce);
-        assert.equal(res.redirect.firstCall.args[0], '/');
-    });
+	it('should redirect to the log-in page only once if the user is not logged in', function() {
+		const req = {
+			session: {
+				username: null,
+			},
+		};
 
-    it('should not render the home page if the user is not logged in', function() {
-        let req = {
-            session: {
-                username: null
-            }
-        };
+		const res = {
+			render: sinon.spy(),
+			redirect: sinon.spy(),
+		};
 
-        let res = {
-            render: sinon.spy(),
-            redirect: sinon.spy()
-        };
-        
-        homeController.getHome(req, res);
+		homeController.getHome(req, res);
 
-        assert.isTrue(res.render.notCalled);
-    });
+		assert.isTrue(res.redirect.calledOnce);
+		assert.equal(res.redirect.firstCall.args[0], '/');
+	});
+
+	it('should not render the home page if the user is not logged in', function() {
+		const req = {
+			session: {
+				username: null,
+			},
+		};
+
+		const res = {
+			render: sinon.spy(),
+			redirect: sinon.spy(),
+		};
+
+		homeController.getHome(req, res);
+
+		assert.isTrue(res.render.notCalled);
+	});
 });

@@ -24,7 +24,7 @@ db.connect();
 powerzone.set('view engine', 'hbs');
 
 hbs.registerPartials(__dirname + '/views/partials');
-hbs.handlebars.registerHelper('getRole', function (dbRole) {
+hbs.handlebars.registerHelper('getRole', function(dbRole) {
 	if (dbRole == 'inventory-manager') {
 		return 'Inventory Manager';
 	} else if (dbRole == 'transaction-cashier') {
@@ -34,7 +34,7 @@ hbs.handlebars.registerHelper('getRole', function (dbRole) {
 	}
 });
 
-hbs.handlebars.registerHelper('getStatus', function (status) {
+hbs.handlebars.registerHelper('getStatus', function(status) {
 	if (status == 'Accepted') {
 		return '/assets/accepted.png';
 	} else if (status == 'Pending') {
@@ -44,11 +44,11 @@ hbs.handlebars.registerHelper('getStatus', function (status) {
 	}
 });
 
-hbs.handlebars.registerHelper('getFullName', function (firstName, lastName) {
+hbs.handlebars.registerHelper('getFullName', function(firstName, lastName) {
 	return firstName.concat(' ', lastName);
 });
 
-hbs.handlebars.registerHelper('getType', function (type) {
+hbs.handlebars.registerHelper('getType', function(type) {
 	if (type == 'gasoline') {
 		return 'Gasoline';
 	} else if (type == 'premium-gasoline-95') {
@@ -62,7 +62,7 @@ hbs.handlebars.registerHelper('getType', function (type) {
 	}
 });
 
-hbs.handlebars.registerHelper('validInventoryRole', function (role) {
+hbs.handlebars.registerHelper('validInventoryRole', function(role) {
 	if (role == 'administrator' || role == 'inventory-manager') {
 		return true;
 	} else {
@@ -74,8 +74,8 @@ powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());
 powerzone.use(
 	express.urlencoded({
-		extended: true
-	})
+		extended: true,
+	}),
 );
 
 powerzone.use(nocache());
@@ -85,13 +85,13 @@ powerzone.use(
 		secret: process.env.session_secret,
 		resave: false,
 		saveUninitialized: false,
-		store: new mongoStore({ mongooseConnection: mongoose.connection })
-	})
+		store: new mongoStore({mongooseConnection: mongoose.connection}),
+	}),
 );
 
 powerzone.use('/', routes);
 
-powerzone.listen(port, hostname, function () {
+powerzone.listen(port, hostname, function() {
 	console.log('Server is running at: ');
 	console.log('http://' + hostname + ':' + port);
 });

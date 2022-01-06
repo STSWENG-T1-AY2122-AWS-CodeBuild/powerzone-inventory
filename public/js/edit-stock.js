@@ -1,10 +1,10 @@
 $(function() {
 	$('#edit-stock-name').val($('#edit-stock-type').val());
 
-    $('#edit-stock-form').on('submit', function(e) {
+	$('#edit-stock-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
-			
+
 		$.ajax({
 			url: '/postEditStock',
 			method: 'POST',
@@ -15,12 +15,12 @@ $(function() {
 				200: function() {
 					location.href = '/getInventory';
 				},
-				
+
 				/* Otherwise, display an error message. */
 				401: function() {
-					alert("Error!");
-				}
-			}
+					alert('Error!');
+				},
+			},
 		});
 	});
 });

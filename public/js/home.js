@@ -1,7 +1,7 @@
 /* JavaScript file for handling the front end of the home page */
 
-import { toTwoDecimalPlaces } from "./general-util.js";
-import { isAllowedToEdit } from "./home-util.js";
+import {toTwoDecimalPlaces} from './general-util.js';
+import {isAllowedToEdit} from './home-util.js';
 
 $(function() {
 	if (!isAllowedToEdit($('#user-role').val())) {
@@ -11,7 +11,7 @@ $(function() {
 	$('#edit-price-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
-			
+
 		$.ajax({
 			url: '/postEditPrices',
 			method: 'POST',
@@ -23,12 +23,12 @@ $(function() {
 					$('#edit-price-modal').modal('hide');
 					updatePrices();
 				},
-				
+
 				/* Otherwise, display an error message. */
 				401: function() {
-					alert("Error!");
-				}
-			}
+					alert('Error!');
+				},
+			},
 		});
 	});
 

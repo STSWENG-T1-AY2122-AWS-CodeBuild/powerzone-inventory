@@ -2,7 +2,7 @@ import {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
 	isUsernameLengthValid,
-	arePasswordsMatching
+	arePasswordsMatching,
 } from './register-validate-util.js';
 
 import {
@@ -10,10 +10,10 @@ import {
 	hideErrorMessage,
 	enableButton,
 	disableButton,
-	isBlankField
+	isBlankField,
 } from './general-util.js';
 
-$(function () {
+$(function() {
 	let isUsernameStillValid = false;
 	let didUsernameChange = true;
 
@@ -42,7 +42,7 @@ $(function () {
 			hideErrorMessage(nonUniqueEmail);
 		}
 
-		$.get('/getCheckEmail', { email: email }, function (res) {
+		$.get('/getCheckEmail', {email: email}, function(res) {
 			if (res.email == null) {
 				if (field.is(emailField)) {
 					hideErrorMessage(nonUniqueEmail);
@@ -73,7 +73,7 @@ $(function () {
 				hideErrorMessage(blankUsername);
 			}
 
-			$.get('/getCheckUsername', { username: username }, function (res) {
+			$.get('/getCheckUsername', {username: username}, function(res) {
 				if (res.username == null) {
 					if (field.is(usernameField)) {
 						hideErrorMessage(nonUniqueUsername);
@@ -161,7 +161,7 @@ $(function () {
 			didUsernameChange = false;
 
 			if (!isUsernameStillValid) {
-				isUsernameValid(field, function (isUsernameValid) {
+				isUsernameValid(field, function(isUsernameValid) {
 					if (
 						isPasswordValid(field) &&
 						isConfirmPasswordValid(field) &&
@@ -169,10 +169,8 @@ $(function () {
 						isEmailValid &&
 						!isThereBlankField()
 					) {
-						
 						enableButton($('#signup-btn'));
 					} else {
-						
 						disableButton($('#signup-btn'));
 					}
 				});
@@ -182,10 +180,8 @@ $(function () {
 					isConfirmPasswordValid(field) &&
 					isEmailValid
 				) {
-					
 					enableButton($('#signup-btn'));
 				} else {
-					
 					disableButton($('#signup-btn'));
 				}
 			}
@@ -197,10 +193,8 @@ $(function () {
 				isEmailValid &&
 				!isThereBlankField()
 			) {
-				
 				enableButton($('#signup-btn'));
 			} else {
-				
 				disableButton($('#signup-btn'));
 			}
 		}
@@ -211,7 +205,7 @@ $(function () {
 			didUsernameChange = false;
 
 			if (!isUsernameStillValid) {
-				isUsernameValid(field, function (isUsernameValid) {
+				isUsernameValid(field, function(isUsernameValid) {
 					if (
 						isPasswordValid(field) &&
 						isConfirmPasswordValid(field) &&
@@ -219,10 +213,8 @@ $(function () {
 						isEmailStillValid &&
 						!isThereBlankField()
 					) {
-						
 						enableButton($('#signup-btn'));
 					} else {
-						
 						disableButton($('#signup-btn'));
 					}
 				});
@@ -233,10 +225,8 @@ $(function () {
 					isEmailStillValid &&
 					!isThereBlankField()
 				) {
-					
 					enableButton($('#signup-btn'));
 				} else {
-					
 					disableButton($('#signup-btn'));
 				}
 			}
@@ -248,10 +238,8 @@ $(function () {
 				isEmailStillValid &&
 				!isThereBlankField()
 			) {
-				
 				enableButton($('#signup-btn'));
 			} else {
-				
 				disableButton($('#signup-btn'));
 			}
 		}
@@ -262,26 +250,22 @@ $(function () {
 			didUsernameChange = false;
 
 			if (!isUsernameStillValid) {
-				isUsernameValid(field, function (isUsernameValid) {
+				isUsernameValid(field, function(isUsernameValid) {
 					if (
 						isPasswordValid(field) &&
 						isConfirmPasswordValid(field) &&
 						isUsernameValid &&
 						!isThereBlankField()
 					) {
-						
 						enableButton($('#signup-btn'));
 					} else {
-						
 						disableButton($('#signup-btn'));
 					}
 				});
 			} else {
 				if (isPasswordValid(field) && isConfirmPasswordValid(field)) {
-					
 					enableButton($('#signup-btn'));
 				} else {
-					
 					disableButton($('#signup-btn'));
 				}
 			}
@@ -293,10 +277,8 @@ $(function () {
 				isEmailValid &&
 				!isThereBlankField()
 			) {
-				
 				enableButton($('#signup-btn'));
 			} else {
-				
 				disableButton($('#signup-btn'));
 			}
 		}
@@ -307,51 +289,48 @@ $(function () {
 			didEmailChange = false;
 
 			if (!didEmailChange) {
-				
-				isEmailValid(field, function (isEmailValid) {
+				isEmailValid(field, function(isEmailValid) {
 					validateWithEmail(field, isEmailValid);
 				});
 			} else {
-				
 				validateWithoutEmail(field);
 			}
 		} else {
-			
 			validateWithGlobalEmailVar(field);
 		}
 	}
 
-	$('#signup-email').on('keyup', function () {
+	$('#signup-email').on('keyup', function() {
 		isEmailStillValid = false;
 		didEmailChange = true;
 
 		validateField($('#signup-email'));
 	});
 
-	$('#signup-username').on('keyup', function () {
+	$('#signup-username').on('keyup', function() {
 		isUsernameStillValid = false;
 		didUsernameChange = true;
 
 		validateField($('#signup-username'));
 	});
 
-	$('#signup-password').on('keyup', function () {
+	$('#signup-password').on('keyup', function() {
 		validateField($('#signup-password'));
 	});
 
-	$('#signup-fname').on('keyup', function () {
+	$('#signup-fname').on('keyup', function() {
 		validateField($('#signup-fname'));
 	});
 
-	$('#signup-lname').on('keyup', function () {
+	$('#signup-lname').on('keyup', function() {
 		validateField($('#signup-lname'));
 	});
 
-	$('#signup-role').on('change', function () {
+	$('#signup-role').on('change', function() {
 		validateField($('#signup-role'));
 	});
 
-	$('#signup-confirm-password').on('keyup', function () {
+	$('#signup-confirm-password').on('keyup', function() {
 		validateField($('#signup-confirm-password'));
 	});
 });
