@@ -15,6 +15,9 @@
         "semi": ["error", "always"],
         "quotes": ["error", "single"],
         "indent": ["error", "tab"],
-        "linebreak-style": ["error", "windows"]
+        "linebreak-style": ["error", "windows"],
+        "no-tabs": 0,
+        "max-len": 0,
+        "no-invalid-this": 0
     }
 }
