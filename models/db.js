@@ -13,7 +13,6 @@ const options = {
 /* Configure dotenv with the needed data */
 dotenv.config();
 const url = process.env.DB_URL;
-const urlTest = process.env.DB_URL_TEST;
 
 /* Specify database operations (i.e., connecting to the database, creating the GridFS storage, and the database
  * CRUD operations)
@@ -23,25 +22,9 @@ const database = {
      * Connects to the database
      */
 	connect: function() {
-		if (process.env.NODE_ENV === 'test') {
-			const Mockgoose = require('mockgoose').Mockgoose;
-			const mockgoose = new Mockgoose(mongoose);
-
-			mockgoose.prepareStorage()
-				.then(function() {
-					mongoose.connect(urlTest, options, function(error) {
-						if (error) throw error;
-					});
-
-					const connection = mongoose.createConnection(urlTest);
-				});
-		} else {
-			mongoose.connect(url, options, function(error) {
-				if (error) throw error;
-			});
-
-			const connection = mongoose.createConnection(url);
-		}
+		mongoose.connect(url, options, function(error) {
+			if (error) throw error;
+		});
 	},
 
 	/**
