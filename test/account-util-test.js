@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 
 const {
-	getRoleValue,
+	getRoleValue
 } = require('.././public/js/account-util.js');
 
 describe('the function to convert a role to its equivalent value in the database', function() {

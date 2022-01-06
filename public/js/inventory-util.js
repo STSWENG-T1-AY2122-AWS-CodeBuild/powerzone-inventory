@@ -168,5 +168,5 @@ export {
 	sortAtoZ,
 	sortZtoA,
 	sortLowToHigh,
-	sortHighToLow,
+	sortHighToLow
 };

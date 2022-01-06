@@ -2,7 +2,7 @@ import {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
 	isUsernameLengthValid,
-	arePasswordsMatching,
+	arePasswordsMatching
 } from './register-validate-util.js';
 
 import {
@@ -10,7 +10,7 @@ import {
 	hideErrorMessage,
 	enableButton,
 	disableButton,
-	isBlankField,
+	isBlankField
 } from './general-util.js';
 
 $(function() {

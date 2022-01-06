@@ -4,7 +4,7 @@ import {
 	sortAtoZ,
 	sortZtoA,
 	sortLowToHigh,
-	sortHighToLow,
+	sortHighToLow
 } from './inventory-util.js';
 
 import {getFuelValue} from './edit-stock-util.js';

@@ -4,8 +4,8 @@ const deliveryController = {
 	/**
 	 * Gets the delivery page.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getDelivery: function(req, res) {
 		res.render('delivery');
@@ -21,7 +21,7 @@ const deliveryController = {
 
 	getMoreInfoDelivery: function(req, res) {
 		res.render('more-info-delivery');
-	},
+	}
 };
 
 module.exports = deliveryController;

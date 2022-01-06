@@ -65,7 +65,7 @@ const validation = {
 				} else {
 					throw new Error('Passwords do not match');
 				}
-			}),
+			})
 		];
 
 		return validation;
@@ -102,11 +102,11 @@ const validation = {
 				} else {
 					throw new Error('Passwords do not match');
 				}
-			}),
+			})
 		];
 
 		return validation;
-	},
+	}
 };
 
 module.exports = validation;

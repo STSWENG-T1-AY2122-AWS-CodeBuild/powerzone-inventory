@@ -21,8 +21,8 @@ $(function() {
 				/* Otherwise, display an error message. */
 				401: function() {
 					logInError();
-				},
-			},
+				}
+			}
 		});
 	});
 

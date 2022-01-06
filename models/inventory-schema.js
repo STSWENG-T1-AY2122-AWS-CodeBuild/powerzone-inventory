@@ -7,38 +7,38 @@ const inventorySchema = new mongoose.Schema({
 	/* Fuel type */
 	type: {
 		type: String,
-		required: true,
+		required: true
 	},
 
 	/* Date purchased */
 	date: {
 		type: Date,
-		required: true,
+		required: true
 	},
 
 	/* Supplier name */
 	supplier: {
 		type: String,
-		required: true,
+		required: true
 	},
 
 	/* Price purchased */
 	price: {
 		type: Number,
-		required: true,
+		required: true
 	},
 
 	/* Storage location */
 	location: {
 		type: String,
-		required: true,
+		required: true
 	},
 
 	/* Quantity purchased */
 	quantity: {
 		type: Number,
-		required: true,
-	},
+		required: true
+	}
 });
 
 module.exports = mongoose.model('Inventory', inventorySchema);

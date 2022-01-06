@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 
 const {
-	getFuelValue,
+	getFuelValue
 } = require('.././public/js/edit-stock-util.js');
 
 describe('the function to convert a role to its equivalent value in the database', function() {

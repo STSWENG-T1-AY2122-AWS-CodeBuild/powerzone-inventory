@@ -8,8 +8,8 @@ const inventoryController = {
 	/**
 	 * Gets the inventory page.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getInventory: function(req, res) {
 		/* Store the total quantities and statuses of each type of fuel. */
@@ -26,7 +26,6 @@ const inventoryController = {
 		const suppliers = [];
 		const prices = [];
 		const locations = [];
-		const quantities = [];
 		const statuses = [];
 
 		/* Retrieve the details of all inventory purchases. */
@@ -40,7 +39,6 @@ const inventoryController = {
 			/* For each purchase, update the total fuel quantities accordingly and store the purchase
 			 * details in the individual arrays.
 			 */
-			const purchaseDetails = [];
 			for (let i = 0; i < purchases.length; i++) {
 				/* Following the feature specifications, display only stocks with quantities above 0
 				 * in the application.
@@ -107,7 +105,7 @@ const inventoryController = {
 				inventoryStatuses: statuses,
 
 				/* Additionally, store the role of the account to authorize the add and edit stock features. */
-				role: req.session.role,
+				role: req.session.role
 			};
 
 			res.render('inventory', data);
@@ -117,8 +115,8 @@ const inventoryController = {
 	/**
 	 * Gets the page displaying more information for a particular stock or purchase.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 getMoreInfoStock: function(req, res) {
 		/* Retrieve the purchase ID from the page link. */
@@ -155,7 +153,7 @@ const inventoryController = {
 				location: result.location,
 				quantity: result.quantity,
 				price: result.price,
-				date: cleanDate,
+				date: cleanDate
 			};
 
 			res.render('more-info-stock', data);
@@ -165,8 +163,8 @@ const inventoryController = {
 	/**
 	 * Gets the page for editing information on a particular stock or purchase.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getEditStock: function(req, res) {
 		/* Retrieve the purchase ID from the page link. */
@@ -204,7 +202,7 @@ const inventoryController = {
 				location: result.location,
 				quantity: result.quantity,
 				price: result.price,
-				date: cleanDate,
+				date: cleanDate
 			};
 
 			res.render('edit-stock', data);
@@ -214,8 +212,8 @@ const inventoryController = {
 	/**
 	 * Registers the details of a stock or purchase.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 postEditStock: function(req, res) {
 		/* Retrieve the purchase details from the user input. */
@@ -237,7 +235,7 @@ const inventoryController = {
 			location: location,
 			quantity: quantity,
 			price: price,
-			date: date,
+			date: date
 		};
 
 		db.updateOne(Inventory, filter, update, function(flag) {
@@ -249,8 +247,8 @@ const inventoryController = {
 	/**
 	 * Gets the page for adding a new stock or purchase.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getAddStock: function(req, res) {
 		res.render('add-stock');
@@ -259,8 +257,8 @@ const inventoryController = {
 	/**
 	 * Adds a new stock or purchase to the database.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 postAddStock: function(req, res) {
 		/* Retrieve the purchase details from the user input. */
@@ -278,7 +276,7 @@ const inventoryController = {
 			location: location,
 			quantity: quantity,
 			price: price,
-			date: date,
+			date: date
 		};
 
 
@@ -286,7 +284,7 @@ const inventoryController = {
 			res.status(200).json('Stock added successfully.');
 			res.send();
 		});
-	},
+	}
 };
 
 module.exports = inventoryController;

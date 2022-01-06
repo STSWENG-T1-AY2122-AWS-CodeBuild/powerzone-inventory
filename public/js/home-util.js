@@ -3,5 +3,5 @@ const isAllowedToEdit = function(role) {
 };
 
 export {
-	isAllowedToEdit,
+	isAllowedToEdit
 };

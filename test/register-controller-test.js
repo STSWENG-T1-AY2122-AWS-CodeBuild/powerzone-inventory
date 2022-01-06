@@ -18,13 +18,13 @@ describe('the function to get the register page', function() {
 	it('should render the register page only once if the user is not logged in', function() {
 		const req = {
 			session: {
-				username: null,
-			},
+				username: null
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		registerController.getRegister(req, res);
@@ -36,13 +36,13 @@ describe('the function to get the register page', function() {
 	it('should not redirect to the home page if the user is not logged in', function() {
 		const req = {
 			session: {
-				username: null,
-			},
+				username: null
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		registerController.getRegister(req, res);
@@ -53,13 +53,13 @@ describe('the function to get the register page', function() {
 	it('should redirect to the register page if the user is logged in', function() {
 		const req = {
 			session: {
-				username: 'bettina',
-			},
+				username: 'bettina'
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		registerController.getRegister(req, res);
@@ -71,13 +71,13 @@ describe('the function to get the register page', function() {
 	it('should not render the log-in page if the user is not logged in', function() {
 		const req = {
 			session: {
-				username: 'bettina',
-			},
+				username: 'bettina'
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		registerController.getRegister(req, res);
@@ -95,7 +95,7 @@ describe('the function to register a new account', function() {
 		res = {
 			status: sinon.stub().returnsThis(),
 			json: sinon.stub(),
-			send: sinon.stub(),
+			send: sinon.stub()
 		};
 	});
 
@@ -112,8 +112,8 @@ describe('the function to register a new account', function() {
 				signupUsername: 'hello',
 				signupRole: 'inventory-manager',
 				signupPassword: 'hello',
-				signupConfirmPassword: 'hello',
-			},
+				signupConfirmPassword: 'hello'
+			}
 		};
 
 		hash = 'fasdfasdfa';
@@ -134,8 +134,8 @@ describe('the function to register a new account', function() {
 				signupUsername: 'hello',
 				signupRole: 'inventory-manager',
 				signupPassword: 'hello',
-				signupConfirmPassword: 'hello',
-			},
+				signupConfirmPassword: 'hello'
+			}
 		};
 
 		hash = 'fasdfasdfa';
@@ -155,8 +155,8 @@ describe('the function to register a new account', function() {
 				signupUsername: 'hello',
 				signupRole: 'inventory-manager',
 				signupPassword: 'hello',
-				signupConfirmPassword: 'hi',
-			},
+				signupConfirmPassword: 'hi'
+			}
 		};
 
 		hash = 'fasdfasdfa';
@@ -176,14 +176,14 @@ describe('the function to verify whether a username is unique', function() {
 		req = {
 			query: {
 				username: 'hello',
-				email: 'hello@gmail.com',
-			},
+				email: 'hello@gmail.com'
+			}
 		};
 
 		res = {
 			status: sinon.stub().returnsThis(),
 			json: sinon.stub(),
-			send: sinon.stub(),
+			send: sinon.stub()
 		};
 
 		expectedResult = {
@@ -191,7 +191,7 @@ describe('the function to verify whether a username is unique', function() {
 			name: 'hello',
 			username: 'hello',
 			role: 'inventory-manager',
-			password: 'hello',
+			password: 'hello'
 		};
 	});
 
@@ -218,14 +218,14 @@ describe('the function to verify whether an email address is unique', function()
 		req = {
 			query: {
 				username: 'hello',
-				email: 'hello@gmail.com',
-			},
+				email: 'hello@gmail.com'
+			}
 		};
 
 		res = {
 			status: sinon.stub().returnsThis(),
 			json: sinon.stub(),
-			send: sinon.stub(),
+			send: sinon.stub()
 		};
 
 		expectedResult = {
@@ -233,7 +233,7 @@ describe('the function to verify whether an email address is unique', function()
 			name: 'hello',
 			username: 'hello',
 			role: 'inventory-manager',
-			password: 'hello',
+			password: 'hello'
 		};
 	});
 

@@ -9,7 +9,7 @@ const {
 	disableButton,
 	isBlankField,
 	extractId,
-	toTwoDecimalPlaces,
+	toTwoDecimalPlaces
 } = require('.././public/js/general-util.js');
 
 describe('the function to display an error message', function() {

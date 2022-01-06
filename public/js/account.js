@@ -50,8 +50,8 @@ $(function() {
 				/* Otherwise, display an error message. */
 				401: function() {
 					alert('Error!');
-				},
-			},
+				}
+			}
 		});
 	});
 
@@ -75,8 +75,8 @@ $(function() {
 				/* Otherwise, display an error message. */
 				401: function() {
 					alert('Error!');
-				},
-			},
+				}
+			}
 		});
 	});
 
@@ -100,8 +100,8 @@ $(function() {
 				/* Otherwise, display an error message. */
 				401: function() {
 					alert('Error!');
-				},
-			},
+				}
+			}
 		});
 	});
 
@@ -125,8 +125,8 @@ $(function() {
 				/* Otherwise, display an error message. */
 				401: function() {
 					alert('Error!');
-				},
-			},
+				}
+			}
 		});
 	});
 
@@ -150,8 +150,8 @@ $(function() {
 				/* Otherwise, display an error message. */
 				401: function() {
 					alert('Error!');
-				},
-			},
+				}
+			}
 		});
 	});
 });

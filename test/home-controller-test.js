@@ -12,13 +12,13 @@ describe('the function to get the home page', function() {
 	it('should search the database for the selling prices only once', function() {
 		const req = {
 			session: {
-				username: 'bettina',
-			},
+				username: 'bettina'
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		const expectedResult = {
@@ -27,7 +27,7 @@ describe('the function to get the home page', function() {
 			premiumGasoline95: '6.23',
 			diesel: '6.23',
 			premiumGasoline97: '6.23',
-			kerosene: '6.23',
+			kerosene: '6.23'
 		};
 
 		sinon.stub(db, 'findOne').yields(expectedResult);
@@ -44,13 +44,13 @@ describe('the function to get the home page', function() {
 	it('should not redirect to the log-in page if the user is logged in', function() {
 		const req = {
 			session: {
-				username: 'bettina',
-			},
+				username: 'bettina'
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		homeController.getHome(req, res);
@@ -61,13 +61,13 @@ describe('the function to get the home page', function() {
 	it('should redirect to the log-in page only once if the user is not logged in', function() {
 		const req = {
 			session: {
-				username: null,
-			},
+				username: null
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		homeController.getHome(req, res);
@@ -79,13 +79,13 @@ describe('the function to get the home page', function() {
 	it('should not render the home page if the user is not logged in', function() {
 		const req = {
 			session: {
-				username: null,
-			},
+				username: null
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		homeController.getHome(req, res);
@@ -108,12 +108,12 @@ describe('the function to edit the selling prices displayed on the home page', f
 				editPremiumGasoline97Price: '10',
 				editKerosenePrice: '12'
 			}
-		};	
+		};
 
 		res = {
 			status: sinon.stub().returnsThis(),
 			json: sinon.stub(),
-			send: sinon.stub(),
+			send: sinon.stub()
 		};
 
 		update = {
@@ -121,12 +121,8 @@ describe('the function to edit the selling prices displayed on the home page', f
 			premiumGasoline95: req.body.editPremiumGasoline95Price,
 			diesel: req.body.editDieselPrice,
 			premiumGasoline97: req.body.editPremiumGasoline97Price,
-			kerosene: req.body.editKerosenePrice,
+			kerosene: req.body.editKerosenePrice
 		};
-	});
-
-	afterEach(function() {
-		db.updateOne.restore();
 	});
 
 	it('should update the database with the correct prices only once', function() {
@@ -137,5 +133,7 @@ describe('the function to edit the selling prices displayed on the home page', f
 		assert.equal(db.updateOne.firstCall.args[0], SellingPrice);
 		expect(db.updateOne.firstCall.args[1]).to.deep.equalInAnyOrder({label: 'Prices'});
 		expect(db.updateOne.firstCall.args[2]).to.deep.equalInAnyOrder(update);
+
+		db.updateOne.restore();
 	});
 });

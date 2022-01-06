@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 
 const {
-	isAllowedToEdit,
+	isAllowedToEdit
 } = require('.././public/js/home-util.js');
 
 describe('the function to check if a role has the privilege to edit inventory prices', function() {
