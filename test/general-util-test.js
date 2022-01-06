@@ -2,7 +2,7 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 const assert = require('chai').assert;
 
-let htmlDom = `<html>
+const htmlDom = `<html>
 	<body>
 		<div id = "error"></div>
 		<input type = "text" id = "fname">
