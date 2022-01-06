@@ -4,7 +4,7 @@ const isPasswordLengthValid = function(password) {
 
 const isPasswordFormatValid = function(password) {
 	const format = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^()|{}\[\]:;\"<>'`#,./~\\+=-])[A-Za-z\d@$!%*?&^()|{}\[\]:;\"<>'`#,./~\\+=-]/;
-	return format.test(password);
+	return format.test(password.trim());
 };
 
 const isUsernameLengthValid = function(username) {
