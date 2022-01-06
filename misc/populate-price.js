@@ -1,8 +1,5 @@
 /* Script for populating the database with the product prices */
 
-/* Mongoose is used for database functions. */
-const mongoose = require('mongoose');
-
 /* The db file and selling price schema are used to manipulate the prices on the database. */
 const db = require('../models/db.js');
 const Price = require('../models/selling-price-schema.js');

@@ -1,8 +1,5 @@
 /* Script for populating the database with the admin account details */
 
-/* Mongoose is used for database functions. */
-const mongoose = require('mongoose');
-
 /* The db file and account schema are used to manipulate the accounts on the database. */
 const db = require('../models/db.js');
 const Account = require('../models/account-schema.js');

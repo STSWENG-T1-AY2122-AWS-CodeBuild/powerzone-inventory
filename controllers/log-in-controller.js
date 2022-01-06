@@ -11,8 +11,8 @@ const logInController = {
 	/**
 	 * Gets the log in page.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getLogIn: function(req, res) {
 		if (req.session.username == null) {
@@ -26,8 +26,8 @@ const logInController = {
 	/**
 	 * Logs a user into the application.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 postLogIn: function(req, res) {
 		/* Retrieve the username and password from the user input. */

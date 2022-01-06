@@ -14,8 +14,8 @@ const accountController = {
 	/**
 	 * Gets the account page.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getAccount: function(req, res) {
 		/* Retrieve all details needed for account management if the admin accesses the account tab. */
@@ -80,8 +80,8 @@ const accountController = {
 	/**
 	 * Updates the status of the selected user account to "Rejected".
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	postEditStatusReject: function(req, res) {
 		/* Retrieve the ID of the selected account. */
@@ -102,8 +102,8 @@ const accountController = {
 	/**
 	 * Updates the status of the selected user account to "Pending".
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 postEditStatusPending: function(req, res) {
 		/* Retrieve the ID of the selected account. */
@@ -124,8 +124,8 @@ const accountController = {
 	/**
 	 * Updates the status of the selected user account to "Accepted".
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 postEditStatusAccept: function(req, res) {
 		/* Retrieve the ID of the selected account. */
@@ -146,8 +146,8 @@ const accountController = {
 	/**
 	 * Updates the role of the selected user account.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 postEditRole: function(req, res) {
 		/* Retrieve the ID and role of the selected account. */
@@ -169,8 +169,8 @@ const accountController = {
 	/**
 	 * Deletes the selected user account from the database.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 postDeleteAccount: function(req, res) {
 		/* Retrieve the ID of the selected account. */
@@ -188,8 +188,8 @@ const accountController = {
 	/**
 	 * Updates the account details of the current user account.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 postEditAccount: function(req, res) {
 		/* Retrieve the updated details of the user account. */
@@ -232,8 +232,8 @@ const accountController = {
 	/**
 	 * Gets the successful edit page.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getSuccessfulEdit: function(req, res) {
 		res.render('successful-edit');
@@ -242,8 +242,8 @@ const accountController = {
 	/**
 	 * Gets the edit account page.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getEditAccount: function(req, res) {
 		res.render('edit-account');

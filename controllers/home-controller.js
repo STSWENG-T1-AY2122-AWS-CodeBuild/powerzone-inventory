@@ -8,8 +8,8 @@ const homeController = {
 	/**
 	 * Gets the home page.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getHome: function(req, res) {
 		if (req.session.username != null) {
@@ -39,8 +39,8 @@ const homeController = {
 	/**
 	 * Edits the selling prices displayed on the home page.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	 postEditPrices: function(req, res) {
 		 /* Retrieve the updated selling prices from the user input. */

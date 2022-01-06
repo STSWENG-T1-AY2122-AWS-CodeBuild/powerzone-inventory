@@ -4,8 +4,8 @@ const transactionController = {
 	/**
 	 * Gets the delivery page.
 	 *
-	 * @param req Object that contains information on the HTTP request from the client.
-	 * @param res Object that contains information on the HTTP response from the server.
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getTransaction: function(req, res) {
 		res.render('transaction');
