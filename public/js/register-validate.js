@@ -2,6 +2,7 @@ import {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
 	isUsernameLengthValid,
+	isUsernameFormatValid,
 	arePasswordsMatching
 } from './register-validate-util.js';
 
@@ -65,6 +66,7 @@ $(function() {
 		const usernameField = $('#signup-username');
 		const nonUniqueUsername = $('#invalid-unique-username');
 		const blankUsername = $('#invalid-blank-username');
+		const invalidFormatUsername = $('#invalid-char-username');
 		const usernameUntrimmed = usernameField.val();
 		const username = usernameField.val().trim();
 
@@ -73,27 +75,36 @@ $(function() {
 				hideErrorMessage(blankUsername);
 			}
 
-			$.get('/getCheckUsername', {username: username}, function(res) {
-				if (res.username == null) {
-					if (field.is(usernameField)) {
-						hideErrorMessage(nonUniqueUsername);
-						isUsernameStillValid = true;
+			if (isUsernameFormatValid(username)) {
+				hideErrorMessage(invalidFormatUsername);
 
-						return callback(true);
-					}
-				} else {
-					if (field.is(usernameField)) {
-						displayErrorMessage(nonUniqueUsername);
-						isUsernameStillValid = false;
+				$.get('/getCheckUsername', {username: username}, function(res) {
+					if (res.username == null) {
+						if (field.is(usernameField)) {
+							hideErrorMessage(nonUniqueUsername);
+							isUsernameStillValid = true;
 
-						return callback(false);
+							return callback(true);
+						}
+					} else {
+						if (field.is(usernameField)) {
+							displayErrorMessage(nonUniqueUsername);
+							isUsernameStillValid = false;
+
+							return callback(false);
+						}
 					}
-				}
-			});
+				});
+			} else {
+				displayErrorMessage(invalidFormatUsername);
+				return callback(false);
+			}
 		} else {
 			if (usernameUntrimmed.length == 0) {
 				hideErrorMessage(nonUniqueUsername);
 				hideErrorMessage(blankUsername);
+				hideErrorMessage(invalidFormatUsername);
+
 				isUsernameStillValid = false;
 
 				return callback(false);

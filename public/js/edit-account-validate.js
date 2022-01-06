@@ -2,7 +2,8 @@ import {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
 	isUsernameLengthValid,
-	arePasswordsMatching
+	arePasswordsMatching,
+	isUsernameFormatValid
 } from './register-validate-util.js';
 
 import {
@@ -75,6 +76,7 @@ $(function() {
 		const usernameField = $('#edit-account-username');
 		const nonUniqueUsername = $('#edit-invalid-unique-username');
 		const blankUsername = $('#edit-invalid-blank-username');
+		const invalidFormatUsername = $('#edit-invalid-char-username');
 		const usernameUntrimmed = usernameField.val();
 		const username = usernameField.val().trim();
 
@@ -83,34 +85,43 @@ $(function() {
 				hideErrorMessage(blankUsername);
 			}
 
-			$.get('/getCheckUsername', {username: username}, function(res) {
-				if (res.username == null) {
-					if (field.is(usernameField)) {
-						hideErrorMessage(nonUniqueUsername);
-						isUsernameStillValid = true;
+			if (isUsernameFormatValid(username)) {
+				hideErrorMessage(invalidFormatUsername);
 
-						return callback(true);
-					}
-				} else {
-					if (field.is(usernameField)) {
-						if (res.username == currentUsername) {
+				$.get('/getCheckUsername', {username: username}, function(res) {
+					if (res.username == null) {
+						if (field.is(usernameField)) {
 							hideErrorMessage(nonUniqueUsername);
 							isUsernameStillValid = true;
 
 							return callback(true);
-						} else {
-							displayErrorMessage(nonUniqueUsername);
-							isUsernameStillValid = false;
+						}
+					} else {
+						if (field.is(usernameField)) {
+							if (res.username == currentUsername) {
+								hideErrorMessage(nonUniqueUsername);
+								isUsernameStillValid = true;
 
-							return callback(false);
+								return callback(true);
+							} else {
+								displayErrorMessage(nonUniqueUsername);
+								isUsernameStillValid = false;
+
+								return callback(false);
+							}
 						}
 					}
-				}
-			});
+				});
+			} else {
+				displayErrorMessage(invalidFormatUsername);
+				return callback(false);
+			}
 		} else {
 			if (usernameUntrimmed.length == 0) {
 				hideErrorMessage(nonUniqueUsername);
 				hideErrorMessage(blankUsername);
+				hideErrorMessage(invalidFormatUsername);
+
 				isUsernameStillValid = false;
 
 				return callback(false);
