@@ -189,3 +189,54 @@ describe('the function to register the details of a particular stock', function(
         db.updateOne.restore();
     })
 });
+
+describe('the function to get the page for adding a new stock', function() {
+	it('should render the page for adding a new stock only once', function() {
+		const req = sinon.spy();
+		const res = {
+			render: sinon.spy()
+		};
+
+		inventoryController.getAddStock(req, res);
+		assert.isTrue(res.render.calledOnce);
+		assert.equal(res.render.firstCall.args[0], 'add-stock');
+	});
+});
+
+describe('the function to add a new stock', function() {
+    it('should insert the new stock only once', function() {
+        const req = {
+			body: {
+                addStockName: 'Diesel',
+                addStockSupplier: 'Chevron',
+                addStockStorage: 'Masangkay',
+                addStockQuantity: '1234',
+                addStockPricePurchased: '45.3',
+                addStockDatePurchased: '05-06-2022'
+            }
+		};
+
+        const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+        const purchase = {
+			type: req.body.addStockName.trim(),
+			supplier: req.body.addStockSupplier.trim(),
+			location: req.body.addStockStorage.trim(),
+			quantity: req.body.addStockQuantity,
+			price: req.body.addStockPricePurchased,
+			date: req.body.addStockDatePurchased
+		};
+
+        sinon.stub(db, 'insertOne').yields({});
+		inventoryController.postAddStock(req, res);
+
+		assert.isTrue(db.insertOne.calledOnce);
+		assert.equal(db.insertOne.firstCall.args[0], Inventory);
+		expect(db.insertOne.firstCall.args[1]).to.deep.equalInAnyOrder(purchase);
+
+        db.insertOne.restore();
+    })
+});
