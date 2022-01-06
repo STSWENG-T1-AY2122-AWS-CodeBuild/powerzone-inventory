@@ -1,7 +1,5 @@
 /* JavaScript file for handling the front end of the edit account page */
 
-import { extractId } from "./general-util.js";
-
 $(function() {
     $('#edit-account-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
