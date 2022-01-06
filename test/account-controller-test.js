@@ -78,5 +78,34 @@ describe('the function to get the account page', function() {
 });
 
 describe('the function to update the status of the selected user account to "Rejected"', function() {
+    it('should update the status of the account to "Rejected" only once', function() {
+        let convertToObjectId = sinon.stub(db, 'convertToObjectId');
+        convertToObjectId.returns('123');
 
+        const req = {
+            body: {
+                accountId: '123'
+            }
+        }
+        
+        const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub(),
+		};
+
+        const filter = {
+            _id: convertToObjectId('123')
+        };
+
+        sinon.stub(db, 'updateOne').yields({});
+        accountController.postEditStatusReject(req, res);
+
+        assert.isTrue(db.updateOne.calledOnce);
+        assert.equal(db.updateOne.firstCall.args[0], Account);
+		expect(db.updateOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
+		expect(db.updateOne.firstCall.args[2]).to.deep.equalInAnyOrder({status: 'Rejected'});
+
+        db.updateOne.restore();
+    });
 });
