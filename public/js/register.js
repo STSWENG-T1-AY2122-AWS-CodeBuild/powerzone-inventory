@@ -4,7 +4,7 @@ $(function() {
 	$('#signup-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
-			
+
 		$.ajax({
 			url: '/postRegister',
 			method: 'POST',
@@ -15,10 +15,10 @@ $(function() {
 				200: function() {
 					location.href = '/getSuccessfulRegistration';
 				},
-				
+
 				/* Otherwise, display an error message. */
 				401: function() {
-					registerError()
+					registerError();
 				}
 			}
 		});
@@ -29,6 +29,6 @@ $(function() {
 	 * concerning the user's input.
 	 */
 	function registerError() {
-		alert("Register error");
+		alert('Register error');
 	}
 });

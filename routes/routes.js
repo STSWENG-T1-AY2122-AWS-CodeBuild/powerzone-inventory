@@ -8,7 +8,6 @@ const express = require('express');
 
 /* Use the powerzone database and the db file for accessing the database */
 const powerzone = express();
-const db = require('../models/db.js');
 
 /* Call the controllers for each of the web application features */
 const registerController = require('../controllers/register-controller.js');
@@ -68,7 +67,6 @@ powerzone.get('/getTransaction', transactionController.getTransaction);
 powerzone.get('/getAddTransaction', transactionController.getAddTransaction);
 powerzone.get('/getEditTransaction', transactionController.getEditTransaction);
 powerzone.get('/getMoreInfoTransaction', transactionController.getMoreInfoTransaction);
-
 
 
 module.exports = powerzone;
