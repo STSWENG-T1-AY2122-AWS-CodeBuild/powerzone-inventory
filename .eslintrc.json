@@ -18,6 +18,7 @@
         "linebreak-style": ["error", "windows"],
         "no-tabs": 0,
         "max-len": 0,
-        "no-invalid-this": 0
+        "no-invalid-this": 0,
+        "one-var-declaration-per-line": ["error", "always"]
     }
 }
