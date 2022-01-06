@@ -17,7 +17,7 @@ const prices = {
 	premiumGasoline95: 59.04,
 	diesel: 59.04,
 	premiumGasoline97: 59.04,
-	kerosene: 59.04,
+	kerosene: 59.04
 };
 
 /* Insert the initialized account into the database. */

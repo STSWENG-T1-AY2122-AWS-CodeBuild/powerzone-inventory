@@ -39,5 +39,5 @@ export {
 	disableButton,
 	isBlankField,
 	extractId,
-	toTwoDecimalPlaces,
+	toTwoDecimalPlaces
 };

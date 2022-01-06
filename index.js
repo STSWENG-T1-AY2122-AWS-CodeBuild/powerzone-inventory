@@ -72,8 +72,8 @@ powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());
 powerzone.use(
 	express.urlencoded({
-		extended: true,
-	}),
+		extended: true
+	})
 );
 
 powerzone.use(nocache());
@@ -83,8 +83,8 @@ powerzone.use(
 		secret: process.env.session_secret,
 		resave: false,
 		saveUninitialized: false,
-		store: new mongoStore({mongooseConnection: mongoose.connection}),
-	}),
+		store: new mongoStore({mongooseConnection: mongoose.connection})
+	})
 );
 
 powerzone.use('/', routes);

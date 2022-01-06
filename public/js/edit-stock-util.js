@@ -14,5 +14,5 @@ const getFuelValue = function(fuel) {
 };
 
 export {
-	getFuelValue,
+	getFuelValue
 };

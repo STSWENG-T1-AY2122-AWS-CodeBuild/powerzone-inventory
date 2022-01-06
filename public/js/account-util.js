@@ -10,5 +10,5 @@ const getRoleValue = function(role) {
 };
 
 export {
-	getRoleValue,
+	getRoleValue
 };

@@ -19,5 +19,5 @@ export {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
 	isUsernameLengthValid,
-	arePasswordsMatching,
+	arePasswordsMatching
 };

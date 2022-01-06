@@ -19,6 +19,7 @@
         "no-tabs": 0,
         "max-len": 0,
         "no-invalid-this": 0,
-        "one-var-declaration-per-line": ["error", "always"]
+        "one-var-declaration-per-line": ["error", "always"],
+        "comma-dangle": ["error", "never"]
     }
 }

@@ -107,7 +107,7 @@ const inventoryController = {
 				inventoryStatuses: statuses,
 
 				/* Additionally, store the role of the account to authorize the add and edit stock features. */
-				role: req.session.role,
+				role: req.session.role
 			};
 
 			res.render('inventory', data);
@@ -155,7 +155,7 @@ const inventoryController = {
 				location: result.location,
 				quantity: result.quantity,
 				price: result.price,
-				date: cleanDate,
+				date: cleanDate
 			};
 
 			res.render('more-info-stock', data);
@@ -204,7 +204,7 @@ const inventoryController = {
 				location: result.location,
 				quantity: result.quantity,
 				price: result.price,
-				date: cleanDate,
+				date: cleanDate
 			};
 
 			res.render('edit-stock', data);
@@ -237,7 +237,7 @@ const inventoryController = {
 			location: location,
 			quantity: quantity,
 			price: price,
-			date: date,
+			date: date
 		};
 
 		db.updateOne(Inventory, filter, update, function(flag) {
@@ -278,7 +278,7 @@ const inventoryController = {
 			location: location,
 			quantity: quantity,
 			price: price,
-			date: date,
+			date: date
 		};
 
 
@@ -286,7 +286,7 @@ const inventoryController = {
 			res.status(200).json('Stock added successfully.');
 			res.send();
 		});
-	},
+	}
 };
 
 module.exports = inventoryController;

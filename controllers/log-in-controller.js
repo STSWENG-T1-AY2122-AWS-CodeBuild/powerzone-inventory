@@ -46,7 +46,7 @@ const logInController = {
 					username: result.username,
 					role: result.role,
 					password: result.password,
-					status: result.status,
+					status: result.status
 				};
 
 				/* If the user account has been accepted, proceed to checking their log in credentials. */
@@ -79,7 +79,7 @@ const logInController = {
 				res.send();
 			}
 		});
-	},
+	}
 };
 
 module.exports = logInController;

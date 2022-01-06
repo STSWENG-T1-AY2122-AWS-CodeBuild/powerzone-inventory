@@ -21,7 +21,7 @@ const deliveryController = {
 
 	getMoreInfoDelivery: function(req, res) {
 		res.render('more-info-delivery');
-	},
+	}
 };
 
 module.exports = deliveryController;

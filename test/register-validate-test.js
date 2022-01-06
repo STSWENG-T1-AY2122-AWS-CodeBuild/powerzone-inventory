@@ -4,7 +4,7 @@ const {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
 	isUsernameLengthValid,
-	arePasswordsMatching,
+	arePasswordsMatching
 } = require('.././public/js/register-validate-util.js');
 
 describe('the function to check if the password has at least 12 characters', function() {

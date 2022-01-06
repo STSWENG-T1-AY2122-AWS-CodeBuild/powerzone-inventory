@@ -40,7 +40,7 @@ const accountController = {
 
 				/* Store the retrieved account details in the variable data. */
 				const data = {
-					accountDetails: accountDetails,
+					accountDetails: accountDetails
 				};
 
 				res.render('account', data);
@@ -69,7 +69,7 @@ const accountController = {
 					lastName: lastName,
 					username: username,
 					role: role,
-					password: password,
+					password: password
 				};
 
 				res.render('edit-account', data);
@@ -210,7 +210,7 @@ const accountController = {
 					firstName: firstName,
 					lastName: lastName,
 					username: newUsername,
-					password: hash,
+					password: hash
 				};
 
 				/* Search for the user's account details based on their original username */
@@ -247,7 +247,7 @@ const accountController = {
 	 */
 	getEditAccount: function(req, res) {
 		res.render('edit-account');
-	},
+	}
 };
 
 module.exports = accountController;

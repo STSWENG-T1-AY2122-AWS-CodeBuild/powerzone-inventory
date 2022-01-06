@@ -21,7 +21,7 @@ const transactionController = {
 
 	getMoreInfoTransaction: function(req, res) {
 		res.render('more-info-transaction');
-	},
+	}
 };
 
 module.exports = transactionController;

@@ -12,13 +12,13 @@ describe('the function to get the log-in page', function() {
 	it('should render the log-in page only once if the user is not logged in', function() {
 		const req = {
 			session: {
-				username: null,
-			},
+				username: null
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		logInController.getLogIn(req, res);
@@ -30,13 +30,13 @@ describe('the function to get the log-in page', function() {
 	it('should not redirect to the home page if the user is not logged in', function() {
 		const req = {
 			session: {
-				username: null,
-			},
+				username: null
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		logInController.getLogIn(req, res);
@@ -47,13 +47,13 @@ describe('the function to get the log-in page', function() {
 	it('should redirect to the home page if the user is logged in', function() {
 		const req = {
 			session: {
-				username: 'bettina',
-			},
+				username: 'bettina'
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		logInController.getLogIn(req, res);
@@ -65,13 +65,13 @@ describe('the function to get the log-in page', function() {
 	it('should not render the log-in page if the user is not logged in', function() {
 		const req = {
 			session: {
-				username: 'bettina',
-			},
+				username: 'bettina'
+			}
 		};
 
 		const res = {
 			render: sinon.spy(),
-			redirect: sinon.spy(),
+			redirect: sinon.spy()
 		};
 
 		logInController.getLogIn(req, res);
@@ -89,14 +89,14 @@ describe('the function to log a user into the application', function() {
 		req = {
 			body: {
 				loginUsername: 'hello',
-				loginPassword: 'hello',
-			},
+				loginPassword: 'hello'
+			}
 		};
 
 		res = {
 			status: sinon.stub().returnsThis(),
 			json: sinon.stub(),
-			send: sinon.stub(),
+			send: sinon.stub()
 		};
 
 		expectedResult = {
@@ -104,7 +104,7 @@ describe('the function to log a user into the application', function() {
 			name: 'hello',
 			username: 'hello',
 			role: 'inventory-manager',
-			password: 'hello',
+			password: 'hello'
 		};
 
 		sinon.stub(db, 'findOne').yields(expectedResult);

@@ -25,7 +25,7 @@ const homeController = {
 					premiumGasoline95: result.premiumGasoline95.toFixed(2),
 					diesel: result.diesel.toFixed(2),
 					premiumGasoline97: result.premiumGasoline97.toFixed(2),
-					kerosene: result.kerosene.toFixed(2),
+					kerosene: result.kerosene.toFixed(2)
 				};
 
 				res.render('home', data);
@@ -56,7 +56,7 @@ const homeController = {
 			premiumGasoline95: premiumGasoline95,
 			diesel: diesel,
 			premiumGasoline97: premiumGasoline97,
-			kerosene: kerosene,
+			kerosene: kerosene
 		};
 
 		/* Update the database entry with the label "Prices"; note that this is the only database entry in
@@ -68,7 +68,7 @@ const homeController = {
 			res.status(200).json('Prices updated successfully!');
 			res.send();
 		});
-	},
+	}
 };
 
 module.exports = homeController;

@@ -17,7 +17,7 @@ const logOutController = {
 				res.redirect('/');
 			}
 		});
-	},
+	}
 };
 
 module.exports = logOutController;

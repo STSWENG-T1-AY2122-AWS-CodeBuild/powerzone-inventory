@@ -26,7 +26,7 @@ bcrypt.hash('password123', saltRounds, function(err, hash) {
 		username: 'powerzoneadmin',
 		role: 'administrator',
 		password: hash,
-		status: 'Accepted',
+		status: 'Accepted'
 	};
 
 	/* Insert the initialized account into the database. */

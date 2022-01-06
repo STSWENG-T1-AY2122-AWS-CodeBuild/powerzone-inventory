@@ -56,7 +56,7 @@ const registerController = {
 					username: username,
 					role: role,
 					password: hash,
-					status: 'Pending',
+					status: 'Pending'
 				};
 
 				db.insertOne(Account, account, function(flag) {
@@ -118,7 +118,7 @@ const registerController = {
 	 */
 	getSuccessfulRegistration: function(req, res) {
 		res.render('successful-signup');
-	},
+	}
 };
 
 module.exports = registerController;

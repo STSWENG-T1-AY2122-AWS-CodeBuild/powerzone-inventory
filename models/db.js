@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 /* Modify options to remove deprecation warnings */
 const options = {
 	useNewUrlParser: true,
-	useUnifiedTopology: true,
+	useUnifiedTopology: true
 };
 
 /* Configure dotenv with the needed data */
@@ -165,7 +165,7 @@ const database = {
      */
 	convertToObjectId: function(id) {
 		return mongoose.Types.ObjectId(id);
-	},
+	}
 };
 
 module.exports = database;
