@@ -1,5 +1,4 @@
 import {
-	showAll,
 	filterBy,
 	sortAtoZ,
 	sortZtoA,
@@ -16,7 +15,7 @@ $(function() {
 		$('input').val('');
 		$('input').prop('checked', false);
 
-		showAll(inventoryTableId);
+		$('#' + inventoryTableId).html($('#' + inventoryTableId + '-orig').html());
 	});
 
 	$('input').on('change', function() {
