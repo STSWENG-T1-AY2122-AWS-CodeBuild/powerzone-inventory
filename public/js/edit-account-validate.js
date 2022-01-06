@@ -18,7 +18,7 @@ $(function() {
 	let didUsernameChange = true;
 
 	let isEmailStillValid = true;
-	let didEmailChange = true;
+	let didEmailChange = false;
 
 	const currentEmail = $('#edit-account-email').val();
 	const currentUsername = $('#edit-account-username').val();
