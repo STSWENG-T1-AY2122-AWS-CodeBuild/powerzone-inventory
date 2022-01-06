@@ -47,7 +47,7 @@
                                         <input id = "edit-stock-id" name = "editStockId" type = "hidden" value = "{{id}}">
                                         
                                         <label for = "edit-stock-quantity" class = "form-label fw-bold text-primary">Quantity (L)</label>
-                                        <input id = "edit-stock-quantity" name = "editStockQuantity" type = "number" placeholder = "Quantity" value = "{{quantity}}" class = "form-control p-2 rounded-pill" required>
+                                        <input id = "edit-stock-quantity" name = "editStockQuantity" type = "number" placeholder = "Quantity" min = "0" step = "1" value = "{{quantity}}" class = "form-control p-2 rounded-pill" required>
 
                                         <div id = "edit-stock-invalid-blank-quantity" class = "fw-bold invalid-feedback text-center">
                                             Kindly input the quantity
@@ -71,7 +71,7 @@
 
                                     <div class = "col">
                                         <label for = "edit-stock-price-purchased" class = "form-label fw-bold text-primary">Price Purchased (₱)</label>
-                                        <input id = "edit-stock-price-purchased" name = "editStockPricePurchased" type = "number" placeholder = "Price Purchased (P)" value = "{{price}}" class = "form-control p-2 rounded-pill" required>
+                                        <input id = "edit-stock-price-purchased" name = "editStockPricePurchased" type = "number" placeholder = "Price Purchased (₱)" min = "0" step = "0.01" value = "{{price}}" class = "form-control p-2 rounded-pill" required>
 
                                         <div id = "edit-stock-invalid-blank-price-purchased" class = "fw-bold invalid-feedback text-center">
                                             Kindly input the price purchased

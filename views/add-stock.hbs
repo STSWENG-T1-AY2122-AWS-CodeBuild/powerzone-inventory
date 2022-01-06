@@ -42,7 +42,7 @@
 
                                     <div class = "col">
                                         <label for = "add-stock-quantity" class = "form-label fw-bold text-primary">Quantity (L)</label>
-                                        <input id = "add-stock-quantity" name = "addStockQuantity" type = "number" placeholder = "Quantity" class = "form-control p-2 rounded-pill" required>
+                                        <input id = "add-stock-quantity" name = "addStockQuantity" type = "number" placeholder = "Quantity" min = "0" step = "1" class = "form-control p-2 rounded-pill" required>
 
                                         <div id = "add-stock-invalid-blank-quantity" class = "fw-bold invalid-feedback text-center">
                                             Kindly input the quantity
@@ -66,7 +66,7 @@
 
                                     <div class = "col">
                                         <label for = "add-stock-price-purchased" class = "form-label fw-bold text-primary">Price Purchased (₱)</label>
-                                        <input id = "add-stock-price-purchased" name = "addStockPricePurchased" type = "number" placeholder = "Price Purchased (₱)" class = "form-control p-2 rounded-pill" required>
+                                        <input id = "add-stock-price-purchased" name = "addStockPricePurchased" type = "number" placeholder = "Price Purchased (₱)" min = "0" step = "0.01" class = "form-control p-2 rounded-pill" required>
 
                                         <div id = "add-stock-invalid-blank-price-purchased" class = "fw-bold invalid-feedback text-center">
                                             Kindly input the price purchased
