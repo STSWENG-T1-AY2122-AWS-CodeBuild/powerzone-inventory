@@ -111,13 +111,11 @@ describe('the function to log a user into the application', function() {
 		logInController.postLogIn(req, res);
 	});
 
-	afterEach(function() {
-		db.findOne.restore();
-	});
-
 	it('should search the database for the username only once', function() {
 		assert.isTrue(db.findOne.calledOnce);
 		assert.equal(db.findOne.firstCall.args[0], Account);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({username: req.body.loginUsername});
+
+		db.findOne.restore();
 	});
 });
