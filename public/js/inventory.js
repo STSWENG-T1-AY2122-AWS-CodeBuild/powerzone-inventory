@@ -8,7 +8,13 @@ import {
 
 import {getFuelValue} from './edit-stock-util.js';
 
+import {toTwoDecimalPlaces} from './general-util.js';
+
 $(function() {
+	$('.prices').each(function() {
+		$(this).text('₱ ' + toTwoDecimalPlaces($(this).text().substring(2)));
+	});
+
 	const inventoryTableId = 'inventory-table';
 
 	$('#reset-sort-inventory').on('click', function() {
