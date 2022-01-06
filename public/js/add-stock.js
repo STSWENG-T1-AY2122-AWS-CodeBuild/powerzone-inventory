@@ -1,8 +1,8 @@
 $(function() {
-    $('#add-stock-form').on('submit', function(e) {
+	$('#add-stock-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
-			
+
 		$.ajax({
 			url: '/postAddStock',
 			method: 'POST',
@@ -13,12 +13,12 @@ $(function() {
 				200: function() {
 					location.href = '/getInventory';
 				},
-				
+
 				/* Otherwise, display an error message. */
 				401: function() {
-					alert("Error!");
-				}
-			}
+					alert('Error!');
+				},
+			},
 		});
 	});
 });

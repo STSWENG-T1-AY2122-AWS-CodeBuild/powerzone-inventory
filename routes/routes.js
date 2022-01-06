@@ -70,5 +70,4 @@ powerzone.get('/getEditTransaction', transactionController.getEditTransaction);
 powerzone.get('/getMoreInfoTransaction', transactionController.getMoreInfoTransaction);
 
 
-
 module.exports = powerzone;

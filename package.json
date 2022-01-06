@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "lint-fix": "eslint --ext .js --ignore-path .gitignore --fix .",
     "test": "nyc mocha --require esm --exit --timeout 10000"
   },
   "nyc": {
@@ -22,6 +24,7 @@
   },
   "homepage": "https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory#readme",
   "dependencies": {
+    "@babel/eslint-parser": "^7.16.5",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^3.2.0",
     "dotenv": "^10.0.0",
@@ -43,6 +46,7 @@
     "chai": "^4.3.4",
     "chai-jquery": "^2.1.0",
     "deep-equal-in-any-order": "^1.1.15",
+    "eslint": "^8.6.0",
     "esm": "^3.2.25",
     "jsdom": "^18.1.1",
     "mocha": "^9.1.3",

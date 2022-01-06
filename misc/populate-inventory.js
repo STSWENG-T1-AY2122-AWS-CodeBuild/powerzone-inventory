@@ -11,18 +11,18 @@ const Inventory = require('../models/inventory-schema.js');
 db.connect();
 
 /* Initialize inventory purchase details */
-let purchase = {
-    type: "diesel",
-    date: "01/01/2022",
-    supplier: "Supplier One",
-    price: 60.00,
-    location: "2401 Taft Ave., Manila",
-    quantity: 100
+const purchase = {
+	type: 'diesel',
+	date: '01/01/2022',
+	supplier: 'Supplier One',
+	price: 60.00,
+	location: '2401 Taft Ave., Manila',
+	quantity: 100,
 };
 
 /* Insert the initialized account into the database. */
-db.insertOne(Inventory, purchase, function(flag) {	
-    if (flag) {
-        console.log("\nDatabase population complete! Press Ctrl + C to continue.");
-    }
+db.insertOne(Inventory, purchase, function(flag) {
+	if (flag) {
+		console.log('\nDatabase population complete! Press Ctrl + C to continue.');
+	}
 });

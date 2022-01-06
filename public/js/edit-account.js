@@ -1,12 +1,10 @@
 /* JavaScript file for handling the front end of the edit account page */
 
-import { extractId } from "./general-util.js";
-
 $(function() {
-    $('#edit-account-form').on('submit', function(e) {
+	$('#edit-account-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
-			
+
 		$.ajax({
 			url: '/postEditAccount',
 			method: 'POST',
@@ -17,12 +15,12 @@ $(function() {
 				200: function() {
 					location.href = '/getSuccessfulEdit';
 				},
-				
+
 				/* Otherwise, display an error message. */
 				401: function() {
-					alert("Error!");
-				}
-			}
+					alert('Error!');
+				},
+			},
 		});
 	});
 });
