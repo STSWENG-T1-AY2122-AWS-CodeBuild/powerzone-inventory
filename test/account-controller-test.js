@@ -8,6 +8,12 @@ const accountController = require('../controllers/account-controller.js');
 const Account = require('../models/account-schema.js');
 const db = require('../models/db.js');
 
+/* Bcrypt is used to deal with password hashing. */
+const bcrypt = require('bcrypt');
+
+/* Use ten salt rounds for password hashing. */
+const saltRounds = 10;
+
 describe('the function to get the account page', function() {
     let res;
     let expectedResult;
@@ -244,5 +250,119 @@ describe('the function to delete the selected user account', function() {
 
         db.convertToObjectId.restore();
         db.deleteOne.restore();
+    });
+});
+
+describe('the function to edit the account details', function() {
+	let req;
+	let res;
+	let hash;
+
+	beforeEach(function() {
+		res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub(),
+		};
+	});
+
+	afterEach(function() {
+		bcrypt.hash.restore();
+	});
+
+	it('should hash the password only once', function() {
+		req = {
+			body: {
+				editAccountEmail: 'hello@gmail.com',
+				editAccountFName: 'hello',
+				editAccountLName: 'hello',
+				editAccountUsername: 'hello',
+				editAccountNewPassword: 'hello',
+				editAccountConfirmPassword: 'hello'
+			},
+            session: {
+                username: 'hello'
+            }
+		};
+
+		hash = 'fasdfasdfa';
+
+		sinon.stub(bcrypt, 'hash').yields(null, hash);
+		accountController.postEditAccount(req, res);
+
+		assert.isTrue(bcrypt.hash.calledOnce);
+		assert.equal(bcrypt.hash.firstCall.args[0], req.body.editAccountNewPassword);
+	});
+
+	it('should hash the password for the specified number of rounds', function() {
+		req = {
+			body: {
+				editAccountEmail: 'hello@gmail.com',
+				editAccountFName: 'hello',
+				editAccountLName: 'hello',
+				editAccountUsername: 'hello',
+				editAccountNewPassword: 'hello',
+				editAccountConfirmPassword: 'hello'
+			},
+            session: {
+                username: 'hello'
+            }
+		};
+
+		hash = 'fasdfasdfa';
+
+		sinon.stub(bcrypt, 'hash').yields(null, hash);
+		accountController.postEditAccount(req, res);
+
+		assert.equal(bcrypt.hash.firstCall.args[1], saltRounds);
+	});
+
+	it('should not hash the password if the passwords do not match', function() {
+		req = {
+			body: {
+				editAccountEmail: 'hello@gmail.com',
+				editAccountFName: 'hello',
+				editAccountLName: 'hello',
+				editAccountUsername: 'hello',
+				editAccountNewPassword: 'hello',
+				editAccountConfirmPassword: 'hi'
+			},
+            session: {
+                username: 'hello'
+            }
+		};
+
+		hash = 'fasdfasdfa';
+
+		sinon.stub(bcrypt, 'hash').yields(null, hash);
+		accountController.postEditAccount(req, res);
+
+		assert.isTrue(bcrypt.hash.notCalled);
+	});
+});
+
+describe('the function to get the successful edit page', function() {
+    it('should render the successful edit page only once', function() {
+        const req = sinon.spy();
+		const res = {
+			render: sinon.spy(),
+		};
+
+        accountController.getSuccessfulEdit(req, res);
+        assert.isTrue(res.render.calledOnce);
+        assert.equal(res.render.firstCall.args[0], 'successful-edit');
+    });
+});
+
+describe('the function to get the edit account page', function() {
+    it('should render the successful edit page only once', function() {
+        const req = sinon.spy();
+		const res = {
+			render: sinon.spy(),
+		};
+
+        accountController.getEditAccount(req, res);
+        assert.isTrue(res.render.calledOnce);
+        assert.equal(res.render.firstCall.args[0], 'edit-account');
     });
 });
