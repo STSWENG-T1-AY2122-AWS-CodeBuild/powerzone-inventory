@@ -1,8 +1,5 @@
 /* Script for populating the database with an initial inventory purchase */
 
-/* Mongoose is used for database functions. */
-const mongoose = require('mongoose');
-
 /* The db file and inventory schema are used to manipulate the inventory entries on the database. */
 const db = require('../models/db.js');
 const Inventory = require('../models/inventory-schema.js');
