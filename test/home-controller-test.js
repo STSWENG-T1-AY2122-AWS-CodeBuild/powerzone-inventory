@@ -124,11 +124,7 @@ describe('the function to edit the selling prices displayed on the home page', f
 			kerosene: req.body.editKerosenePrice,
 		};
 	});
-
-	afterEach(function() {
-		db.updateOne.restore();
-	});
-
+	
 	it('should update the database with the correct prices only once', function() {
 		sinon.stub(db, 'updateOne').yields({});
 		homeController.postEditPrices(req, res);
@@ -137,5 +133,7 @@ describe('the function to edit the selling prices displayed on the home page', f
 		assert.equal(db.updateOne.firstCall.args[0], SellingPrice);
 		expect(db.updateOne.firstCall.args[1]).to.deep.equalInAnyOrder({label: 'Prices'});
 		expect(db.updateOne.firstCall.args[2]).to.deep.equalInAnyOrder(update);
+
+		db.updateOne.restore();
 	});
 });
