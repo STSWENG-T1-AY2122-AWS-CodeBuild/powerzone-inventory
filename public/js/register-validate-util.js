@@ -11,6 +11,11 @@ const isUsernameLengthValid = function(username) {
 	return username.trim().length >= 1;
 };
 
+const isUsernameFormatValid = function(username) {
+	const format = /^[^a-zA-Z0-9]+$/;
+	return !format.test(username);
+};
+
 const arePasswordsMatching = function(password, confirmPassword) {
 	return password === confirmPassword;
 };
@@ -19,5 +24,6 @@ export {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
 	isUsernameLengthValid,
+	isUsernameFormatValid,
 	arePasswordsMatching
 };

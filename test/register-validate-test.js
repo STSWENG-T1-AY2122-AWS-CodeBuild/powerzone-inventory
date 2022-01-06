@@ -4,6 +4,7 @@ const {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
 	isUsernameLengthValid,
+	isUsernameFormatValid,
 	arePasswordsMatching
 } = require('.././public/js/register-validate-util.js');
 
@@ -109,6 +110,28 @@ describe('the function to check if the trimmed username has at least one charact
 
 	it('should return true if the trimmed username consists at least one character', function() {
 		const result = isUsernameLengthValid(' memgonzales');
+		assert.isTrue(result);
+	});
+});
+
+describe('the function to check if the username is not composed solely of special characters', function() {
+	it('should return a Boolean', function() {
+		const result = isUsernameFormatValid('@@@#@$#@');
+		assert.isBoolean(result);
+	});
+
+	it('should return false if the username is composed solely of special characters', function() {
+		const result = isUsernameFormatValid('@@@#@$#@');
+		assert.isFalse(result);
+	});
+
+	it('should return false if the username is composed solely of spaces', function() {
+		const result = isUsernameFormatValid('      ');
+		assert.isFalse(result);
+	});
+
+	it('should return false if the username is not composed solely of special characters', function() {
+		const result = isUsernameFormatValid('   134143;dDASfasd   ');
 		assert.isTrue(result);
 	});
 });
