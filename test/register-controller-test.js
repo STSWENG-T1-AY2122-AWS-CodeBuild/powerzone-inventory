@@ -92,6 +92,18 @@ describe('the function to register a new account', function() {
 	let hash;
 
 	beforeEach(function() {
+		res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub(),
+		};
+	});
+
+	afterEach(function() {
+		bcrypt.hash.restore();
+	});
+
+	it('should hash the password only once', function() {
 		req = {
 			body: {
 				signupEmail: 'hello@gmail.com',
@@ -104,29 +116,55 @@ describe('the function to register a new account', function() {
 			},
 		};
 
-		res = {
-			status: sinon.stub().returnsThis(),
-			json: sinon.stub(),
-			send: sinon.stub(),
+		hash = 'fasdfasdfa';
+
+		sinon.stub(bcrypt, 'hash').yields(null, hash);
+		registerController.postRegister(req, res);
+
+		assert.isTrue(bcrypt.hash.calledOnce);
+		assert.equal(bcrypt.hash.firstCall.args[0], req.body.signupPassword);
+	});
+
+	it('should hash the password for the specified number of rounds', function() {
+		req = {
+			body: {
+				signupEmail: 'hello@gmail.com',
+				signupFname: 'hello',
+				signupLname: 'hello',
+				signupUsername: 'hello',
+				signupRole: 'inventory-manager',
+				signupPassword: 'hello',
+				signupConfirmPassword: 'hello',
+			},
 		};
 
 		hash = 'fasdfasdfa';
 
 		sinon.stub(bcrypt, 'hash').yields(null, hash);
 		registerController.postRegister(req, res);
-	});
 
-	afterEach(function() {
-		bcrypt.hash.restore();
-	});
-
-	it('should hash the password only once', function() {
-		assert.isTrue(bcrypt.hash.calledOnce);
-		assert.equal(bcrypt.hash.firstCall.args[0], req.body.signupPassword);
-	});
-
-	it('should hash the password for the specified number of rounds', function() {
 		assert.equal(bcrypt.hash.firstCall.args[1], saltRounds);
+	});
+
+	it('should not hash the password if the passwords do not match', function() {
+		req = {
+			body: {
+				signupEmail: 'hello@gmail.com',
+				signupFname: 'hello',
+				signupLname: 'hello',
+				signupUsername: 'hello',
+				signupRole: 'inventory-manager',
+				signupPassword: 'hello',
+				signupConfirmPassword: 'hi',
+			},
+		};
+
+		hash = 'fasdfasdfa';
+
+		sinon.stub(bcrypt, 'hash').yields(null, hash);
+		registerController.postRegister(req, res);
+
+		assert.isTrue(bcrypt.hash.notCalled);
 	});
 });
 
