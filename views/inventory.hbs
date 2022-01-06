@@ -52,14 +52,6 @@
 
                                 <input id = "sort-inventory-kerosene" name = "sortInventoryGasName" type = "checkbox" value = "Kerosene">
                                 <label for = "sort-inventory-kerosene" class = "text-white">KEROSENE</label>
-                                <br>
-                                <br>
-                                
-                                <input id = "sort-inventory-name-az" name = "sortInventory" type = "radio" value = "A TO Z">
-                                <label for = "sort-inventory-name-az" class = "me-4 text-white">A TO Z</label>
-                                
-                                <input id = "sort-inventory-name-za" name = "sortInventory" type = "radio" value = "Z to A">
-                                <label for = "sort-inventory-name-za" class = "text-white">Z TO A</label>
                             </div>
                                 
                             <div class = "mb-4">
@@ -70,15 +62,23 @@
                             </div>
                             
                             <div class = "mb-4">
-                                <span class = "fw-bold text-warning">PRICE PURCHASED: </span>
+                                <span class = "fw-bold text-warning">SORT BY: </span>
+                                <br>
+                                
+                                <input id = "sort-inventory-name-az" name = "sortInventory" type = "radio" value = "A TO Z">
+                                <label for = "sort-inventory-name-az" class = "me-4 text-white">A TO Z (NAME)</label>
+                                <br>
+
+                                <input id = "sort-inventory-name-za" name = "sortInventory" type = "radio" value = "Z to A">
+                                <label for = "sort-inventory-name-za" class = "text-white">Z TO A (NAME)</label>
                                 <br>
 
                                 <input id = "sort-inventory-price-purchased-hilo" name = "sortInventory" type = "radio" value = "HIGHEST TO LOWEST">
-                                <label for = "sort-inventory-price-purchased-hilo" class = "text-white">HIGHEST TO LOWEST</label>
+                                <label for = "sort-inventory-price-purchased-hilo" class = "text-white">HIGHEST TO LOWEST (PRICE)</label>
                                 <br>
 
                                 <input id = "sort-inventory-price-purchased-lohi" name = "sortInventory" type = "radio" value = "LOWEST TO HIGHEST">
-                                <label for = "sort-inventory-price-purchased-lohi" class = "text-white">LOWEST TO HIGHEST</label>
+                                <label for = "sort-inventory-price-purchased-lohi" class = "text-white">LOWEST TO HIGHEST (PRICE)</label>
                             </div>    
 
                             <button id = "reset-sort-inventory" class = "btn float-end fw-bold text-white">X RESET</button>
