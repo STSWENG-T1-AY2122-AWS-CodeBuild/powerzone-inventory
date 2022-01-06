@@ -9,14 +9,14 @@ let htmlDom = `<html>
 		<button id = "register" disabled></button>
 		<table id = "tbl" style = "visibility: visible;">
 			<tbody>
-				<tr id = "r1"><td>Premium Gasoline 95</td><td>₱ 60</td></tr>
-				<tr id = "r2"><td>Gasoline</td><td>₱ 55</td></tr>
-				<tr id = "r3"><td>Kerosene</td><td>₱ 55</td></tr>
-				<tr id = "r4"><td>Premium Gasoline 97</td><td>₱ 55</td></tr>
-				<tr id = "r5"><td>Diesel</td><td>₱ 55</td></tr>
-				<tr id = "r6"><td>Gasoline</td><td>₱ 60</td></tr>
-				<tr id = "r7"><td>Kerosene</td><td>₱ 111</td></tr>
-				<tr id = "r8"><td>Diesel</td><td>₱ 234</td></tr>
+				<tr id = "r1"><td>Premium Gasoline 95</td><td>01/01/2022</td><td></td><td>₱ 60</td></tr>
+				<tr id = "r2"><td>Gasoline</td><td>01/01/2022</td><td></td><td>₱ 55</td></tr>
+				<tr id = "r3"><td>Kerosene</td><td>01/01/2022</td><td></td><td>₱ 55</td></tr>
+				<tr id = "r4"><td>Premium Gasoline 97</td><td>01/01/2022</td><td></td><td>₱ 55</td></tr>
+				<tr id = "r5"><td>Diesel</td><td>01/01/2022</td><td></td><td>₱ 55</td></tr>
+				<tr id = "r6"><td>Gasoline</td><td>01/01/2022</td><td></td><td>₱ 60</td></tr>
+				<tr id = "r7"><td>Kerosene</td><td>01/01/2022</td><td></td><td>₱ 111</td></tr>
+				<tr id = "r8"><td>Diesel</td><td>01/01/2022</td><td></td><td>₱ 234</td></tr>
 			</tbody>
 		</table>
 	</body>
@@ -53,7 +53,7 @@ describe('the function to display an error message', function() {
 describe('the function to hide an error message', function() {
 	beforeEach(function() {
 		const dom = new JSDOM(
-			'<html><body><div id = "error"></div><input type = "text" id = "fname"><button id = "register" disabled></button></body></html>',
+			htmlDom,
 			{url: 'http://localhost'});
 
 		global.window = dom.window;
@@ -71,7 +71,7 @@ describe('the function to hide an error message', function() {
 describe('the function to enable a button', function() {
 	beforeEach(function() {
 		const dom = new JSDOM(
-			'<html><body><div id = "error"></div><input type = "text" id = "fname"><button id = "register" disabled></button></body></html>',
+			htmlDom,
 			{url: 'http://localhost'});
 
 		global.window = dom.window;
@@ -89,7 +89,7 @@ describe('the function to enable a button', function() {
 describe('the function to disable a button', function() {
 	beforeEach(function() {
 		const dom = new JSDOM(
-			'<html><body><div id = "error"></div><input type = "text" id = "fname"><button id = "register" disabled></button></body></html>',
+			htmlDom,
 			{url: 'http://localhost'});
 
 		global.window = dom.window;
@@ -107,7 +107,7 @@ describe('the function to disable a button', function() {
 describe('the function to check if a field is blank', function() {
 	beforeEach(function() {
 		const dom = new JSDOM(
-			'<html><body><div id = "error"></div><input type = "text" id = "fname"><button id = "register" disabled></button></body></html>',
+			htmlDom,
 			{url: 'http://localhost'});
 
 		global.window = dom.window;
