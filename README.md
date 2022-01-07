@@ -159,7 +159,7 @@ The following table lists the development dependencies:
 This project follows the Model-View-Controller (MVC) architectural pattern. In light of separation of concerns, the key technologies used are:
 - **Database**: <a href = "https://www.mongodb.com/">MongoDB</a> as the database program and <a href = "https://mongoosejs.com/">Mongoose</a> as the object data modeling tool
 - **Back-end**: <a href = "https://nodejs.org/en/">Node.js</a> as the server environment and <a href = "https://expressjs.com/">Express.js</a> as the back-end framework
-- **Front-end**: <a href = "https://handlebarsjs.com/">Handlebars</a> as the template engine 
+- **Front-end**: <a href = "https://handlebarsjs.com/">Handlebars</a> as the template engine and <a href = "https://getbootstrap.com/">Bootstrap</a> as the primary CSS framework
 
 To implement continuous integration and continuous delivery (CI/CD), the following technologies are also included:
 - **Unit Testing**: <a href = "https://mochajs.org/">Mocha</a> as the primary test framework, <a href = "https://www.chaijs.com/">Chai</a> as the assertion library, Sinon as the test framework for spies, stubs, and mocks, and <a href = "https://istanbul.js.org/">Istanbul</a> as the code coverage tool
