@@ -7,6 +7,9 @@
 ![badge][badge-express]
 ![badge][badge-nodejs]
 ![badge][badge-mocha]
+![badge][badge-heroku]
+
+[![Actions Status](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/workflows/Node.js%20CI/badge.svg)](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/actions)
 
 ***--- THIS PROJECT IS A WORK IN PROGRESS ---***
 
@@ -180,3 +183,4 @@ Kindly refer to this page [INSERT LINK HERE] for the documents and guidelines on
 [badge-express]: https://img.shields.io/badge/express.js-%23404d59.svg?style=flat&logo=express&logoColor=%2361DAFB
 [badge-nodejs]: https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white
 [badge-mocha]: https://img.shields.io/badge/-mocha-%238D6748?style=flat&logo=mocha&logoColor=white
+[badge-heroku]: https://img.shields.io/badge/Heroku-430098?style=flat&logo=heroku&logoColor=white
