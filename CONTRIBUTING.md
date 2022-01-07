@@ -24,3 +24,11 @@ Before submitting a pull request, contributors are requested to observe the foll
    ```
    npm run test
    ```
+
+**IMPORTANT:**
+The workflow currently includes three pull request-triggered checks:
+- Node.js CI / build
+- Node.js CI / test
+- GitGuardian Security checks
+
+Failing any one of these three checks will result in the rejection of the pull request.
