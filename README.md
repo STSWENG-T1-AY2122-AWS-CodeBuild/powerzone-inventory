@@ -6,7 +6,11 @@
 ![badge][badge-mongodb]
 ![badge][badge-express]
 ![badge][badge-nodejs]
+![badge][badge-eslint]
 ![badge][badge-mocha]
+![badge][badge-chai]
+![badge][badge-selenium]
+![badge][badge-github-actions]
 ![badge][badge-heroku]
 
 [![Actions Status](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/workflows/Node.js%20CI/badge.svg)](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/actions)
@@ -78,7 +82,7 @@ Open the following website: [INSERT LINK HERE].
    npm install
    ```
 
-   If the command is executed successfully, the dependencies will be installed into the folder <code>node_modules</code> following the dependency tree found in [<code>package-lock.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package-lock.json).
+   If the command is executed successfully, the dependencies will be installed into the folder <code>node_modules</code> following the dependency tree found in [<code>package-lock.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/package-lock.json).
 
 ###
    **The project uses a pre-populated remote database. DO STEP 4 ONLY AFTER A DATABASE RESET OR FOR TESTING PURPOSES.**
@@ -144,7 +148,9 @@ The following table lists the development dependencies:
 | [<code>mocha</code>](https://www.npmjs.com/package/mocha) | 9.1.3 | Simple and flexible JavaScript test framework for Node.js and the browser | MIT License  |
 | [<code>mocha-jsdom</code>](https://www.npmjs.com/package/mocha-jsdom) | 2.0.0 | Test frontend libraries in the console using Node.js, Mocha and JSDom. | MIT License  |
 | [<code>nyc</code>](https://www.npmjs.com/package/nyc) | 15.1.0 | Istanbul's state of the art command line interface with support for applications that spawn subprocesses | ISC License |
-| [<code>sinon</code>](https://www.npmjs.com/package/nyc) | 12.0.1 | Istanbul's state of the art command line interface with support for applications that spawn subprocesses | ISC License |
+| [<code>sinon</code>](https://www.npmjs.com/package/nyc) | 12.0.1 | Standalone and test framework agnostic JavaScript test spies, stubs, and mocks | BSD-3-Clause License |
+
+*The descriptions are taken from their respective websites.*
 
 ## Built Using
 This project follows the Model-View-Controller (MVC) architectural pattern. In light of separation of concerns, the key technologies used are:
@@ -157,15 +163,12 @@ To implement continuous integration and continuous delivery (CI/CD), the followi
 - **Task Runner**:
 - **Automated Testing**: 
 
-Server-side validation is performed via [Express Validator](https://www.npmjs.com/package/express-validator).
-
-This web application is deployed on the cloud platform <a href = "https://dashboard.heroku.com/">Heroku</a>. Since Heroku has an ephemeral filesystem, <a href = "https://docs.mongodb.com/manual/core/gridfs/">GridFS</a> is used for the persistent storage of files.
+This web application is deployed on <a href = "https://dashboard.heroku.com/">Heroku</a>, a cloud platform as a service (PaaS).
    
 ## Contributing
 Kindly refer to this page [INSERT LINK HERE] for the documents and guidelines on contributing to this repository. 
 
 ## Software Development Team
-
 - <b>Sandra Angela E. Berjamin</b>, Analyst<br/>
 - <b>Lander Peter E. Cua</b>, Analyst <br/>
 - <b>Jacob Bryan B. Gaba</b>, Quality Assurance <br/>
@@ -182,5 +185,9 @@ Kindly refer to this page [INSERT LINK HERE] for the documents and guidelines on
 [badge-mongodb]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat&logo=mongodb&logoColor=white
 [badge-express]: https://img.shields.io/badge/express.js-%23404d59.svg?style=flat&logo=express&logoColor=%2361DAFB
 [badge-nodejs]: https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white
+[badge-eslint]: https://img.shields.io/badge/eslint-3A33D1?style=flat&logo=eslint&logoColor=white
 [badge-mocha]: https://img.shields.io/badge/-mocha-%238D6748?style=flat&logo=mocha&logoColor=white
+[badge-chai]: https://img.shields.io/badge/chai-A30701?style=flat&logo=chai&logoColor=white
+[badge-selenium]: https://img.shields.io/badge/Selenium-43B02A?style=flat&logo=Selenium&logoColor=white
+[badge-github-actions]: https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white
 [badge-heroku]: https://img.shields.io/badge/Heroku-430098?style=flat&logo=heroku&logoColor=white
