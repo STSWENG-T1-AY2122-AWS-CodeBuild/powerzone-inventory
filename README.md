@@ -105,6 +105,8 @@ Open the following website: [INSERT LINK HERE].
    ```
    http://localhost:3000
    ```
+   
+[ADD IMAGE HERE]
 
 ### Credentials (For Testing Only)
 To log in as an administrator, enter the following credentials:
