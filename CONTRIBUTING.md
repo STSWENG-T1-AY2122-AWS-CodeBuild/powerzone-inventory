@@ -16,7 +16,7 @@ Before submitting a pull request, contributors are requested to observe the foll
    npm run lint-fix
    ```
 
-   If ESLint is already globally installed in your system, ensure that it uses this project's configuration file: [.eslintrc.json](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/.eslintrc.json).
+   If ESLint is already globally installed in your system, ensure that it uses this project's configuration file: [`.eslintrc.json`](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/.eslintrc.json).
    
 3. **Unit Testing**. Write unit tests for additional methods and ensure that the code coverage is at least 80%. Note that unit tests should **not** include any database connections (even to mock databases) since these already fall under the purview of integration tests (performed by the Quality Assurance team). To test controller methods, use spying, stubbing, or mocking instead. 
 
