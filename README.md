@@ -29,16 +29,17 @@ The project consists of the following folders:
 | [<code>models</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/models) | Contains the JavaScript files for database modeling (schemas) and access | 
 | [<code>public</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/public) | Contains the static CSS and JavaScript files, as well as the project assets (image files), for front-end display |
 | [<code>routes</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/routes) | Contains the JavaScript file that defines the server response to each HTTP method request |
-| [<code>test</code>](https://github.com/memgonzales/krafts-by-kat/tree/master/routes) | Contains the JavaScript files that define the utility functions and scenarios for the automated unit tests |
-| [<code>views</code>](https://github.com/memgonzales/krafts-by-kat/tree/master/views) | Contains the Handlebars template files to be rendered and displayed upon request |
+| [<code>test</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/test) | Contains the JavaScript files that define the utility functions and scenarios for the automated unit tests |
+| [<code>views</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/views) | Contains the Handlebars template files to be rendered and displayed upon request |
 
 It also includes the following files:
 
 | File | Description |
 | --- | --- |
-| [<code>package-lock.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package-lock.json) and [<code>package.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package.json) | Store information on the project dependencies |
-| [<code>index.js</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/index.js) | Entry point of the web application |
-| [<code>Procfile</code>]| Specifies the commands that are run by the app on startup (Heroku)
+| [<code>.eslintrc.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/.eslintrc.json) | Specifies the environment and rules for configuring the linter (ESLint) |
+| [<code>package-lock.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/package-lock.json) and [<code>package.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/package.json) | Store information on the project dependencies |
+| [<code>index.js</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/index.js) | Entry point of the web application |
+| [<code>Procfile</code>]| Specifies the commands that are run by the application's dynos on Heroku
 
 ## Entity Relationship Diagram
 
