@@ -12,11 +12,9 @@
 
 This project is a software solution for **Powerzone Inventory**, a fuel company based in Catanduanes, Bicol. This web application seeks to serve as an all-in-one management system for tracking the three major components handled by Powerzone: inventory, transactions, and deliveries. The inventory management system in the application will log all products that come in and out the inventory of the company. This includes both the purchasing of products from suppliers and the selling of products through transactions.
 
-This is the major course output in an advanced software engineering class. 
-
-The deployed website can be accessed through this [INSERT LINK HERE].
-
-A detailed walkthrough of the features is provided in this [INSERT VIDEO HERE].
+This is the major course output in an advanced software engineering class:
+- **Deployed Website**:
+- **Video Walkthrough**: 
 
 ## Project Structure
 The project consists of the following folders:
@@ -29,7 +27,7 @@ The project consists of the following folders:
 | [<code>models</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/models) | Contains the JavaScript files for database modeling (schemas) and access | 
 | [<code>public</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/public) | Contains the static CSS and JavaScript files, as well as the project assets (image files), for front-end display |
 | [<code>routes</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/routes) | Contains the JavaScript file that defines the server response to each HTTP method request |
-| [<code>test</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/test) | Contains the JavaScript files that define the utility functions and scenarios for the automated unit tests |
+| [<code>test</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/test) | Contains the JavaScript files that define the unit tests |
 | [<code>views</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/views) | Contains the Handlebars template files to be rendered and displayed upon request |
 
 It also includes the following files:
@@ -43,7 +41,7 @@ It also includes the following files:
 
 ## Entity Relationship Diagram
 
-The entity relationship diagram to illustrate the schemas can be viewed [INSERT ERD HERE].
+The entity relationship diagram to illustrate the schemas can be viewed here [INSERT ERD HERE].
 
 ## Running the Application
 
@@ -133,26 +131,35 @@ The following table lists the development dependencies:
 
 | Package | Version | Description | License |
 | --- | --- | --- | --- |
-| [<code>@types/jsdom</code>](https://www.npmjs.com/package/@types/jsdom) | 16.2.13 | Contains type definitions for JSDom | MIT License |
 | [<code>chai</code>](https://www.npmjs.com/package/chai) | 4.3.4 | Behavior- and test-driven development assertion library for Node.js | MIT License |
-| [<code>chai-http</code>](https://www.npmjs.com/package/chai-http) | 4.3.0 | HTTP integration testing with Chai assertions | MIT License |
 | [<code>chai-jquery</code>](https://www.npmjs.com/package/chai-jquery) | 2.1.0 | Extension to the chai assertion library that provides a set of jQuery-specific assertions | MIT License |
-| [<code>jsdom</code>](https://www.npmjs.com/package/jsdom) | 17.0.0 | Pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards, for use with Node.js |  MIT License |
-| [<code>mocha</code>](https://www.npmjs.com/package/mocha) | 9.1.1 | Simple and flexible JavaScript test framework for Node.js and the browser | MIT License  |
+| [<code>deep-equal-in-any-order</code>](https://www.npmjs.com/package/deep-equal-in-any-order) | 1.1.15 | Chai plugin to match objects and arrays deep equality with arrays (including nested ones) being in any order | MIT License |
+| [<code>eslint</code>](https://www.npmjs.com/package/eslint) | 8.6.0 | Tool for identifying and reporting on patterns found in ECMAScript/JavaScript code | MIT License
+| [<code>eslint-config-google</code>](https://www.npmjs.com/package/eslint-config-google) | 0.14.0 | ESLint shareable config for the Google JavaScript style guide (ES2015+ version) | Apache License 2.0
+| [<code>esm</code>](https://www.npmjs.com/package/esm) | 3.2.25 | Babel-less, bundle-less ECMAScript module loader | MIT License
+| [<code>jsdom</code>](https://www.npmjs.com/package/jsdom) | 18.1.1 | Pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards, for use with Node.js |  MIT License |
+| [<code>mocha</code>](https://www.npmjs.com/package/mocha) | 9.1.3 | Simple and flexible JavaScript test framework for Node.js and the browser | MIT License  |
 | [<code>mocha-jsdom</code>](https://www.npmjs.com/package/mocha-jsdom) | 2.0.0 | Test frontend libraries in the console using Node.js, Mocha and JSDom. | MIT License  |
-| [<code>mockgoose</code>](https://www.npmjs.com/package/mockgoose) | 8.0.4 | Provides test database by spinning up `mongod` on the back when `mongoose.connect` call is made | MIT License |
 | [<code>nyc</code>](https://www.npmjs.com/package/nyc) | 15.1.0 | Istanbul's state of the art command line interface with support for applications that spawn subprocesses | ISC License |
-
-This project also imports the following design-related toolkits:
-
-| Toolkit | Version | Description | License |
-| --- | --- | --- | --- |
-| [Bootstrap](https://getbootstrap.com/) | 5.0.2 | Front-end toolkit featuring Sass variables and mixins, responsive grid system, prebuilt components, and JavaScript plugins | MIT License |
-| [Font Awesome](https://fontawesome.com/) | 5.15 | Front-end toolkit featuring vector icons and social logos | CC BY 4.0 License (Icons) <br> SIL OFL 1.1 License (Fonts) <br> MIT License (Code)
+| [<code>sinon</code>](https://www.npmjs.com/package/nyc) | 12.0.1 | Istanbul's state of the art command line interface with support for applications that spawn subprocesses | ISC License |
 
 ## Built Using
+This project follows the Model-View-Controller (MVC) architectural pattern. In light of separation of concerns, the key technologies used are:
+- **Database**: <a href = "https://www.mongodb.com/">MongoDB</a> as the database program and <a href = "https://mongoosejs.com/">Mongoose</a> as the object data modeling tool
+- **Back-end**: <a href = "https://nodejs.org/en/">Node.js</a> as the server environment and <a href = "https://expressjs.com/">Express.js</a> as the back-end framework
+- **Front-end**: <a href = "https://handlebarsjs.com/">Handlebars</a> as the template engine 
+
+To implement continuous integration and continuous delivery (CI/CD), the following technologies are also included:
+- **Unit Testing**: 
+- **Task Runner**:
+- **Automated Testing**: 
+
+Server-side validation is performed via [Express Validator](https://www.npmjs.com/package/express-validator).
+
+This web application is deployed on the cloud platform <a href = "https://dashboard.heroku.com/">Heroku</a>. Since Heroku has an ephemeral filesystem, <a href = "https://docs.mongodb.com/manual/core/gridfs/">GridFS</a> is used for the persistent storage of files.
    
 ## Contributing
+Kindly refer to this page [INSERT LINK HERE] for the documents and guidelines on contributing to this repository. 
 
 ## Software Development Team
 
