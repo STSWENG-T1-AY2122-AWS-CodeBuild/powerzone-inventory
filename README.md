@@ -157,7 +157,7 @@ This project also imports the following design-related toolkits:
 ## Software Development Team
 
 - <b>Sandra Angela E. Berjamin</b>, Analyst<br/>
-- <b>Lander Peter E. Cua</b>, Product Owner <br/>
+- <b>Lander Peter E. Cua</b>, Analyst <br/>
 - <b>Jacob Bryan B. Gaba</b>, Quality Assurance <br/>
 - <b>Mark Edward M. Gonzales</b>, Developer <br/>
 - <b>Hylene Jules G. Lee</b>, Developer <br/>
