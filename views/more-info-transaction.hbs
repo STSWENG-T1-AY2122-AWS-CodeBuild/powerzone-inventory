@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <title>View More Info Transaction</title>
+
+        <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">       
+        <link href = "https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href = "/css/style.css" rel = "stylesheet">
+
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body class = "bg-home">
+        <!-- as of now, its set to non-admin ung nav, but admin should be included -->
+        {{>navbar adminflag = false home-page = true account-page = false}}
+
+        <div class = "mx-5 my-4"> 
+            <a href = "/getTransaction" class = "btn btn-primary fw-bold float-start px-5 rounded-pill shadow-sm text-white">Go Back</a>
+        </div> 
+        <br>
+        <br>
+
+        <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block table-responsive">
+            <table class = "align-middle table table-borderless">
+                <thead class = "bg-primary table-fixed table-header text-primary">
+                    <th scope = "col" class = "w-50">MORE INFO TRANSACTION</th>
+                    <th scope = "col" class = "w-50">MORE INFO TRANSACTION</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class = "m-4">
+                                <label for = "more-info-transaction-id" class = "form-label fw-bold text-primary">Transaction ID</label>
+                                <input id = "more-info-transaction-id" name = "moreInfoTransactionId" type = "text" placeholder = "Transaction ID" value = "11753242" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                            </div>
+
+                            <div class = "m-4">
+                                <label for = "more-info-transaction-status" class = "form-label fw-bold text-primary">Status</label>
+                                <input id = "more-info-transaction-status" name = "moreInfoTransactionStatus" type = "text" placeholder = "Status" value = "Completed" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                            </div>
+
+                            <div class = "m-4">
+                                <label for = "more-info-transaction-customer-name" class = "form-label fw-bold text-primary">Customer Name</label>
+                                <input id = "more-info-transaction-customer-name" name = "moreInfoTransactionCustomerName" type = "text" placeholder = "Customer Name" value = "Angeli Dianne Mata" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                            </div>
+
+                            <div class = "m-4">
+                                <label for = "more-info-transaction-customer-number" class = "form-label fw-bold text-primary">Customer Phone Number</label>
+                                <input id = "more-info-transaction-customer-number" name = "moreInfoTransactionCustomerNumber" type = "number" placeholder = "Customer Phone Number" value = "9190038255" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                            </div>
+
+                            <div class = "m-4">
+                                <label for = "more-info-transaction-date" class = "form-label fw-bold text-primary">Transaction Date</label>
+                                <input id = "more-info-transaction-date" name = "moreInfoTransactionDate" type = "date" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                            </div>
+
+                            <div class = "m-4">
+                                <label for = "more-info-transaction-amount" class = "form-label fw-bold text-primary">Amount</label>
+                                <input id = "more-info-transaction-amount" name = "moreInfoTransactionAmount" type = "text" placeholder = "Total Amount" value = "P 425.00" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                            </div>
+                        </td>
+                
+                        <td>
+                            <div class = "bg-secondary border border-primary border-5 mt-2 me-1 table-responsive">
+                                <table class = "align-middle text-center table table-borderless">
+                                    <thead class = "bg-primary table-fixed text-white">
+                                        <th scope = "col" class = "w-25">PRODUCT</th>
+                                        <th scope = "col" class = "w-25">PRICE (P)</th>
+                                        <th scope = "col" class = "w-25">LITERS (L)</th>
+                                        <th scope = "col" class = "w-25">AMOUNT</th>
+                                    </thead>
+                                    <tbody class = "fw-bold text-primary">
+                                        <tr>
+                                            <td>GASOLINE</td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-gasoline-price" name = "moreInfoTransactionGasolinePrice" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-gasoline-liters" name = "moreInfoTransactionGasolineLiters" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input id = "more-info-transaction-gasoline-amount" name = "moreInfoTransactionGasolineAmount" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm" readonly = "readonly">
+                                            </td>
+                                        </tr>
+                                        <tr>  
+                                            <td colspan = "3">
+                                                <div id = "more-info-transaction-invalid-decimal-gasoline" class = "fw-bold invalid-feedback text-center">
+                                                    Price/Liters should have only up to 2 decimal points
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>PREMIUM GASOLINE 95</td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-premium-gasoline-95-price" name = "moreInfoTransactionPremiumGasoline95Price" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-premium-gasoline-95-liters" name = "moreInfoTransactionPremiumGasoline95Liters" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input id = "more-info-transaction-premium-gasoline-95-amount" name = "moreInfoTransactionPremiumGasoline95Amount" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm" readonly = "readonly">
+                                            </td>
+                                        </tr>
+                                        <tr>  
+                                            <td colspan = "3">
+                                                <div id = "more-info-transaction-invalid-decimal-premium-gasoline-95" class = "fw-bold invalid-feedback text-center">
+                                                    Price/Liters should have only up to 2 decimal points
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>DIESEL</td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-diesel-price" name = "moreInfoTransactionDieselPrice" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-diesel-liters" name = "moreInfoTransactionDieselLiters" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input id = "more-info-transaction-diesel-amount" name = "moreInfoTransactionDieselAmount" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm" readonly = "readonly">
+                                            </td>
+                                        </tr>
+                                        <tr>  
+                                            <td colspan = "3">
+                                                <div id = "more-info-transaction-invalid-decimal-diesel" class = "fw-bold invalid-feedback text-center">
+                                                    Price/Liters should have only up to 2 decimal points
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>PREMIUM GASOLINE 97</td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-premium-gasoline-97-price" name = "moreInfoTransactionPremiumGasoline97Price" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-premium-gasoline-97-liters" name = "moreInfoTransactionPremiumGasoline97Liters" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input id = "more-info-transaction-premium-gasoline-97-amount" name = "moreInfoTransactionPremiumGasoline97Amount" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm" readonly = "readonly">
+                                            </td>
+                                        </tr>
+                                        <tr>  
+                                            <td colspan = "3">
+                                                <div id = "more-info-transaction-invalid-decimal-premium-gasoline-97" class = "fw-bold invalid-feedback text-center">
+                                                    Price/Liters should have only up to 2 decimal points
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>KEROSENE</td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-kerosene-price" name = "moreInfoTransactionKerosenePrice" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class = "d-flex aligns-items-center justify-content-center">
+                                                    <input id = "more-info-transaction-kerosene-liters" name = "moreInfoTransactionKeroseneLiters" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input id = "more-info-transaction-kerosene-amount" name = "moreInfoTransactionKeroseneAmount" type = "number" placeholder = "-" value = "" class = "form-control text-center input-sm" readonly = "readonly">
+                                            </td>
+                                        </tr>
+                                        <tr>  
+                                            <td colspan = "3">
+                                                <div id = "more-info-transaction-invalid-decimal-kerosene" class = "fw-bold invalid-feedback text-center">
+                                                    Price/Liters should have only up to 2 decimal points
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
