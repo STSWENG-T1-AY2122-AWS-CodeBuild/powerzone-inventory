@@ -39,7 +39,7 @@ It also includes the following files:
 | [<code>.eslintrc.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/.eslintrc.json) | Specifies the environment and rules for configuring the linter (ESLint) |
 | [<code>package-lock.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/package-lock.json) and [<code>package.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/package.json) | Store information on the project dependencies |
 | [<code>index.js</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/index.js) | Entry point of the web application |
-| [<code>Procfile</code>]| Specifies the commands that are run by the application's dynos on Heroku
+| [<code>Procfile</code>]| Specifies the commands run by the application's dynos on Heroku
 
 ## Entity Relationship Diagram
 
