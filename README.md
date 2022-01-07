@@ -155,6 +155,8 @@ The following table lists the development dependencies:
 
 *The descriptions are taken from their respective websites.*
 
+GitHub's **dependabot alerts** are also enabled to keep track of vulnerable dependencies.
+
 ## Built Using
 This project follows the Model-View-Controller (MVC) architectural pattern. In light of separation of concerns, the key technologies used are:
 - **Database**: <a href = "https://www.mongodb.com/">MongoDB</a> as the database program and <a href = "https://mongoosejs.com/">Mongoose</a> as the object data modeling tool
