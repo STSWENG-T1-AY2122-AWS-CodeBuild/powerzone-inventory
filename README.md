@@ -6,16 +6,15 @@
 ![badge][badge-jquery]
 ![badge][badge-mongodb]
 ![badge][badge-express]
-![badge][badge-nodejs]
-
+![badge][badge-nodejs] <br/>
 ![badge][badge-eslint]
 ![badge][badge-mocha]
 ![badge][badge-chai]
 ![badge][badge-selenium]
-![badge][badge-github-actions]
-![badge][badge-heroku]
+![badge][badge-heroku] 
 
 [![Actions Status](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/workflows/Node.js%20CI/badge.svg)](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/actions)
+![badge][badge-github-actions]
 
 ***--- THIS PROJECT IS A WORK IN PROGRESS ---***
 
