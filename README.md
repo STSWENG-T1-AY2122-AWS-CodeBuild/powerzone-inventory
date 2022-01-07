@@ -69,7 +69,7 @@ Open the following website: [INSERT LINK HERE].
      git clone https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory
      ```
       
-   - If git is not installed, click the green `Code` button near the top right of the repository and choose [`Download ZIP`](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory). Once the zipped folder has been downloaded, extract its contents.
+   - If git is not installed, click the green `Code` button near the top right of the repository and choose [`Download ZIP`](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/archive/refs/heads/main.zip). Once the zipped folder has been downloaded, extract its contents.
 
 3. On the main project directory, run the following command to **install the dependencies**: 
 
