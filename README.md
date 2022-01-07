@@ -10,7 +10,9 @@
 
 ***--- THIS PROJECT IS A WORK IN PROGRESS ---***
 
-This project is a software solution (web application) for **Powerzone Inventory**, an online retail business founded in 2017 that provides customized corporate giveaways to clients. It is the major course output in an advanced software engineering class. 
+This project is a software solution for **Powerzone Inventory**, a fuel company based in Catanduanes, Bicol. This web application seeks to serve as an all-in-one management system for tracking the three major components handled by Powerzone: inventory, transactions, and deliveries. The inventory management system in the application will log all products that come in and out the inventory of the company. This includes both the purchasing of products from suppliers and the selling of products through transactions.
+
+This is the major course output in an advanced software engineering class. 
 
 The deployed website can be accessed through this [INSERT LINK HERE].
 
