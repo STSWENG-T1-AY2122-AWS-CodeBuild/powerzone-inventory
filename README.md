@@ -45,7 +45,7 @@ It also includes the following files:
 | [<code>.eslintrc.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/.eslintrc.json) | Specifies the environment and rules for configuring the linter (ESLint) |
 | [<code>package-lock.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/package-lock.json) and [<code>package.json</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/package.json) | Store information on the project dependencies |
 | [<code>index.js</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/index.js) | Entry point of the web application |
-| [<code>Procfile</code>]| Specifies the commands run by the application's dynos on Heroku
+| [<code>Procfile</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/Procfile)| Specifies the commands run by the application's dynos on Heroku
 
 ## Entity Relationship Diagram
 
@@ -106,7 +106,7 @@ Open the following website: [INSERT LINK HERE].
    http://localhost:3000
    ```
    
-[ADD IMAGE HERE]
+   <img src="https://drive.google.com/uc?export=view&id=1D4q9JWEl-TAl0YU9st7lD_1kQ6wKCAVw" alt="Homepage" width = 750> 
 
 ### Credentials (For Testing Only)
 To log in as an administrator, enter the following credentials:
@@ -155,7 +155,7 @@ The following table lists the development dependencies:
 
 *The descriptions are taken from their respective websites.*
 
-GitHub's **dependabot alerts** are also enabled to keep track of vulnerable dependencies.
+GitHub's **dependabot alerts** are also enabled to check for vulnerable dependencies automatically.
 
 ## Built Using
 This project follows the Model-View-Controller (MVC) architectural pattern. In light of separation of concerns, the key technologies used are:
@@ -173,7 +173,7 @@ To implement continuous integration and continuous delivery (CI/CD), the followi
 This web application is deployed on <a href = "https://dashboard.heroku.com/">Heroku</a>, a cloud platform as a service (PaaS).
    
 ## Contributing
-Kindly refer to this page [INSERT LINK HERE] for the documents and guidelines on contributing to this repository. 
+Kindly refer to this [page](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/CONTRIBUTING.md) for the documents and guidelines on contributing to this repository. 
 
 ## Software Development Team
 - <b>Sandra Angela E. Berjamin</b>, Analyst<br/>
