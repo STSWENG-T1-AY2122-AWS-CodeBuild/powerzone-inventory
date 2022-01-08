@@ -121,3 +121,7 @@ table {
 .rounded {
     border-radius: 8% !important;
 }
+
+.no-display {
+    display: none;
+}

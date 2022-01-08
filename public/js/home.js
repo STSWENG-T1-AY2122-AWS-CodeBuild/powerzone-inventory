@@ -1,7 +1,7 @@
 /* JavaScript file for handling the front end of the home page */
 
-import { isAllowedToEdit } from "./home-util.js";
-
+import {toTwoDecimalPlaces} from './general-util.js';
+import {isAllowedToEdit} from './home-util.js';
 
 $(function() {
 	if (!isAllowedToEdit($('#user-role').val())) {
@@ -11,7 +11,7 @@ $(function() {
 	$('#edit-price-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
-			
+
 		$.ajax({
 			url: '/postEditPrices',
 			method: 'POST',
@@ -20,14 +20,22 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the landing page. */
 				200: function() {
-					location.href = '/getHome';
+					$('#edit-price-modal').modal('hide');
+					updatePrices();
 				},
-				
+
 				/* Otherwise, display an error message. */
 				401: function() {
-					alert("Error!");
+					alert('Error!');
 				}
 			}
 		});
 	});
+
+	function updatePrices() {
+		const fuels = ['gasoline', 'premium-gasoline-95', 'diesel', 'premium-gasoline-97', 'kerosene'];
+		for (const fuel of fuels) {
+			$('#' + fuel + '-price').text(toTwoDecimalPlaces($('#edit-' + fuel + '-price').val()));
+		}
+	}
 });
