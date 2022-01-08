@@ -52,12 +52,6 @@ const transactionSchema = new mongoose.Schema({
         required: true
     },
 
-    /* Total price of gasoline purchased */
-    totalGasoline: {
-        type: Number,
-        required: true
-    },
-
     /* Premium Gasoline 95 price on transaction date */
     pricePremiumGasoline95: {
         type: Number,
@@ -66,12 +60,6 @@ const transactionSchema = new mongoose.Schema({
 
     /* Amount of Premium Gasoline 95 purchased */
     litersPremiumGasoline95: {
-        type: Number,
-        required: true
-    },
-
-    /* Total price of Premium Gasoline 95 purchased */
-    totalPremiumGasoline95: {
         type: Number,
         required: true
     },
@@ -88,12 +76,6 @@ const transactionSchema = new mongoose.Schema({
         required: true
     },
 
-    /* Total price of diesel purchased */
-    totalDiesel: {
-        type: Number,
-        required: true
-    },
-
     /* Premium Gasoline 97 price on transaction date */
     pricePremiumGasoline97: {
         type: Number,
@@ -106,12 +88,6 @@ const transactionSchema = new mongoose.Schema({
         required: true
     },
 
-    /* Total price of Premium Gasoline 97 purchased */
-    totalPremiumGasoline97: {
-        type: Number,
-        required: true
-    },
-
     /* Kerosene price on transaction date */
     priceKerosene: {
         type: Number,
@@ -120,12 +96,6 @@ const transactionSchema = new mongoose.Schema({
 
     /* Amount of kerosene purchased */
     litersKerosene: {
-        type: Number,
-        required: true
-    },
-
-    /* Total price of kerosene purchased */
-    totalKerosene: {
         type: Number,
         required: true
     }

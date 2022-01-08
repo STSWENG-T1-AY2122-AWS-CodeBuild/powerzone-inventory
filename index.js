@@ -68,6 +68,34 @@ hbs.handlebars.registerHelper('validInventoryRole', function(role) {
 	}
 });
 
+hbs.handlebars.registerHelper('validTransactionRole', function(role) {
+	if (role == 'administrator' || role == 'transaction-cashier') {
+		return true;
+	} else {
+		return false;
+	}
+});
+
+hbs.handlebars.registerHelper('getStatusIcon', function(status) {
+	if (status == 'completed') {
+		return "/assets/accepted.png";
+	} else if (status == 'pending') {
+		return "/assets/pending.png";
+	} else {
+		return "/assets/rejected.png";
+	}
+});
+
+hbs.handlebars.registerHelper('getTransactionStatus', function(status) {
+	if (status == 'completed') {
+		return "Completed";
+	} else if (status == 'pending') {
+		return "Pending";
+	} else {
+		return "Cancelled";
+	}
+});
+
 powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());
 powerzone.use(

@@ -17,19 +17,14 @@ const transaction = {
     number: 09175244444,
     priceGasoline: 55.09,
     litersGasoline: 50,
-    totalGasoline: 2754.50,
     pricePremiumGasoline95: 65.55,
     litersPremiumGasoline95: 50,
-    totalPremiumGasoline95: 3277.50,
     priceDiesel: 65.00,
     litersDiesel: 50,
-    totalDiesel: 3250.00,
     pricePremiumGasoline97: 59.04,
     litersPremiumGasoline97: 50,
-    totalPremiumGasoline97: 2952.00,
     priceKerosene: 59.04,
-    litersKerosene: 50,
-    totalKerosene: 2952.00,
+    litersKerosene: 50
 };
 
 /* Insert the initialized account into the database. */
