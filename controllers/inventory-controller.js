@@ -30,7 +30,7 @@ const inventoryController = {
 
 		/* Retrieve the details of all inventory purchases. */
 		const query = {};
-		const projection = '_id type date supplier price quantity';
+		const projection = '_id type date supplier price quantityPurchased quantityDepleted';
 
 		db.findMany(Inventory, query, projection, function(result) {
 			/* Assign the result of the database retrieval to the variable purchases. */
@@ -43,17 +43,17 @@ const inventoryController = {
 				/* Following the feature specifications, display only stocks with quantities above 0
 				 * in the application.
 				 */
-				if (purchases[i].quantity > 0) {
+				if ((purchases[i].quantityPurchased - purchases[i].quantityDepleted) > 0) {
 					if (purchases[i].type == 'gasoline') {
-						totalGasoline += purchases[i].quantity;
+						totalGasoline += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
 					} else if (purchases[i].type == 'premium-gasoline-95') {
-						totalPremiumGasoline95 += purchases[i].quantity;
+						totalPremiumGasoline95 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
 					} else if (purchases[i].type == 'diesel') {
-						totalDiesel += purchases[i].quantity;
+						totalDiesel += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
 					} else if (purchases[i].type == 'premium-gasoline-97') {
-						totalPremiumGasoline97 += purchases[i].quantity;
+						totalPremiumGasoline97 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
 					} else {
-						totalKerosene += purchases[i].quantity;
+						totalKerosene += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
 					}
 
 					/* Format the display of the purchase date from the Date object
@@ -122,13 +122,13 @@ const inventoryController = {
 		/* Retrieve the purchase ID from the page link. */
 		const id = req.params.id;
 
-		/* Retrieve the data corresponding to the ID of the selected purchase */
+		/* Retrieve the data corresponding to the ID of the selected purchase. */
 		const query = {_id: db.convertToObjectId(id)};
-		const projection = 'type supplier location quantity price date';
+		const projection = 'type supplier location quantityPurchased quantityDepleted price date';
 
 		db.findOne(Inventory, query, projection, function(result) {
 			/* Format the display of the purchase date from the Date object
-			 * stored in the database
+			 * stored in the database.
 			 */
 			const month = result.date.getMonth() + 1;
 			let formattedMonth = month;
@@ -146,12 +146,15 @@ const inventoryController = {
 
 			const cleanDate = year + '-' + formattedMonth + '-' + formattedDate;
 
+			/* Compute for the current quantity of the stock. */
+			const currentQuantity = result.quantityPurchased - result.quantityDepleted;
+
 			/* Store the purchase details in the variable data. */
 			const data = {
 				type: result.type,
 				supplier: result.supplier,
 				location: result.location,
-				quantity: result.quantity,
+				quantity: currentQuantity,
 				price: result.price,
 				date: cleanDate
 			};
@@ -172,7 +175,7 @@ const inventoryController = {
 
 		/* Retrieve the data corresponding to the ID of the selected purchase */
 		const query = {_id: db.convertToObjectId(id)};
-		const projection = 'type supplier location quantity price date';
+		const projection = 'type supplier location quantityPurchased quantityDepleted price date';
 
 		db.findOne(Inventory, query, projection, function(result) {
 			/* Format the display of the purchase date from the Date object
@@ -194,13 +197,16 @@ const inventoryController = {
 
 			const cleanDate = year + '-' + formattedMonth + '-' + formattedDate;
 
+			/* Compute for the current quantity of the stock. */
+			const currentQuantity = result.quantityPurchased - result.quantityDepleted;
+
 			/* Store the purchase details in the variable data. */
 			const data = {
 				id: id,
 				type: result.type,
 				supplier: result.supplier,
 				location: result.location,
-				quantity: result.quantity,
+				quantity: currentQuantity,
 				price: result.price,
 				date: cleanDate
 			};
@@ -228,12 +234,15 @@ const inventoryController = {
 		/* Convert the retrieved purchase ID to an ObjectID for database retrieval. */
 		const filter = {_id: db.convertToObjectId(id)};
 
-		/* Assign the updated details to the update variable. */
+		/* Assign the updated details to the update variable; if the quantity is edited, the quantities
+		 * purchased and deleted are reset. 
+		 */
 		const update = {
 			type: type,
 			supplier: supplier,
 			location: location,
-			quantity: quantity,
+			quantityPurchased: quantity,
+			quantityDepleted: 0,
 			price: price,
 			date: date
 		};
@@ -274,7 +283,8 @@ const inventoryController = {
 			type: type,
 			supplier: supplier,
 			location: location,
-			quantity: quantity,
+			quantityPurchased: quantity,
+			quantityDepleted: 0,
 			price: price,
 			date: date
 		};

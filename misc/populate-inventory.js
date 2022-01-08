@@ -14,7 +14,8 @@ const purchase = {
 	supplier: 'Supplier One',
 	price: 60.00,
 	location: '2401 Taft Ave., Manila',
-	quantity: 100
+	quantityPurchased: 100,
+	quantityDepleted: 0
 };
 
 /* Insert the initialized account into the database. */
