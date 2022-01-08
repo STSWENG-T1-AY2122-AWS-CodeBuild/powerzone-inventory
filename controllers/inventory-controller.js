@@ -242,7 +242,6 @@ const inventoryController = {
 			supplier: supplier,
 			location: location,
 			quantityPurchased: quantity,
-			quantityDepleted: 0,
 			price: price,
 			date: date
 		};
@@ -284,7 +283,6 @@ const inventoryController = {
 			supplier: supplier,
 			location: location,
 			quantityPurchased: quantity,
-			quantityDepleted: 0,
 			price: price,
 			date: date
 		};
