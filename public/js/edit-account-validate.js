@@ -2,8 +2,8 @@ import {
 	isPasswordLengthValid,
 	isPasswordFormatValid,
 	isUsernameLengthValid,
-	isUsernameFormatValid,
-	arePasswordsMatching
+	arePasswordsMatching,
+	isUsernameFormatValid
 } from './register-validate-util.js';
 
 import {
@@ -15,27 +15,30 @@ import {
 } from './general-util.js';
 
 $(function() {
-	let isUsernameStillValid = false;
+	let isUsernameStillValid = true;
 	let didUsernameChange = true;
 
-	let isEmailStillValid = false;
-	let didEmailChange = true;
+	let isEmailStillValid = true;
+	let didEmailChange = false;
+
+	const currentEmail = $('#edit-account-email').val();
+	const currentUsername = $('#edit-account-username').val();
 
 	function isThereBlankField() {
 		/* Do not trim the password. */
 		return (
-			isBlankField($('#signup-email'), true) ||
-			isBlankField($('#signup-fname'), true) ||
-			isBlankField($('#signup-lname'), true) ||
-			isBlankField($('#signup-username'), true) ||
-			isBlankField($('#signup-role'), true) ||
-			isBlankField($('#signup-password'), false)
+			isBlankField($('#edit-account-email'), true) ||
+			isBlankField($('#edit-account-fname'), true) ||
+			isBlankField($('#edit-account-lname'), true) ||
+			isBlankField($('#edit-account-username'), true) ||
+			isBlankField($('#edit-account-role'), true) ||
+			isBlankField($('#edit-account-new-pw'), false)
 		);
 	}
 
 	function isEmailValid(field, callback) {
-		const emailField = $('#signup-email');
-		const nonUniqueEmail = $('#invalid-unique-email');
+		const emailField = $('#edit-account-email');
+		const nonUniqueEmail = $('#edit-invalid-unique-email');
 		const emailUntrimmed = emailField.val();
 		const email = emailField.val().trim();
 
@@ -53,20 +56,27 @@ $(function() {
 				}
 			} else {
 				if (field.is(emailField)) {
-					displayErrorMessage(nonUniqueEmail);
-					isEmailStillValid = false;
+					if (res.email == currentEmail) {
+						hideErrorMessage(nonUniqueEmail);
+						isEmailStillValid = true;
 
-					return callback(false);
+						return callback(true);
+					} else {
+						displayErrorMessage(nonUniqueEmail);
+						isEmailStillValid = false;
+
+						return callback(false);
+					}
 				}
 			}
 		});
 	}
 
 	function isUsernameValid(field, callback) {
-		const usernameField = $('#signup-username');
-		const nonUniqueUsername = $('#invalid-unique-username');
-		const blankUsername = $('#invalid-blank-username');
-		const invalidFormatUsername = $('#invalid-char-username');
+		const usernameField = $('#edit-account-username');
+		const nonUniqueUsername = $('#edit-invalid-unique-username');
+		const blankUsername = $('#edit-invalid-blank-username');
+		const invalidFormatUsername = $('#edit-invalid-char-username');
 		const usernameUntrimmed = usernameField.val();
 		const username = usernameField.val().trim();
 
@@ -88,10 +98,17 @@ $(function() {
 						}
 					} else {
 						if (field.is(usernameField)) {
-							displayErrorMessage(nonUniqueUsername);
-							isUsernameStillValid = false;
+							if (res.username == currentUsername) {
+								hideErrorMessage(nonUniqueUsername);
+								isUsernameStillValid = true;
 
-							return callback(false);
+								return callback(true);
+							} else {
+								displayErrorMessage(nonUniqueUsername);
+								isUsernameStillValid = false;
+
+								return callback(false);
+							}
 						}
 					}
 				});
@@ -118,9 +135,9 @@ $(function() {
 	}
 
 	function isPasswordValid(field) {
-		const passwordField = $('#signup-password');
-		const invalidLengthPassword = $('#invalid-length-password');
-		const invalidFormatPassword = $('#invalid-char-password');
+		const passwordField = $('#edit-account-new-pw');
+		const invalidLengthPassword = $('#edit-invalid-length-new-pw');
+		const invalidFormatPassword = $('#edit-invalid-char-new-pw');
 		const password = passwordField.val();
 
 		if (isPasswordLengthValid(password)) {
@@ -147,9 +164,9 @@ $(function() {
 	}
 
 	function isConfirmPasswordValid(field) {
-		const passwordField = $('#signup-password');
-		const confirmPasswordField = $('#signup-confirm-password');
-		const invalidConfirmPassword = $('#invalid-confirm-password');
+		const passwordField = $('#edit-account-new-pw');
+		const confirmPasswordField = $('#edit-account-confirm-pw');
+		const invalidConfirmPassword = $('#edit-invalid-confirm-pw');
 		const password = passwordField.val();
 		const confirmPassword = confirmPasswordField.val();
 
@@ -180,9 +197,9 @@ $(function() {
 						isEmailValid &&
 						!isThereBlankField()
 					) {
-						enableButton($('#signup-btn'));
+						enableButton($('#confirm-edit-account-btn'));
 					} else {
-						disableButton($('#signup-btn'));
+						disableButton($('#confirm-edit-account-btn'));
 					}
 				});
 			} else {
@@ -191,9 +208,9 @@ $(function() {
 					isConfirmPasswordValid(field) &&
 					isEmailValid
 				) {
-					enableButton($('#signup-btn'));
+					enableButton($('#confirm-edit-account-btn'));
 				} else {
-					disableButton($('#signup-btn'));
+					disableButton($('#confirm-edit-account-btn'));
 				}
 			}
 		} else {
@@ -204,9 +221,9 @@ $(function() {
 				isEmailValid &&
 				!isThereBlankField()
 			) {
-				enableButton($('#signup-btn'));
+				enableButton($('#confirm-edit-account-btn'));
 			} else {
-				disableButton($('#signup-btn'));
+				disableButton($('#confirm-edit-account-btn'));
 			}
 		}
 	}
@@ -224,9 +241,9 @@ $(function() {
 						isEmailStillValid &&
 						!isThereBlankField()
 					) {
-						enableButton($('#signup-btn'));
+						enableButton($('#confirm-edit-account-btn'));
 					} else {
-						disableButton($('#signup-btn'));
+						disableButton($('#confirm-edit-account-btn'));
 					}
 				});
 			} else {
@@ -236,9 +253,9 @@ $(function() {
 					isEmailStillValid &&
 					!isThereBlankField()
 				) {
-					enableButton($('#signup-btn'));
+					enableButton($('#confirm-edit-account-btn'));
 				} else {
-					disableButton($('#signup-btn'));
+					disableButton($('#confirm-edit-account-btn'));
 				}
 			}
 		} else {
@@ -249,9 +266,9 @@ $(function() {
 				isEmailStillValid &&
 				!isThereBlankField()
 			) {
-				enableButton($('#signup-btn'));
+				enableButton($('#confirm-edit-account-btn'));
 			} else {
-				disableButton($('#signup-btn'));
+				disableButton($('#confirm-edit-account-btn'));
 			}
 		}
 	}
@@ -268,16 +285,16 @@ $(function() {
 						isUsernameValid &&
 						!isThereBlankField()
 					) {
-						enableButton($('#signup-btn'));
+						enableButton($('#confirm-edit-account-btn'));
 					} else {
-						disableButton($('#signup-btn'));
+						disableButton($('#confirm-edit-account-btn'));
 					}
 				});
 			} else {
 				if (isPasswordValid(field) && isConfirmPasswordValid(field)) {
-					enableButton($('#signup-btn'));
+					enableButton($('#confirm-edit-account-btn'));
 				} else {
-					disableButton($('#signup-btn'));
+					disableButton($('#confirm-edit-account-btn'));
 				}
 			}
 		} else {
@@ -288,9 +305,9 @@ $(function() {
 				isEmailValid &&
 				!isThereBlankField()
 			) {
-				enableButton($('#signup-btn'));
+				enableButton($('#confirm-edit-account-btn'));
 			} else {
-				disableButton($('#signup-btn'));
+				disableButton($('#confirm-edit-account-btn'));
 			}
 		}
 	}
@@ -311,37 +328,37 @@ $(function() {
 		}
 	}
 
-	$('#signup-email').on('keyup', function() {
+	$('#edit-account-email').on('keyup', function() {
 		isEmailStillValid = false;
 		didEmailChange = true;
 
-		validateField($('#signup-email'));
+		validateField($('#edit-account-email'));
 	});
 
-	$('#signup-username').on('keyup', function() {
+	$('#edit-account-username').on('keyup', function() {
 		isUsernameStillValid = false;
 		didUsernameChange = true;
 
-		validateField($('#signup-username'));
+		validateField($('#edit-account-username'));
 	});
 
-	$('#signup-password').on('keyup', function() {
-		validateField($('#signup-password'));
+	$('#edit-account-new-pw').on('keyup', function() {
+		validateField($('#edit-account-new-pw'));
 	});
 
-	$('#signup-fname').on('keyup', function() {
-		validateField($('#signup-fname'));
+	$('#edit-account-fname').on('keyup', function() {
+		validateField($('#edit-account-fname'));
 	});
 
-	$('#signup-lname').on('keyup', function() {
-		validateField($('#signup-lname'));
+	$('#edit-account-lname').on('keyup', function() {
+		validateField($('#edit-account-lname'));
 	});
 
-	$('#signup-role').on('change', function() {
-		validateField($('#signup-role'));
+	$('#edit-account-role').on('change', function() {
+		validateField($('#edit-account-role'));
 	});
 
-	$('#signup-confirm-password').on('keyup', function() {
-		validateField($('#signup-confirm-password'));
+	$('#edit-account-confirm-pw').on('keyup', function() {
+		validateField($('#edit-account-confirm-pw'));
 	});
 });

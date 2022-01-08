@@ -6,10 +6,10 @@
         <title>Register</title>
         
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href = "https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
         <link href = "/css/style.css" rel = "stylesheet">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src = "/js/register.js"></script>
         <script src = "/js/register-validate.js" type = "module"></script>
     </head>
@@ -68,6 +68,10 @@
                                 <div id = "invalid-unique-username" class = "fw-bold invalid-feedback text-center">
                                     Username has been taken
                                 </div>
+
+                                <div id = "invalid-char-username" class = "fw-bold invalid-feedback text-center">
+                                    Username should not consist of special characters only
+                                </div>
                             </div>
                             
                             <div class = "mb-3">
@@ -104,16 +108,8 @@
                                 <label for = "signup-confirm-password" class = "form-label fw-bold text-primary">Confirm Password</label>   
                                 <input id = "signup-confirm-password" name = "signupConfirmPassword" type = "password" placeholder = "Confirm Password" class = "form-control rounded-pill" required>
                                 
-                                <div id = "invalid-blank-confirm-password" class = "fw-bold invalid-feedback text-center">
-                                    Kindly input a password
-                                </div>
-                                
-                                <div id = "invalid-length-confirm-password" class = "fw-bold invalid-feedback text-center">
-                                    Should have at least 12 characters
-                                </div>
-        
-                                <div id = "invalid-char-confirm-password" class = "fw-bold invalid-feedback text-center">
-                                    Should contain lowercase and uppercase letters, numbers, and punctuations
+                                <div id = "invalid-confirm-password" class = "fw-bold invalid-feedback text-center">
+                                    Passwords do not match
                                 </div>
                             </div>
         
