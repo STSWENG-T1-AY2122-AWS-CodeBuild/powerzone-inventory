@@ -4,7 +4,7 @@ import {
 	sortZtoA,
 	sortLowToHigh,
 	sortHighToLow
-} from './inventory-util.js';
+} from './transaction-util.js';
 
 import {getFuelValue} from './edit-stock-util.js';
 
@@ -14,7 +14,7 @@ import {
 } from './general-util.js';
 
 $(function() {
-	$('.prices').on('click', function() {
+	$('.prices').each(function() {
 		$(this).text('₱ ' + toTwoDecimalPlaces($(this).text().substring(2)));
 	});
 
@@ -26,41 +26,37 @@ $(function() {
 		$('#edit-transaction-status-form-customer').text($('#customer-' + accountId).text());
 	});
 
-	$('.prices').each(function() {
-		$(this).text('₱ ' + toTwoDecimalPlaces($(this).text().substring(2)));
-	});
+	const transactionTableId = 'transaction-table';
 
-	const inventoryTableId = 'inventory-table';
-
-	$('#reset-sort-inventory').on('click', function() {
+	$('#reset-sort-transaction').on('click', function() {
 		$('input').val('');
 		$('input').prop('checked', false);
 
-		$('#' + inventoryTableId).html($('#' + inventoryTableId + '-orig').html());
+		$('#' + transactionTableId).html($('#' + transactionTableId + '-orig').html());
 	});
 
 	$('input').on('change', function() {
 		/* Sort first before filtering. */
-		if ($('#sort-inventory-name-az').is(':checked')) {
-			sortAtoZ(inventoryTableId);
-		} else if ($('#sort-inventory-name-za').is(':checked')) {
-			sortZtoA(inventoryTableId);
-		} else if ($('#sort-inventory-price-purchased-lohi').is(':checked')) {
-			sortLowToHigh(inventoryTableId);
-		} else if ($('#sort-inventory-price-purchased-hilo').is(':checked')) {
-			sortHighToLow(inventoryTableId);
+		if ($('#sort-transaction-customer-name-az').is(':checked')) {
+			sortAtoZ(transactionTableId);
+		} else if ($('#sort-transaction-customer-name-za').is(':checked')) {
+			sortZtoA(transactionTableId);
+		} else if ($('#sort-transaction-price-lohi').is(':checked')) {
+			sortLowToHigh(transactionTableId);
+		} else if ($('#sort-transaction-price-hilo').is(':checked')) {
+			sortHighToLow(transactionTableId);
 		}
 
-		const fuelTypes = ['Gasoline', 'Premium Gasoline 95', 'Diesel', 'Premium Gasoline 97', 'Kerosene'];
-		const selectedFuelTypes = [];
+		const statusTypes = ['pending', 'completed', 'cancelled'];
+		const selectedStatusTypes = [];
 
-		for (const fuelType of fuelTypes) {
-			if ($('#sort-inventory-' + getFuelValue(fuelType)).is(':checked')) {
-				selectedFuelTypes.push(fuelType);
+		for (const statusType of statusTypes) {
+			if ($('#sort-transaction-' + statusType + '-status').is(':checked')) {
+				selectedStatusTypes.push(statusType);
 			}
 		}
 
-		filterBy(inventoryTableId, selectedFuelTypes, $('#inventory-purchased-date').val());
+		filterBy(transactionTableId, selectedStatusTypes, $('#transaction-date').val());
 	});
 
     $('#cancel-transaction-btn').on('click', function(e) {
