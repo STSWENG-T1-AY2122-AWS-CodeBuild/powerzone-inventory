@@ -17,9 +17,9 @@ $(function() {
 	$('.edit-transaction-status').on('click', function() {
 		const accountId = extractId($(this).attr('id'));
 
-		$('#edit-transaction-status-form-dbId').val(accountId);
-		$('#edit-transaction-status-form-id').text($('#id-' + accountId).text());
-		$('#edit-transaction-status-form-customer').text($('#customers-' + accountId).text());
+		$('#edit-transaction-status-form-id').val(accountId);
+		$('#edit-transaction-status-form-display-id').text($('#id-' + accountId).text());
+		$('#edit-transaction-status-form-customer').text($('#customer-' + accountId).text());
 	});
 
 	$('.prices').each(function() {
@@ -61,7 +61,7 @@ $(function() {
 
     $('#cancel-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const transactionId = $('#edit-transaction-status-form-dbId').val();
+		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -86,7 +86,7 @@ $(function() {
 
     $('#complete-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const transactionId = $('#edit-transaction-status-form-dbId').val();
+		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -111,7 +111,7 @@ $(function() {
 
     $('#pend-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const transactionId = $('#edit-transaction-status-form-dbId').val();
+		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
