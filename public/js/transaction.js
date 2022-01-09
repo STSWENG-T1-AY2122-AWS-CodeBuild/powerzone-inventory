@@ -14,6 +14,10 @@ import {
 } from './general-util.js';
 
 $(function() {
+	$('.prices').on('click', function() {
+		$(this).text('₱ ' + toTwoDecimalPlaces($(this).text().substring(2)));
+	});
+
 	$('.edit-transaction-status').on('click', function() {
 		const accountId = extractId($(this).attr('id'));
 
