@@ -35,7 +35,7 @@ const inventoryController = {
 		db.findMany(Inventory, query, projection, function(result) {
 			/* Assign the result of the database retrieval to the variable purchases. */
 			const purchases = result;
-
+			
 			/* For each purchase, update the total fuel quantities accordingly and store the purchase
 			 * details in the individual arrays.
 			 */

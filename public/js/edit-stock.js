@@ -1,5 +1,11 @@
+import {toTwoDecimalPlaces} from './general-util.js';
+
 $(function() {
 	$('#edit-stock-name').val($('#edit-stock-type').val());
+
+	$('.prices').each(function() {
+		$(this).val(toTwoDecimalPlaces($(this).val()));
+	});
 
 	$('#edit-stock-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
