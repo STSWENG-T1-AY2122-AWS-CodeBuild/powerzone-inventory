@@ -14,6 +14,7 @@ const transactionController = {
 	 */
 	getTransaction: function(req, res) {
 		/* Store the details of all transactions in individual arrays to allow for further formatting. */
+		const dbIds = [];
 		const ids = [];
 		const dates = [];
 		const customers = [];
@@ -22,7 +23,7 @@ const transactionController = {
 
 		/* Retrieve the details of all transactions. */
 		const query = {};
-		const projection = 'id date customer total status';
+		const projection = '_id id date customer total status';
 
 		db.findMany(Transaction, query, projection, function(result) {
 			/* Assign the result of the database retrieval to the variable transactions. */
@@ -49,6 +50,7 @@ const transactionController = {
 				const year = transactions[i].date.getFullYear();
 
 				/* Store the transaction details in their respective arrays. */
+				dbIds[i] = transactions[i]._id;
 				ids[i] = transactions[i].id;
 				dates[i] = formattedMonth + '/' + formattedDate + '/' + year;
 				customers[i] = transactions[i].customer;
@@ -58,6 +60,7 @@ const transactionController = {
 
 			/* Store the retrieved transaction details in the variable data. */
 			const data = {
+				transactionDbIds: dbIds,
 				transactionIds: ids,
 				transactionDates: dates,
 				transactionCustomers: customers,

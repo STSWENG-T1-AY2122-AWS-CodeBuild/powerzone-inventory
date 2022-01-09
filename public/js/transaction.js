@@ -8,9 +8,20 @@ import {
 
 import {getFuelValue} from './edit-stock-util.js';
 
-import {toTwoDecimalPlaces} from './general-util.js';
+import {
+	extractId,
+	toTwoDecimalPlaces
+} from './general-util.js';
 
 $(function() {
+	$('.edit-transaction-status').on('click', function() {
+		const accountId = extractId($(this).attr('id'));
+
+		$('#edit-transaction-status-form-dbId').val(accountId);
+		$('#edit-transaction-status-form-id').text($('#id-' + accountId).text());
+		$('#edit-transaction-status-form-customer').text($('#customers-' + accountId).text());
+	});
+
 	$('.prices').each(function() {
 		$(this).text('₱ ' + toTwoDecimalPlaces($(this).text().substring(2)));
 	});
