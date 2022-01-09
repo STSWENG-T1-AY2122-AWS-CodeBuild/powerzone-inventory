@@ -3,6 +3,39 @@ import {toTwoDecimalPlaces} from './general-util.js';
 $(function() {
 	$('#edit-stock-name').val($('#edit-stock-type').val());
 
+	$('#edit-stock-current-quantity').val(
+		parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val())
+	);
+
+	let keypressTimer;
+
+	$('#edit-stock-quantity-purchased').on('keyup', function() {
+		clearTimeout(keypressTimer);
+
+		const currentQuantity = 
+			parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());
+
+		if (currentQuantity < 0) {
+			keypressTimer = setTimeout(function() {
+				$('#edit-stock-quantity-purchased').val(parseInt($('#edit-stock-quantity-depleted').val()));
+				$('#edit-stock-current-quantity').val(0);
+			}, 500);
+		} else {
+			$('#edit-stock-current-quantity').val(currentQuantity);
+		}
+	});
+
+	$('#edit-stock-quantity-purchased').on('change', function() {
+		const currentQuantity = 
+			parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());
+
+		if (currentQuantity < 0) {
+			$('#edit-stock-quantity-purchased').val(parseInt($('#edit-stock-quantity-depleted').val()));
+		} else {
+			$('#edit-stock-current-quantity').val(currentQuantity);
+		}
+	});
+
 	$('.prices').each(function() {
 		$(this).val(toTwoDecimalPlaces($(this).val()));
 	});
