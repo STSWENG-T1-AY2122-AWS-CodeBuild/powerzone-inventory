@@ -32,7 +32,7 @@
                     
                     <form id = "edit-transaction-status-form">
                         <div class = "bg-secondary p-2 text-center">
-                            <input type = "hidden" id = "edit-transaction-status-form-dbId" name = "accountId">
+                            <input type = "hidden" id = "edit-transaction-status-form-dbId" name = "transactionId">
                             <h4 id= "edit-transaction-status-form-id" class = "fw-bold pt-2 status-name text-primary">11753242</h4>
                             <h5 id = "edit-transaction-status-form-customer" class = "status-role text-primary">Shell</h5>
                         </div>
@@ -142,22 +142,26 @@
                                 {{#each transactionStatuses}}
                                      {{#if (validTransactionRole ../role)}}
                                     <tr class = "transaction" id = "entry-{{lookup ../transactionDbIds @index}}">   
-                                        <td id = "id-{{lookup ../transactionDbIds @index}}">{{lookup ../transactionIds @index}}</td>
-                                        <td id = "date-{{lookup ../transactionDbIds @index}}">{{lookup ../transactionDates @index}}</td>
-                                        <td id = "customer-{{lookup ../transactionDbIds @index}}">{{lookup ../transactionCustomers @index}}</td>
-                                        <td id = "total-{{lookup ../transactionDbIds @index}}">₱ {{lookup ../transactionTotals @index}}</td>
-                                        <td><button id = "status-{{lookup ../transactionDbIds @index}}" class = "edit-transaction-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-transaction-status-modal"><img src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></button></td>
-                                        <td><a id = "more-info-{{lookup ../transactionDbIds @index}}" href = "/getMoreInfoTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/more.png" alt = "view-transaction-more-info" class = "view-transaction-more-info table-icon"></a></td>
-                                        <td><a id = "edit-{{lookup ../transactionDbIds @index}}" href = "/getEditTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/pencil.png" alt = "edit-transaction-details" class = "edit-transaction-details table-icon"></a></td>
+                                        <td id = "id-{{lookup ../transactionIds @index}}">{{lookup ../transactionIds @index}}</td>
+                                        <td id = "date-{{lookup ../transactionIds @index}}">{{lookup ../transactionDates @index}}</td>
+                                        <td id = "customer-{{lookup ../transactionIds @index}}">{{lookup ../transactionCustomers @index}}</td>
+                                        <td id = "total-{{lookup ../transactionIds @index}}">₱ {{lookup ../transactionTotals @index}}</td>
+                                        <td><button id = "status-{{lookup ../transactionIds @index}}" class = "edit-transaction-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-transaction-status-modal"><img "status-img-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></button></td>
+                                        <td><a id = "more-info-{{lookup ../transactionIds @index}}" href = "/getMoreInfoTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/more.png" alt = "view-transaction-more-info" class = "view-transaction-more-info table-icon"></a></td>
+                                        {{#if (openTransaction this)}}
+                                        <td><a id = "edit-{{lookup ../transactionIds @index}}" href = "/getEditTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/pencil.png" alt = "edit-transaction-details" class = "edit-transaction-details table-icon"></a></td>
+                                        {{else}}
+                                        <td><img src = "/assets/pencil.png" alt = "edit-transaction-details" class = "edit-transaction-details table-icon"></td>
+                                        {{/if}}
                                     </tr>
                                     {{else}}
-                                    <tr class = "transaction" id = "entry-{{lookup ../transactionDbIds @index}}">   
-                                        <td id = "id-{{lookup ../transactionDbIds @index}}">{{lookup ../transactionIds @index}}</td>
-                                        <td id = "date-{{lookup ../transactionDbIds @index}}">{{lookup ../transactionDates @index}}</td>
-                                        <td id = "customer-{{lookup ../transactionDbIds @index}}">{{lookup ../transactionCustomers @index}}</td>
-                                        <td id = "total-{{lookup ../transactionDbIds @index}}">₱ {{lookup ../transactionTotals @index}}</td>
-                                        <td><img id = "status-{{lookup ../transactionDbIds @index}}" src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></td>
-                                        <td><a id = "more-info-{{lookup ../transactionDbIds @index}}" href = "/getMoreInfoTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/more.png" alt = "view-transaction-more-info" class = "view-transaction-more-info table-icon"></a></td>
+                                    <tr class = "transaction" id = "entry-{{lookup ../transactionIds @index}}">   
+                                        <td id = "id-{{lookup ../transactionIds @index}}">{{lookup ../transactionIds @index}}</td>
+                                        <td id = "date-{{lookup ../transactionIds @index}}">{{lookup ../transactionDates @index}}</td>
+                                        <td id = "customer-{{lookup ../transactionIds @index}}">{{lookup ../transactionCustomers @index}}</td>
+                                        <td id = "total-{{lookup ../transactionIds @index}}">₱ {{lookup ../transactionTotals @index}}</td>
+                                        <td><img id = "status-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></td>
+                                        <td><a id = "more-info-{{lookup ../transactionIds @index}}" href = "/getMoreInfoTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/more.png" alt = "view-transaction-more-info" class = "view-transaction-more-info table-icon"></a></td>
                                     </tr>
                                     {{/if}}
                                 {{/each}}

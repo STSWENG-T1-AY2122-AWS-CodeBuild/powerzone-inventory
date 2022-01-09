@@ -61,7 +61,7 @@ $(function() {
 
     $('#cancel-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const id = $('#edit-account-status-form-id').val();
+		const transactionId = $('#edit-transaction-status-form-dbId').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -72,7 +72,7 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the landing page. */
 				200: function() {
-					$('#status-img-' + id).attr('src', '/assets/rejected.png');
+					$('#status-img-' + transactionId).attr('src', '/assets/rejected.png');
 					$('#edit-transaction-status-modal').modal('hide');
 				},
 
@@ -86,7 +86,7 @@ $(function() {
 
     $('#complete-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const id = $('#edit-account-status-form-id').val();
+		const transactionId = $('#edit-transaction-status-form-dbId').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -97,7 +97,7 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the landing page. */
 				200: function() {
-					$('#status-img-' + id).attr('src', '/assets/accepted.png');
+					$('#status-img-' + transactionId).attr('src', '/assets/accepted.png');
 					$('#edit-transaction-status-modal').modal('hide');
 				},
 
@@ -111,7 +111,7 @@ $(function() {
 
     $('#pend-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const id = $('#edit-account-status-form-id').val();
+		const transactionId = $('#edit-transaction-status-form-dbId').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -122,7 +122,7 @@ $(function() {
 
 				/* If the editing is successful, redirect the user to the landing page. */
 				200: function() {
-					$('#status-img-' + id).attr('src', '/assets/pending.png');
+					$('#status-img-' + transactionId).attr('src', '/assets/pending.png');
 					$('#edit-transaction-status-modal').modal('hide');
 				},
 

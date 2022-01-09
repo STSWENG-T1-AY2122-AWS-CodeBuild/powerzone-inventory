@@ -96,6 +96,14 @@ hbs.handlebars.registerHelper('getTransactionStatus', function(status) {
 	}
 });
 
+hbs.handlebars.registerHelper('openTransaction', function(status) {
+	if (status == 'completed') {
+		return false;
+	} else {
+		return true;
+	}
+});
+
 powerzone.use(express.static(path.join(__dirname, '/public')));
 powerzone.use(express.json());
 powerzone.use(
