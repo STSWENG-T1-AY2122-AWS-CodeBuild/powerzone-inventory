@@ -61,7 +61,7 @@ powerzone.post('/postEditStock', inventoryController.postEditStock);
 powerzone.get('/getTransaction', transactionController.getTransaction);
 powerzone.post('/postEditStatusCancelled', transactionController.postEditStatusCancelled);
 powerzone.post('/postEditStatusCompleted', transactionController.postEditStatusCompleted);
-powerzone.post('/postEditStatusPending', transactionController.postEditStatusPending);
+powerzone.post('/postEditStatusPendingTransaction', transactionController.postEditStatusPending);
 powerzone.get('/getMoreInfoTransaction/:id', transactionController.getMoreInfoTransaction);
 powerzone.get('/getAddTransaction', transactionController.getAddTransaction);
 powerzone.get('/getEditTransaction/:id', transactionController.getEditTransaction);

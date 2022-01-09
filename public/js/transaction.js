@@ -115,7 +115,7 @@ $(function() {
 		e.preventDefault();
 
 		$.ajax({
-			url: '/postEditStatusPending',
+			url: '/postEditStatusPendingTransaction',
 			method: 'POST',
 			data: $('#edit-transaction-status-form').serialize(),
 			statusCode: {
