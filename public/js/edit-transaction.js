@@ -1,3 +1,8 @@
+import {
+	enableButton, 
+	disableButton, 
+} from './general-util.js';
+
 $(function() {
     $('#edit-transaction-status').val($('#edit-transaction-status-hidden').val());
 
@@ -8,6 +13,10 @@ $(function() {
             if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) > 
                 parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
                 alert(">:(");
+
+                disableButton($('#confirm-edit-transaction-btn'));
+            } else {
+                enableButton($('#confirm-edit-transaction-btn'));
             }
         })
     }
