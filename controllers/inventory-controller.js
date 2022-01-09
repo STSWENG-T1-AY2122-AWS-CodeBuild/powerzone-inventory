@@ -206,7 +206,9 @@ const inventoryController = {
 				type: result.type,
 				supplier: result.supplier,
 				location: result.location,
-				quantity: currentQuantity,
+				quantityPurchased: result.quantityPurchased,
+				quantityDepleted: result.quantityDepleted,
+				currentQuantity: currentQuantity,
 				price: result.price,
 				date: cleanDate
 			};
@@ -283,6 +285,7 @@ const inventoryController = {
 			supplier: supplier,
 			location: location,
 			quantityPurchased: quantity,
+			quantityDepleted: 0,
 			price: price,
 			date: date
 		};

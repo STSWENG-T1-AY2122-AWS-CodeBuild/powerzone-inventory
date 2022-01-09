@@ -45,7 +45,8 @@
 
                                     <div class = "col">
                                         <label for = "edit-stock-current-quantity" class = "form-label fw-bold text-primary">Current Quantity (L)</label>
-                                        <input id = "edit-stock-current-quantity" name = "editStockQuantity" type = "number" placeholder = "Current Quantity" min = "0" step = "1" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                        <input id = "edit-stock-current-quantity" name = "editStockCurrentQuantity" type = "number" placeholder = "Current Quantity" min = "0" step = "1" value = "{{currentQuantity}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                        <input id = "edit-stock-quantity-depleted" name = "editStockQuantityDepleted" type = "hidden" placeholder = "Quantity Depleted" min = "0" step = "1" value = "{{quantityDepleted}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                     </div>
                                 </div>
 
@@ -62,8 +63,8 @@
                                     <div class = "col">
                                         <input id = "edit-stock-id" name = "editStockId" type = "hidden" value = "{{id}}">
                                         
-                                        <label for = "edit-stock-quantity" class = "form-label fw-bold text-primary">Purchased Quantity (L)</label>
-                                        <input id = "edit-stock-quantity" name = "editStockQuantity" type = "number" placeholder = "Quantity Purchased" min = "0" step = "1" value = "{{quantity}}" class = "form-control p-2 rounded-pill" required>
+                                        <label for = "edit-stock-quantity-purchased" class = "form-label fw-bold text-primary">Purchased Quantity (L)</label>
+                                        <input id = "edit-stock-quantity-purchased" name = "editStockQuantityPurchased" type = "number" placeholder = "Quantity Purchased" min = "0" step = "1" value = "{{quantityPurchased}}" class = "form-control p-2 rounded-pill" required>
 
                                         <div id = "edit-stock-invalid-blank-quantity" class = "fw-bold invalid-feedback text-center">
                                             Kindly input the quantity
