@@ -41,9 +41,25 @@
                                     </div>
 
                                     <div class = "col">
-                                        <label for = "add-stock-quantity" class = "form-label fw-bold text-primary">Quantity (L)</label>
-                                        <input id = "add-stock-quantity" name = "addStockQuantity" type = "number" placeholder = "Quantity" min = "0" step = "1" class = "form-control p-2 rounded-pill" required>
+                                        <label for = "add-stock-current-quantity" class = "form-label fw-bold text-primary">Current Quantity (L)</label>
+                                        <input id = "add-stock-current-quantity" name = "addStockQuantity" type = "number" placeholder = "Current Quantity" min = "0" step = "1" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    </div>
+                                </div>
 
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "add-stock-supplier" class = "form-label fw-bold text-primary">Supplier</label>
+                                        <input id = "add-stock-supplier" name = "addStockSupplier" type = "text" placeholder = "Supplier" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "add-stock-invalid-blank-supplier" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the supplier
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
+                                        <label for = "add-stock-quantity" class = "form-label fw-bold text-primary">Quantity Purchased (L)</label>   
+                                        <input id = "add-stock-quantity" name = "addStockQuantity" type = "number" placeholder = "Quantity Purchased" class = "form-control p-2 rounded-pill" required>
+                                    
                                         <div id = "add-stock-invalid-blank-quantity" class = "fw-bold invalid-feedback text-center">
                                             Kindly input the quantity
                                         </div>
@@ -56,11 +72,11 @@
 
                                 <div class = "m-4 row">
                                     <div class = "col me-5">
-                                        <label for = "add-stock-supplier" class = "form-label fw-bold text-primary">Supplier</label>
-                                        <input id = "add-stock-supplier" name = "addStockSupplier" type = "text" placeholder = "Supplier" class = "form-control p-2 rounded-pill" required>
+                                        <label for = "add-stock-storage" class = "form-label fw-bold text-primary">Storage Location</label>
+                                        <input id = "add-stock-storage" name = "addStockStorage" type = "text" placeholder = "Storage Location" class = "form-control p-2 rounded-pill" required>
 
-                                        <div id = "add-stock-invalid-blank-supplier" class = "fw-bold invalid-feedback text-center">
-                                            Kindly input the supplier
+                                        <div id = "add-stock-invalid-blank-storage" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the storage location
                                         </div>
                                     </div>
 
@@ -78,17 +94,8 @@
                                     </div>
                                 </div>
 
-                                <div class = "m-4 row">
-                                    <div class = "col me-5">
-                                        <label for = "add-stock-storage" class = "form-label fw-bold text-primary">Storage Location</label>
-                                        <input id = "add-stock-storage" name = "addStockStorage" type = "text" placeholder = "Storage Location" class = "form-control p-2 rounded-pill" required>
-
-                                        <div id = "add-stock-invalid-blank-storage" class = "fw-bold invalid-feedback text-center">
-                                            Kindly input the storage location
-                                        </div>
-                                    </div>
-
-                                    <div class = "col">
+                                <div class = "m-4 row justify-content-md-center">
+                                    <div class = "col-md-6">
                                         <label for = "add-stock-date-purchased" class = "form-label fw-bold text-primary">Date Purchased</label>   
                                         <input id = "add-stock-date-purchased" name = "addStockDatePurchased" type = "date" placeholder = "Date Purchased" class = "form-control p-2 rounded-pill" required>
                                     

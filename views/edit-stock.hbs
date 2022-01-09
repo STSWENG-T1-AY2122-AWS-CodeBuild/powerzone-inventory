@@ -44,10 +44,26 @@
                                     </div>
 
                                     <div class = "col">
+                                        <label for = "edit-stock-current-quantity" class = "form-label fw-bold text-primary">Current Quantity (L)</label>
+                                        <input id = "edit-stock-current-quantity" name = "editStockQuantity" type = "number" placeholder = "Current Quantity" min = "0" step = "1" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
+                                        <label for = "edit-stock-supplier" class = "form-label fw-bold text-primary">Supplier</label>
+                                        <input id = "edit-stock-supplier" name = "editStockSupplier" type = "text" placeholder = "Supplier" value = "{{supplier}}" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-stock-invalid-blank-supplier" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the supplier
+                                        </div>
+                                    </div>
+
+                                    <div class = "col">
                                         <input id = "edit-stock-id" name = "editStockId" type = "hidden" value = "{{id}}">
                                         
-                                        <label for = "edit-stock-quantity" class = "form-label fw-bold text-primary">Quantity (L)</label>
-                                        <input id = "edit-stock-quantity" name = "editStockQuantity" type = "number" placeholder = "Quantity" min = "0" step = "1" value = "{{quantity}}" class = "form-control p-2 rounded-pill" required>
+                                        <label for = "edit-stock-quantity" class = "form-label fw-bold text-primary">Purchased Quantity (L)</label>
+                                        <input id = "edit-stock-quantity" name = "editStockQuantity" type = "number" placeholder = "Quantity Purchased" min = "0" step = "1" value = "{{quantity}}" class = "form-control p-2 rounded-pill" required>
 
                                         <div id = "edit-stock-invalid-blank-quantity" class = "fw-bold invalid-feedback text-center">
                                             Kindly input the quantity
@@ -61,11 +77,11 @@
 
                                 <div class = "m-4 row">
                                     <div class = "col me-5">
-                                        <label for = "edit-stock-supplier" class = "form-label fw-bold text-primary">Supplier</label>
-                                        <input id = "edit-stock-supplier" name = "editStockSupplier" type = "text" placeholder = "Supplier" value = "{{supplier}}" class = "form-control p-2 rounded-pill" required>
+                                        <label for = "edit-stock-storage" class = "form-label fw-bold text-primary">Storage Location</label>
+                                        <input id = "edit-stock-storage" name = "editStockStorage" type = "text" placeholder = "Storage Location" value = "{{location}}" class = "form-control p-2 rounded-pill" required>
 
-                                        <div id = "edit-stock-invalid-blank-supplier" class = "fw-bold invalid-feedback text-center">
-                                            Kindly input the supplier
+                                        <div id = "edit-stock-invalid-blank-storage" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the storage location
                                         </div>
                                     </div>
 
@@ -83,17 +99,8 @@
                                     </div>
                                 </div>
 
-                                <div class = "m-4 row">
-                                    <div class = "col me-5">
-                                        <label for = "edit-stock-storage" class = "form-label fw-bold text-primary">Storage Location</label>
-                                        <input id = "edit-stock-storage" name = "editStockStorage" type = "text" placeholder = "Storage Location" value = "{{location}}" class = "form-control p-2 rounded-pill" required>
-
-                                        <div id = "edit-stock-invalid-blank-storage" class = "fw-bold invalid-feedback text-center">
-                                            Kindly input the storage location
-                                        </div>
-                                    </div>
-
-                                    <div class = "col">
+                                <div class = "m-4 row justify-content-md-center">
+                                    <div class = "col-md-6">
                                         <label for = "edit-stock-date-purchased" class = "form-label fw-bold text-primary">Date Purchased</label>   
                                         <input id = "edit-stock-date-purchased" name = "editStockDatePurchased" type = "date" placeholder = "Date Purchased" value = "{{date}}" class = "form-control p-2 rounded-pill" required>
                                     
