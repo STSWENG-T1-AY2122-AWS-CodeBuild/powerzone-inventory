@@ -31,7 +31,7 @@
                             <td>
                                 <div class = "m-4">
                                     <label for = "edit-transaction-id" class = "form-label fw-bold text-primary">Transaction ID</label>
-                                    <input id = "edit-transaction-id" name = "editTransactionId" type = "text" placeholder = "Transaction ID" class = "form-control p-2 rounded-pill" required>
+                                    <input id = "edit-transaction-id" name = "editTransactionId" type = "text" placeholder = "Transaction ID" value = "{{id}}" class = "form-control p-2 rounded-pill" required readonly = "readonly">
 
                                     <div id = "edit-transaction-invalid-blank-id" class = "fw-bold invalid-feedback text-center">
                                         Kindly input the Transaction ID
@@ -53,7 +53,7 @@
 
                                 <div class = "m-4">
                                     <label for = "edit-transaction-customer-name" class = "form-label fw-bold text-primary">Customer Name</label>
-                                    <input id = "edit-transaction-customer-name" name = "editTransactionCustomerName" type = "text" placeholder = "Customer Name" class = "form-control p-2 rounded-pill" required>
+                                    <input id = "edit-transaction-customer-name" name = "editTransactionCustomerName" type = "text" placeholder = "Customer Name" value = "{{customer}}" class = "form-control p-2 rounded-pill" required>
 
                                     <div id = "edit-transaction-invalid-blank-customer-name" class = "fw-bold invalid-feedback text-center">
                                         Kindly input the customer name
@@ -62,7 +62,7 @@
 
                                 <div class = "m-4">
                                     <label for = "edit-transaction-customer-number" class = "form-label fw-bold text-primary">Customer Phone Number</label>
-                                    <input id = "edit-transaction-customer-number" name = "editTransactionCustomerNumber" type = "number" placeholder = "Customer Phone Number" class = "form-control p-2 rounded-pill" required>
+                                    <input id = "edit-transaction-customer-number" name = "editTransactionCustomerNumber" type = "number" placeholder = "Customer Phone Number" value = "{{number}}" class = "form-control p-2 rounded-pill" required>
                                 
                                     <div id = "edit-transaction-invalid-blank-customer-number" class = "fw-bold invalid-feedback text-center">
                                         Kindly input the customer's phone number
@@ -75,7 +75,7 @@
 
                                 <div class = "m-4">
                                     <label for = "edit-transaction-date" class = "form-label fw-bold text-primary">Transaction Date</label>
-                                    <input id = "edit-transaction-date" name = "editTransactionDate" type = "date" class = "form-control p-2 rounded-pill" required>
+                                    <input id = "edit-transaction-date" name = "editTransactionDate" type = "date" value = "{{date}}" class = "form-control p-2 rounded-pill" required>
 
                                     <div id = "edit-delivery-invalid-blank-date" class = "fw-bold invalid-feedback text-center">
                                         Kindly input the transaction date
@@ -96,14 +96,16 @@
                                                 <td>GASOLINE</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-gasoline-price" name = "editTransactionGasolinePrice" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-gasoline-price" name = "editTransactionGasolinePrice" type = "number" placeholder = "-" value = "{{priceGasoline}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-gasoline-liters" name = "editTransactionGasolineLiters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-gasoline-liters" name = "editTransactionGasolineLiters" type = "number" placeholder = "-" value = "{{litersGasoline}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "edit-transaction-gasoline-price-old" name = "editTransactionGasolinePriceOld" type = "hidden" value = "{{priceGasoline}}">
+                                                <input id = "edit-transaction-gasoline-total" name = "editTransactionGasolineTotal" type = "hidden" value = "{{totalGasoline}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">
@@ -117,14 +119,16 @@
                                                 <td>PREMIUM GASOLINE 95</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-premium-gasoline-95-price" name = "editTransactionPremiumGasoline95Price" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-premium-gasoline-95-price" name = "editTransactionPremiumGasoline95Price" type = "number" placeholder = "-" value = "{{pricePremiumGasoline95}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-premium-gasoline-95-liters" name = "editTransactionPremiumGasoline95Liters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-premium-gasoline-95-liters" name = "editTransactionPremiumGasoline95Liters" type = "number" placeholder = "-" value = "{{litersPremiumGasoline95}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "edit-transaction-premium-gasoline-95-price-old" name = "editTransactionPremiumGasoline95PriceOld" type = "hidden" value = "{{pricePremiumGasoline95}}">
+                                                <input id = "edit-transaction-premium-gasoline-95-total" name = "editTransactionPremiumGasoline95Total" type = "hidden" value = "{{totalPremiumGasoline95}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">
@@ -138,14 +142,16 @@
                                                 <td>DIESEL</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-diesel-price" name = "editTransactionDieselPrice" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-diesel-price" name = "editTransactionDieselPrice" type = "number" placeholder = "-" value = "{{priceDiesel}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-diesel-liters" name = "editTransactionDieselLiters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-diesel-liters" name = "editTransactionDieselLiters" type = "number" placeholder = "-" value = "{{litersDiesel}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "edit-transaction-diesel-price-old" name = "editTransactionDieselPriceOld" type = "hidden" value = "{{priceDiesel}}">
+                                                <input id = "edit-transaction-diesel-total" name = "editTransactionDieselTotal" type = "hidden" value = "{{totalDiesel}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">
@@ -159,14 +165,16 @@
                                                 <td>PREMIUM GASOLINE 97</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-premium-gasoline-97-price" name = "editTransactionPremiumGasoline97Price" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-premium-gasoline-97-price" name = "editTransactionPremiumGasoline97Price" type = "number" placeholder = "-" value = "{{pricePremiumGasoline97}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-premium-gasoline-97-liters" name = "editTransactionPremiumGasoline97Liters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-premium-gasoline-97-liters" name = "editTransactionPremiumGasoline97Liters" type = "number" placeholder = "-" value = "{{litersPremiumGasoline97}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "edit-transaction-premium-gasoline-97-price-old" name = "editTransactionPremiumGasoline97PriceOld" type = "hidden" value = "{{pricePremiumGasoline97}}">
+                                                <input id = "edit-transaction-premium-gasoline-97-total" name = "editTransactionPremiumGasoline97Total" type = "hidden" value = "{{totalPremiumGasoline97}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">
@@ -180,14 +188,16 @@
                                                 <td>KEROSENE</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-kerosene-price" name = "editTransactionKerosenePrice" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-kerosene-price" name = "editTransactionKerosenePrice" type = "number" placeholder = "-" value = "{{priceKerosene}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-kerosene-liters" name = "editTransactionKeroseneLiters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-kerosene-liters" name = "editTransactionKeroseneLiters" type = "number" placeholder = "-" value = "{{litersKerosene}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "edit-transaction-kerosene-price-old" name = "editTransactionKerosenePriceOld" type = "hidden" value = "{{priceKerosene}}">
+                                                <input id = "edit-transaction-kerosene-total" name = "editTransactionKeroseneTotal" type = "hidden" value = "{{totalKerosene}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">

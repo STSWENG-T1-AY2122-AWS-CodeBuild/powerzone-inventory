@@ -1,9 +1,9 @@
 /* Controller for displaying the transactions page */
 
-/* The db file, transaction schema, and transaction number schema are used for the transaction page. */
+/* The db file, transaction schema, and inventory schema are used for the transaction page. */
 const db = require('../models/db.js');
 const Transaction = require('../models/transaction-schema.js');
-const TransactionNumber = require('../models/transaction-number-schema.js');
+const Inventory = require('../models/inventory-schema.js');
 
 const transactionController = {
 	/**
@@ -208,12 +208,101 @@ const transactionController = {
 		});
 	},
 
-	getAddTransaction: function(req, res) {
-		res.render('add-transaction');
+	getEditTransaction: function(req, res) {
+		/* Retrieve the purchase ID from the page link. */
+		const id = req.params.id;
+
+		/* Retrieve the data corresponding to the ID of the selected transaction. */
+		const query = {id: id};
+		const projection = 'id status customer number date priceGasoline litersGasoline pricePremiumGasoline95 litersPremiumGasoline95 priceDiesel litersDiesel pricePremiumGasoline97 litersPremiumGasoline97 priceKerosene litersKerosene';
+
+		db.findOne(Transaction, query, projection, function(result) {
+			/* Store the result of the database retrieval in the variable transactionDetails. */
+			const transactionDetails = result;
+
+			/* Format the display of the transaction date from the Date object
+			 * stored in the database.
+			 */
+			const month = transactionDetails.date.getMonth() + 1;
+			let formattedMonth = month;
+			if (month.toString().length < 2) {
+				formattedMonth = '0' + month.toString();
+			}
+
+			const date = transactionDetails.date.getDate();
+			let formattedDate = date;
+			if (date.toString().length < 2) {
+				formattedDate = '0' + date.toString();
+			}
+
+			const year = transactionDetails.date.getFullYear();
+
+			const cleanDate = year + '-' + formattedMonth + '-' + formattedDate;
+			
+			/* Store the total quantities and statuses of each type of fuel. */
+			let totalGasoline = 0;
+			let totalPremiumGasoline95 = 0;
+			let totalDiesel = 0;
+			let totalPremiumGasoline97 = 0;
+			let totalKerosene = 0;
+
+			/* Retrieve the available fuel amounts in the inventory. */
+			const queryInventory = {};
+			const projectionInventory = '_id type quantityPurchased quantityDepleted';
+
+			db.findMany(Inventory, queryInventory, projectionInventory, function(result) {
+				/* Assign the result of the database retrieval to the variable purchases. */
+				const purchases = result;
+
+				/* For each purchase, update the total fuel quantities accordingly and store the purchase
+				* details in the individual arrays.
+				*/
+				for (let i = 0; i < purchases.length; i++) {
+					if (purchases[i].type == 'gasoline') {
+						totalGasoline += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					} else if (purchases[i].type == 'premium-gasoline-95') {
+						totalPremiumGasoline95 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					} else if (purchases[i].type == 'diesel') {
+						totalDiesel += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					} else if (purchases[i].type == 'premium-gasoline-97') {
+						totalPremiumGasoline97 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					} else {
+						totalKerosene += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					}
+				}
+				
+				/* Store the transaction details and total fuel amounts in the variable data. */
+				const data = {
+					id: id,
+					status: transactionDetails.status,
+					customer: transactionDetails.customer,
+					number: transactionDetails.number,
+					date: cleanDate,
+					priceGasoline: transactionDetails.priceGasoline,
+					litersGasoline: transactionDetails.litersGasoline,
+					pricePremiumGasoline95: transactionDetails.pricePremiumGasoline95,
+					litersPremiumGasoline95: transactionDetails.litersPremiumGasoline95,
+					priceDiesel: transactionDetails.priceDiesel,
+					litersDiesel: transactionDetails.litersDiesel,
+					pricePremiumGasoline97: transactionDetails.pricePremiumGasoline97,
+					litersPremiumGasoline97: transactionDetails.litersPremiumGasoline97,
+					priceKerosene: transactionDetails.priceKerosene,
+					litersKerosene: transactionDetails.litersKerosene,
+
+					totalGasoline: totalGasoline,
+					totalPremiumGasoline95: totalPremiumGasoline95,
+					totalDiesel: totalDiesel,
+					totalPremiumGasoline97: totalPremiumGasoline97,
+					totalKerosene: totalKerosene
+				};
+
+				res.render('edit-transaction', data);
+			});
+		});
 	},
 
-	getEditTransaction: function(req, res) {
-		res.render('edit-transaction');
+	getAddTransaction: function(req, res) {
+		res.render('add-transaction');
 	}
 };
 
