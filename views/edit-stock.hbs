@@ -64,7 +64,7 @@
                                         <input id = "edit-stock-id" name = "editStockId" type = "hidden" value = "{{id}}">
                                         
                                         <label for = "edit-stock-quantity-purchased" class = "form-label fw-bold text-primary">Purchased Quantity (L)</label>
-                                        <input id = "edit-stock-quantity-purchased" name = "editStockQuantityPurchased" type = "number" placeholder = "Quantity Purchased" min = "0" step = "1" value = "{{quantityPurchased}}" class = "form-control p-2 rounded-pill" required>
+                                        <input id = "edit-stock-quantity-purchased" name = "editStockQuantityPurchased" type = "number" placeholder = "Quantity Purchased" min = "{{quantityDepleted}}" step = "1" value = "{{quantityPurchased}}" class = "form-control p-2 rounded-pill" required>
 
                                         <div id = "edit-stock-invalid-blank-quantity" class = "fw-bold invalid-feedback text-center">
                                             Kindly input the quantity
