@@ -6,8 +6,6 @@ import {
 	sortHighToLow
 } from './transaction-util.js';
 
-import {getFuelValue} from './edit-stock-util.js';
-
 import {
 	extractId,
 	toTwoDecimalPlaces
