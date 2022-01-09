@@ -106,7 +106,7 @@
                                 <label for = "sort-transaction-cancelled-status" class = "text-white">CANCELLED</label>
                             </div>    
 
-                            <button id = "reset-sort-delivery" class = "btn float-end fw-bold text-white">X RESET</button>
+                            <button id = "reset-sort-transaction" class = "btn float-end fw-bold text-white">X RESET</button>
                         </div>   
                     </div>
                 </div>
@@ -137,10 +137,10 @@
                                     </tr>
                                     {{/if}}
                                 </thead>
-                                <tbody id = "delivery-list">
+                                <tbody id = "transaction-list">
                                 {{#each transactionStatuses}}
                                      {{#if (validTransactionRole ../role)}}
-                                    <tr class = "delivery">   
+                                    <tr class = "transaction">   
                                         <td>{{lookup ../transactionIds @index}}</td>
                                         <td>{{lookup ../transactionDates @index}}</td>
                                         <td>{{lookup ../transactionCustomers @index}}</td>
@@ -150,7 +150,7 @@
                                         <td><a href = "/getEditTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/pencil.png" alt = "edit-transaction-details" class = "edit-transaction-details table-icon"></a></td>
                                     </tr>
                                     {{else}}
-                                    <tr class = "delivery">   
+                                    <tr class = "transaction">   
                                         <td>{{lookup ../transactionIds @index}}</td>
                                         <td>{{lookup ../transactionDates @index}}</td>
                                         <td>{{lookup ../transactionCustomers @index}}</td>
