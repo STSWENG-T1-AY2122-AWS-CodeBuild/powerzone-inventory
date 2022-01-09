@@ -10,6 +10,8 @@
         <link href = "/css/style.css" rel = "stylesheet">
 
         <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script src = "/js/edit-transaction.js" type = "module"></script>
     </head>
     <body class = "bg-home">
         <!-- as of now, its set to non-admin ung nav, but admin should be included -->
@@ -43,6 +45,7 @@
                                 </div>
 
                                 <div class = "m-4">
+                                    <input type = "hidden" id = "edit-transaction-status-hidden" value = "{{status}}">
                                     <label for = "edit-transaction-status" class = "form-label fw-bold text-primary">Transaction Status</label>
                                     <select id = "edit-transaction-status" name = "editTransactionStatus" class = "form-select rounded-pill" required>
                                         <option value = "pending">Pending</option>
