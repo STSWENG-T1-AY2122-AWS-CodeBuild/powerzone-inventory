@@ -10,14 +10,14 @@ db.connect();
 /* Initialize sample delivery details */
 const delivery = {
 	id: 20000001,
-    date: '01/05/2022',
-    customer: 'Shell',
-    dropoff: 'LTI Spine Road, Laguna Boulevard',
-    status: 'completed',
-    number: 9174499876,
-    warehouse: '940 Cong. A. Francisco St., Malate',
-    manager: 'Manager One',
-    driver: 'Driver One'
+	date: '01/05/2022',
+	customer: 'Shell',
+	dropoff: 'LTI Spine Road, Laguna Boulevard',
+	status: 'completed',
+	number: 9174499876,
+	warehouse: '940 Cong. A. Francisco St., Malate',
+	manager: 'Manager One',
+	driver: 'Driver One'
 };
 
 /* Insert the initialized delivery into the database. */
