@@ -212,6 +212,12 @@ const transactionController = {
 		});
 	},
 
+	/**
+	 * Gets the page for editing information for a particular transaction.
+	 *
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
+	 */
 	getEditTransaction: function(req, res) {
 		/* Retrieve the purchase ID from the page link. */
 		const id = req.params.id;
@@ -305,6 +311,12 @@ const transactionController = {
 		});
 	},
 
+	/**
+	 * Gets the page for adding a new transaction.
+	 *
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
+	 */
 	getAddTransaction: function(req, res) {
 		/* Retrieve the transaction number of the new transaction. */
 		const query = {label: "nextTransaction"};
@@ -373,6 +385,97 @@ const transactionController = {
 					res.render('add-transaction', data);
 				});
 			});
+		});
+	},
+
+	/**
+	 * Adds a new transaction to the database.
+	 *
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
+	 */
+	 postAddTransaction: function(req, res) {
+		/* Retrieve the transaction details from the user input. */
+		const id = req.body.addTransactionId;
+		const customer = req.body.addTransactionCustomerName.trim();
+		const number = req.body.addTransactionCustomerNumber;
+		const date = req.body.addTransactionDate;
+		const priceGasoline = req.body.addTransactionGasolinePrice;
+		const litersGasoline = req.body.addTransactionGasolineLiters;
+		const pricePremiumGasoline95 = req.body.addTransactionPremiumGasoline95Price;
+		const litersPremiumGasoline95 = req.body.addTransactionPremiumGasoline95Liters;
+		const priceDiesel = req.body.addTransactionDieselPrice;
+		const litersDiesel = req.body.addTransactionDieselLiters;
+		const pricePremiumGasoline97 = req.body.addTransactionPremiumGasoline97Price;
+		const litersPremiumGasoline97 = req.body.addTransactionPremiumGasoline97Liters;
+		const priceKerosene = req.body.addTransactionKerosenePrice;
+		const litersKerosene = req.body.addTransactionKeroseneLiters;
+
+		/* Compute for the total cost of the transaction. */
+		const total = (priceGasoline * litersGasoline) + (pricePremiumGasoline95 * litersPremiumGasoline95) + 
+					  (priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
+					  (priceKerosene * litersKerosene);
+
+		/* Assign the transaction details to the variable transaction. */
+		const transaction = {
+			id: id,
+			date: date,
+			customer: customer,
+			total: total,
+			status: "pending",
+			number: number,
+			priceGasoline: priceGasoline,
+			litersGasoline: litersGasoline,
+			pricePremiumGasoline95: pricePremiumGasoline95,
+			litersPremiumGasoline95: litersPremiumGasoline95,
+			priceDiesel: priceDiesel,
+			litersDiesel: litersDiesel,
+			pricePremiumGasoline97: pricePremiumGasoline97,
+			litersPremiumGasoline97: litersPremiumGasoline97,
+			priceKerosene: priceKerosene,
+			litersKerosene: litersKerosene
+		};
+
+		/* Add the new transaction to the database. */
+		db.insertOne(Transaction, transaction, function(flag) {
+			
+			/* Store the stocks for each fuel type in a separate array to update their quantities. */
+			const stocksGasoline = [];
+			const stocksPremiumGasoline95 = [];
+			const stocksDiesel = [];
+			const stocksPremiumGasoline97 = [];
+			const stocksKerosene = [];
+
+			/* Retrieve the fuel types, purchase dates, and quantities of all inventory stocks. */
+			const query = {};
+			const projection = '_id type date quantityPurchased quantityDepleted';
+
+			db.findMany(Inventory, query, projection, function(result) {
+				/* Assign the result of the database retrieval to the variable purchases. */
+				const purchases = result;
+
+				/* For each purchase, store its details in its corresponding array according to fuel type. */
+				for (let i = 0; i < purchases.length; i++) {
+					if (purchases[i].type == 'gasoline') {
+						stocksGasoline.push(purchases[i]);
+					} else if (purchases[i].type == 'premium-gasoline-95') {
+						stocksPremiumGasoline95.push(purchases[i]);
+					} else if (purchases[i].type == 'diesel') {
+						stocksDiesel.push(purchases[i]);
+					} else if (purchases[i].type == 'premium-gasoline-97') {
+						stocksPremiumGasoline97.push(purchases[i]);
+					} else {
+						stocksKerosene.push(purchasese[i]);
+					}
+				}
+
+				const status = stocksGasoline[0].date > stocksGasoline[1].date;
+				console.log(status);
+
+				// res.status(200).json('Stock added successfully.');
+				// res.send();
+			});
+			
 		});
 	}
 };

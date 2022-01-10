@@ -64,6 +64,7 @@ powerzone.post('/postEditStatusCompleted', transactionController.postEditStatusC
 powerzone.post('/postEditStatusPendingTransaction', transactionController.postEditStatusPending);
 powerzone.get('/getMoreInfoTransaction/:id', transactionController.getMoreInfoTransaction);
 powerzone.get('/getAddTransaction', transactionController.getAddTransaction);
+powerzone.post('/postAddTransaction', transactionController.postAddTransaction);
 powerzone.get('/getEditTransaction/:id', transactionController.getEditTransaction);
 
 powerzone.get('/getDelivery', deliveryController.getDelivery);
