@@ -40,65 +40,65 @@ const transactionSchema = new mongoose.Schema({
 		required: true
 	},
 
-    /* Gasoline price on transaction date */
-    priceGasoline: {
-        type: Number,
-        required: true
-    },
+	/* Gasoline price on transaction date */
+	priceGasoline: {
+		type: Number,
+		required: true
+	},
 
-    /* Amount of gasoline purchased */
-    litersGasoline: {
-        type: Number,
-        required: true
-    },
+	/* Amount of gasoline purchased */
+	litersGasoline: {
+		type: Number,
+		required: true
+	},
 
-    /* Premium Gasoline 95 price on transaction date */
-    pricePremiumGasoline95: {
-        type: Number,
-        required: true
-    },
+	/* Premium Gasoline 95 price on transaction date */
+	pricePremiumGasoline95: {
+		type: Number,
+		required: true
+	},
 
-    /* Amount of Premium Gasoline 95 purchased */
-    litersPremiumGasoline95: {
-        type: Number,
-        required: true
-    },
+	/* Amount of Premium Gasoline 95 purchased */
+	litersPremiumGasoline95: {
+		type: Number,
+		required: true
+	},
 
-    /* Diesel price on transaction date */
-    priceDiesel: {
-        type: Number,
-        required: true
-    },
+	/* Diesel price on transaction date */
+	priceDiesel: {
+		type: Number,
+		required: true
+	},
 
-    /* Amount of diesel purchased */
-    litersDiesel: {
-        type: Number,
-        required: true
-    },
+	/* Amount of diesel purchased */
+	litersDiesel: {
+		type: Number,
+		required: true
+	},
 
-    /* Premium Gasoline 97 price on transaction date */
-    pricePremiumGasoline97: {
-        type: Number,
-        required: true
-    },
+	/* Premium Gasoline 97 price on transaction date */
+	pricePremiumGasoline97: {
+		type: Number,
+		required: true
+	},
 
-    /* Amount of Premium Gasoline 97 purchased */
-    litersPremiumGasoline97: {
-        type: Number,
-        required: true
-    },
+	/* Amount of Premium Gasoline 97 purchased */
+	litersPremiumGasoline97: {
+		type: Number,
+		required: true
+	},
 
-    /* Kerosene price on transaction date */
-    priceKerosene: {
-        type: Number,
-        required: true
-    },
+	/* Kerosene price on transaction date */
+	priceKerosene: {
+		type: Number,
+		required: true
+	},
 
-    /* Amount of kerosene purchased */
-    litersKerosene: {
-        type: Number,
-        required: true
-    }
+	/* Amount of kerosene purchased */
+	litersKerosene: {
+		type: Number,
+		required: true
+	}
 });
 
 module.exports = mongoose.model('Transaction', transactionSchema);

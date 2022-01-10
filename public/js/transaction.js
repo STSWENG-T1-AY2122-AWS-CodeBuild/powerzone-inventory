@@ -57,7 +57,7 @@ $(function() {
 		filterBy(transactionTableId, selectedStatusTypes, $('#transaction-date').val());
 	});
 
-    $('#cancel-transaction-btn').on('click', function(e) {
+	$('#cancel-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
@@ -82,7 +82,7 @@ $(function() {
 		});
 	});
 
-    $('#complete-transaction-btn').on('click', function(e) {
+	$('#complete-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
@@ -107,7 +107,7 @@ $(function() {
 		});
 	});
 
-    $('#pend-transaction-btn').on('click', function(e) {
+	$('#pend-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
