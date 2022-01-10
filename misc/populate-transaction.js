@@ -10,21 +10,21 @@ db.connect();
 /* Initialize sample transaction details */
 const transaction = {
 	id: 10000001,
-    date: '01/01/2022',
-    customer: 'Shell',
-    total: 15186.00,
-    status: 'completed',
-    number: 09175244444,
-    priceGasoline: 55.09,
-    litersGasoline: 50,
-    pricePremiumGasoline95: 65.55,
-    litersPremiumGasoline95: 50,
-    priceDiesel: 65.00,
-    litersDiesel: 50,
-    pricePremiumGasoline97: 59.04,
-    litersPremiumGasoline97: 50,
-    priceKerosene: 59.04,
-    litersKerosene: 50
+	date: '01/01/2022',
+	customer: 'Shell',
+	total: 15186.00,
+	status: 'completed',
+	number: 9175244444,
+	priceGasoline: 55.09,
+	litersGasoline: 50,
+	pricePremiumGasoline95: 65.55,
+	litersPremiumGasoline95: 50,
+	priceDiesel: 65.00,
+	litersDiesel: 50,
+	pricePremiumGasoline97: 59.04,
+	litersPremiumGasoline97: 50,
+	priceKerosene: 59.04,
+	litersKerosene: 50
 };
 
 /* Insert the initialized account into the database. */

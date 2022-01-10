@@ -42,8 +42,8 @@ const homeController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditPrices: function(req, res) {
-		 /* Retrieve the updated selling prices from the user input. */
+	postEditPrices: function(req, res) {
+		/* Retrieve the updated selling prices from the user input. */
 		const gasoline = req.body.editGasolinePrice;
 		const premiumGasoline95 = req.body.editPremiumGasoline95Price;
 		const diesel = req.body.editDieselPrice;

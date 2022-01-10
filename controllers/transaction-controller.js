@@ -82,7 +82,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusCancelled: function(req, res) {
+	postEditStatusCancelled: function(req, res) {
 		/* Retrieve the ID of the selected transaction. */
 		const transactionId = req.body.transactionId;
 
@@ -104,7 +104,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusCompleted: function(req, res) {
+	postEditStatusCompleted: function(req, res) {
 		/* Retrieve the ID of the selected transaction. */
 		const transactionId = req.body.transactionId;
 
@@ -126,7 +126,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusPending: function(req, res) {
+	postEditStatusPending: function(req, res) {
 		/* Retrieve the ID of the selected transaction. */
 		const transactionId = req.body.transactionId;
 
@@ -317,7 +317,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditTransaction: function(req, res) {
+	postEditTransaction: function(req, res) {
 		/* Retrieve the transaction details from the user input. */
 		const transactionId = req.body.editTransactionId;
 		const status = req.body.editTransactionStatus;
@@ -343,8 +343,8 @@ const transactionController = {
 
 		/* Compute for the total cost of the transaction. */
 		const total = (priceGasoline * litersGasoline) + (pricePremiumGasoline95 * litersPremiumGasoline95) +
-					  (priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
-					  (priceKerosene * litersKerosene);
+					(priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
+					(priceKerosene * litersKerosene);
 
 		/* Update the database entry of the transaction. */
 		const filter = {id: transactionId};
@@ -882,29 +882,31 @@ const transactionController = {
 						}
 
 					/* If the current status of the transaction is "Pending" or "Completed", update the stocks based
-					 * on the difference between the original and the current fuel amounts purchased in the transaction. 
+					 * on the difference between the original and the current fuel amounts purchased in the transaction.
 					 */
 					} else {
-						/* If the transaction involves difference in the amount of gasoline purchased, 
-						 * arrange the stocks in chronological order and update them accordingly. 
+						/* If the transaction involves difference in the amount of gasoline purchased,
+						 * arrange the stocks in chronological order and update them accordingly.
 						 */
 						if (litersGasoline - litersGasolineOld != 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksGasoline.length >= 2) {
-								stocksGasoline.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksGasoline.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
 
 							/* If the current amount of fuel purchased is greater than the original
-							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * amount, subtract fuel quantities from the stocks, starting from the
 							 * oldest stock, until the difference has been reached.
 							 */
 							if (litersGasoline > litersGasolineOld) {
@@ -912,7 +914,7 @@ const transactionController = {
 								let i = 0;
 
 								while (transactionQuantity > 0) {
-									let availableStock = stocksGasoline[i].quantityPurchased - stocksGasoline[i].quantityDepleted;
+									const availableStock = stocksGasoline[i].quantityPurchased - stocksGasoline[i].quantityDepleted;
 
 									if (transactionQuantity >= availableStock) {
 										transactionQuantity = transactionQuantity - availableStock;
@@ -946,30 +948,32 @@ const transactionController = {
 
 									i--;
 								}
-							}	
+							}
 						}
 
 
-						/* If the transaction involves difference in the amount of Premium Gasoline 95 purchased, 
-						 * arrange the stocks in chronological order and update them accordingly. 
+						/* If the transaction involves difference in the amount of Premium Gasoline 95 purchased,
+						 * arrange the stocks in chronological order and update them accordingly.
 						 */
 						if (litersPremiumGasoline95 - litersPremiumGasoline95Old != 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksPremiumGasoline95.length >= 2) {
-								stocksPremiumGasoline95.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksPremiumGasoline95.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
 
 							/* If the current amount of fuel purchased is greater than the original
-							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * amount, subtract fuel quantities from the stocks, starting from the
 							 * oldest stock, until the difference has been reached.
 							 */
 							if (litersPremiumGasoline95 > litersPremiumGasoline95Old) {
@@ -977,7 +981,7 @@ const transactionController = {
 								let i = 0;
 
 								while (transactionQuantity > 0) {
-									let availableStock = stocksPremiumGasoline95[i].quantityPurchased - stocksPremiumGasoline95[i].quantityDepleted;
+									const availableStock = stocksPremiumGasoline95[i].quantityPurchased - stocksPremiumGasoline95[i].quantityDepleted;
 
 									if (transactionQuantity >= availableStock) {
 										transactionQuantity = transactionQuantity - availableStock;
@@ -1011,30 +1015,32 @@ const transactionController = {
 
 									i--;
 								}
-							}	
+							}
 						}
 
 
-						/* If the transaction involves difference in the amount of diesel purchased, 
-						 * arrange the stocks in chronological order and update them accordingly. 
+						/* If the transaction involves difference in the amount of diesel purchased,
+						 * arrange the stocks in chronological order and update them accordingly.
 						 */
 						if (litersDiesel - litersDieselOld != 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksDiesel.length >= 2) {
-								stocksDiesel.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
+								stocksDiesel.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
 
-									if (keyA > keyB)
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
 
 							/* If the current amount of fuel purchased is greater than the original
-							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * amount, subtract fuel quantities from the stocks, starting from the
 							 * oldest stock, until the difference has been reached.
 							 */
 							if (litersDiesel > litersDieselOld) {
@@ -1042,7 +1048,7 @@ const transactionController = {
 								let i = 0;
 
 								while (transactionQuantity > 0) {
-									let availableStock = stocksDiesel[i].quantityPurchased - stocksDiesel[i].quantityDepleted;
+									const availableStock = stocksDiesel[i].quantityPurchased - stocksDiesel[i].quantityDepleted;
 
 									if (transactionQuantity >= availableStock) {
 										transactionQuantity = transactionQuantity - availableStock;
@@ -1076,30 +1082,32 @@ const transactionController = {
 
 									i--;
 								}
-							}	
+							}
 						}
 
 
-						/* If the transaction involves difference in the amount of Premium Gasoline 97 purchased, 
-						 * arrange the stocks in chronological order and update them accordingly. 
+						/* If the transaction involves difference in the amount of Premium Gasoline 97 purchased,
+						 * arrange the stocks in chronological order and update them accordingly.
 						 */
 						if (litersPremiumGasoline97 - litersPremiumGasoline97Old != 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksPremiumGasoline97.length >= 2) {
-								stocksPremiumGasoline97.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksPremiumGasoline97.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
 
 							/* If the current amount of fuel purchased is greater than the original
-							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * amount, subtract fuel quantities from the stocks, starting from the
 							 * oldest stock, until the difference has been reached.
 							 */
 							if (litersPremiumGasoline97 > litersPremiumGasoline97Old) {
@@ -1107,7 +1115,7 @@ const transactionController = {
 								let i = 0;
 
 								while (transactionQuantity > 0) {
-									let availableStock = stocksPremiumGasoline97[i].quantityPurchased - stocksPremiumGasoline97[i].quantityDepleted;
+									const availableStock = stocksPremiumGasoline97[i].quantityPurchased - stocksPremiumGasoline97[i].quantityDepleted;
 
 									if (transactionQuantity >= availableStock) {
 										transactionQuantity = transactionQuantity - availableStock;
@@ -1141,30 +1149,32 @@ const transactionController = {
 
 									i--;
 								}
-							}	
+							}
 						}
 
 
-						/* If the transaction involves difference in the amount of kerosene purchased, 
-						 * arrange the stocks in chronological order and update them accordingly. 
+						/* If the transaction involves difference in the amount of kerosene purchased,
+						 * arrange the stocks in chronological order and update them accordingly.
 						 */
 						if (litersKerosene - litersKeroseneOld != 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksKerosene.length >= 2) {
-								stocksKerosene.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
+								stocksKerosene.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
 
-									if (keyA > keyB)
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
 
 							/* If the current amount of fuel purchased is greater than the original
-							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * amount, subtract fuel quantities from the stocks, starting from the
 							 * oldest stock, until the difference has been reached.
 							 */
 							if (litersKerosene > litersKeroseneOld) {
@@ -1172,7 +1182,7 @@ const transactionController = {
 								let i = 0;
 
 								while (transactionQuantity > 0) {
-									let availableStock = stocksKerosene[i].quantityPurchased - stocksKerosene[i].quantityDepleted;
+									const availableStock = stocksKerosene[i].quantityPurchased - stocksKerosene[i].quantityDepleted;
 
 									if (transactionQuantity >= availableStock) {
 										transactionQuantity = transactionQuantity - availableStock;
@@ -1206,7 +1216,7 @@ const transactionController = {
 
 									i--;
 								}
-							}	
+							}
 						}
 					}
 				}
@@ -1350,7 +1360,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postAddTransaction: function(req, res) {
+	postAddTransaction: function(req, res) {
 		/* Retrieve the transaction details from the user input. */
 		const transactionId = req.body.addTransactionId;
 		const customer = req.body.addTransactionCustomerName.trim();
@@ -1369,8 +1379,8 @@ const transactionController = {
 
 		/* Compute for the total cost of the transaction. */
 		const total = (priceGasoline * litersGasoline) + (pricePremiumGasoline95 * litersPremiumGasoline95) +
-					  (priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
-					  (priceKerosene * litersKerosene);
+					(priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
+					(priceKerosene * litersKerosene);
 
 		/* Assign the transaction details to the variable transaction. */
 		const transaction = {

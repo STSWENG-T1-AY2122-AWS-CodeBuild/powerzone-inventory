@@ -78,7 +78,7 @@ const registerController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 getCheckUsername: function(req, res) {
+	getCheckUsername: function(req, res) {
 		/* Retrieve the pertinent user input. */
 		const username = req.query.username.toLowerCase();
 
