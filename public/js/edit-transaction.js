@@ -1,6 +1,8 @@
 import {
 	enableButton,
-	disableButton
+	disableButton,
+	hideErrorMessage,
+	displayErrorMessage
 } from './general-util.js';
 
 $(function() {
@@ -10,13 +12,32 @@ $(function() {
 
 	for (const fuelType of fuelTypes) {
 		$('#edit-transaction-' + fuelType + '-liters').on('keyup', function() {
+			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) < 0) {
+				$('#edit-transaction-' + fuelType + '-liters').val(0);
+			}
+
 			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
                 parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
-				alert('>:(');
 
+				displayErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
 				disableButton($('#confirm-edit-transaction-btn'));
 			} else {
-				enableButton($('#confirm-edit-transaction-btn'));
+				hideErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
+
+				/* Enable only if there are no errors. */
+				let noError = true;
+				for (const fuelType of fuelTypes) {
+					if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
+                		parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
+
+						noError = false;
+						break;
+					}
+				}
+
+				if (noError) {
+					enableButton($('#confirm-edit-transaction-btn'));
+				}
 			}
 		});
 	}
