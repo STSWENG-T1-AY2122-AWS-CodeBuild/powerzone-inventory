@@ -880,8 +880,49 @@ const transactionController = {
 								i--;
 							}
 						}
-					} else {
 
+					/* If the current status of the transaction is "Pending" or "Completed", update the stocks based
+					 * on the difference between the original and the current fuel amounts purchased in the transaction. 
+					 */
+					} else {
+						/* If the transaction involves a purchase of gasoline, arrange the stocks in 
+						* chronological order and subtract the quantity purchased beginning from the 
+						* earliest available stock. */
+						if (litersGasoline > 0) {
+							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+							if (stocksGasoline.length >= 2) {
+								stocksGasoline.sort(function (a, b) {
+									let keyA = a.date;
+									let keyB = b.date;
+				
+									if (keyA > keyB)
+										return 1;
+									if (keyA < keyB)
+										return -1;
+									return 0;
+								});
+							}
+
+							/* Subtract fuel quantities from the stocks, starting from the oldest stock,
+							* until the quantity requested in the transaction has been reached.
+							*/
+							let transactionQuantity = litersGasoline;
+							let i = 0;
+
+							while (transactionQuantity > 0) {
+								let availableStock = stocksGasoline[i].quantityPurchased - stocksGasoline[i].quantityDepleted;
+
+								if (transactionQuantity >= availableStock) {
+									transactionQuantity = transactionQuantity - availableStock;
+									stocksGasoline[i].quantityDepleted = parseInt(stocksGasoline[i].quantityDepleted) + parseInt(availableStock);
+								} else {
+									stocksGasoline[i].quantityDepleted = parseInt(stocksGasoline[i].quantityDepleted) + parseInt(transactionQuantity);
+									transactionQuantity = 0;
+								}
+
+								i++;
+							}
+						}
 					}
 				}
 
