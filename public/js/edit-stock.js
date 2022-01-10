@@ -1,7 +1,9 @@
 import {
-	enableButton, 
-	disableButton, 
-	toTwoDecimalPlaces
+	enableButton,
+	disableButton,
+	toTwoDecimalPlaces,
+	displayErrorMessage,
+	hideErrorMessage
 } from './general-util.js';
 
 $(function() {
@@ -16,20 +18,22 @@ $(function() {
 	$('#edit-stock-quantity-purchased').on('keyup', function() {
 		clearTimeout(keypressTimer);
 
-		const currentQuantity = 
+		const currentQuantity =
 			parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());
 
 		if (currentQuantity >= 0) {
 			$('#edit-stock-current-quantity').val(currentQuantity);
 			enableButton($('#confirm-edit-stock-btn'));
+			hideErrorMessage($('#edit-stock-invalid-amount-quantity'));
 		} else {
 			$('#edit-stock-current-quantity').val(0);
 			disableButton($('#confirm-edit-stock-btn'));
+			displayErrorMessage($('#edit-stock-invalid-amount-quantity'));
 		}
 	});
 
 	$('#edit-stock-quantity-purchased').on('change', function() {
-		const currentQuantity = 
+		const currentQuantity =
 			parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());
 
 		if (currentQuantity < 0) {
