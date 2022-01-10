@@ -105,7 +105,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusPending: function(req, res) {
+	postEditStatusPending: function(req, res) {
 		/* Retrieve the ID of the selected account. */
 		const accountId = req.body.accountId;
 
@@ -127,7 +127,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusAccept: function(req, res) {
+	postEditStatusAccept: function(req, res) {
 		/* Retrieve the ID of the selected account. */
 		const accountId = req.body.accountId;
 
@@ -149,7 +149,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditRole: function(req, res) {
+	postEditRole: function(req, res) {
 		/* Retrieve the ID and role of the selected account. */
 		const accountId = req.body.accountId;
 		const accountRole = req.body.editAccountRole;
@@ -172,7 +172,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postDeleteAccount: function(req, res) {
+	postDeleteAccount: function(req, res) {
 		/* Retrieve the ID of the selected account. */
 		const accountId = req.body.accountId;
 
@@ -191,7 +191,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditAccount: function(req, res) {
+	postEditAccount: function(req, res) {
 		/* Retrieve the updated details of the user account. */
 		const email = req.body.editAccountEmail.trim();
 		const newUsername = req.body.editAccountUsername.trim();

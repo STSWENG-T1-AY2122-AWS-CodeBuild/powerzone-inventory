@@ -82,7 +82,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusCancelled: function(req, res) {
+	postEditStatusCancelled: function(req, res) {
 		/* Retrieve the ID of the selected transaction. */
 		const transactionId = req.body.transactionId;
 
@@ -104,7 +104,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusCompleted: function(req, res) {
+	postEditStatusCompleted: function(req, res) {
 		/* Retrieve the ID of the selected transaction. */
 		const transactionId = req.body.transactionId;
 
@@ -126,7 +126,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusPending: function(req, res) {
+	postEditStatusPending: function(req, res) {
 		/* Retrieve the ID of the selected transaction. */
 		const transactionId = req.body.transactionId;
 
@@ -317,7 +317,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditTransaction: function(req, res) {
+	postEditTransaction: function(req, res) {
 		/* Retrieve the transaction details from the user input. */
 		const transactionId = req.body.editTransactionId;
 		const status = req.body.editTransactionStatus;
@@ -343,8 +343,8 @@ const transactionController = {
 
 		/* Compute for the total cost of the transaction. */
 		const total = (priceGasoline * litersGasoline) + (pricePremiumGasoline95 * litersPremiumGasoline95) +
-					  (priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
-					  (priceKerosene * litersKerosene);
+					(priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
+					(priceKerosene * litersKerosene);
 
 		/* Update the database entry of the transaction. */
 		const filter = {id: transactionId};
@@ -1360,7 +1360,7 @@ const transactionController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postAddTransaction: function(req, res) {
+	postAddTransaction: function(req, res) {
 		/* Retrieve the transaction details from the user input. */
 		const transactionId = req.body.addTransactionId;
 		const customer = req.body.addTransactionCustomerName.trim();
@@ -1379,8 +1379,8 @@ const transactionController = {
 
 		/* Compute for the total cost of the transaction. */
 		const total = (priceGasoline * litersGasoline) + (pricePremiumGasoline95 * litersPremiumGasoline95) +
-					  (priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
-					  (priceKerosene * litersKerosene);
+					(priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
+					(priceKerosene * litersKerosene);
 
 		/* Assign the transaction details to the variable transaction. */
 		const transaction = {

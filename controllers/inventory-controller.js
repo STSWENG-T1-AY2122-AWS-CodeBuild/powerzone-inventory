@@ -118,7 +118,7 @@ const inventoryController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 getMoreInfoStock: function(req, res) {
+	getMoreInfoStock: function(req, res) {
 		/* Retrieve the purchase ID from the page link. */
 		const id = req.params.id;
 
@@ -223,7 +223,7 @@ const inventoryController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStock: function(req, res) {
+	postEditStock: function(req, res) {
 		/* Retrieve the purchase details from the user input. */
 		const id = req.body.editStockId;
 		const type = req.body.editStockName.trim();
@@ -251,7 +251,7 @@ const inventoryController = {
 			res.status(200).json('Stock details updated successfully!');
 			res.send();
 		});
-	 },
+	},
 
 	/**
 	 * Gets the page for adding a new stock or purchase.
@@ -269,7 +269,7 @@ const inventoryController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postAddStock: function(req, res) {
+	postAddStock: function(req, res) {
 		/* Retrieve the purchase details from the user input. */
 		const type = req.body.addStockName.trim();
 		const supplier = req.body.addStockSupplier.trim();
