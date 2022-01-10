@@ -47,7 +47,7 @@ describe('the function to get the inventory page', function() {
 		assert.isTrue(db.findMany.calledOnce);
 		assert.equal(db.findMany.firstCall.args[0], Inventory);
 		expect(db.findMany.firstCall.args[1]).to.deep.equalInAnyOrder({});
-		assert.equal(db.findMany.firstCall.args[2], '_id type date supplier price quantity');
+		assert.equal(db.findMany.firstCall.args[2], '_id type date supplier price quantityPurchased quantityDepleted');
 
 		db.findMany.restore();
 	});
@@ -90,7 +90,7 @@ describe('the function to get the page displaying more information for a particu
 		assert.isTrue(db.findOne.calledOnce);
 		assert.equal(db.findOne.firstCall.args[0], Inventory);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
-		assert.equal(db.findOne.firstCall.args[2], 'type supplier location quantity price date');
+		assert.equal(db.findOne.firstCall.args[2], 'type supplier location quantityPurchased quantityDepleted price date');
 
 		db.convertToObjectId.restore();
 		db.findOne.restore();
@@ -134,7 +134,7 @@ describe('the function to get the page for editing information on a particular s
 		assert.isTrue(db.findOne.calledOnce);
 		assert.equal(db.findOne.firstCall.args[0], Inventory);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
-		assert.equal(db.findOne.firstCall.args[2], 'type supplier location quantity price date');
+		assert.equal(db.findOne.firstCall.args[2], 'type supplier location quantityPurchased quantityDepleted price date');
 
 		db.convertToObjectId.restore();
 		db.findOne.restore();
@@ -149,7 +149,8 @@ describe('the function to register the details of a particular stock', function(
 				editStockName: 'Diesel',
 				editStockSupplier: 'Chevron',
 				editStockStorage: 'Masangkay',
-				editStockQuantity: '1234',
+				editStockQuantityPurchased: '1234',
+				editStockQuantityDepleted: '1000',
 				editStockPricePurchased: '45.3',
 				editStockDatePurchased: '05-06-2022'
 			}
@@ -172,7 +173,7 @@ describe('the function to register the details of a particular stock', function(
 			type: req.body.editStockName.trim(),
 			supplier: req.body.editStockSupplier.trim(),
 			location: req.body.editStockStorage.trim(),
-			quantity: req.body.editStockQuantity,
+			quantityPurchased: req.body.editStockQuantity,
 			price: req.body.editStockPricePurchased,
 			date: req.body.editStockDatePurchased
 		};
@@ -210,7 +211,8 @@ describe('the function to add a new stock', function() {
 				addStockName: 'Diesel',
 				addStockSupplier: 'Chevron',
 				addStockStorage: 'Masangkay',
-				addStockQuantity: '1234',
+				addStockQuantityPurchased: '1234',
+				addStockQuantityDepleted: '1000',
 				addStockPricePurchased: '45.3',
 				addStockDatePurchased: '05-06-2022'
 			}
@@ -225,7 +227,8 @@ describe('the function to add a new stock', function() {
 			type: req.body.addStockName.trim(),
 			supplier: req.body.addStockSupplier.trim(),
 			location: req.body.addStockStorage.trim(),
-			quantity: req.body.addStockQuantity,
+			quantityDepleted: 0,
+			quantityPurchased: req.body.addStockQuantityPurchased,
 			price: req.body.addStockPricePurchased,
 			date: req.body.addStockDatePurchased
 		};
