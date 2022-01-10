@@ -3,7 +3,8 @@ import {
 	sortAtoZ,
 	sortZtoA,
 	sortLowToHigh,
-	sortHighToLow
+	sortHighToLow,
+	getStatusFromIcon
 } from './transaction-util.js';
 
 import {
@@ -16,12 +17,22 @@ $(function() {
 		$(this).text('₱ ' + toTwoDecimalPlaces($(this).text().substring(2)));
 	});
 
-	$('.edit-transaction-status').on('click', function() {
-		const accountId = extractId($(this).attr('id'));
+	$('.edit-transaction-clickable').each(function() {
+		const transactionId = extractId($(this).attr('id'));
 
-		$('#edit-transaction-status-form-id').val(accountId);
-		$('#edit-transaction-status-form-display-id').text($('#id-' + accountId).text());
-		$('#edit-transaction-status-form-customer').text($('#customer-' + accountId).text());
+		if (getStatusFromIcon($('#status-img-' + transactionId).attr('src')) == 'completed') {
+			$('#edit-' + transactionId).css('pointer-events', 'none');
+		} else {
+			$('#edit-' + transactionId).css('pointer-events', 'auto');
+		}
+	})
+
+	$('.edit-transaction-status').on('click', function() {
+		const transactionId = extractId($(this).attr('id'));
+
+		$('#edit-transaction-status-form-id').val(transactionId);
+		$('#edit-transaction-status-form-display-id').text($('#id-' + transactionId).text());
+		$('#edit-transaction-status-form-customer').text($('#customer-' + transactionId).text());
 	});
 
 	const transactionTableId = 'transaction-table';
@@ -72,6 +83,8 @@ $(function() {
 				200: function() {
 					$('#status-img-' + transactionId).attr('src', '/assets/rejected.png');
 					$('#edit-transaction-status-modal').modal('hide');
+
+					$('#edit-' + transactionId).css('pointer-events', 'auto');
 				},
 
 				/* Otherwise, display an error message. */
@@ -97,6 +110,8 @@ $(function() {
 				200: function() {
 					$('#status-img-' + transactionId).attr('src', '/assets/accepted.png');
 					$('#edit-transaction-status-modal').modal('hide');
+
+					$('#edit-' + transactionId).css('pointer-events', 'none');
 				},
 
 				/* Otherwise, display an error message. */
@@ -122,6 +137,8 @@ $(function() {
 				200: function() {
 					$('#status-img-' + transactionId).attr('src', '/assets/pending.png');
 					$('#edit-transaction-status-modal').modal('hide');
+
+					$('#edit-' + transactionId).css('pointer-events', 'auto');
 				},
 
 				/* Otherwise, display an error message. */
