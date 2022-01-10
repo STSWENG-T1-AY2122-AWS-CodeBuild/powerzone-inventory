@@ -27,7 +27,7 @@ $(function() {
 				let noError = true;
 				for (const fuelType of fuelTypes) {
 					if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
-                		parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
+						parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
 						noError = false;
 						break;
 					}

@@ -1,5 +1,5 @@
 import {
-	displayErrorMessage, 
+	displayErrorMessage,
 	hideErrorMessage,
 	toTwoDecimalPlaces,
 	disableButton,
@@ -24,7 +24,7 @@ $(function() {
 				/* Enable only if there are no errors. */
 				let noError = true;
 				for (const fuelType of fuelTypes) {
-					if (parseInt($('#add-transaction-' + fuelType + '-liters').val()) > 
+					if (parseInt($('#add-transaction-' + fuelType + '-liters').val()) >
 						parseInt($('#add-transaction-' + fuelType + '-liters').attr('max'))) {
 						noError = false;
 						break;
