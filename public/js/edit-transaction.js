@@ -33,7 +33,6 @@ $(function() {
 				disableButton($('#confirm-edit-transaction-btn'));
 			} else {
 				hideErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
-
 			}
 		});
 	}
