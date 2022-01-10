@@ -25,7 +25,7 @@ $(function() {
 		} else {
 			$('#edit-' + transactionId).css('pointer-events', 'auto');
 		}
-	})
+	});
 
 	$('.edit-transaction-status').on('click', function() {
 		const transactionId = extractId($(this).attr('id'));

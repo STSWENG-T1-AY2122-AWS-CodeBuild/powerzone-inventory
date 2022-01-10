@@ -18,7 +18,6 @@ $(function() {
 
 			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
                 parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
-
 				displayErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
 				disableButton($('#confirm-edit-transaction-btn'));
 			} else {
@@ -29,7 +28,6 @@ $(function() {
 				for (const fuelType of fuelTypes) {
 					if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
                 		parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
-
 						noError = false;
 						break;
 					}
