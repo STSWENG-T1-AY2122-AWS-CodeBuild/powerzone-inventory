@@ -6,9 +6,20 @@ import {
 	enableButton
 } from './general-util.js';
 
+import {isValidPhoneNumber} from './transaction-validate-util.js';
+
 $(function() {
 	$('.prices').each(function() {
 		$(this).val(toTwoDecimalPlaces($(this).val()));
+	});
+
+	$('#add-transaction-customer-number').on('keyup', function() {
+		if (!isValidPhoneNumber($(this).val())) {
+			displayErrorMessage($('#add-transaction-invalid-customer-number'));
+			disableButton($('#confirm-add-transaction-btn'));
+		} else {
+			hideErrorMessage($('#add-transaction-invalid-customer-number'));
+		}
 	});
 
 	const fuelTypes = ['gasoline', 'premium-gasoline-95', 'diesel', 'premium-gasoline-97', 'kerosene'];
@@ -20,24 +31,25 @@ $(function() {
 				disableButton($('#confirm-add-transaction-btn'));
 			} else {
 				hideErrorMessage($('#add-transaction-invalid-amount-' + fuelType));
-
-				/* Enable only if there are no errors. */
-				let noError = true;
-				for (const fuelType of fuelTypes) {
-					if (parseInt($('#add-transaction-' + fuelType + '-liters').val()) >
-						parseInt($('#add-transaction-' + fuelType + '-liters').attr('max'))) {
-						noError = false;
-						break;
-					}
-				}
-
-				if (noError) {
-					enableButton($('#confirm-add-transaction-btn'));
-				}
 			}
 		});
 	}
 
+	$('input').on('keyup', function() {
+		/* Enable only if there are no errors. */
+		let noError = true;
+		for (const fuelType of fuelTypes) {
+			if (parseInt($('#add-transaction-' + fuelType + '-liters').val()) >
+				parseInt($('#add-transaction-' + fuelType + '-liters').attr('max'))) {
+				noError = false;
+				break;
+			}
+		}
+
+		if (noError && isValidPhoneNumber($('#add-transaction-customer-number').val())) {
+			enableButton($('#confirm-add-transaction-btn'));
+		}
+	});
 
 	$('#add-transaction-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
