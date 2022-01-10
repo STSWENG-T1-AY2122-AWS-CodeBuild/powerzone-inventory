@@ -1,5 +1,5 @@
 const getDom = function() {
-    return `<html>
+	return `<html>
                 <body>
                     <div id = "error"></div>
                     <input type = "text" id = "fname">
@@ -18,6 +18,6 @@ const getDom = function() {
                     </table>
                 </body>
             </html>`;
-}
+};
 
 export {getDom};

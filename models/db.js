@@ -174,9 +174,9 @@ const database = {
      * @param {Object} update revisions to the document data
      */
 	updateOneIterative: function(model, filter, update) {
-        model.updateOne (filter, update, function() {
-        });
-    }
+		model.updateOne(filter, update, function() {
+		});
+	}
 };
 
 module.exports = database;
