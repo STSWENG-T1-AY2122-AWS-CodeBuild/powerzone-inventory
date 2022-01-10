@@ -33,7 +33,6 @@ $(function() {
 				disableButton($('#confirm-edit-transaction-btn'));
 			} else {
 				hideErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
-
 			}
 		});
 	}
@@ -52,7 +51,7 @@ $(function() {
 		if (noError && isValidPhoneNumber($('#edit-transaction-customer-number').val())) {
 			enableButton($('#confirm-edit-transaction-btn'));
 		}
-	})
+	});
 
 	$('#edit-transaction-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
