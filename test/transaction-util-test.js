@@ -3,7 +3,7 @@ const {JSDOM} = jsdom;
 const assert = require('chai').assert;
 
 const {
-    getStatusFromIcon,
+	getStatusFromIcon,
 	showAll,
 	filterBy,
 	sortAtoZ,
@@ -94,7 +94,7 @@ describe('the function to sort the entries of the table from A to Z', function()
 
 		assert.equal(rows[0].getElementsByTagName('td')[2].textContent, 'Chevron');
 		assert.equal(rows[1].getElementsByTagName('td')[2].textContent, 'Petron');
-        assert.equal(rows[2].getElementsByTagName('td')[2].textContent, 'Shell');
+		assert.equal(rows[2].getElementsByTagName('td')[2].textContent, 'Shell');
 	});
 });
 
