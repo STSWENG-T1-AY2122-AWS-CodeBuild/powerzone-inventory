@@ -885,10 +885,10 @@ const transactionController = {
 					 * on the difference between the original and the current fuel amounts purchased in the transaction. 
 					 */
 					} else {
-						/* If the transaction involves a purchase of gasoline, arrange the stocks in 
-						* chronological order and subtract the quantity purchased beginning from the 
-						* earliest available stock. */
-						if (litersGasoline > 0) {
+						/* If the transaction involves difference in the amount of gasoline purchased, 
+						 * arrange the stocks in chronological order and update them accordingly. 
+						 */
+						if (litersGasoline - litersGasolineOld != 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksGasoline.length >= 2) {
 								stocksGasoline.sort(function (a, b) {
@@ -903,32 +903,317 @@ const transactionController = {
 								});
 							}
 
-							/* Subtract fuel quantities from the stocks, starting from the oldest stock,
-							* until the quantity requested in the transaction has been reached.
-							*/
-							let transactionQuantity = litersGasoline;
-							let i = 0;
+							/* If the current amount of fuel purchased is greater than the original
+							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * oldest stock, until the difference has been reached.
+							 */
+							if (litersGasoline > litersGasolineOld) {
+								let transactionQuantity = litersGasoline - litersGasolineOld;
+								let i = 0;
 
-							while (transactionQuantity > 0) {
-								let availableStock = stocksGasoline[i].quantityPurchased - stocksGasoline[i].quantityDepleted;
+								while (transactionQuantity > 0) {
+									let availableStock = stocksGasoline[i].quantityPurchased - stocksGasoline[i].quantityDepleted;
 
-								if (transactionQuantity >= availableStock) {
-									transactionQuantity = transactionQuantity - availableStock;
-									stocksGasoline[i].quantityDepleted = parseInt(stocksGasoline[i].quantityDepleted) + parseInt(availableStock);
-								} else {
-									stocksGasoline[i].quantityDepleted = parseInt(stocksGasoline[i].quantityDepleted) + parseInt(transactionQuantity);
-									transactionQuantity = 0;
+									if (transactionQuantity >= availableStock) {
+										transactionQuantity = transactionQuantity - availableStock;
+										stocksGasoline[i].quantityDepleted = parseInt(stocksGasoline[i].quantityDepleted) + parseInt(availableStock);
+									} else {
+										stocksGasoline[i].quantityDepleted = parseInt(stocksGasoline[i].quantityDepleted) + parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i++;
 								}
 
-								i++;
+							/* Otherwise, if the current amount of fuel purchased is less than the original
+							 * amount, return fuel quantities to the stocks, starting from the latest stock,
+							 * until the difference has been depleted.
+							 */
+							} else if (litersGasoline < litersGasolineOld) {
+								let transactionQuantity = litersGasolineOld - litersGasoline;
+								let i = stocksGasoline.length - 1;
+
+								while (transactionQuantity > 0) {
+									const depletedStock = stocksGasoline[i].quantityDepleted;
+
+									if (transactionQuantity >= depletedStock) {
+										transactionQuantity = transactionQuantity - depletedStock;
+										stocksGasoline[i].quantityDepleted = 0;
+									} else {
+										stocksGasoline[i].quantityDepleted = parseInt(stocksGasoline[i].quantityDepleted) - parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i--;
+								}
+							}	
+						}
+
+
+						/* If the transaction involves difference in the amount of Premium Gasoline 95 purchased, 
+						 * arrange the stocks in chronological order and update them accordingly. 
+						 */
+						if (litersPremiumGasoline95 - litersPremiumGasoline95Old != 0) {
+							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+							if (stocksPremiumGasoline95.length >= 2) {
+								stocksPremiumGasoline95.sort(function (a, b) {
+									let keyA = a.date;
+									let keyB = b.date;
+				
+									if (keyA > keyB)
+										return 1;
+									if (keyA < keyB)
+										return -1;
+									return 0;
+								});
 							}
+
+							/* If the current amount of fuel purchased is greater than the original
+							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * oldest stock, until the difference has been reached.
+							 */
+							if (litersPremiumGasoline95 > litersPremiumGasoline95Old) {
+								let transactionQuantity = litersPremiumGasoline95 - litersPremiumGasoline95Old;
+								let i = 0;
+
+								while (transactionQuantity > 0) {
+									let availableStock = stocksPremiumGasoline95[i].quantityPurchased - stocksPremiumGasoline95[i].quantityDepleted;
+
+									if (transactionQuantity >= availableStock) {
+										transactionQuantity = transactionQuantity - availableStock;
+										stocksPremiumGasoline95[i].quantityDepleted = parseInt(stocksPremiumGasoline95[i].quantityDepleted) + parseInt(availableStock);
+									} else {
+										stocksPremiumGasoline95[i].quantityDepleted = parseInt(stocksPremiumGasoline95[i].quantityDepleted) + parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i++;
+								}
+
+							/* Otherwise, if the current amount of fuel purchased is less than the original
+							 * amount, return fuel quantities to the stocks, starting from the latest stock,
+							 * until the difference has been depleted.
+							 */
+							} else if (litersPremiumGasoline95 < litersPremiumGasoline95Old) {
+								let transactionQuantity = litersPremiumGasoline95Old - litersPremiumGasoline95;
+								let i = stocksPremiumGasoline95.length - 1;
+
+								while (transactionQuantity > 0) {
+									const depletedStock = stocksPremiumGasoline95[i].quantityDepleted;
+
+									if (transactionQuantity >= depletedStock) {
+										transactionQuantity = transactionQuantity - depletedStock;
+										stocksPremiumGasoline95[i].quantityDepleted = 0;
+									} else {
+										stocksPremiumGasoline95[i].quantityDepleted = parseInt(stocksPremiumGasoline95[i].quantityDepleted) - parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i--;
+								}
+							}	
+						}
+
+
+						/* If the transaction involves difference in the amount of diesel purchased, 
+						 * arrange the stocks in chronological order and update them accordingly. 
+						 */
+						if (litersDiesel - litersDieselOld != 0) {
+							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+							if (stocksDiesel.length >= 2) {
+								stocksDiesel.sort(function (a, b) {
+									let keyA = a.date;
+									let keyB = b.date;
+
+									if (keyA > keyB)
+										return 1;
+									if (keyA < keyB)
+										return -1;
+									return 0;
+								});
+							}
+
+							/* If the current amount of fuel purchased is greater than the original
+							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * oldest stock, until the difference has been reached.
+							 */
+							if (litersDiesel > litersDieselOld) {
+								let transactionQuantity = litersDiesel - litersDieselOld;
+								let i = 0;
+
+								while (transactionQuantity > 0) {
+									let availableStock = stocksDiesel[i].quantityPurchased - stocksDiesel[i].quantityDepleted;
+
+									if (transactionQuantity >= availableStock) {
+										transactionQuantity = transactionQuantity - availableStock;
+										stocksDiesel[i].quantityDepleted = parseInt(stocksDiesel[i].quantityDepleted) + parseInt(availableStock);
+									} else {
+										stocksDiesel[i].quantityDepleted = parseInt(stocksDiesel[i].quantityDepleted) + parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i++;
+								}
+
+							/* Otherwise, if the current amount of fuel purchased is less than the original
+							 * amount, return fuel quantities to the stocks, starting from the latest stock,
+							 * until the difference has been depleted.
+							 */
+							} else if (litersDiesel < litersDieselOld) {
+								let transactionQuantity = litersDieselOld - litersDiesel;
+								let i = stocksDiesel.length - 1;
+
+								while (transactionQuantity > 0) {
+									const depletedStock = stocksDiesel[i].quantityDepleted;
+
+									if (transactionQuantity >= depletedStock) {
+										transactionQuantity = transactionQuantity - depletedStock;
+										stocksDiesel[i].quantityDepleted = 0;
+									} else {
+										stocksDiesel[i].quantityDepleted = parseInt(stocksDiesel[i].quantityDepleted) - parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i--;
+								}
+							}	
+						}
+
+
+						/* If the transaction involves difference in the amount of Premium Gasoline 97 purchased, 
+						 * arrange the stocks in chronological order and update them accordingly. 
+						 */
+						if (litersPremiumGasoline97 - litersPremiumGasoline97Old != 0) {
+							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+							if (stocksPremiumGasoline97.length >= 2) {
+								stocksPremiumGasoline97.sort(function (a, b) {
+									let keyA = a.date;
+									let keyB = b.date;
+				
+									if (keyA > keyB)
+										return 1;
+									if (keyA < keyB)
+										return -1;
+									return 0;
+								});
+							}
+
+							/* If the current amount of fuel purchased is greater than the original
+							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * oldest stock, until the difference has been reached.
+							 */
+							if (litersPremiumGasoline97 > litersPremiumGasoline97Old) {
+								let transactionQuantity = litersPremiumGasoline97 - litersPremiumGasoline97Old;
+								let i = 0;
+
+								while (transactionQuantity > 0) {
+									let availableStock = stocksPremiumGasoline97[i].quantityPurchased - stocksPremiumGasoline97[i].quantityDepleted;
+
+									if (transactionQuantity >= availableStock) {
+										transactionQuantity = transactionQuantity - availableStock;
+										stocksPremiumGasoline97[i].quantityDepleted = parseInt(stocksPremiumGasoline97[i].quantityDepleted) + parseInt(availableStock);
+									} else {
+										stocksPremiumGasoline97[i].quantityDepleted = parseInt(stocksPremiumGasoline97[i].quantityDepleted) + parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i++;
+								}
+
+							/* Otherwise, if the current amount of fuel purchased is less than the original
+							 * amount, return fuel quantities to the stocks, starting from the latest stock,
+							 * until the difference has been depleted.
+							 */
+							} else if (litersPremiumGasoline97 < litersPremiumGasoline97Old) {
+								let transactionQuantity = litersPremiumGasoline97Old - litersPremiumGasoline97;
+								let i = stocksPremiumGasoline97.length - 1;
+
+								while (transactionQuantity > 0) {
+									const depletedStock = stocksPremiumGasoline97[i].quantityDepleted;
+
+									if (transactionQuantity >= depletedStock) {
+										transactionQuantity = transactionQuantity - depletedStock;
+										stocksPremiumGasoline97[i].quantityDepleted = 0;
+									} else {
+										stocksPremiumGasoline97[i].quantityDepleted = parseInt(stocksPremiumGasoline97[i].quantityDepleted) - parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i--;
+								}
+							}	
+						}
+
+
+						/* If the transaction involves difference in the amount of kerosene purchased, 
+						 * arrange the stocks in chronological order and update them accordingly. 
+						 */
+						if (litersKerosene - litersKeroseneOld != 0) {
+							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+							if (stocksKerosene.length >= 2) {
+								stocksKerosene.sort(function (a, b) {
+									let keyA = a.date;
+									let keyB = b.date;
+
+									if (keyA > keyB)
+										return 1;
+									if (keyA < keyB)
+										return -1;
+									return 0;
+								});
+							}
+
+							/* If the current amount of fuel purchased is greater than the original
+							 * amount, subtract fuel quantities from the stocks, starting from the 
+							 * oldest stock, until the difference has been reached.
+							 */
+							if (litersKerosene > litersKeroseneOld) {
+								let transactionQuantity = litersKerosene - litersKeroseneOld;
+								let i = 0;
+
+								while (transactionQuantity > 0) {
+									let availableStock = stocksKerosene[i].quantityPurchased - stocksKerosene[i].quantityDepleted;
+
+									if (transactionQuantity >= availableStock) {
+										transactionQuantity = transactionQuantity - availableStock;
+										stocksKerosene[i].quantityDepleted = parseInt(stocksKerosene[i].quantityDepleted) + parseInt(availableStock);
+									} else {
+										stocksKerosene[i].quantityDepleted = parseInt(stocksKerosene[i].quantityDepleted) + parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i++;
+								}
+
+							/* Otherwise, if the current amount of fuel purchased is less than the original
+							 * amount, return fuel quantities to the stocks, starting from the latest stock,
+							 * until the difference has been depleted.
+							 */
+							} else if (litersKerosene < litersKeroseneOld) {
+								let transactionQuantity = litersKeroseneOld - litersKerosene;
+								let i = stocksKerosene.length - 1;
+
+								while (transactionQuantity > 0) {
+									const depletedStock = stocksKerosene[i].quantityDepleted;
+
+									if (transactionQuantity >= depletedStock) {
+										transactionQuantity = transactionQuantity - depletedStock;
+										stocksKerosene[i].quantityDepleted = 0;
+									} else {
+										stocksKerosene[i].quantityDepleted = parseInt(stocksKerosene[i].quantityDepleted) - parseInt(transactionQuantity);
+										transactionQuantity = 0;
+									}
+
+									i--;
+								}
+							}	
 						}
 					}
 				}
 
 				/* Update the quantities depleted of the gasoline stocks. */
 				for (i = 0; i < stocksGasoline.length; i++) {
-					const filter = {id: stocksGasoline[i].id};
+					const filter = {_id: stocksGasoline[i]._id};
 					const update = {
 						quantityDepleted: stocksGasoline[i].quantityDepleted
 					};
@@ -938,7 +1223,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the Premium Gasoline 95 stocks. */
 				for (i = 0; i < stocksPremiumGasoline95.length; i++) {
-					const filter = {id: stocksPremiumGasoline95[i].id};
+					const filter = {_id: stocksPremiumGasoline95[i]._id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline95[i].quantityDepleted
 					};
@@ -948,7 +1233,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the diesel stocks. */
 				for (i = 0; i < stocksDiesel.length; i++) {
-					const filter = {id: stocksDiesel[i].id};
+					const filter = {_id: stocksDiesel[i]._id};
 					const update = {
 						quantityDepleted: stocksDiesel[i].quantityDepleted
 					};
@@ -958,7 +1243,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the Premium Gasoline 97 stocks. */
 				for (i = 0; i < stocksPremiumGasoline97.length; i++) {
-					const filter = {id: stocksPremiumGasoline97[i].id};
+					const filter = {_id: stocksPremiumGasoline97[i]._id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline97[i].quantityDepleted
 					};
@@ -968,7 +1253,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the kerosene stocks. */
 				for (i = 0; i < stocksKerosene.length; i++) {
-					const filter = {id: stocksKerosene[i].id};
+					const filter = {_id: stocksKerosene[i]._id};
 					const update = {
 						quantityDepleted: stocksKerosene[i].quantityDepleted
 					};
@@ -1350,7 +1635,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the gasoline stocks. */
 				for (i = 0; i < stocksGasoline.length; i++) {
-					const filter = {id: stocksGasoline[i].id};
+					const filter = {_id: stocksGasoline[i]._id};
 					const update = {
 						quantityDepleted: stocksGasoline[i].quantityDepleted
 					};
@@ -1360,7 +1645,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the Premium Gasoline 95 stocks. */
 				for (i = 0; i < stocksPremiumGasoline95.length; i++) {
-					const filter = {id: stocksPremiumGasoline95[i].id};
+					const filter = {_id: stocksPremiumGasoline95[i]._id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline95[i].quantityDepleted
 					};
@@ -1370,7 +1655,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the diesel stocks. */
 				for (i = 0; i < stocksDiesel.length; i++) {
-					const filter = {id: stocksDiesel[i].id};
+					const filter = {_id: stocksDiesel[i]._id};
 					const update = {
 						quantityDepleted: stocksDiesel[i].quantityDepleted
 					};
@@ -1380,7 +1665,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the Premium Gasoline 97 stocks. */
 				for (i = 0; i < stocksPremiumGasoline97.length; i++) {
-					const filter = {id: stocksPremiumGasoline97[i].id};
+					const filter = {_id: stocksPremiumGasoline97[i]._id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline97[i].quantityDepleted
 					};
@@ -1390,7 +1675,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the kerosene stocks. */
 				for (i = 0; i < stocksKerosene.length; i++) {
-					const filter = {id: stocksKerosene[i].id};
+					const filter = {_id: stocksKerosene[i]._id};
 					const update = {
 						quantityDepleted: stocksKerosene[i].quantityDepleted
 					};
