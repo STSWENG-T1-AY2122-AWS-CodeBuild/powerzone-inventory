@@ -5,8 +5,19 @@ import {
 	displayErrorMessage
 } from './general-util.js';
 
+import {isValidPhoneNumber} from './transaction-validate-util.js';
+
 $(function() {
 	$('#edit-transaction-status').val($('#edit-transaction-status-hidden').val());
+
+	$('#edit-transaction-customer-number').on('keyup', function() {
+		if (!isValidPhoneNumber($(this).val())) {
+			displayErrorMessage($('#edit-transaction-invalid-customer-number'));
+			disableButton($('#confirm-edit-transaction-btn'));
+		} else {
+			hideErrorMessage($('#edit-transaction-invalid-customer-number'));
+		}
+	});
 
 	const fuelTypes = ['gasoline', 'premium-gasoline-95', 'diesel', 'premium-gasoline-97', 'kerosene'];
 
@@ -23,22 +34,25 @@ $(function() {
 			} else {
 				hideErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
 
-				/* Enable only if there are no errors. */
-				let noError = true;
-				for (const fuelType of fuelTypes) {
-					if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
-						parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
-						noError = false;
-						break;
-					}
-				}
-
-				if (noError) {
-					enableButton($('#confirm-edit-transaction-btn'));
-				}
 			}
 		});
 	}
+
+	$('input').on('keyup', function() {
+		/* Enable only if there are no errors. */
+		let noError = true;
+		for (const fuelType of fuelTypes) {
+			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
+				parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
+				noError = false;
+				break;
+			}
+		}
+
+		if (noError && isValidPhoneNumber($('#edit-transaction-customer-number').val())) {
+			enableButton($('#confirm-edit-transaction-btn'));
+		}
+	})
 
 	$('#edit-transaction-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
