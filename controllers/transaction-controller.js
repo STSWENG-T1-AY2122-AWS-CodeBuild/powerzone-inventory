@@ -342,7 +342,7 @@ const transactionController = {
 		const litersKeroseneOld = req.body.editTransactionKeroseneLitersOld;
 
 		/* Compute for the total cost of the transaction. */
-		const total = (priceGasoline * litersGasoline) + (pricePremiumGasoline95 * litersPremiumGasoline95) + 
+		const total = (priceGasoline * litersGasoline) + (pricePremiumGasoline95 * litersPremiumGasoline95) +
 					  (priceDiesel * litersDiesel) + (pricePremiumGasoline97 * litersPremiumGasoline97) +
 					  (priceKerosene * litersKerosene);
 
@@ -370,13 +370,12 @@ const transactionController = {
 
 		/* Update the transaction in the database. */
 		db.updateOne(Transaction, filter, update, function(flag) {
-			
 			/* Store the stocks for each fuel type in a separate array to update their quantities. */
-			let stocksGasoline = [];
-			let stocksPremiumGasoline95 = [];
-			let stocksDiesel = [];
-			let stocksPremiumGasoline97 = [];
-			let stocksKerosene = [];
+			const stocksGasoline = [];
+			const stocksPremiumGasoline95 = [];
+			const stocksDiesel = [];
+			const stocksPremiumGasoline97 = [];
+			const stocksKerosene = [];
 
 			/* Retrieve the fuel types, purchase dates, and quantities of all inventory stocks. */
 			const query = {};
@@ -403,27 +402,29 @@ const transactionController = {
 
 				/* If the original status of the transaction is "Cancelled" and its current status is also
 				 * "Cancelled", the stocks are not updated. Hence, only update the stocks if the current
-				 * status of the transaction is "Pending" or "Completed". 
+				 * status of the transaction is "Pending" or "Completed".
 				 */
-				if (statusOrig == "cancelled") {
-					/* If the current status of the transaction is "Pending" or "Completed", subtract the 
+				if (statusOrig == 'cancelled') {
+					/* If the current status of the transaction is "Pending" or "Completed", subtract the
 					 * ordered fuel amounts from the stocks.
 					 */
-					if (status == "pending" || status == "completed") {
-						/* If the transaction involves a purchase of gasoline, arrange the stocks in 
-						* chronological order and subtract the quantity purchased beginning from the 
+					if (status == 'pending' || status == 'completed') {
+						/* If the transaction involves a purchase of gasoline, arrange the stocks in
+						* chronological order and subtract the quantity purchased beginning from the
 						* earliest available stock. */
 						if (litersGasoline > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksGasoline.length >= 2) {
-								stocksGasoline.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksGasoline.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -435,7 +436,7 @@ const transactionController = {
 							let i = 0;
 
 							while (transactionQuantity > 0) {
-								let availableStock = stocksGasoline[i].quantityPurchased - stocksGasoline[i].quantityDepleted;
+								const availableStock = stocksGasoline[i].quantityPurchased - stocksGasoline[i].quantityDepleted;
 
 								if (transactionQuantity >= availableStock) {
 									transactionQuantity = transactionQuantity - availableStock;
@@ -449,20 +450,22 @@ const transactionController = {
 							}
 						}
 
-						/* If the transaction involves a purchase of Premium Gasoline 95, arrange the stocks in 
-						* chronological order and subtract the quantity purchased beginning from the 
+						/* If the transaction involves a purchase of Premium Gasoline 95, arrange the stocks in
+						* chronological order and subtract the quantity purchased beginning from the
 						* earliest available stock. */
 						if (litersPremiumGasoline95 > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksPremiumGasoline95.length >= 2) {
-								stocksPremiumGasoline95.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksPremiumGasoline95.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -474,7 +477,7 @@ const transactionController = {
 							let i = 0;
 
 							while (transactionQuantity > 0) {
-								let availableStock = stocksPremiumGasoline95[i].quantityPurchased - stocksPremiumGasoline95[i].quantityDepleted;
+								const availableStock = stocksPremiumGasoline95[i].quantityPurchased - stocksPremiumGasoline95[i].quantityDepleted;
 
 								if (transactionQuantity >= availableStock) {
 									transactionQuantity = transactionQuantity - availableStock;
@@ -489,20 +492,22 @@ const transactionController = {
 						}
 
 
-						/* If the transaction involves a purchase of diesel, arrange the stocks in 
-						* chronological order and subtract the quantity purchased beginning from the 
+						/* If the transaction involves a purchase of diesel, arrange the stocks in
+						* chronological order and subtract the quantity purchased beginning from the
 						* earliest available stock. */
 						if (litersDiesel > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksDiesel.length >= 2) {
-								stocksDiesel.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksDiesel.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -514,7 +519,7 @@ const transactionController = {
 							let i = 0;
 
 							while (transactionQuantity > 0) {
-								let availableStock = stocksDiesel[i].quantityPurchased - stocksDiesel[i].quantityDepleted;
+								const availableStock = stocksDiesel[i].quantityPurchased - stocksDiesel[i].quantityDepleted;
 
 								if (transactionQuantity >= availableStock) {
 									transactionQuantity = transactionQuantity - availableStock;
@@ -527,22 +532,24 @@ const transactionController = {
 								i++;
 							}
 						}
-						
 
-						/* If the transaction involves a purchase of Premium Gasoline 97, arrange the stocks in 
-						* chronological order and subtract the quantity purchased beginning from the 
+
+						/* If the transaction involves a purchase of Premium Gasoline 97, arrange the stocks in
+						* chronological order and subtract the quantity purchased beginning from the
 						* earliest available stock. */
 						if (litersPremiumGasoline97 > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksPremiumGasoline97.length >= 2) {
-								stocksPremiumGasoline97.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksPremiumGasoline97.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -554,7 +561,7 @@ const transactionController = {
 							let i = 0;
 
 							while (transactionQuantity > 0) {
-								let availableStock = stocksPremiumGasoline97[i].quantityPurchased - stocksPremiumGasoline97[i].quantityDepleted;
+								const availableStock = stocksPremiumGasoline97[i].quantityPurchased - stocksPremiumGasoline97[i].quantityDepleted;
 
 								if (transactionQuantity >= availableStock) {
 									transactionQuantity = transactionQuantity - availableStock;
@@ -566,23 +573,25 @@ const transactionController = {
 
 								i++;
 							}
-						}				
-						
+						}
 
-						/* If the transaction involves a purchase of kerosene, arrange the stocks in 
-						* chronological order and subtract the quantity purchased beginning from the 
+
+						/* If the transaction involves a purchase of kerosene, arrange the stocks in
+						* chronological order and subtract the quantity purchased beginning from the
 						* earliest available stock. */
 						if (litersKerosene > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksKerosene.length >= 2) {
-								stocksKerosene.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksKerosene.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -594,7 +603,7 @@ const transactionController = {
 							let i = 0;
 
 							while (transactionQuantity > 0) {
-								let availableStock = stocksKerosene[i].quantityPurchased - stocksKerosene[i].quantityDepleted;
+								const availableStock = stocksKerosene[i].quantityPurchased - stocksKerosene[i].quantityDepleted;
 
 								if (transactionQuantity >= availableStock) {
 									transactionQuantity = transactionQuantity - availableStock;
@@ -609,27 +618,29 @@ const transactionController = {
 						}
 					}
 
-				/* If the original status of the transaction is "Pending", handle the inventory updates accordingly. */	
+				/* If the original status of the transaction is "Pending", handle the inventory updates accordingly. */
 				} else {
 					/* If the current status of the transaction is "Cancelled", return the fuel amounts originally
-					 * ordered in the transaction to their respective stocks for reallocation to other transactions. 
+					 * ordered in the transaction to their respective stocks for reallocation to other transactions.
 					 */
-					if (status == "cancelled") {
-						/* If the transaction originally involves a purchase of gasoline, arrange the stocks in 
-						 * chronological order and return the quantity purchased beginning from the 
-						 * latest stock, as the inventory is consumed via the FIFO method. 
+					if (status == 'cancelled') {
+						/* If the transaction originally involves a purchase of gasoline, arrange the stocks in
+						 * chronological order and return the quantity purchased beginning from the
+						 * latest stock, as the inventory is consumed via the FIFO method.
 						 */
 						if (litersGasolineOld > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksGasoline.length >= 2) {
-								stocksGasoline.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksGasoline.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -641,7 +652,7 @@ const transactionController = {
 							let i = stocksGasoline.length - 1;
 
 							while (transactionQuantity > 0) {
-								let depletedStock = stocksGasoline[i].quantityDepleted;
+								const depletedStock = stocksGasoline[i].quantityDepleted;
 
 								if (transactionQuantity >= depletedStock) {
 									transactionQuantity = transactionQuantity - depletedStock;
@@ -656,21 +667,23 @@ const transactionController = {
 						}
 
 
-						/* If the transaction originally involves a purchase of Premium Gasoline 95, arrange the stocks in 
-						 * chronological order and return the quantity purchased beginning from the 
-						 * latest stock, as the inventory is consumed via the FIFO method. 
+						/* If the transaction originally involves a purchase of Premium Gasoline 95, arrange the stocks in
+						 * chronological order and return the quantity purchased beginning from the
+						 * latest stock, as the inventory is consumed via the FIFO method.
 						 */
 						if (litersPremiumGasoline95Old > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksPremiumGasoline95.length >= 2) {
-								stocksPremiumGasoline95.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksPremiumGasoline95.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -682,7 +695,7 @@ const transactionController = {
 							let i = stocksPremiumGasoline95.length - 1;
 
 							while (transactionQuantity > 0) {
-								let depletedStock = stocksPremiumGasoline95[i].quantityDepleted;
+								const depletedStock = stocksPremiumGasoline95[i].quantityDepleted;
 
 								if (transactionQuantity >= depletedStock) {
 									transactionQuantity = transactionQuantity - depletedStock;
@@ -697,21 +710,23 @@ const transactionController = {
 						}
 
 
-/* If the transaction originally involves a purchase of Premium Gasoline 95, arrange the stocks in 
-						 * chronological order and return the quantity purchased beginning from the 
-						 * latest stock, as the inventory is consumed via the FIFO method. 
+						/* If the transaction originally involves a purchase of Premium Gasoline 95, arrange the stocks in
+						 * chronological order and return the quantity purchased beginning from the
+						 * latest stock, as the inventory is consumed via the FIFO method.
 						 */
 						if (litersPremiumGasoline95Old > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksPremiumGasoline95.length >= 2) {
-								stocksPremiumGasoline95.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksPremiumGasoline95.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -723,7 +738,7 @@ const transactionController = {
 							let i = stocksPremiumGasoline95.length - 1;
 
 							while (transactionQuantity > 0) {
-								let depletedStock = stocksPremiumGasoline95[i].quantityDepleted;
+								const depletedStock = stocksPremiumGasoline95[i].quantityDepleted;
 
 								if (transactionQuantity >= depletedStock) {
 									transactionQuantity = transactionQuantity - depletedStock;
@@ -738,21 +753,23 @@ const transactionController = {
 						}
 
 
-						/* If the transaction originally involves a purchase of diesel, arrange the stocks in 
-						 * chronological order and return the quantity purchased beginning from the 
-						 * latest stock, as the inventory is consumed via the FIFO method. 
+						/* If the transaction originally involves a purchase of diesel, arrange the stocks in
+						 * chronological order and return the quantity purchased beginning from the
+						 * latest stock, as the inventory is consumed via the FIFO method.
 						 */
 						if (litersDieselOld > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksDiesel.length >= 2) {
-								stocksDiesel.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksDiesel.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -764,7 +781,7 @@ const transactionController = {
 							let i = stocksDiesel.length - 1;
 
 							while (transactionQuantity > 0) {
-								let depletedStock = stocksDiesel[i].quantityDepleted;
+								const depletedStock = stocksDiesel[i].quantityDepleted;
 
 								if (transactionQuantity >= depletedStock) {
 									transactionQuantity = transactionQuantity - depletedStock;
@@ -779,21 +796,23 @@ const transactionController = {
 						}
 
 
-						/* If the transaction originally involves a purchase of Premium Gasoline 97, arrange the stocks in 
-						 * chronological order and return the quantity purchased beginning from the 
-						 * latest stock, as the inventory is consumed via the FIFO method. 
+						/* If the transaction originally involves a purchase of Premium Gasoline 97, arrange the stocks in
+						 * chronological order and return the quantity purchased beginning from the
+						 * latest stock, as the inventory is consumed via the FIFO method.
 						 */
 						if (litersPremiumGasoline97Old > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksPremiumGasoline97.length >= 2) {
-								stocksPremiumGasoline97.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksPremiumGasoline97.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -805,7 +824,7 @@ const transactionController = {
 							let i = stocksPremiumGasoline97.length - 1;
 
 							while (transactionQuantity > 0) {
-								let depletedStock = stocksPremiumGasoline97[i].quantityDepleted;
+								const depletedStock = stocksPremiumGasoline97[i].quantityDepleted;
 
 								if (transactionQuantity >= depletedStock) {
 									transactionQuantity = transactionQuantity - depletedStock;
@@ -820,21 +839,23 @@ const transactionController = {
 						}
 
 
-						/* If the transaction originally involves a purchase of kerosene, arrange the stocks in 
-						 * chronological order and return the quantity purchased beginning from the 
-						 * latest stock, as the inventory is consumed via the FIFO method. 
+						/* If the transaction originally involves a purchase of kerosene, arrange the stocks in
+						 * chronological order and return the quantity purchased beginning from the
+						 * latest stock, as the inventory is consumed via the FIFO method.
 						 */
 						if (litersKeroseneOld > 0) {
 							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
 							if (stocksKerosene.length >= 2) {
-								stocksKerosene.sort(function (a, b) {
-									let keyA = a.date;
-									let keyB = b.date;
-				
-									if (keyA > keyB)
+								stocksKerosene.sort(function(a, b) {
+									const keyA = a.date;
+									const keyB = b.date;
+
+									if (keyA > keyB) {
 										return 1;
-									if (keyA < keyB)
+									}
+									if (keyA < keyB) {
 										return -1;
+									}
 									return 0;
 								});
 							}
@@ -846,7 +867,7 @@ const transactionController = {
 							let i = stocksKerosene.length - 1;
 
 							while (transactionQuantity > 0) {
-								let depletedStock = stocksKerosene[i].quantityDepleted;
+								const depletedStock = stocksKerosene[i].quantityDepleted;
 
 								if (transactionQuantity >= depletedStock) {
 									transactionQuantity = transactionQuantity - depletedStock;
@@ -869,7 +890,7 @@ const transactionController = {
 					const filter = {id: stocksGasoline[i].id};
 					const update = {
 						quantityDepleted: stocksGasoline[i].quantityDepleted
-					}
+					};
 
 					db.updateOneIterative(Inventory, filter, update);
 				}
@@ -879,7 +900,7 @@ const transactionController = {
 					const filter = {id: stocksPremiumGasoline95[i].id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline95[i].quantityDepleted
-					}
+					};
 
 					db.updateOneIterative(Inventory, filter, update);
 				}
@@ -889,7 +910,7 @@ const transactionController = {
 					const filter = {id: stocksDiesel[i].id};
 					const update = {
 						quantityDepleted: stocksDiesel[i].quantityDepleted
-					}
+					};
 
 					db.updateOneIterative(Inventory, filter, update);
 				}
@@ -899,7 +920,7 @@ const transactionController = {
 					const filter = {id: stocksPremiumGasoline97[i].id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline97[i].quantityDepleted
-					}
+					};
 
 					db.updateOneIterative(Inventory, filter, update);
 				}
@@ -909,14 +930,14 @@ const transactionController = {
 					const filter = {id: stocksKerosene[i].id};
 					const update = {
 						quantityDepleted: stocksKerosene[i].quantityDepleted
-					}
+					};
 
 					db.updateOneIterative(Inventory, filter, update);
 				}
 
 				res.status(200).json('Transaction edited successfully.');
 				res.send();
-			});	
+			});
 		});
 	},
 
