@@ -164,7 +164,19 @@ const database = {
      */
 	convertToObjectId: function(id) {
 		return mongoose.Types.ObjectId(id);
-	}
+	},
+
+	/**
+     * Updates one document in the database using an iterative rather than callback process
+     *
+     * @param {Object} model collection to be accessed
+     * @param {Object} filter query with which to filter the collection documents
+     * @param {Object} update revisions to the document data
+     */
+	updateOneIterative: function(model, filter, update) {
+        model.updateOne (filter, update, function() {
+        });
+    }
 };
 
 module.exports = database;

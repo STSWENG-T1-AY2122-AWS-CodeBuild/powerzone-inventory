@@ -1,13 +1,14 @@
 /* Controller for displaying the transactions page */
 
-/* The db file, transaction schema, inventory schema, transaction number schema, and selling price schema
- * are used for the transaction page. 
+/* The db file, transaction schema, inventory schema, transaction number schema, selling price schema, and
+ * delivery schema are used for the transaction page. 
  */
 const db = require('../models/db.js');
 const Transaction = require('../models/transaction-schema.js');
 const Inventory = require('../models/inventory-schema.js');
 const TransactionNumber = require('../models/transaction-number-schema.js');
 const Price = require('../models/selling-price-schema.js');
+const Delivery = require('../models/delivery-schema.js');
 
 const transactionController = {
 	/**
@@ -322,8 +323,8 @@ const transactionController = {
 		const projection = 'transactionNumber';
 
 		db.findOne(TransactionNumber, query, projection, function(result) {
-			/* The transaction ID of the new transaction is 1000000 added to the transaction number. */
-			const transactionId = 1000000 + result.transactionNumber;
+			/* Store the retrieved transaction number in the variable transactionId. */
+			const transactionId = result.transactionNumber;
 
 			/* Retrieve the current selling price of each fuel type. */
 			const queryPrice = {label: "Prices"};
@@ -395,7 +396,7 @@ const transactionController = {
 	 */
 	 postAddTransaction: function(req, res) {
 		/* Retrieve the transaction details from the user input. */
-		const id = req.body.addTransactionId;
+		const transactionId = req.body.addTransactionId;
 		const customer = req.body.addTransactionCustomerName.trim();
 		const number = req.body.addTransactionCustomerNumber;
 		const date = req.body.addTransactionDate;
@@ -417,7 +418,7 @@ const transactionController = {
 
 		/* Assign the transaction details to the variable transaction. */
 		const transaction = {
-			id: id,
+			id: transactionId,
 			date: date,
 			customer: customer,
 			total: total,
@@ -439,11 +440,11 @@ const transactionController = {
 		db.insertOne(Transaction, transaction, function(flag) {
 			
 			/* Store the stocks for each fuel type in a separate array to update their quantities. */
-			const stocksGasoline = [];
-			const stocksPremiumGasoline95 = [];
-			const stocksDiesel = [];
-			const stocksPremiumGasoline97 = [];
-			const stocksKerosene = [];
+			let stocksGasoline = [];
+			let stocksPremiumGasoline95 = [];
+			let stocksDiesel = [];
+			let stocksPremiumGasoline97 = [];
+			let stocksKerosene = [];
 
 			/* Retrieve the fuel types, purchase dates, and quantities of all inventory stocks. */
 			const query = {};
@@ -464,17 +465,296 @@ const transactionController = {
 					} else if (purchases[i].type == 'premium-gasoline-97') {
 						stocksPremiumGasoline97.push(purchases[i]);
 					} else {
-						stocksKerosene.push(purchasese[i]);
+						stocksKerosene.push(purchases[i]);
 					}
 				}
 
-				const status = stocksGasoline[0].date > stocksGasoline[1].date;
-				console.log(status);
+				/* If the transaction involves a purchase of gasoline, arrange the stocks in 
+				 * chronological order and subtract the quantity purchased beginning from the 
+				 * earliest available stock. */
+				if (litersGasoline > 0) {
+					/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+					if (stocksGasoline.length >= 2) {
+						stocksGasoline.sort(function (a, b) {
+							let keyA = a.date;
+							let keyB = b.date;
+		
+							if (keyA > keyB)
+								return 1;
+							if (keyA < keyB)
+								return -1;
+							return 0;
+						});
+					}
 
-				// res.status(200).json('Stock added successfully.');
-				// res.send();
-			});
-			
+					/* Subtract fuel quantities from the stocks, starting from the oldest stock,
+					 * until the quantity requested in the transaction has been reached.
+					 */
+					let transactionQuantity = litersGasoline;
+					let i = 0;
+
+					while (transactionQuantity > 0) {
+						let availableStock = stocksGasoline[i].quantityPurchased - stocksGasoline[i].quantityDepleted;
+
+						if (transactionQuantity >= availableStock) {
+							transactionQuantity = transactionQuantity - availableStock;
+							stocksGasoline[i].quantityDepleted = parseInt(stocksGasoline[i].quantityDepleted) + parseInt(availableStock);
+						} else {
+							stocksGasoline[i].quantityDepleted = parseInt(stocksGasoline[i].quantityDepleted) + parseInt(transactionQuantity);
+							transactionQuantity = 0;
+						}
+
+						i++;
+					}
+				}
+
+
+				/* If the transaction involves a purchase of Premium Gasoline 95, arrange the stocks in 
+				 * chronological order and subtract the quantity purchased beginning from the 
+				 * earliest available stock. */
+				if (litersPremiumGasoline95 > 0) {
+					/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+					if (stocksPremiumGasoline95.length >= 2) {
+						stocksPremiumGasoline95.sort(function (a, b) {
+							let keyA = a.date;
+							let keyB = b.date;
+		
+							if (keyA > keyB)
+								return 1;
+							if (keyA < keyB)
+								return -1;
+							return 0;
+						});
+					}
+
+					/* Subtract fuel quantities from the stocks, starting from the oldest stock,
+					 * until the quantity requested in the transaction has been reached.
+					 */
+					let transactionQuantity = litersPremiumGasoline95;
+					let i = 0;
+
+					while (transactionQuantity > 0) {
+						let availableStock = stocksPremiumGasoline95[i].quantityPurchased - stocksPremiumGasoline95[i].quantityDepleted;
+
+						if (transactionQuantity >= availableStock) {
+							transactionQuantity = transactionQuantity - availableStock;
+							stocksPremiumGasoline95[i].quantityDepleted = parseInt(stocksPremiumGasoline95[i].quantityDepleted) + parseInt(availableStock);
+						} else {
+							stocksPremiumGasoline95[i].quantityDepleted = parseInt(stocksPremiumGasoline95[i].quantityDepleted) + parseInt(transactionQuantity);
+							transactionQuantity = 0;
+						}
+
+						i++;
+					}
+				}
+
+
+				/* If the transaction involves a purchase of diesel, arrange the stocks in 
+				 * chronological order and subtract the quantity purchased beginning from the 
+				 * earliest available stock. */
+				if (litersDiesel > 0) {
+					/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+					if (stocksDiesel.length >= 2) {
+						stocksDiesel.sort(function (a, b) {
+							let keyA = a.date;
+							let keyB = b.date;
+		
+							if (keyA > keyB)
+								return 1;
+							if (keyA < keyB)
+								return -1;
+							return 0;
+						});
+					}
+
+					/* Subtract fuel quantities from the stocks, starting from the oldest stock,
+					 * until the quantity requested in the transaction has been reached.
+					 */
+					let transactionQuantity = litersDiesel;
+					let i = 0;
+
+					while (transactionQuantity > 0) {
+						let availableStock = stocksDiesel[i].quantityPurchased - stocksDiesel[i].quantityDepleted;
+
+						if (transactionQuantity >= availableStock) {
+							transactionQuantity = transactionQuantity - availableStock;
+							stocksDiesel[i].quantityDepleted = parseInt(stocksDiesel[i].quantityDepleted) + parseInt(availableStock);
+						} else {
+							stocksDiesel[i].quantityDepleted = parseInt(stocksDiesel[i].quantityDepleted) + parseInt(transactionQuantity);
+							transactionQuantity = 0;
+						}
+
+						i++;
+					}
+				}
+				
+
+				/* If the transaction involves a purchase of Premium Gasoline 97, arrange the stocks in 
+				 * chronological order and subtract the quantity purchased beginning from the 
+				 * earliest available stock. */
+				if (litersPremiumGasoline97 > 0) {
+					/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+					if (stocksPremiumGasoline97.length >= 2) {
+						stocksPremiumGasoline97.sort(function (a, b) {
+							let keyA = a.date;
+							let keyB = b.date;
+		
+							if (keyA > keyB)
+								return 1;
+							if (keyA < keyB)
+								return -1;
+							return 0;
+						});
+					}
+
+					/* Subtract fuel quantities from the stocks, starting from the oldest stock,
+					 * until the quantity requested in the transaction has been reached.
+					 */
+					let transactionQuantity = litersPremiumGasoline97;
+					let i = 0;
+
+					while (transactionQuantity > 0) {
+						let availableStock = stocksPremiumGasoline97[i].quantityPurchased - stocksPremiumGasoline97[i].quantityDepleted;
+
+						if (transactionQuantity >= availableStock) {
+							transactionQuantity = transactionQuantity - availableStock;
+							stocksPremiumGasoline97[i].quantityDepleted = parseInt(stocksPremiumGasoline97[i].quantityDepleted) + parseInt(availableStock);
+						} else {
+							stocksPremiumGasoline97[i].quantityDepleted = parseInt(stocksPremiumGasoline97[i].quantityDepleted) + parseInt(transactionQuantity);
+							transactionQuantity = 0;
+						}
+
+						i++;
+					}
+				}				
+				
+
+				/* If the transaction involves a purchase of kerosene, arrange the stocks in 
+				 * chronological order and subtract the quantity purchased beginning from the 
+				 * earliest available stock. */
+				if (litersKerosene > 0) {
+					/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
+					if (stocksKerosene.length >= 2) {
+						stocksKerosene.sort(function (a, b) {
+							let keyA = a.date;
+							let keyB = b.date;
+		
+							if (keyA > keyB)
+								return 1;
+							if (keyA < keyB)
+								return -1;
+							return 0;
+						});
+					}
+
+					/* Subtract fuel quantities from the stocks, starting from the oldest stock,
+					 * until the quantity requested in the transaction has been reached.
+					 */
+					let transactionQuantity = litersKerosene;
+					let i = 0;
+
+					while (transactionQuantity > 0) {
+						let availableStock = stocksKerosene[i].quantityPurchased - stocksKerosene[i].quantityDepleted;
+
+						if (transactionQuantity >= availableStock) {
+							transactionQuantity = transactionQuantity - availableStock;
+							stocksKerosene[i].quantityDepleted = parseInt(stocksKerosene[i].quantityDepleted) + parseInt(availableStock);
+						} else {
+							stocksKerosene[i].quantityDepleted = parseInt(stocksKerosene[i].quantityDepleted) + parseInt(transactionQuantity);
+							transactionQuantity = 0;
+						}
+
+						i++;
+					}
+				}
+
+				/* Update the quantities depleted of the gasoline stocks. */
+				for (i = 0; i < stocksGasoline.length; i++) {
+					const filter = {_id: stocksGasoline[i]._id};
+					const update = {
+						quantityDepleted: stocksGasoline[i].quantityDepleted
+					}
+
+					db.updateOneIterative(Inventory, filter, update);
+				}
+
+				/* Update the quantities depleted of the Premium Gasoline 95 stocks. */
+				for (i = 0; i < stocksPremiumGasoline95.length; i++) {
+					const filter = {_id: stocksPremiumGasoline95[i]._id};
+					const update = {
+						quantityDepleted: stocksPremiumGasoline95[i].quantityDepleted
+					}
+
+					db.updateOneIterative(Inventory, filter, update);
+				}
+
+				/* Update the quantities depleted of the diesel stocks. */
+				for (i = 0; i < stocksDiesel.length; i++) {
+					const filter = {_id: stocksDiesel[i]._id};
+					const update = {
+						quantityDepleted: stocksDiesel[i].quantityDepleted
+					}
+
+					db.updateOneIterative(Inventory, filter, update);
+				}
+
+				/* Update the quantities depleted of the Premium Gasoline 97 stocks. */
+				for (i = 0; i < stocksPremiumGasoline97.length; i++) {
+					const filter = {_id: stocksPremiumGasoline97[i]._id};
+					const update = {
+						quantityDepleted: stocksPremiumGasoline97[i].quantityDepleted
+					}
+
+					db.updateOneIterative(Inventory, filter, update);
+				}
+
+				/* Update the quantities depleted of the kerosene stocks. */
+				for (i = 0; i < stocksKerosene.length; i++) {
+					const filter = {_id: stocksKerosene[i]._id};
+					const update = {
+						quantityDepleted: stocksKerosene[i].quantityDepleted
+					}
+
+					db.updateOneIterative(Inventory, filter, update);
+				}
+
+				/* The delivery ID for the delivery of a transaction has a starting digit of 2 and the same
+				 * remaining digits as the transaction ID of its corresponding transaction.
+				 */
+				let deliveryId = parseInt(transactionId) + 10000000;
+
+				/* Add the corresponding delivery for the transaction in the database. The other delivery
+				 * details are left null to be updated by a delivery manager.
+				 */
+				const delivery = {
+					id: deliveryId,
+					date: null,
+					customer: customer,
+					dropoff: null,
+					status: 'pending',
+					number: number,
+					warehouse: null,
+					manager: null,
+					driver: null
+				}
+
+				db.insertOne(Delivery, delivery, function(flag) {
+
+					/* Increment the transaction number for the next new transaction. */
+					let nextTransaction = parseInt(transactionId) + 1;
+
+					/* Update the transaction number in the database. */
+					const filter = {label: "nextTransaction"};
+					const update = {
+						transactionNumber: nextTransaction
+					}
+
+					db.updateOne(TransactionNumber, filter, update, function(result) {
+						res.status(200).json('Transaction added successfully.');
+						res.send();
+					});
+				});	
+			});	
 		});
 	}
 };

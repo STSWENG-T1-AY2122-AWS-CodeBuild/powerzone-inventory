@@ -10,7 +10,7 @@ db.connect();
 /* Initialize the transaction number */
 const transactionNumber = {
 	label: 'nextTransaction',
-	transactionNumber: 2
+	transactionNumber: 10000002
 };
 
 /* Insert the transaction number into the database. */
