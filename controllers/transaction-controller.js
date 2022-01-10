@@ -866,7 +866,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the gasoline stocks. */
 				for (i = 0; i < stocksGasoline.length; i++) {
-					const filter = {_id: stocksGasoline[i]._id};
+					const filter = {id: stocksGasoline[i].id};
 					const update = {
 						quantityDepleted: stocksGasoline[i].quantityDepleted
 					}
@@ -876,7 +876,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the Premium Gasoline 95 stocks. */
 				for (i = 0; i < stocksPremiumGasoline95.length; i++) {
-					const filter = {_id: stocksPremiumGasoline95[i]._id};
+					const filter = {id: stocksPremiumGasoline95[i].id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline95[i].quantityDepleted
 					}
@@ -886,7 +886,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the diesel stocks. */
 				for (i = 0; i < stocksDiesel.length; i++) {
-					const filter = {_id: stocksDiesel[i]._id};
+					const filter = {id: stocksDiesel[i].id};
 					const update = {
 						quantityDepleted: stocksDiesel[i].quantityDepleted
 					}
@@ -896,7 +896,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the Premium Gasoline 97 stocks. */
 				for (i = 0; i < stocksPremiumGasoline97.length; i++) {
-					const filter = {_id: stocksPremiumGasoline97[i]._id};
+					const filter = {id: stocksPremiumGasoline97[i].id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline97[i].quantityDepleted
 					}
@@ -906,7 +906,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the kerosene stocks. */
 				for (i = 0; i < stocksKerosene.length; i++) {
-					const filter = {_id: stocksKerosene[i]._id};
+					const filter = {id: stocksKerosene[i].id};
 					const update = {
 						quantityDepleted: stocksKerosene[i].quantityDepleted
 					}
@@ -1288,7 +1288,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the gasoline stocks. */
 				for (i = 0; i < stocksGasoline.length; i++) {
-					const filter = {_id: stocksGasoline[i]._id};
+					const filter = {id: stocksGasoline[i].id};
 					const update = {
 						quantityDepleted: stocksGasoline[i].quantityDepleted
 					};
@@ -1298,7 +1298,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the Premium Gasoline 95 stocks. */
 				for (i = 0; i < stocksPremiumGasoline95.length; i++) {
-					const filter = {_id: stocksPremiumGasoline95[i]._id};
+					const filter = {id: stocksPremiumGasoline95[i].id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline95[i].quantityDepleted
 					};
@@ -1308,7 +1308,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the diesel stocks. */
 				for (i = 0; i < stocksDiesel.length; i++) {
-					const filter = {_id: stocksDiesel[i]._id};
+					const filter = {id: stocksDiesel[i].id};
 					const update = {
 						quantityDepleted: stocksDiesel[i].quantityDepleted
 					};
@@ -1318,7 +1318,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the Premium Gasoline 97 stocks. */
 				for (i = 0; i < stocksPremiumGasoline97.length; i++) {
-					const filter = {_id: stocksPremiumGasoline97[i]._id};
+					const filter = {id: stocksPremiumGasoline97[i].id};
 					const update = {
 						quantityDepleted: stocksPremiumGasoline97[i].quantityDepleted
 					};
@@ -1328,7 +1328,7 @@ const transactionController = {
 
 				/* Update the quantities depleted of the kerosene stocks. */
 				for (i = 0; i < stocksKerosene.length; i++) {
-					const filter = {_id: stocksKerosene[i]._id};
+					const filter = {id: stocksKerosene[i].id};
 					const update = {
 						quantityDepleted: stocksKerosene[i].quantityDepleted
 					};
