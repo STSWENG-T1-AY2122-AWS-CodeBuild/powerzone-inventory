@@ -236,8 +236,7 @@ const inventoryController = {
 		/* Convert the retrieved purchase ID to an ObjectID for database retrieval. */
 		const filter = {_id: db.convertToObjectId(id)};
 
-		/* Assign the updated details to the update variable; if the quantity is edited, the quantities
-		 * purchased and deleted are reset.
+		/* Assign the updated details to the update variable.
 		 */
 		const update = {
 			type: type,

@@ -21,7 +21,7 @@
             <h1 class = "fs-1 fw-bolder text-center text-info text-muted">EDIT TRANSACTION</h1>
         </div>
 
-        <form id = "add-transaction-form">
+        <form id = "edit-transaction-form">
             <div class = "bg-light border border-primary border-5 mt-3 mx-5 table-block table-responsive">
                 <table class = "align-middle table table-borderless">
                     <thead class = "bg-primary table-fixed table-header text-primary">
@@ -108,7 +108,7 @@
                                                         <input id = "edit-transaction-gasoline-liters" name = "editTransactionGasolineLiters" type = "number" min = "0" value = "{{litersGasoline}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
-                                                <input id = "edit-transaction-gasoline-price-old" name = "editTransactionGasolinePriceOld" type = "hidden" value = "{{priceGasoline}}">
+                                                <input id = "edit-transaction-gasoline-liters-old" name = "editTransactionGasolineLitersOld" type = "hidden" value = "{{litersGasoline}}">
                                                 <input id = "edit-transaction-gasoline-total" name = "editTransactionGasolineTotal" type = "hidden" value = "{{totalGasoline}}">
                                             </tr>
                                             <tr>  
@@ -135,7 +135,7 @@
                                                         <input id = "edit-transaction-premium-gasoline-95-liters" name = "editTransactionPremiumGasoline95Liters" type = "number" min = "0" value = "{{litersPremiumGasoline95}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
-                                                <input id = "edit-transaction-premium-gasoline-95-price-old" name = "editTransactionPremiumGasoline95PriceOld" type = "hidden" value = "{{pricePremiumGasoline95}}">
+                                                <input id = "edit-transaction-premium-gasoline-95-liters-old" name = "editTransactionPremiumGasoline95LitersOld" type = "hidden" value = "{{litersPremiumGasoline95}}">
                                                 <input id = "edit-transaction-premium-gasoline-95-total" name = "editTransactionPremiumGasoline95Total" type = "hidden" value = "{{totalPremiumGasoline95}}">
                                             </tr>
                                             <tr>  
@@ -162,7 +162,7 @@
                                                         <input id = "edit-transaction-diesel-liters" name = "editTransactionDieselLiters" type = "number" min = "0" value = "{{litersDiesel}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
-                                                <input id = "edit-transaction-diesel-price-old" name = "editTransactionDieselPriceOld" type = "hidden" value = "{{priceDiesel}}">
+                                                <input id = "edit-transaction-diesel-liters-old" name = "editTransactionDieselLitersOld" type = "hidden" value = "{{litersDiesel}}">
                                                 <input id = "edit-transaction-diesel-total" name = "editTransactionDieselTotal" type = "hidden" value = "{{totalDiesel}}">
                                             </tr>
                                             <tr>  
@@ -189,7 +189,7 @@
                                                         <input id = "edit-transaction-premium-gasoline-97-liters" name = "editTransactionPremiumGasoline97Liters" type = "number" min = "0" value = "{{litersPremiumGasoline97}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
-                                                <input id = "edit-transaction-premium-gasoline-97-price-old" name = "editTransactionPremiumGasoline97PriceOld" type = "hidden" value = "{{pricePremiumGasoline97}}">
+                                                <input id = "edit-transaction-premium-gasoline-97-liters-old" name = "editTransactionPremiumGasoline97LitersOld" type = "hidden" value = "{{litersPremiumGasoline97}}">
                                                 <input id = "edit-transaction-premium-gasoline-97-total" name = "editTransactionPremiumGasoline97Total" type = "hidden" value = "{{totalPremiumGasoline97}}">
                                             </tr>
                                             <tr>  
@@ -216,7 +216,7 @@
                                                         <input id = "edit-transaction-kerosene-liters" name = "editTransactionKeroseneLiters" type = "number" min = "0" value = "{{litersKerosene}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
-                                                <input id = "edit-transaction-kerosene-price-old" name = "editTransactionKerosenePriceOld" type = "hidden" value = "{{priceKerosene}}">
+                                                <input id = "edit-transaction-kerosene-liters-old" name = "editTransactionKeroseneLitersOld" type = "hidden" value = "{{litersKerosene}}">
                                                 <input id = "edit-transaction-kerosene-total" name = "editTransactionKeroseneTotal" type = "hidden" value = "{{totalKerosene}}">
                                             </tr>
                                             <tr>  

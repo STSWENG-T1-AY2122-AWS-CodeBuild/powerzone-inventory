@@ -66,6 +66,7 @@ powerzone.get('/getMoreInfoTransaction/:id', transactionController.getMoreInfoTr
 powerzone.get('/getAddTransaction', transactionController.getAddTransaction);
 powerzone.post('/postAddTransaction', transactionController.postAddTransaction);
 powerzone.get('/getEditTransaction/:id', transactionController.getEditTransaction);
+powerzone.post('/postEditTransaction', transactionController.postEditTransaction);
 
 powerzone.get('/getDelivery', deliveryController.getDelivery);
 powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
