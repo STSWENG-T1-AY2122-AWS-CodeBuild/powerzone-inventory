@@ -33,6 +33,7 @@
                     <form id = "edit-transaction-status-form">
                         <div class = "bg-secondary p-2 text-center">
                             <input type = "hidden" id = "edit-transaction-status-form-id" name = "transactionId">
+                            <input type = "hidden" id = "edit-transaction-status-form-status">
                             <h4 id= "edit-transaction-status-form-display-id" class = "fw-bold pt-2 status-name text-primary">11753242</h4>
                             <h5 id = "edit-transaction-status-form-customer" class = "status-role text-primary">Shell</h5>
                         </div>
@@ -156,7 +157,7 @@
                                         <td id = "date-{{lookup ../transactionIds @index}}">{{lookup ../transactionDates @index}}</td>
                                         <td id = "customer-{{lookup ../transactionIds @index}}">{{lookup ../transactionCustomers @index}}</td>
                                         <td class = "prices" id = "total-{{lookup ../transactionIds @index}}">₱ {{lookup ../transactionTotals @index}}</td>
-                                        <td><img id = "status-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></td>
+                                        <td><img id = "status-img-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></td>
                                         <td><a id = "more-info-{{lookup ../transactionIds @index}}" href = "/getMoreInfoTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/more.png" alt = "view-transaction-more-info" class = "view-transaction-more-info table-icon"></a></td>
                                     </tr>
                                     {{/if}}
