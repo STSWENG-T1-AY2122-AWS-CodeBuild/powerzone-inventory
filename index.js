@@ -78,21 +78,21 @@ hbs.handlebars.registerHelper('validTransactionRole', function(role) {
 
 hbs.handlebars.registerHelper('getStatusIcon', function(status) {
 	if (status == 'completed') {
-		return "/assets/accepted.png";
+		return '/assets/accepted.png';
 	} else if (status == 'pending') {
-		return "/assets/pending.png";
+		return '/assets/pending.png';
 	} else {
-		return "/assets/rejected.png";
+		return '/assets/rejected.png';
 	}
 });
 
 hbs.handlebars.registerHelper('getTransactionStatus', function(status) {
 	if (status == 'completed') {
-		return "Completed";
+		return 'Completed';
 	} else if (status == 'pending') {
-		return "Pending";
+		return 'Pending';
 	} else {
-		return "Cancelled";
+		return 'Cancelled';
 	}
 });
 

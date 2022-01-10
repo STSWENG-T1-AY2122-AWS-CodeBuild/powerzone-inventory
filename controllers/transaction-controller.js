@@ -34,7 +34,6 @@ const transactionController = {
 
 			/* For each transaction, store the transaction details in the individual arrays. */
 			for (let i = 0; i < transactions.length; i++) {
-				
 				/* Format the display of the transaction date from the Date object
 				 * stored in the database
 				 */
@@ -248,7 +247,7 @@ const transactionController = {
 			const year = transactionDetails.date.getFullYear();
 
 			const cleanDate = year + '-' + formattedMonth + '-' + formattedDate;
-			
+
 			/* Store the total quantities and statuses of each type of fuel. */
 			let totalGasoline = 0;
 			let totalPremiumGasoline95 = 0;
@@ -280,7 +279,7 @@ const transactionController = {
 						totalKerosene += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
 					}
 				}
-				
+
 				/* Store the transaction details and total fuel amounts in the variable data. */
 				const data = {
 					id: id,

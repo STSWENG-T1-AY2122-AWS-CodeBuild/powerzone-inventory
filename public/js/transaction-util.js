@@ -1,15 +1,16 @@
 const getStatusFromIcon = function(icon) {
-    switch(icon) {
-        case '/assets/pending.png':
-            return 'pending';
-        case '/assets/completed.png':
-            return 'completed';
-        case '/assets/rejected.png':
-            return 'cancelled';
-        default:
-            break;
-    }
-}
+	switch (icon) {
+		case '/assets/pending.png':
+			return 'pending';
+		case '/assets/accepted.png':
+		case '/assets/completed.png':
+			return 'completed';
+		case '/assets/rejected.png':
+			return 'cancelled';
+		default:
+			break;
+	}
+};
 
 const showAll = function(tableId) {
 	$('#' + tableId + ' > tbody > tr').each(function() {
@@ -181,5 +182,6 @@ export {
 	sortAtoZ,
 	sortZtoA,
 	sortLowToHigh,
-	sortHighToLow
+	sortHighToLow,
+	getStatusFromIcon
 };

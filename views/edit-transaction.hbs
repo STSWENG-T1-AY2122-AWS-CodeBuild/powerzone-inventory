@@ -100,12 +100,12 @@
                                                 <td>GASOLINE</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-gasoline-price" name = "editTransactionGasolinePrice" type = "number" placeholder = "-" value = "{{priceGasoline}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                        <input id = "edit-transaction-gasoline-price" name = "editTransactionGasolinePrice" type = "number" value = "{{priceGasoline}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-gasoline-liters" name = "editTransactionGasolineLiters" type = "number" placeholder = "-" value = "{{litersGasoline}}" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-gasoline-liters" name = "editTransactionGasolineLiters" type = "number" min = "0" value = "{{litersGasoline}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
                                                 <input id = "edit-transaction-gasoline-price-old" name = "editTransactionGasolinePriceOld" type = "hidden" value = "{{priceGasoline}}">
@@ -118,7 +118,7 @@
                                                     </div>
 
                                                     <div id = "edit-transaction-invalid-amount-gasoline" class = "fw-bold invalid-feedback text-center">
-                                                        Amount has exceeded maximum amount of fuel available
+                                                        Amount exceeds available fuel
                                                     </div>
                                                 </td>
                                             </tr>
@@ -132,7 +132,7 @@
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-premium-gasoline-95-liters" name = "editTransactionPremiumGasoline95Liters" type = "number" placeholder = "-" value = "{{litersPremiumGasoline95}}" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-premium-gasoline-95-liters" name = "editTransactionPremiumGasoline95Liters" type = "number" min = "0" value = "{{litersPremiumGasoline95}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
                                                 <input id = "edit-transaction-premium-gasoline-95-price-old" name = "editTransactionPremiumGasoline95PriceOld" type = "hidden" value = "{{pricePremiumGasoline95}}">
@@ -145,7 +145,7 @@
                                                     </div>
 
                                                     <div id = "edit-transaction-invalid-amount-premium-gasoline-95" class = "fw-bold invalid-feedback text-center">
-                                                        Amount has exceeded maximum amount of fuel available
+                                                        Amount exceeds available fuel
                                                     </div>
                                                 </td>
                                             </tr>
@@ -159,7 +159,7 @@
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-diesel-liters" name = "editTransactionDieselLiters" type = "number" placeholder = "-" value = "{{litersDiesel}}" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-diesel-liters" name = "editTransactionDieselLiters" type = "number" min = "0" value = "{{litersDiesel}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
                                                 <input id = "edit-transaction-diesel-price-old" name = "editTransactionDieselPriceOld" type = "hidden" value = "{{priceDiesel}}">
@@ -172,7 +172,7 @@
                                                     </div>
 
                                                     <div id = "edit-transaction-invalid-amount-diesel" class = "fw-bold invalid-feedback text-center">
-                                                        Amount has exceeded maximum amount of fuel available
+                                                        Amount exceeds available fuel
                                                     </div>
                                                 </td>
                                             </tr>
@@ -186,7 +186,7 @@
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-premium-gasoline-97-liters" name = "editTransactionPremiumGasoline97Liters" type = "number" placeholder = "-" value = "{{litersPremiumGasoline97}}" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-premium-gasoline-97-liters" name = "editTransactionPremiumGasoline97Liters" type = "number" min = "0" value = "{{litersPremiumGasoline97}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
                                                 <input id = "edit-transaction-premium-gasoline-97-price-old" name = "editTransactionPremiumGasoline97PriceOld" type = "hidden" value = "{{pricePremiumGasoline97}}">
@@ -199,7 +199,7 @@
                                                     </div>
 
                                                     <div id = "edit-transaction-invalid-amount-premium-gasoline-97" class = "fw-bold invalid-feedback text-center">
-                                                        Amount has exceeded maximum amount of fuel available
+                                                        Amount exceeds available fuel
                                                     </div>
                                                 </td>
                                             </tr>
@@ -213,7 +213,7 @@
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "edit-transaction-kerosene-liters" name = "editTransactionKeroseneLiters" type = "number" placeholder = "-" value = "{{litersKerosene}}" class = "form-control text-center input-sm w-75">
+                                                        <input id = "edit-transaction-kerosene-liters" name = "editTransactionKeroseneLiters" type = "number" min = "0" value = "{{litersKerosene}}" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
                                                 <input id = "edit-transaction-kerosene-price-old" name = "editTransactionKerosenePriceOld" type = "hidden" value = "{{priceKerosene}}">
@@ -226,7 +226,7 @@
                                                     </div>
 
                                                     <div id = "edit-transaction-invalid-amount-kerosene" class = "fw-bold invalid-feedback text-center">
-                                                        Amount has exceeded maximum amount of fuel available
+                                                        Amount exceeds available fuel
                                                     </div>
                                                 </td>
                                             </tr>

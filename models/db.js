@@ -160,7 +160,7 @@ const database = {
      * Converts a string to the ObjectId data type
      *
      * @param {string} id string to be converted
-     * @return ObjectId variable of the input string
+     * @return {mongoose.ObjectId} ObjectId variable of the input string
      */
 	convertToObjectId: function(id) {
 		return mongoose.Types.ObjectId(id);

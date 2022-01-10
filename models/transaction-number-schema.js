@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 
 const transactionNumberSchema = new mongoose.Schema({
-    /* Label of the database entry for database retrieval */
+	/* Label of the database entry for database retrieval */
 	label: {
 		type: String,
 		required: true
