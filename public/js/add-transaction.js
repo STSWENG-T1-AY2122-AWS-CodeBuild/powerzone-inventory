@@ -1,4 +1,10 @@
+import {toTwoDecimalPlaces} from './general-util.js';
+
 $(function() {
+	$('.prices').each(function() {
+		$(this).val(toTwoDecimalPlaces($(this).val()));
+	});
+
 	$('#add-transaction-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();

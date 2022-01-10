@@ -6,7 +6,7 @@
         <title>Add Transaction</title>
 
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">       
-        <link href = "https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href = "https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel = "stylesheet">
         <link href = "/css/style.css" rel = "stylesheet">
 
         <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -88,12 +88,12 @@
                                                 <td>GASOLINE</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-gasoline-price" name = "addTransactionGasolinePrice" type = "number" placeholder = "-" value = "{{priceGasoline}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                        <input id = "add-transaction-gasoline-price" name = "addTransactionGasolinePrice" type = "number" placeholder = "-" value = "{{priceGasoline}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-gasoline-liters" name = "addTransactionGasolineLiters" type = "number" placeholder = "-" value = 0 class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-gasoline-liters" name = "addTransactionGasolineLiters" type = "number" placeholder = "-" value = 0 step = "1" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
                                                 <input id = "add-transaction-gasoline-max" name = "addTransactionGasolineMax" type = "hidden" value = "{{totalGasoline}}">
@@ -114,7 +114,7 @@
                                                 <td>PREMIUM GASOLINE 95</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-premium-gasoline-95-price" name = "addTransactionPremiumGasoline95Price" type = "number" placeholder = "-" value = "{{pricePremiumGasoline95}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                        <input id = "add-transaction-premium-gasoline-95-price" name = "addTransactionPremiumGasoline95Price" type = "number" placeholder = "-" value = "{{pricePremiumGasoline95}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
@@ -140,7 +140,7 @@
                                                 <td>DIESEL</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-diesel-price" name = "addTransactionDieselPrice" type = "number" placeholder = "-" value = "{{priceDiesel}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                        <input id = "add-transaction-diesel-price" name = "addTransactionDieselPrice" type = "number" placeholder = "-" value = "{{priceDiesel}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
@@ -166,7 +166,7 @@
                                                 <td>PREMIUM GASOLINE 97</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-premium-gasoline-97-price" name = "addTransactionPremiumGasoline97Price" type = "number" placeholder = "-" value = "{{pricePremiumGasoline97}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                        <input id = "add-transaction-premium-gasoline-97-price" name = "addTransactionPremiumGasoline97Price" type = "number" placeholder = "-" value = "{{pricePremiumGasoline97}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
@@ -192,7 +192,7 @@
                                                 <td>KEROSENE</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-kerosene-price" name = "addTransactionKerosenePrice" type = "number" placeholder = "-" value = "{{priceKerosene}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
+                                                        <input id = "add-transaction-kerosene-price" name = "addTransactionKerosenePrice" type = "number" placeholder = "-" value = "{{priceKerosene}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>

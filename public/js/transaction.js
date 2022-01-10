@@ -31,6 +31,7 @@ $(function() {
 		const transactionId = extractId($(this).attr('id'));
 
 		$('#edit-transaction-status-form-id').val(transactionId);
+		$('#edit-transaction-status-form-status').val(getStatusFromIcon($('#status-img-' + transactionId).attr('src')));
 		$('#edit-transaction-status-form-display-id').text($('#id-' + transactionId).text());
 		$('#edit-transaction-status-form-customer').text($('#customer-' + transactionId).text());
 	});
