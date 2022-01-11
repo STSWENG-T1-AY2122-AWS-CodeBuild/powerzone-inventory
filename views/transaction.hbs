@@ -195,7 +195,7 @@
             </thead>
             <tbody id = "transaction-list">
             {{#each transactionStatuses}}
-                    {{#if (validTransactionRole ../role)}}
+                {{#if (validTransactionRole ../role)}}
                 <tr class = "transaction" id = "entry-{{lookup ../transactionIds @index}}">   
                     <td id = "id-{{lookup ../transactionIds @index}}">{{lookup ../transactionIds @index}}</td>
                     <td id = "date-{{lookup ../transactionIds @index}}">{{lookup ../transactionDates @index}}</td>

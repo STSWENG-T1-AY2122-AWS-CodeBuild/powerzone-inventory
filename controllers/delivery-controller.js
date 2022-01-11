@@ -1,11 +1,15 @@
 /* Controller for displaying the delivery page */
 
-/* The db file and delivery schema are used for the delivery page. */
+/* The db file, delivery schema, and transaction schema are used for the delivery page. */
 const db = require('../models/db.js');
 const Delivery = require('../models/delivery-schema.js');
+const Transaction = require('../models/transaction-schema.js');
 
 /* A utility file is used for auxiliary functions. */
 const deliveryControllerUtil = require('./delivery-controller-util.js');
+
+/* The transaction controller is used to update the transaction status.*/
+const transactionController = require('./transaction-controller.js');
 
 const deliveryController = {
 	/**
@@ -160,8 +164,69 @@ const deliveryController = {
 		});
 	},
 
+	/**
+	 * Edits the details of a delivery.
+	 *
+	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
+	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
+	 */
 	postEditDelivery: function(req, res) {
+		/* Retrieve the delivery details from the user input. */
+		const id = req.body.editDeliveryId;
+		const warehouse = req.body.editDeliveryWarehouse.trim();
+		const status = req.body.editDeliveryStatus;
+		const dropoff = req.body.editDeliveryDropoff.trim();
+		const customer = req.body.editDeliveryCustomerName.trim();
+		const manager = req.body.editDeliveryManager.trim();
+		const number = req.body.editDeliveryCustomerNumber;
+		const driver = req.body.editDeliveryDriver.trim();
+		const date = req.body.editDeliveryDate;
 
+		/* Use the delivery ID for database retrieval. */
+		const filter = {id: id};
+
+		/* Assign the updated details to the update variable. */
+		const update = {
+			warehouse: warehouse,
+			status: status,
+			dropoff: dropoff,
+			customer: customer,
+			manager: manager,
+			number: number,
+			driver: driver,
+			date: date
+		};
+
+		db.updateOne(Delivery, filter, update, function(flag) {
+			/* If the delivery status is set to "Completed", set the status of its corresponding transaction
+			 * to "Completed."
+			 */
+			if (status == 'completed') {
+				/* The transaction ID corresponding to a delivery has a starting digit of 1 and the same
+				 * succeeding digits as the delivery ID.
+				 */
+				const transactionId = parseInt(id) - 10000000;
+				
+				/* Get the original status of the corresponding transaction. */
+				query = {id: transactionId};
+				projection = 'id status';
+
+				db.findOne(Transaction, query, projection, function(result) {
+					/* Assign the retrieved transaction details to the body of the request object 
+					 * and set the status of the transaction to "Completed." 
+					 */
+					req.body.transactionId = result.id;
+					req.body.transactionStatusOld = result.status;
+
+					transactionController.postEditStatusCompleted(req, res);
+				});
+			
+			/* Otherwise, finish updating the delivery details. */
+			} else {
+				res.status(200).json('Delivery details updated successfully!');
+				res.send();
+			}
+		});
 	}
 };
 
