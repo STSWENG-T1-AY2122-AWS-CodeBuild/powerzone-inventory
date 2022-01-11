@@ -32,6 +32,19 @@ const getDom = function() {
                             </tr>
                         </tbody>
                     </table>
+                    <div>
+                        <input type = "number" value = "3.11" id = "edit-gasoline-price">
+                        <input type = "number" value = "3.12" id = "edit-premium-gasoline-95-price">
+                        <input type = "number" value = "3.13" id = "edit-diesel-price">
+                        <input type = "number" value = "3.14" id = "edit-premium-gasoline-97-price">
+                        <input type = "number" value = "3.15" id = "edit-kerosene-price">
+
+                        <span id = "gasoline-price"></span>
+                        <span id = "premium-gasoline-95-price"></span>
+                        <span id = "diesel-price"></span>
+                        <span id = "premium-gasoline-97-price"></span>
+                        <span id = "kerosene-price"></span>
+                    </div>
                 </body>
             </html>`;
 };
