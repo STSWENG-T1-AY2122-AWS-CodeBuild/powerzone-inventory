@@ -27,7 +27,7 @@ $(function() {
 	/**
 	 * Checks if there are any blank fields among those that are required for account registration.
 	 *
-	 * @return true if there is at least one blank field; false, otherwise
+	 * @return {boolean} true if there is at least one blank field; false, otherwise
 	 */
 	function isThereBlankField() {
 		/* Do not trim the password. */

@@ -9,10 +9,12 @@ import {
 import {isValidPhoneNumber} from './transaction-validate-util.js';
 
 $(function() {
+	/* Display prices with exactly two decimal places. */
 	$('.prices').each(function() {
 		$(this).val(toTwoDecimalPlaces($(this).val()));
 	});
 
+	/* Validate the phone number. */
 	$('#add-transaction-customer-number').on('keyup', function() {
 		if (!isValidPhoneNumber($(this).val())) {
 			displayErrorMessage($('#add-transaction-invalid-customer-number'));
@@ -22,6 +24,7 @@ $(function() {
 		}
 	});
 
+	/* Check if the fuel quantity entered does not exceed available quantity. */
 	const fuelTypes = ['gasoline', 'premium-gasoline-95', 'diesel', 'premium-gasoline-97', 'kerosene'];
 
 	for (const fuelType of fuelTypes) {
@@ -35,6 +38,7 @@ $(function() {
 		});
 	}
 
+	/* Perform client-side validation of input fields. */
 	$('input').on('keyup', function() {
 		/* Enable only if there are no errors. */
 		let noError = true;
@@ -51,6 +55,7 @@ $(function() {
 		}
 	});
 
+	/* Add the transaction to the database. */
 	$('#add-transaction-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();

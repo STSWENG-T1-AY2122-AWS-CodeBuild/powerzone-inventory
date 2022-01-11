@@ -1,6 +1,7 @@
 /* JavaScript file for handling the front end of the edit account page */
 
 $(function() {
+	/* Edit the user account details. */
 	$('#edit-account-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();

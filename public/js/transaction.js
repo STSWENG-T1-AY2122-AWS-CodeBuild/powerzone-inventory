@@ -13,10 +13,12 @@ import {
 } from './general-util.js';
 
 $(function() {
+	/* Display prices with exactly two decimal places. */
 	$('.prices').each(function() {
 		$(this).text('₱ ' + toTwoDecimalPlaces($(this).text().substring(2)));
 	});
 
+	/* Disable editing if status is already set to completed. */
 	$('.edit-transaction-clickable').each(function() {
 		const transactionId = extractId($(this).attr('id'));
 
@@ -27,6 +29,7 @@ $(function() {
 		}
 	});
 
+	/* Update the details in the modal when the edit status button is clicked. */
 	$('.edit-transaction-status').on('click', function() {
 		const transactionId = extractId($(this).attr('id'));
 
@@ -36,8 +39,8 @@ $(function() {
 		$('#edit-transaction-status-form-customer').text($('#customer-' + transactionId).text());
 	});
 
+	/* Display the original transaction table upon reset of filters and sorting. */
 	const transactionTableId = 'transaction-table';
-
 	$('#reset-sort-transaction').on('click', function() {
 		$('input').val('');
 		$('input').prop('checked', false);
@@ -45,6 +48,7 @@ $(function() {
 		$('#' + transactionTableId).html($('#' + transactionTableId + '-orig').html());
 	});
 
+	/* Perform filtering and/or sorting of entries. */
 	$('input').on('change', function() {
 		/* Sort first before filtering. */
 		if ($('#sort-transaction-customer-name-az').is(':checked')) {
@@ -69,6 +73,7 @@ $(function() {
 		filterBy(transactionTableId, selectedStatusTypes, $('#transaction-date').val());
 	});
 
+	/* Cancel the transation. */
 	$('#cancel-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const transactionId = $('#edit-transaction-status-form-id').val();
@@ -80,7 +85,7 @@ $(function() {
 			data: $('#edit-transaction-status-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the landing page. */
+				/* If the cancellation is successful, redirect the user to the landing page. */
 				200: function() {
 					$('#status-img-' + transactionId).attr('src', '/assets/rejected.png');
 					$('#edit-transaction-status-modal').modal('hide');
@@ -96,6 +101,7 @@ $(function() {
 		});
 	});
 
+	/* Mark the transaction as completed. */
 	$('#complete-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const transactionId = $('#edit-transaction-status-form-id').val();
@@ -107,7 +113,7 @@ $(function() {
 			data: $('#edit-transaction-status-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the landing page. */
+				/* If the completion is successful, redirect the user to the landing page. */
 				200: function() {
 					$('#status-img-' + transactionId).attr('src', '/assets/accepted.png');
 					$('#edit-transaction-status-modal').modal('hide');
@@ -123,6 +129,7 @@ $(function() {
 		});
 	});
 
+	/* Pend the transaction. */
 	$('#pend-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const transactionId = $('#edit-transaction-status-form-id').val();
@@ -134,7 +141,7 @@ $(function() {
 			data: $('#edit-transaction-status-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the landing page. */
+				/* If the pending is successful, redirect the user to the landing page. */
 				200: function() {
 					$('#status-img-' + transactionId).attr('src', '/assets/pending.png');
 					$('#edit-transaction-status-modal').modal('hide');
