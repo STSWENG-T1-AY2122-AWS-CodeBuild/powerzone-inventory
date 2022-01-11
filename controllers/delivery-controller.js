@@ -15,7 +15,6 @@ const deliveryController = {
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getDelivery: function(req, res) {
-
 		/* Retrieve the details of all deliveries. */
 		const query = {};
 		const projection = 'id date customer dropoff status';
@@ -71,23 +70,23 @@ const deliveryController = {
              */
 			const cleanDate = null;
 
-            if (result.date != null) {
-                const month = result.date.getMonth() + 1;
-                let formattedMonth = month;
-                if (month.toString().length < 2) {
-                    formattedMonth = '0' + month.toString();
-                }
+			if (result.date != null) {
+				const month = result.date.getMonth() + 1;
+				let formattedMonth = month;
+				if (month.toString().length < 2) {
+					formattedMonth = '0' + month.toString();
+				}
 
-                const date = result.date.getDate();
-                let formattedDate = date;
-                if (date.toString().length < 2) {
-                    formattedDate = '0' + date.toString();
-                }
+				const date = result.date.getDate();
+				let formattedDate = date;
+				if (date.toString().length < 2) {
+					formattedDate = '0' + date.toString();
+				}
 
-                const year = result.date.getFullYear();
+				const year = result.date.getFullYear();
 
-                cleanDate = formattedMonth + '/' + formattedDate + '/' + year;
-            }
+				cleanDate = formattedMonth + '/' + formattedDate + '/' + year;
+			}
 
 			/* Store the delivery details in the variable data. */
 			const data = {
@@ -125,24 +124,24 @@ const deliveryController = {
              * stored in the database.
              */
 			const cleanDate = null;
-			
-            if (result.date != null) {
-                const month = result.date.getMonth() + 1;
-                let formattedMonth = month;
-                if (month.toString().length < 2) {
-                    formattedMonth = '0' + month.toString();
-                }
 
-                const date = result.date.getDate();
-                let formattedDate = date;
-                if (date.toString().length < 2) {
-                    formattedDate = '0' + date.toString();
-                }
+			if (result.date != null) {
+				const month = result.date.getMonth() + 1;
+				let formattedMonth = month;
+				if (month.toString().length < 2) {
+					formattedMonth = '0' + month.toString();
+				}
 
-                const year = result.date.getFullYear();
+				const date = result.date.getDate();
+				let formattedDate = date;
+				if (date.toString().length < 2) {
+					formattedDate = '0' + date.toString();
+				}
 
-                cleanDate = formattedMonth + '/' + formattedDate + '/' + year;
-            }
+				const year = result.date.getFullYear();
+
+				cleanDate = formattedMonth + '/' + formattedDate + '/' + year;
+			}
 
 			/* Store the delivery details in the variable data. */
 			const data = {

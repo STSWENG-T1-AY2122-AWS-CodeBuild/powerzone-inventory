@@ -1,9 +1,10 @@
-/* JavaScript file for handling the front end of the account page */
+/* JavaScript file for handling the front-end of the account page */
 
 import {extractId} from './general-util.js';
 import {getRoleValue} from './account-util.js';
 
 $(function() {
+	/* Update the details in the modal when the edit status button is clicked. */
 	$('.edit-status').on('click', function() {
 		const accountId = extractId($(this).attr('id'));
 
@@ -12,6 +13,7 @@ $(function() {
 		$('#edit-account-status-form-role').text($('#role-' + accountId).text());
 	});
 
+	/* Update the details in the modal when the edit role button is clicked. */
 	$('.edit-role').on('click', function() {
 		const accountId = extractId($(this).attr('id'));
 
@@ -22,6 +24,7 @@ $(function() {
 		$('#edit-account-role').val(getRoleValue($('#role-' + accountId).text()));
 	});
 
+	/* Update the details in the modal when the delete button is clicked. */
 	$('.delete').on('click', function() {
 		const accountId = extractId($(this).attr('id'));
 
@@ -30,6 +33,7 @@ $(function() {
 		$('#delete-account-form-role').text($('#role-' + accountId).text());
 	});
 
+	/* Reject the registration of the user account. */
 	$('#reject-account-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const id = $('#edit-account-status-form-id').val();
@@ -41,7 +45,7 @@ $(function() {
 			data: $('#edit-account-status-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the landing page. */
+				/* If the rejection is successful, redirect the user to the landing page. */
 				200: function() {
 					$('#status-img-' + id).attr('src', '/assets/rejected.png');
 					$('#edit-account-status-modal').modal('hide');
@@ -55,6 +59,7 @@ $(function() {
 		});
 	});
 
+	/* Accept the registration of the user account. */
 	$('#accept-account-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const id = $('#edit-account-status-form-id').val();
@@ -66,7 +71,7 @@ $(function() {
 			data: $('#edit-account-status-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the account page. */
+				/* If the acceptance is successful, redirect the user to the account page. */
 				200: function() {
 					$('#status-img-' + id).attr('src', '/assets/accepted.png');
 					$('#edit-account-status-modal').modal('hide');
@@ -80,6 +85,7 @@ $(function() {
 		});
 	});
 
+	/* Pend the registration of the user account. */
 	$('#pend-account-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const id = $('#edit-account-status-form-id').val();
@@ -91,7 +97,7 @@ $(function() {
 			data: $('#edit-account-status-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the account page. */
+				/* If the pending is successful, redirect the user to the account page. */
 				200: function() {
 					$('#status-img-' + id).attr('src', '/assets/pending.png');
 					$('#edit-account-status-modal').modal('hide');
@@ -105,6 +111,7 @@ $(function() {
 		});
 	});
 
+	/* Submit the form for editing the role of a user account. */
 	$('#edit-account-role-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const id = $('#edit-account-role-form-id').val();
@@ -130,6 +137,7 @@ $(function() {
 		});
 	});
 
+	/* Delete the user account. */
 	$('#delete-account-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const id = $('#delete-account-form-id').val();
@@ -141,7 +149,7 @@ $(function() {
 			data: $('#delete-account-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the account page. */
+				/* If the deletion is successful, redirect the user to the account page. */
 				200: function() {
 					$('#delete-account-modal').modal('hide');
 					$('#entry-' + id).remove();

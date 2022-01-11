@@ -129,10 +129,6 @@ describe('the function to update the status of the selected user account to "Rej
 			send: sinon.stub()
 		};
 
-		const filter = {
-			_id: convertToObjectId('123')
-		};
-
 		sinon.stub(db, 'updateOne').yields({});
 		accountController.postEditStatusReject(req, res);
 
@@ -191,10 +187,6 @@ describe('the function to update the status of the selected user account to "Pen
 			send: sinon.stub()
 		};
 
-		const filter = {
-			_id: convertToObjectId('123')
-		};
-
 		sinon.stub(db, 'updateOne').yields({});
 		accountController.postEditStatusPending(req, res);
 
@@ -251,10 +243,6 @@ describe('the function to update the status of the selected user account to "Acc
 			status: sinon.stub().returnsThis(),
 			json: sinon.stub(),
 			send: sinon.stub()
-		};
-
-		const filter = {
-			_id: convertToObjectId('123')
 		};
 
 		sinon.stub(db, 'updateOne').yields({});
@@ -348,10 +336,6 @@ describe('the function to delete the selected user account', function() {
 			status: sinon.stub().returnsThis(),
 			json: sinon.stub(),
 			send: sinon.stub()
-		};
-
-		const filter = {
-			_id: convertToObjectId('123')
 		};
 
 		sinon.stub(db, 'deleteOne').yields({});

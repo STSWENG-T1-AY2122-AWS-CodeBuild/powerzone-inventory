@@ -1,4 +1,7 @@
+/* JavaScript file for handling the front-end of the add stock page */
+
 $(function() {
+	/* Add stock to the inventory. */
 	$('#add-stock-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
@@ -9,7 +12,7 @@ $(function() {
 			data: $('#add-stock-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the inventory page. */
+				/* If the addition is successful, redirect the user to the inventory page. */
 				200: function() {
 					location.href = '/getInventory';
 				},

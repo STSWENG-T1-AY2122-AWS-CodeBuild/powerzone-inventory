@@ -1,3 +1,5 @@
+/* JavaScript file for handling the front-end of the edit stock page */
+
 import {
 	enableButton,
 	disableButton,
@@ -7,17 +9,16 @@ import {
 } from './general-util.js';
 
 $(function() {
+	/* Update the selected value in the fuel name dropdown to reflect the value in the database. */
 	$('#edit-stock-name').val($('#edit-stock-type').val());
 
+	/* Compute the current fuel quantity as the difference between the purchased and depleted quantities. */
 	$('#edit-stock-current-quantity').val(
 		parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val())
 	);
 
-	let keypressTimer;
-
+	/* Perform client-side validation of purchased fuel quantity versus available quantity. */
 	$('#edit-stock-quantity-purchased').on('keyup', function() {
-		clearTimeout(keypressTimer);
-
 		const currentQuantity =
 			parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());
 
@@ -32,21 +33,12 @@ $(function() {
 		}
 	});
 
-	$('#edit-stock-quantity-purchased').on('change', function() {
-		const currentQuantity =
-			parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());
-
-		if (currentQuantity < 0) {
-			$('#edit-stock-quantity-purchased').val(parseInt($('#edit-stock-quantity-depleted').val()));
-		} else {
-			$('#edit-stock-current-quantity').val(currentQuantity);
-		}
-	});
-
+	/* Display prices with exactly two decimal places. */
 	$('.prices').each(function() {
 		$(this).val(toTwoDecimalPlaces($(this).val()));
 	});
 
+	/* Submit the form for editing the stock details. */
 	$('#edit-stock-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();

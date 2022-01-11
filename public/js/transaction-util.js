@@ -1,3 +1,9 @@
+/**
+ * Converts the file path of the status icon to its equivalent value in the database.
+ *
+ * @param {string} icon File path of the status icon.
+ * @return {string} Equivalent value of the status icon in the database.
+ */
 const getStatusFromIcon = function(icon) {
 	switch (icon) {
 		case '/assets/pending.png':

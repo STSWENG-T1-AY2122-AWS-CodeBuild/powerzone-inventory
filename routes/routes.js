@@ -77,5 +77,4 @@ powerzone.get('/getEditDelivery/:id', deliveryController.getEditDelivery);
 powerzone.post('/postEditDelivery', deliveryController.postEditDelivery);
 
 
-
 module.exports = powerzone;
