@@ -289,7 +289,7 @@ const transactionController = {
 							/* Return fuel quantities to the stocks, starting from the latest stock,
 							 * until the original quantity requested in the transaction has been depleted.
 							 */
-							let transactionQuantity = transaciton.litersPremiumGasoline97;
+							let transactionQuantity = transaction.litersPremiumGasoline97;
 							let i = stocksPremiumGasoline97.length - 1;
 
 							while (transactionQuantity > 0) {

@@ -27,7 +27,7 @@ const transaction = {
 	litersKerosene: 50
 };
 
-/* Insert the initialized account into the database. */
+/* Insert the initialized transaction into the database. */
 db.insertOne(Transaction, transaction, function(flag) {
 	if (flag) {
 		console.log('\nDatabase population complete! Press Ctrl + C to continue.');
