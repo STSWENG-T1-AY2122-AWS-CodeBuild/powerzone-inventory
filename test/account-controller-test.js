@@ -56,6 +56,20 @@ describe('the function to get the account page', function() {
 		accountController.getAccount(req, res);
 
 		assert.isTrue(db.findMany.calledOnce);
+
+		db.findMany.restore();
+	});
+
+	it('should retrieve all the accounts with the correct arguments if the user is an administrator', function() {
+		const req = {
+			session: {
+				role: 'administrator'
+			}
+		};
+
+		sinon.stub(db, 'findMany').yields(expectedResult);
+		accountController.getAccount(req, res);
+
 		assert.equal(db.findMany.firstCall.args[0], Account);
 		expect(db.findMany.firstCall.args[1]).to.deep.equalInAnyOrder({});
 		assert.equal(db.findMany.firstCall.args[2], '_id firstName lastName username role status');
@@ -75,6 +89,21 @@ describe('the function to get the account page', function() {
 		accountController.getAccount(req, res);
 
 		assert.isTrue(db.findOne.calledOnce);
+
+		db.findOne.restore();
+	});
+
+	it('should retrieve exactly one account with the correct arguments if the user is not an administrator', function() {
+		const req = {
+			session: {
+				username: 'jana',
+				role: 'inventory-manager'
+			}
+		};
+
+		sinon.stub(db, 'findOne').yields(expectedResult[0]);
+		accountController.getAccount(req, res);
+
 		assert.equal(db.findOne.firstCall.args[0], Account);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({username: req.session.username});
 		assert.equal(db.findOne.firstCall.args[2], 'email firstName lastName role password');
@@ -84,7 +113,7 @@ describe('the function to get the account page', function() {
 });
 
 describe('the function to update the status of the selected user account to "Rejected"', function() {
-	it('should update the status of the account to "Rejected" only once', function() {
+	it('should update the status of the account only once', function() {
 		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
 		convertToObjectId.returns('123');
 
@@ -108,6 +137,34 @@ describe('the function to update the status of the selected user account to "Rej
 		accountController.postEditStatusReject(req, res);
 
 		assert.isTrue(db.updateOne.calledOnce);
+
+		db.convertToObjectId.restore();
+		db.updateOne.restore();
+	});
+
+	it('should update the status of the account to "Rejected"', function() {
+		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
+		convertToObjectId.returns('123');
+
+		const req = {
+			body: {
+				accountId: '123'
+			}
+		};
+
+		const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+
+		const filter = {
+			_id: convertToObjectId('123')
+		};
+
+		sinon.stub(db, 'updateOne').yields({});
+		accountController.postEditStatusReject(req, res);
+
 		assert.equal(db.updateOne.firstCall.args[0], Account);
 		expect(db.updateOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
 		expect(db.updateOne.firstCall.args[2]).to.deep.equalInAnyOrder({status: 'Rejected'});
@@ -118,7 +175,7 @@ describe('the function to update the status of the selected user account to "Rej
 });
 
 describe('the function to update the status of the selected user account to "Pending"', function() {
-	it('should update the status of the account to "Pending" only once', function() {
+	it('should update the status of the account only once', function() {
 		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
 		convertToObjectId.returns('123');
 
@@ -142,6 +199,34 @@ describe('the function to update the status of the selected user account to "Pen
 		accountController.postEditStatusPending(req, res);
 
 		assert.isTrue(db.updateOne.calledOnce);
+
+		db.convertToObjectId.restore();
+		db.updateOne.restore();
+	});
+
+	it('should update the status of the account to "Pending"', function() {
+		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
+		convertToObjectId.returns('123');
+
+		const req = {
+			body: {
+				accountId: '123'
+			}
+		};
+
+		const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+
+		const filter = {
+			_id: convertToObjectId('123')
+		};
+
+		sinon.stub(db, 'updateOne').yields({});
+		accountController.postEditStatusPending(req, res);
+
 		assert.equal(db.updateOne.firstCall.args[0], Account);
 		expect(db.updateOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
 		expect(db.updateOne.firstCall.args[2]).to.deep.equalInAnyOrder({status: 'Pending'});
@@ -152,7 +237,7 @@ describe('the function to update the status of the selected user account to "Pen
 });
 
 describe('the function to update the status of the selected user account to "Accepted"', function() {
-	it('should update the status of the account to "Accepted" only once', function() {
+	it('should update the status of the account only once', function() {
 		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
 		convertToObjectId.returns('123');
 
@@ -176,6 +261,34 @@ describe('the function to update the status of the selected user account to "Acc
 		accountController.postEditStatusAccept(req, res);
 
 		assert.isTrue(db.updateOne.calledOnce);
+
+		db.convertToObjectId.restore();
+		db.updateOne.restore();
+	});
+
+	it('should update the status of the account to "Accepted"', function() {
+		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
+		convertToObjectId.returns('123');
+
+		const req = {
+			body: {
+				accountId: '123'
+			}
+		};
+
+		const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+
+		const filter = {
+			_id: convertToObjectId('123')
+		};
+
+		sinon.stub(db, 'updateOne').yields({});
+		accountController.postEditStatusAccept(req, res);
+
 		assert.equal(db.updateOne.firstCall.args[0], Account);
 		expect(db.updateOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
 		expect(db.updateOne.firstCall.args[2]).to.deep.equalInAnyOrder({status: 'Accepted'});
@@ -245,6 +358,34 @@ describe('the function to delete the selected user account', function() {
 		accountController.postDeleteAccount(req, res);
 
 		assert.isTrue(db.deleteOne.calledOnce);
+
+		db.convertToObjectId.restore();
+		db.deleteOne.restore();
+	});
+
+	it('should delete the account with the correct arguments', function() {
+		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
+		convertToObjectId.returns('123');
+
+		const req = {
+			body: {
+				accountId: '123'
+			}
+		};
+
+		const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+
+		const filter = {
+			_id: convertToObjectId('123')
+		};
+
+		sinon.stub(db, 'deleteOne').yields({});
+		accountController.postDeleteAccount(req, res);
+
 		assert.equal(db.deleteOne.firstCall.args[0], Account);
 		expect(db.deleteOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
 
@@ -291,6 +432,29 @@ describe('the function to edit the account details', function() {
 		accountController.postEditAccount(req, res);
 
 		assert.isTrue(bcrypt.hash.calledOnce);
+		assert.equal(bcrypt.hash.firstCall.args[0], req.body.editAccountNewPassword);
+	});
+
+	it('should hash the correct password', function() {
+		req = {
+			body: {
+				editAccountEmail: 'hello@gmail.com',
+				editAccountFName: 'hello',
+				editAccountLName: 'hello',
+				editAccountUsername: 'hello',
+				editAccountNewPassword: 'hello',
+				editAccountConfirmPassword: 'hello'
+			},
+			session: {
+				username: 'hello'
+			}
+		};
+
+		hash = 'fasdfasdfa';
+
+		sinon.stub(bcrypt, 'hash').yields(null, hash);
+		accountController.postEditAccount(req, res);
+
 		assert.equal(bcrypt.hash.firstCall.args[0], req.body.editAccountNewPassword);
 	});
 
@@ -342,7 +506,7 @@ describe('the function to edit the account details', function() {
 });
 
 describe('the function to get the successful edit page', function() {
-	it('should render the successful edit page only once', function() {
+	it('should render the page only once', function() {
 		const req = sinon.spy();
 		const res = {
 			render: sinon.spy()
@@ -350,12 +514,21 @@ describe('the function to get the successful edit page', function() {
 
 		accountController.getSuccessfulEdit(req, res);
 		assert.isTrue(res.render.calledOnce);
+	});
+
+	it('should render the successful edit page', function() {
+		const req = sinon.spy();
+		const res = {
+			render: sinon.spy()
+		};
+
+		accountController.getSuccessfulEdit(req, res);
 		assert.equal(res.render.firstCall.args[0], 'successful-edit');
 	});
 });
 
 describe('the function to get the edit account page', function() {
-	it('should render the successful edit page only once', function() {
+	it('should render the page only once', function() {
 		const req = sinon.spy();
 		const res = {
 			render: sinon.spy()
@@ -363,6 +536,15 @@ describe('the function to get the edit account page', function() {
 
 		accountController.getEditAccount(req, res);
 		assert.isTrue(res.render.calledOnce);
+	});
+
+	it('should render the successful edit page', function() {
+		const req = sinon.spy();
+		const res = {
+			render: sinon.spy()
+		};
+
+		accountController.getEditAccount(req, res);
 		assert.equal(res.render.firstCall.args[0], 'edit-account');
 	});
 });
