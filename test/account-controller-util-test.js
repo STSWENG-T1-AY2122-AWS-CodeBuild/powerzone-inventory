@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 
 const accountControllerUtil = require('../controllers/account-controller-util.js');
 
-describe('the utility function for retrieving the account details from the admin side', function() {
+describe('the utility function for retrieving the details of all non-administrator accounts', function() {
 	it('should return all the retrieved accounts', function() {
 		const dbResult = [
 			{
