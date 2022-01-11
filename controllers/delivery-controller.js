@@ -3,13 +3,9 @@
 /* The db file, delivery schema, and transaction schema are used for the delivery page. */
 const db = require('../models/db.js');
 const Delivery = require('../models/delivery-schema.js');
-const Transaction = require('../models/transaction-schema.js');
 
-/* A utility file is used for auxiliary functions. */
+/* A utility object is used for auxiliary functions. */
 const deliveryControllerUtil = require('./delivery-controller-util.js');
-
-/* The transaction controller is used to update the transaction status.*/
-const transactionController = require('./transaction-controller.js');
 
 const deliveryController = {
 	/**
@@ -82,24 +78,7 @@ const deliveryController = {
 
 		/* Update the status of the delivery and its corresponding transaction. */
 		db.updateOne(Delivery, filter, update, function(flag) {
-			/* The transaction ID corresponding to a delivery has a starting digit of 1 and the same
-			 * succeeding digits as the delivery ID.
-			 */
-			const transactionId = parseInt(deliveryId) - 10000000;
-
-			/* Get the original status of the corresponding transaction. */
-			query = {id: transactionId};
-			projection = 'id status';
-
-			db.findOne(Transaction, query, projection, function(result) {
-				/* Assign the retrieved transaction details to the body of the request object
-				 * and set the status of the transaction to "Completed."
-				 */
-				req.body.transactionId = result.id;
-				req.body.transactionStatusOld = result.status;
-
-				transactionController.postEditStatusCompleted(req, res);
-			});
+			deliveryControllerUtil.completeTransaction(req, res, deliveryId);
 		});
 	},
 
@@ -273,24 +252,7 @@ const deliveryController = {
 			 * to "Completed."
 			 */
 			if (status == 'completed') {
-				/* The transaction ID corresponding to a delivery has a starting digit of 1 and the same
-				 * succeeding digits as the delivery ID.
-				 */
-				const transactionId = parseInt(id) - 10000000;
-
-				/* Get the original status of the corresponding transaction. */
-				query = {id: transactionId};
-				projection = 'id status';
-
-				db.findOne(Transaction, query, projection, function(result) {
-					/* Assign the retrieved transaction details to the body of the request object
-					 * and set the status of the transaction to "Completed."
-					 */
-					req.body.transactionId = result.id;
-					req.body.transactionStatusOld = result.status;
-
-					transactionController.postEditStatusCompleted(req, res);
-				});
+				deliveryControllerUtil.completeTransaction(req, res, id);
 
 			/* Otherwise, finish updating the delivery details. */
 			} else {

@@ -10,6 +10,7 @@ const bcrypt = require('bcrypt');
 /* Use ten salt rounds for password hashing. */
 const saltRounds = 10;
 
+/* A utility object is used for auxiliary functions. */
 const accountControllerUtil = require('./account-controller-util.js');
 
 const accountController = {

@@ -4,7 +4,7 @@
 const db = require('../models/db.js');
 const Inventory = require('../models/inventory-schema.js');
 
-/* A utility file is used for auxiliary functions. */
+/* A utility object is used for auxiliary functions. */
 const inventoryControllerUtil = require('./inventory-controller-util.js');
 
 const inventoryController = {

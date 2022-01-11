@@ -1,3 +1,6 @@
+/* Utility object containing functions for processing and formatting the database retrieval results of 
+ * the account controller. 
+ */
 const accountControllerUtil = {
 	/**
 	 * Formats the database results for display in the account page.
