@@ -69,9 +69,13 @@ powerzone.get('/getEditTransaction/:id', transactionController.getEditTransactio
 powerzone.post('/postEditTransaction', transactionController.postEditTransaction);
 
 powerzone.get('/getDelivery', deliveryController.getDelivery);
-powerzone.get('/getAddDelivery', deliveryController.getAddDelivery);
-powerzone.get('/getEditDelivery', deliveryController.getEditDelivery);
-powerzone.get('/getMoreInfoDelivery', deliveryController.getMoreInfoDelivery);
+powerzone.post('/postEditStatusDeliveryCancelled', deliveryController.postEditStatusCancelled);
+powerzone.post('/postEditStatusDeliveryCompleted', deliveryController.postEditStatusCompleted);
+powerzone.post('/postEditStatusDeliveryPending', deliveryController.postEditStatusPending);
+powerzone.get('/getMoreInfoDelivery/:id', deliveryController.getMoreInfoDelivery);
+powerzone.get('/getEditDelivery/:id', deliveryController.getEditDelivery);
+powerzone.post('/postEditDelivery', deliveryController.postEditDelivery);
+
 
 
 module.exports = powerzone;

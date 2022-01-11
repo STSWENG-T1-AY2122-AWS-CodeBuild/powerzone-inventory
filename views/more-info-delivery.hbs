@@ -32,55 +32,55 @@
                             <div class = "mt-3 m-4 row justify-content-md-center">
                                 <div class = "col-md-6">
                                     <label for = "more-info-delivery-status" class = "form-label fw-bold text-primary">Status</label>
-                                    <input id = "more-info-delivery-status" type = "text" value = "Completed" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    <input id = "more-info-delivery-status" type = "text" value = "{{getStatusString status}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                 </div>
                             </div>
                             
                             <div class = "m-4 row">
                                 <div class = "col me-5">
-                                    <label for = "more-info-delivery-id" class = "form-label fw-bold text-primary">Transaction ID</label>
-                                    <input id = "more-info-delivery-id" name = "moreInfoDeliveryId" type = "text" placeholder = "Transaction ID" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    <label for = "more-info-delivery-id" class = "form-label fw-bold text-primary">Delivery ID</label>
+                                    <input id = "more-info-delivery-id" name = "moreInfoDeliveryId" type = "text" placeholder = "Delivery ID" value = "{{id}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                 </div>
 
                                 <div class = "col">
                                     <label for = "more-info-delivery-warehouse" class = "form-label fw-bold text-primary">Warehouse Location</label>
-                                    <input id = "more-info-delivery-warehouse" name = "moreInfoDeliveryWarehouse" type = "text" placeholder = "Warehouse Location" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    <input id = "more-info-delivery-warehouse" name = "moreInfoDeliveryWarehouse" type = "text" placeholder = "Warehouse Location" value = "{{warehouse}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                 </div>
                             </div>
 
                             <div class = "m-4 row">
                                 <div class = "col me-5">
                                     <label for = "more-info-delivery-customer-name" class = "form-label fw-bold text-primary">Customer Name</label>
-                                    <input id = "more-info-delivery-customer-name" name = "moreInfoDeliveryCustomerName" type = "text" placeholder = "Customer Name" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    <input id = "more-info-delivery-customer-name" name = "moreInfoDeliveryCustomerName" type = "text" placeholder = "Customer Name" value = "{{customer}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                 </div>
 
                                 <div class = "col">
                                     <label for = "more-info-delivery-dropoff" class = "form-label fw-bold text-primary">Drop-Off Location</label>
-                                    <input id = "more-info-delivery-dropoff" name = "moreInfoDeliveryDropoff" type = "text" placeholder = "Drop-Off Location" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    <input id = "more-info-delivery-dropoff" name = "moreInfoDeliveryDropoff" type = "text" placeholder = "Drop-Off Location" value = "{{dropoff}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                 </div>
                             </div>
 
                             <div class = "m-4 row">
                                 <div class = "col me-5">
                                     <label for = "more-info-delivery-customer-number" class = "form-label fw-bold text-primary">Customer Phone Number</label>
-                                    <input id = "more-info-delivery-customer-number" name = "moreInfoDeliveryCustomerNumber" type = "number" placeholder = "Customer Phone Number" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    <input id = "more-info-delivery-customer-number" name = "moreInfoDeliveryCustomerNumber" type = "number" placeholder = "Customer Phone Number" value = "{{number}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                 </div>
 
                                 <div class = "col">
-                                    <label for = "more-info-delivery-manager" class = "form-label fw-bold text-primary">New Password</label>   
-                                    <input id = "more-info-delivery-manager" name = "moreInfoDeliveryManager" type = "text" placeholder = "Delivery Manager" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    <label for = "more-info-delivery-manager" class = "form-label fw-bold text-primary">Delivery Manager</label>   
+                                    <input id = "more-info-delivery-manager" name = "moreInfoDeliveryManager" type = "text" placeholder = "Delivery Manager" value = "{{manager}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                 </div>
                             </div>
 
                             <div class = "m-4 row">
                                 <div class = "col me-5">
                                     <label for = "more-info-delivery-date" class = "form-label fw-bold text-primary">Delivery Date</label>
-                                    <input id = "more-info-delivery-date" name = "moreInfoDeliveryDate" type = "date" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    <input id = "more-info-delivery-date" name = "moreInfoDeliveryDate" type = "date" value = "{{date}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                 </div>
 
                                 <div class = "col">
                                     <label for = "more-info-delivery-driver" class = "form-label fw-bold text-primary">Driver</label>   
-                                    <input id = "more-info-delivery-driver" name = "moreInfoDeliveryDriver" type = "text" placeholder = "Driver" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                    <input id = "more-info-delivery-driver" name = "moreInfoDeliveryDriver" type = "text" placeholder = "Driver" value = "{{driver}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                 </div>
                             </div>
                         </td>

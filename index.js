@@ -86,7 +86,7 @@ hbs.handlebars.registerHelper('getStatusIcon', function(status) {
 	}
 });
 
-hbs.handlebars.registerHelper('getTransactionStatus', function(status) {
+hbs.handlebars.registerHelper('getStatusString', function(status) {
 	if (status == 'completed') {
 		return 'Completed';
 	} else if (status == 'pending') {
@@ -101,6 +101,14 @@ hbs.handlebars.registerHelper('openTransaction', function(status) {
 		return false;
 	} else {
 		return true;
+	}
+});
+
+hbs.handlebars.registerHelper('validDeliveryRole', function(role) {
+	if (role == 'administrator' || role == 'delivery-manager') {
+		return true;
+	} else {
+		return false;
 	}
 });
 
