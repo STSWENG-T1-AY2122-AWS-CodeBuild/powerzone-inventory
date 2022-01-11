@@ -68,7 +68,7 @@ const deliveryController = {
 			/* Format the display of the delivery date from the Date object, if applicable,
              * stored in the database.
              */
-			const cleanDate = null;
+			let cleanDate = null;
 
 			if (result.date != null) {
 				const month = result.date.getMonth() + 1;
@@ -85,7 +85,7 @@ const deliveryController = {
 
 				const year = result.date.getFullYear();
 
-				cleanDate = formattedMonth + '/' + formattedDate + '/' + year;
+				cleanDate = year + '-' + formattedMonth + '-' + formattedDate;
 			}
 
 			/* Store the delivery details in the variable data. */
@@ -123,7 +123,7 @@ const deliveryController = {
 			/* Format the display of the delivery date from the Date object, if applicable,
              * stored in the database.
              */
-			const cleanDate = null;
+			let cleanDate = null;
 
 			if (result.date != null) {
 				const month = result.date.getMonth() + 1;
@@ -140,15 +140,16 @@ const deliveryController = {
 
 				const year = result.date.getFullYear();
 
-				cleanDate = formattedMonth + '/' + formattedDate + '/' + year;
+				cleanDate = year + '-' + formattedMonth + '-' + formattedDate;
 			}
 
 			/* Store the delivery details in the variable data. */
 			const data = {
-				id: id,
+				id: result.id,
+				date: cleanDate,
+				status: result.status,
 				customer: result.customer,
 				number: result.number,
-				date: cleanDate,
 				warehouse: result.warehouse,
 				dropoff: result.dropoff,
 				manager: result.manager,
