@@ -34,6 +34,33 @@ describe('the function to get the home page', function() {
 		homeController.getHome(req, res);
 
 		assert.isTrue(db.findOne.calledOnce);
+		db.findOne.restore();
+	});
+
+	it('should search the database for the selling prices with the correct arguments', function() {
+		const req = {
+			session: {
+				username: 'bettina'
+			}
+		};
+
+		const res = {
+			render: sinon.spy(),
+			redirect: sinon.spy()
+		};
+
+		const expectedResult = {
+			role: 'inventory-manager',
+			gasoline: '6.23',
+			premiumGasoline95: '6.23',
+			diesel: '6.23',
+			premiumGasoline97: '6.23',
+			kerosene: '6.23'
+		};
+
+		sinon.stub(db, 'findOne').yields(expectedResult);
+		homeController.getHome(req, res);
+
 		assert.equal(db.findOne.firstCall.args[0], SellingPrice);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({label: 'Prices'});
 		assert.equal(db.findOne.firstCall.args[2], 'gasoline premiumGasoline95 diesel premiumGasoline97 kerosene');
@@ -54,11 +81,10 @@ describe('the function to get the home page', function() {
 		};
 
 		homeController.getHome(req, res);
-
 		assert.isTrue(res.redirect.notCalled);
 	});
 
-	it('should redirect to the log-in page only once if the user is not logged in', function() {
+	it('should redirect to the page only once if the user is not logged in', function() {
 		const req = {
 			session: {
 				username: null
@@ -73,6 +99,22 @@ describe('the function to get the home page', function() {
 		homeController.getHome(req, res);
 
 		assert.isTrue(res.redirect.calledOnce);
+	});
+
+	it('should redirect to the log-in page if the user is not logged in', function() {
+		const req = {
+			session: {
+				username: null
+			}
+		};
+
+		const res = {
+			render: sinon.spy(),
+			redirect: sinon.spy()
+		};
+
+		homeController.getHome(req, res);
+
 		assert.equal(res.redirect.firstCall.args[0], '/');
 	});
 
@@ -130,6 +172,13 @@ describe('the function to edit the selling prices displayed on the home page', f
 		homeController.postEditPrices(req, res);
 
 		assert.isTrue(db.updateOne.calledOnce);
+		db.updateOne.restore();
+	});
+
+	it('should update the database with the correct prices with the correct arguments', function() {
+		sinon.stub(db, 'updateOne').yields({});
+		homeController.postEditPrices(req, res);
+
 		assert.equal(db.updateOne.firstCall.args[0], SellingPrice);
 		expect(db.updateOne.firstCall.args[1]).to.deep.equalInAnyOrder({label: 'Prices'});
 		expect(db.updateOne.firstCall.args[2]).to.deep.equalInAnyOrder(update);
