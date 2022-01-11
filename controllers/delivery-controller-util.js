@@ -1,5 +1,5 @@
-/* Utility object containing functions for processing and formatting the database retrieval results of 
- * the delivery controller. 
+/* Utility object containing functions for processing and formatting the database retrieval results of
+ * the delivery controller.
  */
 
 /* The db file and transaction schema are used for retrieving transaction details. */
@@ -13,7 +13,8 @@ const deliveryControllerUtil = {
 	/**
 	 * Formats the database results for display in the delivery page.
 	 *
-	 * @param result  Object that contains the result of the database retrieval.
+	 * @param {Object} result  Object that contains the result of the database retrieval.
+	 * @return {Object} Formatted delivery details.
 	 */
 	deliveryUtil: function(result) {
 		/* Store the details of all deliveries in individual arrays to allow for further formatting. */
@@ -67,7 +68,7 @@ const deliveryControllerUtil = {
 	 *
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
-	 * @param id	String that contains the delivery ID of the selected delivery.
+	 * @param {string} id	String that contains the delivery ID of the selected delivery.
 	 */
 	completeTransaction: function(req, res, id) {
 		/* The transaction ID corresponding to a delivery has a starting digit of 1 and the same

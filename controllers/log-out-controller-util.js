@@ -1,4 +1,4 @@
-/* Utility object containing functions for handling the HTTP request and response elements of the 
+/* Utility object containing functions for handling the HTTP request and response elements of the
  * log out controller.
  */
 const logOutUtilControllerUtil = {

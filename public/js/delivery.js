@@ -6,16 +6,16 @@ import {extractId} from './general-util.js';
 
 $(function() {
 /* Update the details in the modal when the edit status button is clicked. */
-    $('.edit-delivery-status').on('click', function() {
-        const transactionId = extractId($(this).attr('id'));
+	$('.edit-delivery-status').on('click', function() {
+		const transactionId = extractId($(this).attr('id'));
 
-        $('#edit-delivery-status-form-id').val(transactionId);
-        $('#edit-delivery-status-form-status').val(getStatusFromIcon($('#status-img-' + transactionId).attr('src')));
-        $('#edit-delivery-status-form-display-id').text($('#id-' + transactionId).text());
-        $('#edit-delivery-status-form-customer').text($('#customer-' + transactionId).text());
-    });
+		$('#edit-delivery-status-form-id').val(transactionId);
+		$('#edit-delivery-status-form-status').val(getStatusFromIcon($('#status-img-' + transactionId).attr('src')));
+		$('#edit-delivery-status-form-display-id').text($('#id-' + transactionId).text());
+		$('#edit-delivery-status-form-customer').text($('#customer-' + transactionId).text());
+	});
 
-    /* Cancel the delivery. */
+	/* Cancel the delivery. */
 	$('#cancel-delivery-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const deliveryId = $('#edit-delivery-status-form-id').val();
@@ -43,7 +43,7 @@ $(function() {
 		});
 	});
 
-    /* Pend the delivery. */
+	/* Pend the delivery. */
 	$('#pend-delivery-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const deliveryId = $('#edit-delivery-status-form-id').val();
@@ -71,7 +71,7 @@ $(function() {
 		});
 	});
 
-    /* Complete the delivery. */
+	/* Complete the delivery. */
 	$('#complete-delivery-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		const deliveryId = $('#edit-delivery-status-form-id').val();
