@@ -69,7 +69,7 @@ $(function() {
 			data: $('#add-transaction-form').serialize(),
 			statusCode: {
 
-				/* If the editing is successful, redirect the user to the transaction page. */
+				/* If the addition is successful, redirect the user to the transaction page. */
 				200: function() {
 					location.href = '/getTransaction';
 				},

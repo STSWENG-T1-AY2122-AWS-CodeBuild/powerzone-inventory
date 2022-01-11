@@ -1,9 +1,26 @@
+/* JavaScript file containing the utility methods for handling the front-end of the inventory page */
+
+/**
+ * Displays all the entries of the inventory table.
+ *
+ * @param {string} tableId ID of the inventory table.
+ */
 const showAll = function(tableId) {
 	$('#' + tableId + ' > tbody > tr').each(function() {
 		$(this).show();
 	});
 };
 
+/**
+ * Filters the entries of the inventory table based on the status and the string representation
+ * of the purchase date.
+ *
+ * @param {string} tableId ID of the inventory table.
+ * @param {array} fuelTypes Fuel type used for filtering; empty array if no filtering
+ * is to be performed based on fuel type.
+ * @param {string} dateString String representation of the inventory date used for filtering;
+ * empty string if no filtering is to be performed based on date.
+ */
 const filterBy = function(tableId, fuelTypes, dateString) {
 	const filterDate = new Date(dateString);
 
@@ -50,9 +67,15 @@ const filterBy = function(tableId, fuelTypes, dateString) {
 	});
 };
 
+/**
+ * Sorts the entries in the inventory table in alphabetical order based on the fuel type.
+ *
+ * @param {string} tableId ID of the inventory table.
+ */
 const sortAtoZ = function(tableId) {
 	let stillSorting = true;
 
+	/* Follow a bubble sort-type sorting algorithm. */
 	while (stillSorting) {
 		const rows = $('#' + tableId + ' > tbody > tr');
 		stillSorting = false;
@@ -77,9 +100,15 @@ const sortAtoZ = function(tableId) {
 	}
 };
 
+/**
+ * Sorts the entries in the inventory table in reverse alphabetical order based on the fuel type.
+ *
+ * @param {string} tableId ID of the inventory table.
+ */
 const sortZtoA = function(tableId) {
 	let stillSorting = true;
 
+	/* Follow a bubble sort-type sorting algorithm. */
 	while (stillSorting) {
 		const rows = $('#' + tableId + ' > tbody > tr');
 		stillSorting = false;
@@ -104,9 +133,15 @@ const sortZtoA = function(tableId) {
 	}
 };
 
+/**
+ * Sorts the entries in the inventory table in ascending order based on the price.
+ *
+ * @param {string} tableId ID of the inventory table.
+ */
 const sortLowToHigh = function(tableId) {
 	let stillSorting = true;
 
+	/* Follow a bubble sort-type sorting algorithm. */
 	while (stillSorting) {
 		const rows = $('#' + tableId + ' > tbody > tr');
 		stillSorting = false;
@@ -133,9 +168,15 @@ const sortLowToHigh = function(tableId) {
 	}
 };
 
+/**
+ * Sorts the entries in the inventory table in descending order based on the price.
+ *
+ * @param {string} tableId ID of the inventory table.
+ */
 const sortHighToLow = function(tableId) {
 	let stillSorting = true;
 
+	/* Follow a bubble sort-type sorting algorithm. */
 	while (stillSorting) {
 		const rows = $('#' + tableId + ' > tbody > tr');
 		stillSorting = false;

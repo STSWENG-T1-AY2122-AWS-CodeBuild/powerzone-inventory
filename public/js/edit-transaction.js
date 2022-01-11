@@ -1,6 +1,5 @@
 /* JavaScript file for handling the front-end of the edit transaction page */
 
-
 import {getFuelTypes} from './constant-util.js';
 import {
 	enableButton,
@@ -43,6 +42,7 @@ $(function() {
 		});
 	}
 
+	/* Perform client-side validation of input fields. */
 	$('input').on('keyup', function() {
 		/* Enable only if there are no errors. */
 		let noError = true;
@@ -59,6 +59,7 @@ $(function() {
 		}
 	});
 
+	/* Submit the form for editing the transaction. */
 	$('#edit-transaction-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
