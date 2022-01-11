@@ -54,6 +54,26 @@
 
                                 <div class = "m-4 row">
                                     <div class = "col me-5">
+                                        <label for = "edit-delivery-status" class = "form-label fw-bold text-primary">Delivery Status</label>
+                                        <select id = "edit-delivery-status" name = "editDeliveryStatus" class = "form-select rounded-pill" required>
+                                            <option value = "pending">Pending</option>
+                                            <option value = "cancelled">Cancelled</option>
+                                            <option value = "cancelled">Completed</option>
+                                        </select>
+                                    </div>  
+
+                                    <div class = "col">
+                                        <label for = "edit-delivery-dropoff" class = "form-label fw-bold text-primary">Drop-Off Location</label>
+                                        <input id = "edit-delivery-dropoff" name = "editDeliveryDropoff" type = "text" placeholder = "Drop-Off Location" value = "{{dropoff}}" class = "form-control p-2 rounded-pill" required>
+                                        
+                                        <div id = "edit-delivery-invalid-blank-dropoff" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the drop-off location
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row">
+                                    <div class = "col me-5">
                                         <label for = "edit-delivery-customer-name" class = "form-label fw-bold text-primary">Customer Name</label>
                                         <input id = "edit-delivery-customer-name" name = "editDeliveryCustomerName" type = "text" placeholder = "Customer Name" value = "{{customer}}" class = "form-control p-2 rounded-pill" required>
 
@@ -63,11 +83,11 @@
                                     </div>
 
                                     <div class = "col">
-                                        <label for = "edit-delivery-dropoff" class = "form-label fw-bold text-primary">Drop-Off Location</label>
-                                        <input id = "edit-delivery-dropoff" name = "editDeliveryDropoff" type = "text" placeholder = "Drop-Off Location" value = "{{dropoff}}" class = "form-control p-2 rounded-pill" required>
-                                        
-                                        <div id = "edit-delivery-invalid-blank-dropoff" class = "fw-bold invalid-feedback text-center">
-                                            Kindly input the drop-off location
+                                        <label for = "edit-delivery-manager" class = "form-label fw-bold text-primary">Delivery Manager</label>   
+                                        <input id = "edit-delivery-manager" name = "editDeliveryManager" type = "text" placeholder = "Delivery Manager" value = "{{manager}}" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-delivery-invalid-blank-manager" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the delivery manager
                                         </div>
                                     </div>
                                 </div>
@@ -87,31 +107,22 @@
                                     </div>
 
                                     <div class = "col">
-                                        <label for = "edit-delivery-manager" class = "form-label fw-bold text-primary">Delivery Manager</label>   
-                                        <input id = "edit-delivery-manager" name = "editDeliveryManager" type = "text" placeholder = "Delivery Manager" value = "{{manager}}" class = "form-control p-2 rounded-pill" required>
-
-                                        <div id = "edit-delivery-invalid-blank-manager" class = "fw-bold invalid-feedback text-center">
-                                            Kindly input the delivery manager
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class = "m-4 row">
-                                    <div class = "col me-5">
-                                        <label for = "edit-delivery-date" class = "form-label fw-bold text-primary">Delivery Date</label>
-                                        <input id = "edit-delivery-date" name = "editDeliveryDate" type = "date" value = "{{date}}" class = "form-control p-2 rounded-pill" required>
-
-                                        <div id = "edit-delivery-invalid-blank-date" class = "fw-bold invalid-feedback text-center">
-                                            Kindly input the delivery date
-                                        </div>
-                                    </div>
-
-                                    <div class = "col">
                                         <label for = "edit-delivery-driver" class = "form-label fw-bold text-primary">Driver</label>   
                                         <input id = "edit-delivery-driver" name = "editDeliveryDriver" type = "text" placeholder = "Driver" value = "{{driver}}" class = "form-control p-2 rounded-pill" required>
 
                                         <div id = "edit-delivery-invalid-blank-driver" class = "fw-bold invalid-feedback text-center">
                                             Kindly input the driver
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row justify-content-md-center">
+                                    <div class = "col-md-6">
+                                        <label for = "edit-delivery-date" class = "form-label fw-bold text-primary">Delivery Date</label>
+                                        <input id = "edit-delivery-date" name = "editDeliveryDate" type = "date" value = "{{date}}" class = "form-control p-2 rounded-pill" required>
+
+                                        <div id = "edit-delivery-invalid-blank-date" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the delivery date
                                         </div>
                                     </div>
                                 </div>
