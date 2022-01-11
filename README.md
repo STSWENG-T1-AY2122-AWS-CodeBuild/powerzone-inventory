@@ -91,9 +91,12 @@ Open the following website: [INSERT LINK HERE].
 4. Run the following commands to populate the database with the necessary collections:
 
    ```
-   node misc/populate_account.js
-   node misc/populate_inventory.js
-   node misc/populate_price.js
+   node misc/populate-account.js
+   node misc/populate-delivery.js
+   node misc/populate-inventory.js
+   node misc/populate-price.js
+   node misc/populate-transaction.js
+   node misc/populate-transaction-number.js
    ```
    
 5. Run the following command to run the server: 
