@@ -20,9 +20,11 @@ $(function() {
 	let isUsernameStillValid = true;
 	let didUsernameChange = true;
 
+	/* Set this to true in order to detect an initial single-key change to the username. */
 	let isEmailStillValid = true;
 	let didEmailChange = false;
 
+	/* Store the current email and username for comparison with newly entered values. */
 	const currentEmail = $('#edit-account-email').val();
 	const currentUsername = $('#edit-account-username').val();
 
@@ -76,6 +78,7 @@ $(function() {
 				}
 			} else {
 				if (field.is(emailField)) {
+					/* If the newly entered email is the same as the current email, no error is triggered. */
 					if (res.email == currentEmail) {
 						hideErrorMessage(nonUniqueEmail);
 						isEmailStillValid = true;
@@ -125,6 +128,7 @@ $(function() {
 						}
 					} else {
 						if (field.is(usernameField)) {
+							/* If the newly entered username is the same as the current username, no error is triggered. */
 							if (res.username == currentUsername) {
 								hideErrorMessage(nonUniqueUsername);
 								isUsernameStillValid = true;

@@ -1,3 +1,5 @@
+/* JavaScript file containing the utility methods for handling the front-end of the edit stock page */
+
 /**
  * Convert a fuel to its equivalent value in the database.
  *
