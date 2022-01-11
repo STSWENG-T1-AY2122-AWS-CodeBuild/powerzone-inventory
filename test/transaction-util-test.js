@@ -16,6 +16,33 @@ const {getDom} = require('./const-test.js');
 
 const htmlDom = getDom();
 
+describe('the function to convert the path of the status icon to its equivalent value in the database', function() {
+	it('should return a string', function() {
+		const result = getStatusFromIcon('/assets/pending.png');
+		assert.isString(result);
+	});
+
+	it('should return completed if the path points to the icon for completed', function() {
+		const result = getStatusFromIcon('/assets/completed.png');
+		assert.equal(result, 'completed');
+	});
+
+	it('should return completed if the path points to the icon for accepted', function() {
+		const result = getStatusFromIcon('/assets/accepted.png');
+		assert.equal(result, 'completed');
+	});
+
+	it('should return pending if the path points to the icon for pending', function() {
+		const result = getStatusFromIcon('/assets/pending.png');
+		assert.equal(result, 'pending');
+	});
+
+	it('should return cancelled if the path points to the icon for rejected', function() {
+		const result = getStatusFromIcon('/assets/rejected.png');
+		assert.equal(result, 'cancelled');
+	});
+});
+
 describe('the function to show all the rows of a table', function() {
 	it('should make all the rows visible', function() {
 		const dom = new JSDOM(
