@@ -1,4 +1,12 @@
+/* Utility object containing functions for processing and formatting the database retrieval results of 
+ * the delivery controller. 
+ */
 const deliveryControllerUtil = {
+	/**
+	 * Formats the database results for display in the delivery page.
+	 *
+	 * @param result  Object that contains the result of the database retrieval.
+	 */
 	deliveryUtil: function(result) {
 		/* Store the details of all deliveries in individual arrays to allow for further formatting. */
 		const ids = [];
@@ -42,6 +50,7 @@ const deliveryControllerUtil = {
 			statuses[i] = deliveries[i].status;
 		}
 
+		/* Return the initialized arrays. */
 		return {ids, dates, customers, dropoffs, statuses};
 	}
 };

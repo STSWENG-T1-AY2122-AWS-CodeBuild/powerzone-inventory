@@ -1,4 +1,9 @@
 const accountControllerUtil = {
+	/**
+	 * Formats the database results for display in the account page.
+	 *
+	 * @param result  Object that contains the result of the database retrieval.
+	 */
 	accountUtil: function(result) {
 		/* Assign the result of the database retrieval to the variable accounts. */
 		const accounts = result;
