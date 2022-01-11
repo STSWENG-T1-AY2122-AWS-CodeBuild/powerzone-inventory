@@ -1,13 +1,17 @@
 /* JavaScript file for handling the front end of the home page */
 
-import {toTwoDecimalPlaces} from './general-util.js';
-import {isAllowedToEdit} from './home-util.js';
+import {
+	isAllowedToEdit,
+	updatePrices
+} from './home-util.js';
 
 $(function() {
+	/* Hide the edit price button if the user is not authorized to edit the prices on the home page. */
 	if (!isAllowedToEdit($('#user-role').val())) {
 		$('#edit-price-btn').hide();
 	}
 
+	/* Submit the form for editing the prices displayed on the home page. */
 	$('#edit-price-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
@@ -31,11 +35,4 @@ $(function() {
 			}
 		});
 	});
-
-	function updatePrices() {
-		const fuels = ['gasoline', 'premium-gasoline-95', 'diesel', 'premium-gasoline-97', 'kerosene'];
-		for (const fuel of fuels) {
-			$('#' + fuel + '-price').text(toTwoDecimalPlaces($('#edit-' + fuel + '-price').val()));
-		}
-	}
 });
