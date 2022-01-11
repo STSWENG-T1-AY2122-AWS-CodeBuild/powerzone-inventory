@@ -7,7 +7,7 @@ import {
 	sortLowToHigh,
 	sortHighToLow,
 	getStatusFromIcon
-} from './transaction-util.js';
+} from './transaction-delivery-util.js';
 
 import {
 	extractId,

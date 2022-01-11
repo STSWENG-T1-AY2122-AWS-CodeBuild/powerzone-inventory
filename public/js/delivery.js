@@ -6,20 +6,28 @@ import {
 	sortAtoZ,
 	sortZtoA,
 	getStatusFromIcon
-} from './transaction-util.js';
+} from './transaction-delivery-util.js';
 
 $(function() {
 	/* Update the details in the modal when the edit status button is clicked. */
 	$('.edit-delivery-status').on('click', function() {
-		const transactionId = extractId($(this).attr('id'));
+		const deliveryId = extractId($(this).attr('id'));
 
-		$('#edit-delivery-status-form-id').val(transactionId);
-		$('#edit-delivery-status-form-status').val(getStatusFromIcon($('#status-img-' + transactionId).attr('src')));
-		$('#edit-delivery-status-form-display-id').text($('#id-' + transactionId).text());
-		$('#edit-delivery-status-form-customer').text($('#customer-' + transactionId).text());
+		$('#edit-delivery-status-form-id').val(deliveryId);
+		$('#edit-delivery-status-form-status').val(getStatusFromIcon($('#status-img-' + deliveryId).attr('src')));
+		$('#edit-delivery-status-form-display-id').text($('#id-' + deliveryId).text());
+		$('#edit-delivery-status-form-customer').text($('#customer-' + deliveryId).text());
 	});
 
-	/* Display the original transaction table upon reset of filters and sorting. */
+	/* Disable editing if the status is complete. */
+	$('.edit-delivery-status').each(function() {
+		if (getStatusFromIcon($(this).attr('src')) == 'completed') {
+			const deliveryId = extractId($(this).attr('id'));
+			$('#edit-' + deliveryId).css('pointer-events', 'none');
+		}
+	});
+
+	/* Display the original delivery table upon reset of filters and sorting. */
 	const deliveryTableId = 'delivery-table';
 	$('#reset-sort-delivery').on('click', function() {
 		$('input').val('');
@@ -122,7 +130,7 @@ $(function() {
 					$('#status-img-' + deliveryId).attr('src', '/assets/accepted.png');
 					$('#edit-delivery-status-modal').modal('hide');
 
-					$('#edit-' + deliveryId).css('pointer-events', 'auto');
+					$('#edit-' + deliveryId).css('pointer-events', 'none');
 				},
 
 				/* Otherwise, display an error message. */

@@ -10,7 +10,7 @@ const {
 	sortZtoA,
 	sortLowToHigh,
 	sortHighToLow
-} = require('.././public/js/transaction-util.js');
+} = require('.././public/js/transaction-delivery-util.js');
 
 const {getDom} = require('./const-test.js');
 
