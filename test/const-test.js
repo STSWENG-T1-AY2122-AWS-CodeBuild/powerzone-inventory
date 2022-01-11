@@ -23,11 +23,11 @@ const getDom = function() {
                                 <td><img src = "/assets/pending.png"></td>
                             </tr>
                             <tr id = "s2">
-                                <td></td><td>01/01/2022</td><td>Chevron</td><td>₱ 120.34</td>
+                                <td></td><td>01/01/2022</td><td>Chevron</td><td>₱ 120</td>
                                 <td><img src = "/assets/rejected.png"></td>
                             </tr>
                             <tr id = "s3">
-                                <td></td><td>01/03/2022</td><td>Petron</td><td>₱ 9.31</td>
+                                <td></td><td>01/03/2022</td><td>Petron</td><td>₱ 9</td>
                                 <td><img src = "/assets/accepted.png"></td>
                             </tr>
                         </tbody>

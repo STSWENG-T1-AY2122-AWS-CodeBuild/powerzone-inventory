@@ -98,80 +98,65 @@ describe('the function to sort the entries of the table from A to Z', function()
 	});
 });
 
-// describe('the function to sort the entries of the table from Z to A', function() {
-// 	beforeEach(function() {
-// 		const dom = new JSDOM(
-// 			htmlDom,
-// 			{url: 'http://localhost'});
+describe('the function to sort the entries of the table from Z to A', function() {
+	beforeEach(function() {
+		const dom = new JSDOM(
+			htmlDom,
+			{url: 'http://localhost'});
 
-// 		global.window = dom.window;
-// 		global.document = dom.window.document;
-// 		global.$ = global.jQuery = require('jquery');
-// 	});
+		global.window = dom.window;
+		global.document = dom.window.document;
+		global.$ = global.jQuery = require('jquery');
+	});
 
-// 	it('should sort the entries in reverse alphabetical order', function() {
-// 		sortZtoA('tbl');
-// 		const rows = $('#tbl > tbody > tr');
+	it('should sort the entries in reverse alphabetical order', function() {
+		sortZtoA('tbl2');
+		const rows = $('#tbl2 > tbody > tr');
 
-// 		assert.equal(rows[7].getElementsByTagName('td')[0].textContent, 'Diesel');
-// 		assert.equal(rows[6].getElementsByTagName('td')[0].textContent, 'Diesel');
-// 		assert.equal(rows[5].getElementsByTagName('td')[0].textContent, 'Gasoline');
-// 		assert.equal(rows[4].getElementsByTagName('td')[0].textContent, 'Gasoline');
-// 		assert.equal(rows[3].getElementsByTagName('td')[0].textContent, 'Kerosene');
-// 		assert.equal(rows[2].getElementsByTagName('td')[0].textContent, 'Kerosene');
-// 		assert.equal(rows[1].getElementsByTagName('td')[0].textContent, 'Premium Gasoline 95');
-// 		assert.equal(rows[0].getElementsByTagName('td')[0].textContent, 'Premium Gasoline 97');
-// 	});
-// });
+		assert.equal(rows[2].getElementsByTagName('td')[2].textContent, 'Chevron');
+		assert.equal(rows[1].getElementsByTagName('td')[2].textContent, 'Petron');
+		assert.equal(rows[0].getElementsByTagName('td')[2].textContent, 'Shell');
+	});
+});
 
-// describe('the function to sort the entries of the table in ascending order based on the price', function() {
-// 	beforeEach(function() {
-// 		const dom = new JSDOM(
-// 			htmlDom,
-// 			{url: 'http://localhost'});
+describe('the function to sort the entries of the table in ascending order based on the price', function() {
+	beforeEach(function() {
+		const dom = new JSDOM(
+			htmlDom,
+			{url: 'http://localhost'});
 
-// 		global.window = dom.window;
-// 		global.document = dom.window.document;
-// 		global.$ = global.jQuery = require('jquery');
-// 	});
+		global.window = dom.window;
+		global.document = dom.window.document;
+		global.$ = global.jQuery = require('jquery');
+	});
 
-// 	it('should sort the entries in ascending order based on the price', function() {
-// 		sortLowToHigh('tbl');
-// 		const rows = $('#tbl > tbody > tr');
+	it('should sort the entries in ascending order based on the price', function() {
+		sortLowToHigh('tbl2');
+		const rows = $('#tbl2 > tbody > tr');
 
-// 		assert.equal(rows[0].getElementsByTagName('td')[3].textContent, '₱ 55');
-// 		assert.equal(rows[1].getElementsByTagName('td')[3].textContent, '₱ 55');
-// 		assert.equal(rows[2].getElementsByTagName('td')[3].textContent, '₱ 55');
-// 		assert.equal(rows[3].getElementsByTagName('td')[3].textContent, '₱ 55');
-// 		assert.equal(rows[4].getElementsByTagName('td')[3].textContent, '₱ 60');
-// 		assert.equal(rows[5].getElementsByTagName('td')[3].textContent, '₱ 60');
-// 		assert.equal(rows[6].getElementsByTagName('td')[3].textContent, '₱ 111');
-// 		assert.equal(rows[7].getElementsByTagName('td')[3].textContent, '₱ 234');
-// 	});
-// });
+		assert.equal(rows[0].getElementsByTagName('td')[3].textContent, '₱ 9');
+		assert.equal(rows[1].getElementsByTagName('td')[3].textContent, '₱ 60');
+		assert.equal(rows[2].getElementsByTagName('td')[3].textContent, '₱ 120');
+	});
+});
 
-// describe('the function to sort the entries of the table in descending order based on the price', function() {
-// 	beforeEach(function() {
-// 		const dom = new JSDOM(
-// 			htmlDom,
-// 			{url: 'http://localhost'});
+describe('the function to sort the entries of the table in descending order based on the price', function() {
+	beforeEach(function() {
+		const dom = new JSDOM(
+			htmlDom,
+			{url: 'http://localhost'});
 
-// 		global.window = dom.window;
-// 		global.document = dom.window.document;
-// 		global.$ = global.jQuery = require('jquery');
-// 	});
+		global.window = dom.window;
+		global.document = dom.window.document;
+		global.$ = global.jQuery = require('jquery');
+	});
 
-// 	it('should sort the entries in descending order based on the price', function() {
-// 		sortHighToLow('tbl');
-// 		const rows = $('#tbl > tbody > tr');
+	it('should sort the entries in descending order based on the price', function() {
+		sortHighToLow('tbl2');
+		const rows = $('#tbl2 > tbody > tr');
 
-// 		assert.equal(rows[7].getElementsByTagName('td')[3].textContent, '₱ 55');
-// 		assert.equal(rows[6].getElementsByTagName('td')[3].textContent, '₱ 55');
-// 		assert.equal(rows[5].getElementsByTagName('td')[3].textContent, '₱ 55');
-// 		assert.equal(rows[4].getElementsByTagName('td')[3].textContent, '₱ 55');
-// 		assert.equal(rows[3].getElementsByTagName('td')[3].textContent, '₱ 60');
-// 		assert.equal(rows[2].getElementsByTagName('td')[3].textContent, '₱ 60');
-// 		assert.equal(rows[1].getElementsByTagName('td')[3].textContent, '₱ 111');
-// 		assert.equal(rows[0].getElementsByTagName('td')[3].textContent, '₱ 234');
-// 	});
-// });
+		assert.equal(rows[2].getElementsByTagName('td')[3].textContent, '₱ 9');
+		assert.equal(rows[1].getElementsByTagName('td')[3].textContent, '₱ 60');
+		assert.equal(rows[0].getElementsByTagName('td')[3].textContent, '₱ 120');
+	});
+});
