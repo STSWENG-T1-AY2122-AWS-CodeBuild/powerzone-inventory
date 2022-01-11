@@ -10,6 +10,8 @@ import {getFuelValue} from './edit-stock-util.js';
 
 import {toTwoDecimalPlaces} from './general-util.js';
 
+import {getFuelTypeNames} from './constant-util.js';
+
 $(function() {
 	$('.prices').each(function() {
 		$(this).text('₱ ' + toTwoDecimalPlaces($(this).text().substring(2)));
@@ -36,7 +38,7 @@ $(function() {
 			sortHighToLow(inventoryTableId);
 		}
 
-		const fuelTypes = ['Gasoline', 'Premium Gasoline 95', 'Diesel', 'Premium Gasoline 97', 'Kerosene'];
+		const fuelTypes = getFuelTypeNames();
 		const selectedFuelTypes = [];
 
 		for (const fuelType of fuelTypes) {

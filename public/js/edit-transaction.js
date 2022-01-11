@@ -1,3 +1,7 @@
+/* JavaScript file for handling the front-end of the edit transaction page */
+
+
+import {getFuelTypes} from './constant-util.js';
 import {
 	enableButton,
 	disableButton,
@@ -8,8 +12,10 @@ import {
 import {isValidPhoneNumber} from './transaction-validate-util.js';
 
 $(function() {
+	/* Update the selected value in the status dropdown to reflect the value in the database. */
 	$('#edit-transaction-status').val($('#edit-transaction-status-hidden').val());
 
+	/* Validate the phone number. */
 	$('#edit-transaction-customer-number').on('keyup', function() {
 		if (!isValidPhoneNumber($(this).val())) {
 			displayErrorMessage($('#edit-transaction-invalid-customer-number'));
@@ -19,8 +25,8 @@ $(function() {
 		}
 	});
 
-	const fuelTypes = ['gasoline', 'premium-gasoline-95', 'diesel', 'premium-gasoline-97', 'kerosene'];
-
+	/* Check if the fuel quantity entered does not exceed available quantity. */
+	const fuelTypes = getFuelTypes();
 	for (const fuelType of fuelTypes) {
 		$('#edit-transaction-' + fuelType + '-liters').on('keyup', function() {
 			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) < 0) {

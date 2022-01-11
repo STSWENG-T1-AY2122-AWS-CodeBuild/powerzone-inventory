@@ -1,5 +1,6 @@
 /* JavaScript file for handling the front-end of the add transaction page */
 
+import {getFuelTypes} from './constant-util.js';
 import {
 	displayErrorMessage,
 	hideErrorMessage,
@@ -27,7 +28,7 @@ $(function() {
 	});
 
 	/* Check if the fuel quantity entered does not exceed available quantity. */
-	const fuelTypes = ['gasoline', 'premium-gasoline-95', 'diesel', 'premium-gasoline-97', 'kerosene'];
+	const fuelTypes = getFuelTypes();
 
 	for (const fuelType of fuelTypes) {
 		$('#add-transaction-' + fuelType + '-liters').on('keyup', function() {
