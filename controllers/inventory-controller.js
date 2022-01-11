@@ -153,7 +153,7 @@ const inventoryController = {
 	},
 
 	/**
-	 * Registers the details of a stock or purchase.
+	 * Edits the details of a stock or purchase.
 	 *
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
