@@ -9,20 +9,25 @@ const Inventory = require('../models/inventory-schema.js');
 const db = require('../models/db.js');
 
 describe('the function to get the inventory page', function() {
-	it('should retrieve the details of all the inventory purchases only once', function() {
-		const req = {
+	let req;
+	let res;
+	let expectedResult;
+
+	beforeEach(function() {
+		req = {
 			session: {
 				role: 'administrator'
 			}
 		};
 
-		const res = {
+		res = {
 			status: sinon.stub().returnsThis(),
 			json: sinon.stub(),
-			send: sinon.stub()
+			send: sinon.stub(),
+			render: sinon.spy()
 		};
 
-		const expectedResult = [
+		expectedResult = [
 			{
 				_id: '01234',
 				type: 'Diesel',
@@ -40,7 +45,9 @@ describe('the function to get the inventory page', function() {
 				quantity: '200'
 			}
 		];
+	});
 
+	it('should retrieve the details of all the inventory purchases only once', function() {
 		sinon.stub(db, 'findMany').yields(expectedResult);
 		inventoryController.getInventory(req, res);
 
@@ -50,37 +57,6 @@ describe('the function to get the inventory page', function() {
 	});
 
 	it('should retrieve the details of all the inventory purchases with the correct arguments', function() {
-		const req = {
-			session: {
-				role: 'administrator'
-			}
-		};
-
-		const res = {
-			status: sinon.stub().returnsThis(),
-			json: sinon.stub(),
-			send: sinon.stub()
-		};
-
-		const expectedResult = [
-			{
-				_id: '01234',
-				type: 'Diesel',
-				date: '01-06-2022',
-				supplier: 'Chevron',
-				price: '67.83',
-				quantity: '1200'
-			},
-			{
-				_id: '012234',
-				type: 'Kerosene',
-				date: '01-06-2022',
-				supplier: 'Rhombus',
-				price: '61.83',
-				quantity: '200'
-			}
-		];
-
 		sinon.stub(db, 'findMany').yields(expectedResult);
 		inventoryController.getInventory(req, res);
 
@@ -330,30 +306,33 @@ describe('the function to register the details of a particular stock', function(
 });
 
 describe('the function to get the page for adding a new stock', function() {
-	it('should render the page only once', function() {
-		const req = sinon.spy();
-		const res = {
+	let req;
+	let res;
+
+	beforeEach(function() {
+		req = sinon.spy();
+		res = {
 			render: sinon.spy()
 		};
+	});
 
+	it('should render the page only once', function() {
 		inventoryController.getAddStock(req, res);
 		assert.isTrue(res.render.calledOnce);
 	});
 
 	it('should render the page for adding a new stock', function() {
-		const req = sinon.spy();
-		const res = {
-			render: sinon.spy()
-		};
-
 		inventoryController.getAddStock(req, res);
 		assert.equal(res.render.firstCall.args[0], 'add-stock');
 	});
 });
 
 describe('the function to add a new stock', function() {
-	it('should insert the new stock only once', function() {
-		const req = {
+	let req;
+	let res;
+
+	beforeEach(function() {
+		req = {
 			body: {
 				addStockName: 'Diesel',
 				addStockSupplier: 'Chevron',
@@ -365,12 +344,14 @@ describe('the function to add a new stock', function() {
 			}
 		};
 
-		const res = {
+		res = {
 			status: sinon.stub().returnsThis(),
 			json: sinon.stub(),
 			send: sinon.stub()
 		};
+	});
 
+	it('should insert the new stock only once', function() {
 		sinon.stub(db, 'insertOne').yields({});
 		inventoryController.postAddStock(req, res);
 
@@ -380,24 +361,6 @@ describe('the function to add a new stock', function() {
 	});
 
 	it('should insert the new stock with the correct arguments', function() {
-		const req = {
-			body: {
-				addStockName: 'Diesel',
-				addStockSupplier: 'Chevron',
-				addStockStorage: 'Masangkay',
-				addStockQuantityPurchased: '1234',
-				addStockQuantityDepleted: '1000',
-				addStockPricePurchased: '45.3',
-				addStockDatePurchased: '05-06-2022'
-			}
-		};
-
-		const res = {
-			status: sinon.stub().returnsThis(),
-			json: sinon.stub(),
-			send: sinon.stub()
-		};
-
 		const purchase = {
 			type: req.body.addStockName.trim(),
 			supplier: req.body.addStockSupplier.trim(),

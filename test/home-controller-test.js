@@ -9,16 +9,20 @@ const SellingPrice = require('../models/selling-price-schema.js');
 const db = require('../models/db.js');
 
 describe('the function to get the home page', function() {
+	let res;
+	
+	beforeEach(function() {
+		res = {
+			render: sinon.spy(),
+			redirect: sinon.spy()
+		};
+	});
+	
 	it('should search the database for the selling prices only once', function() {
 		const req = {
 			session: {
 				username: 'bettina'
 			}
-		};
-
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
 		};
 
 		const expectedResult = {
@@ -42,11 +46,6 @@ describe('the function to get the home page', function() {
 			session: {
 				username: 'bettina'
 			}
-		};
-
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
 		};
 
 		const expectedResult = {
@@ -75,11 +74,6 @@ describe('the function to get the home page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		homeController.getHome(req, res);
 		assert.isTrue(res.redirect.notCalled);
 	});
@@ -91,13 +85,7 @@ describe('the function to get the home page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		homeController.getHome(req, res);
-
 		assert.isTrue(res.redirect.calledOnce);
 	});
 
@@ -108,13 +96,7 @@ describe('the function to get the home page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		homeController.getHome(req, res);
-
 		assert.equal(res.redirect.firstCall.args[0], '/');
 	});
 
@@ -125,13 +107,7 @@ describe('the function to get the home page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		homeController.getHome(req, res);
-
 		assert.isTrue(res.render.notCalled);
 	});
 });

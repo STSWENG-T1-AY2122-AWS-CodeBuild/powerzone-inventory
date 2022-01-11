@@ -15,16 +15,20 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 describe('the function to get the register page', function() {
+	let res;
+
+	beforeEach(function() {
+		res = {
+			render: sinon.spy(),
+			redirect: sinon.spy()
+		};
+	});
+
 	it('should render the page only once if the user is not logged in', function() {
 		const req = {
 			session: {
 				username: null
 			}
-		};
-
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
 		};
 
 		registerController.getRegister(req, res);
@@ -38,11 +42,6 @@ describe('the function to get the register page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		registerController.getRegister(req, res);
 		assert.equal(res.render.firstCall.args[0], 'register');
 	});
@@ -52,11 +51,6 @@ describe('the function to get the register page', function() {
 			session: {
 				username: null
 			}
-		};
-
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
 		};
 
 		registerController.getRegister(req, res);
@@ -70,11 +64,6 @@ describe('the function to get the register page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		registerController.getRegister(req, res);
 		assert.isTrue(res.redirect.calledOnce);
 	});
@@ -86,11 +75,6 @@ describe('the function to get the register page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		registerController.getRegister(req, res);
 		assert.equal(res.redirect.firstCall.args[0], '/getHome');
 	});
@@ -100,11 +84,6 @@ describe('the function to get the register page', function() {
 			session: {
 				username: 'bettina'
 			}
-		};
-
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
 		};
 
 		registerController.getRegister(req, res);

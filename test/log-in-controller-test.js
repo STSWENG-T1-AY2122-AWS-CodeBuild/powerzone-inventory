@@ -9,16 +9,20 @@ const Account = require('../models/account-schema.js');
 const db = require('../models/db.js');
 
 describe('the function to get the log-in page', function() {
+	let res;
+
+	beforeEach(function() {
+		res = {
+			render: sinon.spy(),
+			redirect: sinon.spy()
+		};
+	});
+
 	it('should render the page only once if the user is not logged in', function() {
 		const req = {
 			session: {
 				username: null
 			}
-		};
-
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
 		};
 
 		logInController.getLogIn(req, res);
@@ -32,11 +36,6 @@ describe('the function to get the log-in page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		logInController.getLogIn(req, res);
 		assert.equal(res.render.firstCall.args[0], 'log-in');
 	});
@@ -46,11 +45,6 @@ describe('the function to get the log-in page', function() {
 			session: {
 				username: null
 			}
-		};
-
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
 		};
 
 		logInController.getLogIn(req, res);
@@ -64,11 +58,6 @@ describe('the function to get the log-in page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		logInController.getLogIn(req, res);
 		assert.isTrue(res.redirect.calledOnce);
 	});
@@ -80,11 +69,6 @@ describe('the function to get the log-in page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		logInController.getLogIn(req, res);
 		assert.equal(res.redirect.firstCall.args[0], '/getHome');
 	});
@@ -94,11 +78,6 @@ describe('the function to get the log-in page', function() {
 			session: {
 				username: 'bettina'
 			}
-		};
-
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
 		};
 
 		logInController.getLogIn(req, res);
