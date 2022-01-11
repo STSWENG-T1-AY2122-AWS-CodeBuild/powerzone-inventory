@@ -1,3 +1,5 @@
+/* JavaScript file for handling the front-end of the transactions page */
+
 import {
 	filterBy,
 	sortAtoZ,

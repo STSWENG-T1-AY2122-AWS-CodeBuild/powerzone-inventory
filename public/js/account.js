@@ -1,4 +1,4 @@
-/* JavaScript file for handling the front end of the account page */
+/* JavaScript file for handling the front-end of the account page */
 
 import {extractId} from './general-util.js';
 import {getRoleValue} from './account-util.js';

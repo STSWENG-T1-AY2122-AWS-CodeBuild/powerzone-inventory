@@ -1,4 +1,4 @@
-/* JavaScript file for handling the front end of the home page */
+/* JavaScript file for handling the front-end of the home page */
 
 import {
 	isAllowedToEdit,

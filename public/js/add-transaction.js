@@ -1,3 +1,5 @@
+/* JavaScript file for handling the front-end of the add transaction page */
+
 import {
 	displayErrorMessage,
 	hideErrorMessage,

@@ -1,8 +1,8 @@
 /**
  * Convert a fuel to its equivalent value in the database.
- * 
+ *
  * @param {string} fuel Fuel in the inventory.
- * @returns {string} Equivalent value of the fuel in the database.
+ * @return {string} Equivalent value of the fuel in the database.
  */
 const getFuelValue = function(fuel) {
 	switch (fuel) {

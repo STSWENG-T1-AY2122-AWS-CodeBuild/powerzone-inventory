@@ -9,14 +9,15 @@ import {
 } from './general-util.js';
 
 $(function() {
+	/* Update the selected value in the fuel name dropdown to reflect the value in the database. */
 	$('#edit-stock-name').val($('#edit-stock-type').val());
 
+	/* Compute the current fuel quantity as the difference between the purchased and depleted quantities. */
 	$('#edit-stock-current-quantity').val(
 		parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val())
 	);
 
-	let keypressTimer;
-
+	/* Perform client-side validation of purchased fuel quantity versus available quantity. */
 	$('#edit-stock-quantity-purchased').on('keyup', function() {
 		const currentQuantity =
 			parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());

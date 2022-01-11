@@ -1,4 +1,4 @@
-/* JavaScript file for handling the front end of the edit account page */
+/* JavaScript file for handling the front-end of the edit account page */
 
 $(function() {
 	/* Edit the user account details. */

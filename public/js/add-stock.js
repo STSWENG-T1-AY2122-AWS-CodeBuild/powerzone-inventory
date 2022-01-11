@@ -1,3 +1,5 @@
+/* JavaScript file for handling the front-end of the add stock page */
+
 $(function() {
 	/* Add stock to the inventory. */
 	$('#add-stock-form').on('submit', function(e) {
