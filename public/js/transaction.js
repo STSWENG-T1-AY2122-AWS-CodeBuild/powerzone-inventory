@@ -103,34 +103,6 @@ $(function() {
 		});
 	});
 
-	/* Mark the transaction as completed. */
-	$('#complete-transaction-btn').on('click', function(e) {
-		/* Override the default submit behavior and insert AJAX. */
-		const transactionId = $('#edit-transaction-status-form-id').val();
-		e.preventDefault();
-
-		$.ajax({
-			url: '/postEditStatusCompleted',
-			method: 'POST',
-			data: $('#edit-transaction-status-form').serialize(),
-			statusCode: {
-
-				/* If the completion is successful, redirect the user to the landing page. */
-				200: function() {
-					$('#status-img-' + transactionId).attr('src', '/assets/accepted.png');
-					$('#edit-transaction-status-modal').modal('hide');
-
-					$('#edit-' + transactionId).css('pointer-events', 'none');
-				},
-
-				/* Otherwise, display an error message. */
-				401: function() {
-					alert('Error!');
-				}
-			}
-		});
-	});
-
 	/* Pend the transaction. */
 	$('#pend-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
