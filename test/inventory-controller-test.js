@@ -45,6 +45,45 @@ describe('the function to get the inventory page', function() {
 		inventoryController.getInventory(req, res);
 
 		assert.isTrue(db.findMany.calledOnce);
+
+		db.findMany.restore();
+	});
+
+	it('should retrieve the details of all the inventory purchases with the correct arguments', function() {
+		const req = {
+			session: {
+				role: 'administrator'
+			}
+		};
+
+		const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+
+		const expectedResult = [
+			{
+				_id: '01234',
+				type: 'Diesel',
+				date: '01-06-2022',
+				supplier: 'Chevron',
+				price: '67.83',
+				quantity: '1200'
+			},
+			{
+				_id: '012234',
+				type: 'Kerosene',
+				date: '01-06-2022',
+				supplier: 'Rhombus',
+				price: '61.83',
+				quantity: '200'
+			}
+		];
+
+		sinon.stub(db, 'findMany').yields(expectedResult);
+		inventoryController.getInventory(req, res);
+
 		assert.equal(db.findMany.firstCall.args[0], Inventory);
 		expect(db.findMany.firstCall.args[1]).to.deep.equalInAnyOrder({});
 		assert.equal(db.findMany.firstCall.args[2], '_id type date supplier price quantityPurchased quantityDepleted');
@@ -80,6 +119,41 @@ describe('the function to get the page displaying more information for a particu
 		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
 		convertToObjectId.returns('123');
 
+		sinon.stub(db, 'findOne').yields(expectedResult);
+		inventoryController.getMoreInfoStock(req, res);
+
+		assert.isTrue(db.findOne.calledOnce);
+
+		db.convertToObjectId.restore();
+		db.findOne.restore();
+	});
+
+	it('should retrieve the information for the stock with the correct arguments', function() {
+		const req = {
+			params: {
+				id: '1234'
+			}
+		};
+
+		const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+
+		const expectedResult = {
+			_id: '01234',
+			type: 'Diesel',
+			supplier: 'Chevron',
+			location: 'Manila',
+			quantity: '1200',
+			price: '67.83',
+			date: '01-06-2022'
+		};
+
+		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
+		convertToObjectId.returns('123');
+
 		const filter = {
 			_id: convertToObjectId('123')
 		};
@@ -87,7 +161,6 @@ describe('the function to get the page displaying more information for a particu
 		sinon.stub(db, 'findOne').yields(expectedResult);
 		inventoryController.getMoreInfoStock(req, res);
 
-		assert.isTrue(db.findOne.calledOnce);
 		assert.equal(db.findOne.firstCall.args[0], Inventory);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
 		assert.equal(db.findOne.firstCall.args[2], 'type supplier location quantityPurchased quantityDepleted price date');
@@ -124,6 +197,41 @@ describe('the function to get the page for editing information on a particular s
 		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
 		convertToObjectId.returns('123');
 
+		sinon.stub(db, 'findOne').yields(expectedResult);
+		inventoryController.getEditStock(req, res);
+
+		assert.isTrue(db.findOne.calledOnce);
+
+		db.convertToObjectId.restore();
+		db.findOne.restore();
+	});
+
+	it('should retrieve the information for the stock with the correct arguments', function() {
+		const req = {
+			params: {
+				id: '1234'
+			}
+		};
+
+		const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+
+		const expectedResult = {
+			_id: '01234',
+			type: 'Diesel',
+			supplier: 'Chevron',
+			location: 'Manila',
+			quantity: '1200',
+			price: '67.83',
+			date: '01-06-2022'
+		};
+
+		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
+		convertToObjectId.returns('123');
+
 		const filter = {
 			_id: convertToObjectId('123')
 		};
@@ -131,7 +239,6 @@ describe('the function to get the page for editing information on a particular s
 		sinon.stub(db, 'findOne').yields(expectedResult);
 		inventoryController.getEditStock(req, res);
 
-		assert.isTrue(db.findOne.calledOnce);
 		assert.equal(db.findOne.firstCall.args[0], Inventory);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
 		assert.equal(db.findOne.firstCall.args[2], 'type supplier location quantityPurchased quantityDepleted price date');
@@ -143,6 +250,38 @@ describe('the function to get the page for editing information on a particular s
 
 describe('the function to register the details of a particular stock', function() {
 	it('should retrieve the information for the stock only once', function() {
+		const req = {
+			body: {
+				editStockId: '1234',
+				editStockName: 'Diesel',
+				editStockSupplier: 'Chevron',
+				editStockStorage: 'Masangkay',
+				editStockQuantityPurchased: '1234',
+				editStockQuantityDepleted: '1000',
+				editStockPricePurchased: '45.3',
+				editStockDatePurchased: '05-06-2022'
+			}
+		};
+
+		const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+
+		const convertToObjectId = sinon.stub(db, 'convertToObjectId');
+		convertToObjectId.returns('123');
+
+		sinon.stub(db, 'updateOne').yields({});
+		inventoryController.postEditStock(req, res);
+
+		assert.isTrue(db.updateOne.calledOnce);
+
+		db.convertToObjectId.restore();
+		db.updateOne.restore();
+	});
+
+	it('should retrieve the information for the stock with the correct arguments', function() {
 		const req = {
 			body: {
 				editStockId: '1234',
@@ -181,7 +320,6 @@ describe('the function to register the details of a particular stock', function(
 		sinon.stub(db, 'updateOne').yields({});
 		inventoryController.postEditStock(req, res);
 
-		assert.isTrue(db.updateOne.calledOnce);
 		assert.equal(db.updateOne.firstCall.args[0], Inventory);
 		expect(db.updateOne.firstCall.args[1]).to.deep.equalInAnyOrder(filter);
 		expect(db.updateOne.firstCall.args[2]).to.deep.equalInAnyOrder(update);
@@ -192,7 +330,7 @@ describe('the function to register the details of a particular stock', function(
 });
 
 describe('the function to get the page for adding a new stock', function() {
-	it('should render the page for adding a new stock only once', function() {
+	it('should render the page only once', function() {
 		const req = sinon.spy();
 		const res = {
 			render: sinon.spy()
@@ -200,6 +338,15 @@ describe('the function to get the page for adding a new stock', function() {
 
 		inventoryController.getAddStock(req, res);
 		assert.isTrue(res.render.calledOnce);
+	});
+
+	it('should render the page for adding a new stock', function() {
+		const req = sinon.spy();
+		const res = {
+			render: sinon.spy()
+		};
+
+		inventoryController.getAddStock(req, res);
 		assert.equal(res.render.firstCall.args[0], 'add-stock');
 	});
 });
@@ -223,6 +370,34 @@ describe('the function to add a new stock', function() {
 			json: sinon.stub(),
 			send: sinon.stub()
 		};
+
+		sinon.stub(db, 'insertOne').yields({});
+		inventoryController.postAddStock(req, res);
+
+		assert.isTrue(db.insertOne.calledOnce);
+
+		db.insertOne.restore();
+	});
+
+	it('should insert the new stock with the correct arguments', function() {
+		const req = {
+			body: {
+				addStockName: 'Diesel',
+				addStockSupplier: 'Chevron',
+				addStockStorage: 'Masangkay',
+				addStockQuantityPurchased: '1234',
+				addStockQuantityDepleted: '1000',
+				addStockPricePurchased: '45.3',
+				addStockDatePurchased: '05-06-2022'
+			}
+		};
+
+		const res = {
+			status: sinon.stub().returnsThis(),
+			json: sinon.stub(),
+			send: sinon.stub()
+		};
+
 		const purchase = {
 			type: req.body.addStockName.trim(),
 			supplier: req.body.addStockSupplier.trim(),
@@ -236,7 +411,6 @@ describe('the function to add a new stock', function() {
 		sinon.stub(db, 'insertOne').yields({});
 		inventoryController.postAddStock(req, res);
 
-		assert.isTrue(db.insertOne.calledOnce);
 		assert.equal(db.insertOne.firstCall.args[0], Inventory);
 		expect(db.insertOne.firstCall.args[1]).to.deep.equalInAnyOrder(purchase);
 
