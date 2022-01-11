@@ -4,8 +4,7 @@
 const db = require('../models/db.js');
 const Account = require('../models/account-schema.js');
 
-/* Bcrypt is used to deal with password hashing. */
-const bcrypt = require('bcrypt');
+const logInControllerUtil = require('./log-in-controller-util.js');
 
 const logInController = {
 	/**
@@ -51,23 +50,7 @@ const logInController = {
 
 				/* If the user account has been accepted, proceed to checking their log in credentials. */
 				if (userDetails.status == 'Accepted') {
-					/* If the entered password matches the password stored in the database, open a session for
-					* the user.
-					*/
-					bcrypt.compare(password, result.password, function(err, equal) {
-						if (equal) {
-							req.session.username = result.username;
-							req.session.role = result.role;
-
-							res.status(200).json('Log in successful');
-							res.send();
-
-						/* If the entered password does not match, send an error message. */
-						} else {
-							res.status(401).json('Incorrect username and/or password');
-							res.send();
-						}
-					});
+					logInControllerUtil.logInUtil(req, res, result, password);
 				} else {
 					res.status(401).json('Account not accepted');
 					res.send();
