@@ -1,6 +1,5 @@
 const deepEqualInAnyOrder = require('deep-equal-in-any-order');
 require('chai').use(deepEqualInAnyOrder);
-const assert = require('chai').assert;
 const expect = require('chai').expect;
 
 const inventoryControllerUtil = require('../controllers/inventory-controller-util.js');
