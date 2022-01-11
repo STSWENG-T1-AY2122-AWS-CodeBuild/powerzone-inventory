@@ -13,7 +13,7 @@ const delivery = {
 	date: '01/05/2022',
 	customer: 'Shell',
 	dropoff: 'LTI Spine Road, Laguna Boulevard',
-	status: 'completed',
+	status: 'pending',
 	number: 9174499876,
 	warehouse: '940 Cong. A. Francisco St., Malate',
 	manager: 'Manager One',

@@ -4,6 +4,7 @@
 const db = require('../models/db.js');
 const Account = require('../models/account-schema.js');
 
+/* A utility object is used for auxiliary functions. */
 const logInControllerUtil = require('./log-in-controller-util.js');
 
 const logInController = {

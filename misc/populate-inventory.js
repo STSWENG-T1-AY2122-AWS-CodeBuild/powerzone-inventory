@@ -15,7 +15,7 @@ const purchaseOne = {
 	price: 60.00,
 	location: '2401 Taft Ave., Manila',
 	quantityPurchased: 100,
-	quantityDepleted: 0
+	quantityDepleted: 50
 };
 
 const purchaseTwo = {
@@ -45,7 +45,7 @@ const purchaseFour = {
 	price: 125.00,
 	location: '2401 Taft Ave., Manila',
 	quantityPurchased: 50,
-	quantityDepleted: 0
+	quantityDepleted: 50
 };
 
 const purchaseFive = {
@@ -55,7 +55,7 @@ const purchaseFive = {
 	price: 100.00,
 	location: '2401 Taft Ave., Manila',
 	quantityPurchased: 100,
-	quantityDepleted: 0
+	quantityDepleted: 50
 };
 
 const purchaseSix = {
@@ -75,7 +75,7 @@ const purchaseSeven = {
 	price: 82.35,
 	location: '2401 Taft Ave., Manila',
 	quantityPurchased: 250,
-	quantityDepleted: 0
+	quantityDepleted: 50
 };
 
 const purchaseEight = {
@@ -95,7 +95,7 @@ const purchaseNine = {
 	price: 112.35,
 	location: '2401 Taft Ave., Manila',
 	quantityPurchased: 250,
-	quantityDepleted: 0
+	quantityDepleted: 50
 };
 
 const purchaseTen = {

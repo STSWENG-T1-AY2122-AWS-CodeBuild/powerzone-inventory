@@ -108,7 +108,7 @@
                 <div class = "col">
                     <div class = "bg-primary border border-primary border-5 mt-3 me-5 table-block text-center">
                         <div class = "bg-light h-100 table-responsive">
-                            <table class = "align-middle table table-hover">
+                            <table class = "align-middle table table-hover" id = "delivery-table">
                                 <thead class = "bg-primary table-fixed table-header text-white">
                                     {{#if (validDeliveryRole role)}}
                                     <tr>
@@ -161,5 +161,54 @@
                 </div>
             </div>
         </div>
+
+        <table class = "align-middle table table-hover no-display" id = "delivery-table-orig">
+            <thead class = "bg-primary table-fixed table-header text-white">
+                {{#if (validDeliveryRole role)}}
+                <tr>
+                    <th scope = "col" class = "w-15">ID</th>
+                    <th scope = "col" class = "w-15">DATE</th>
+                    <th scope = "col" class = "w-20">CUSTOMER NAME</th>
+                    <th scope = "col" class = "w-20">DROP-OFF LOCATION</th>
+                    <th scope = "col" class = "w-10">STATUS</th>
+                    <th scope = "col" class = "w-10">MORE INFO</th>
+                    <th scope = "col" class = "w-10">EDIT</th>
+                </tr>
+                {{else}}
+                <tr>
+                    <th scope = "col" class = "w-15">ID</th>
+                    <th scope = "col" class = "w-15">DATE</th>
+                    <th scope = "col" class = "w-20">CUSTOMER NAME</th>
+                    <th scope = "col" class = "w-20">DROP-OFF LOCATION</th>
+                    <th scope = "col" class = "w-10">STATUS</th>
+                    <th scope = "col" class = "w-10">MORE INFO</th>
+                </tr>
+                {{/if}}
+            </thead>
+            <tbody id = "delivery-list">
+            {{#each deliveryStatuses}}
+                {{#if (validDeliveryRole ../role)}}
+                <tr class = "delivery" id = "entry-{{lookup ../deliveryIds @index}}">
+                    <td id = "id-{{lookup ../deliveryIds @index}}">{{lookup ../deliveryIds @index}}</td>
+                    <td id = "date-{{lookup ../deliveryIds @index}}">{{lookup ../deliveryDates @index}}</td>
+                    <td id = "customer-{{lookup ../deliveryIds @index}}">{{lookup ../deliveryCustomers @index}}</td>
+                    <td id = "dropoff-{{lookup ../deliveryIds @index}}">{{lookup ../deliveryDropoffs @index}}</td>
+                    <td><button id = "status-{{lookup ../deliveryIds @index}}" class = "btn shadow-none edit-delivery-status" data-bs-toggle = "modal" data-bs-target = "#edit-delivery-status-modal"><img id = "status-img-{{lookup ../deliveryIds @index}}" src = {{getStatusIcon this}} class = "edit-delivery-status table-icon"></button></td>
+                    <td><a href = "/getMoreInfoDelivery/{{lookup ../deliveryIds @index}}"><img src = "/assets/more.png" alt = "view-delivery-more-info" class = "view-delivery-more-info table-icon"></a></td>
+                    <td><a href = "/getEditDelivery/{{lookup ../deliveryIds @index}}"><img src = "/assets/pencil.png" alt = "edit-delivery-details" class = "edit-delivery-details table-icon"></a></td>
+                </tr>
+                {{else}}
+                <tr class = "delivery">
+                    <td id = "id-{{lookup ../deliveryIds @index}}">{{lookup ../deliveryIds @index}}</td>
+                    <td id = "date-{{lookup ../deliveryIds @index}}">{{lookup ../deliveryDates @index}}</td>
+                    <td id = "customer-{{lookup ../deliveryIds @index}}">{{lookup ../deliveryCustomers @index}}</td>
+                    <td id = "dropoff-{{lookup ../deliveryIds @index}}">{{lookup ../deliveryDropoffs @index}}</td>
+                    <td><button id = "status-{{lookup ../deliveryIds @index}}" class = "btn shadow-none edit-delivery-status" data-bs-toggle = "modal" data-bs-target = "#edit-delivery-status-modal"><img id = "status-img-{{lookup ../deliveryIds @index}}" src = {{getStatusIcon this}} class = "edit-delivery-status table-icon"></button></td>
+                    <td><a href = "/getMoreInfoDelivery/{{lookup ../deliveryIds @index}}"><img src = "/assets/more.png" alt = "view-delivery-more-info" class = "view-delivery-more-info table-icon"></a></td>
+                </tr>
+                {{/if}}
+            {{/each}}
+            </tbody>
+        </table>
     </body>
 </html>

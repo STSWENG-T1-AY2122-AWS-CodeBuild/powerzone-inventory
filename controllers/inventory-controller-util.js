@@ -1,4 +1,13 @@
+/* Utility object containing functions for processing and formatting the database retrieval results of
+ * the inventory controller.
+ */
 const inventoryControllerUtil = {
+	/**
+	 * Formats the database results for display in the inventory page.
+	 *
+	 * @param {Object} result  Object that contains the result of the database retrieval.
+	 * @return {Object} Formatted inventory details.
+	 */
 	inventoryUtil: function(result) {
 		/* Store the total quantities and statuses of each type of fuel. */
 		let totalGasoline = 0;

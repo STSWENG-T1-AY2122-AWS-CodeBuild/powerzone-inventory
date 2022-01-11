@@ -13,7 +13,7 @@ const transaction = {
 	date: '01/01/2022',
 	customer: 'Shell',
 	total: 15186.00,
-	status: 'completed',
+	status: 'pending',
 	number: 9175244444,
 	priceGasoline: 55.09,
 	litersGasoline: 50,
