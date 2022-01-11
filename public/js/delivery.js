@@ -9,17 +9,17 @@ import {
 } from './transaction-util.js';
 
 $(function() {
-    /* Update the details in the modal when the edit status button is clicked. */
-    $('.edit-delivery-status').on('click', function() {
-        const transactionId = extractId($(this).attr('id'));
+	/* Update the details in the modal when the edit status button is clicked. */
+	$('.edit-delivery-status').on('click', function() {
+		const transactionId = extractId($(this).attr('id'));
 
-        $('#edit-delivery-status-form-id').val(transactionId);
-        $('#edit-delivery-status-form-status').val(getStatusFromIcon($('#status-img-' + transactionId).attr('src')));
-        $('#edit-delivery-status-form-display-id').text($('#id-' + transactionId).text());
-        $('#edit-delivery-status-form-customer').text($('#customer-' + transactionId).text());
-    });
+		$('#edit-delivery-status-form-id').val(transactionId);
+		$('#edit-delivery-status-form-status').val(getStatusFromIcon($('#status-img-' + transactionId).attr('src')));
+		$('#edit-delivery-status-form-display-id').text($('#id-' + transactionId).text());
+		$('#edit-delivery-status-form-customer').text($('#customer-' + transactionId).text());
+	});
 
-    /* Display the original transaction table upon reset of filters and sorting. */
+	/* Display the original transaction table upon reset of filters and sorting. */
 	const deliveryTableId = 'delivery-table';
 	$('#reset-sort-delivery').on('click', function() {
 		$('input').val('');
@@ -35,7 +35,7 @@ $(function() {
 			sortAtoZ(deliveryTableId);
 		} else if ($('#sort-delivery-customer-name-za').is(':checked')) {
 			sortZtoA(deliveryTableId);
-		} 
+		}
 
 		const statusTypes = ['pending', 'completed', 'cancelled'];
 		const selectedStatusTypes = [];
