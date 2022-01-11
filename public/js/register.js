@@ -1,4 +1,4 @@
-/* JavaScript file for handling the front end of the register page */
+/* JavaScript file for handling the front-end of the register page */
 
 $(function() {
 	/* Submit the form for registering a user account. */

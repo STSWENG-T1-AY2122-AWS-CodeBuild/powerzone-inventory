@@ -1,3 +1,5 @@
+/* JavaScript file for handling the front-end of the inventory page */
+
 import {
 	filterBy,
 	sortAtoZ,
@@ -7,18 +9,17 @@ import {
 } from './inventory-util.js';
 
 import {getFuelValue} from './edit-stock-util.js';
-
 import {toTwoDecimalPlaces} from './general-util.js';
-
 import {getFuelTypeNames} from './constant-util.js';
 
 $(function() {
+	/* Display prices with exactly two decimal places. */
 	$('.prices').each(function() {
 		$(this).text('₱ ' + toTwoDecimalPlaces($(this).text().substring(2)));
 	});
 
+	/* Display the original inventory table upon reset of filters and sorting. */
 	const inventoryTableId = 'inventory-table';
-
 	$('#reset-sort-inventory').on('click', function() {
 		$('input').val('');
 		$('input').prop('checked', false);
@@ -26,6 +27,7 @@ $(function() {
 		$('#' + inventoryTableId).html($('#' + inventoryTableId + '-orig').html());
 	});
 
+	/* Perform filtering and/or sorting of entries. */
 	$('input').on('change', function() {
 		/* Sort first before filtering. */
 		if ($('#sort-inventory-name-az').is(':checked')) {
