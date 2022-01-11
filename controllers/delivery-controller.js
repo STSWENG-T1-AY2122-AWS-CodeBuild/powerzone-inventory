@@ -171,7 +171,7 @@ const deliveryController = {
 
 		/* Retrieve the data corresponding to the ID of the selected delivery. */
 		const query = {id: id};
-		const projection = 'id customer number date warehouse dropoff manager driver';
+		const projection = 'id customer number date status warehouse dropoff manager driver';
 
 		db.findOne(Delivery, query, projection, function(result) {
 			/* Format the display of the delivery date from the Date object, if applicable,
