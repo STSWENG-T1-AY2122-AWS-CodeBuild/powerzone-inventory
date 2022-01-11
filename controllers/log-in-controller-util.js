@@ -14,7 +14,7 @@ const logInControllerUtil = {
 				res.status(200).json('Log in successful');
 				res.send();
 
-				/* If the entered password does not match, send an error message. */
+			/* If the entered password does not match, send an error message. */
 			} else {
 				res.status(401).json('Incorrect username and/or password');
 				res.send();

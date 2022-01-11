@@ -206,21 +206,21 @@ const deliveryController = {
 				 * succeeding digits as the delivery ID.
 				 */
 				const transactionId = parseInt(id) - 10000000;
-				
+
 				/* Get the original status of the corresponding transaction. */
 				query = {id: transactionId};
 				projection = 'id status';
 
 				db.findOne(Transaction, query, projection, function(result) {
-					/* Assign the retrieved transaction details to the body of the request object 
-					 * and set the status of the transaction to "Completed." 
+					/* Assign the retrieved transaction details to the body of the request object
+					 * and set the status of the transaction to "Completed."
 					 */
 					req.body.transactionId = result.id;
 					req.body.transactionStatusOld = result.status;
 
 					transactionController.postEditStatusCompleted(req, res);
 				});
-			
+
 			/* Otherwise, finish updating the delivery details. */
 			} else {
 				res.status(200).json('Delivery details updated successfully!');
