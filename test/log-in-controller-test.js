@@ -57,7 +57,7 @@ describe('the function to get the log-in page', function() {
 		assert.isTrue(res.redirect.notCalled);
 	});
 
-	it('should redirect to the page only once if the user is logged in', function() {
+	it('should redirect to the next page only once if the user is logged in', function() {
 		const req = {
 			session: {
 				username: 'bettina'

@@ -84,7 +84,7 @@ describe('the function to get the home page', function() {
 		assert.isTrue(res.redirect.notCalled);
 	});
 
-	it('should redirect to the page only once if the user is not logged in', function() {
+	it('should redirect to the next page only once if the user is not logged in', function() {
 		const req = {
 			session: {
 				username: null
