@@ -26,8 +26,8 @@ $(function() {
 
 	/**
 	 * Checks if there are any blank fields among those that are required for account registration.
-	 * 
-	 * @returns true if there is at least one blank field; false, otherwise
+	 *
+	 * @return true if there is at least one blank field; false, otherwise
 	 */
 	function isThereBlankField() {
 		/* Do not trim the password. */
@@ -42,9 +42,9 @@ $(function() {
 	}
 
 	/**
-	 * 
-	 * @param {HTMLElement} field 
-	 * @param {*} callback 
+	 *
+	 * @param {HTMLElement} field
+	 * @param {*} callback
 	 */
 	function isEmailValid(field, callback) {
 		const emailField = $('#edit-account-email');
