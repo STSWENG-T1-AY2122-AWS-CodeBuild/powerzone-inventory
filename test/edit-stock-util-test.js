@@ -4,7 +4,7 @@ const {
 	getFuelValue
 } = require('.././public/js/edit-stock-util.js');
 
-describe('the function to convert a role to its equivalent value in the database', function() {
+describe('the function to convert a fuel to its equivalent value in the database', function() {
 	it('should return a string', function() {
 		const result = getFuelValue('Gasoline');
 		assert.isString(result);
