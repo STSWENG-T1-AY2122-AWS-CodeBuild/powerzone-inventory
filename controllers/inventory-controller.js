@@ -4,6 +4,8 @@
 const db = require('../models/db.js');
 const Inventory = require('../models/inventory-schema.js');
 
+const inventoryControllerUtil = require('./inventory-controller-util.js');
+
 const inventoryController = {
 	/**
 	 * Gets the inventory page.
@@ -12,97 +14,29 @@ const inventoryController = {
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getInventory: function(req, res) {
-		/* Store the total quantities and statuses of each type of fuel. */
-		let totalGasoline = 0;
-		let totalPremiumGasoline95 = 0;
-		let totalDiesel = 0;
-		let totalPremiumGasoline97 = 0;
-		let totalKerosene = 0;
-
-		/* Store the details of all purchases in individual arrays to allow for further formatting. */
-		const ids = [];
-		const types = [];
-		const dates = [];
-		const suppliers = [];
-		const prices = [];
-		const locations = [];
-		const statuses = [];
-
 		/* Retrieve the details of all inventory purchases. */
 		const query = {};
 		const projection = '_id type date supplier price quantityPurchased quantityDepleted';
 
 		db.findMany(Inventory, query, projection, function(result) {
-			/* Assign the result of the database retrieval to the variable purchases. */
-			const purchases = result;
-
-			/* For each purchase, update the total fuel quantities accordingly and store the purchase
-			 * details in the individual arrays.
-			 */
-			for (let i = 0; i < purchases.length; i++) {
-				/* Following the feature specifications, display only stocks with quantities above 0
-				 * in the application.
-				 */
-				if ((purchases[i].quantityPurchased - purchases[i].quantityDepleted) > 0) {
-					if (purchases[i].type == 'gasoline') {
-						totalGasoline += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
-					} else if (purchases[i].type == 'premium-gasoline-95') {
-						totalPremiumGasoline95 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
-					} else if (purchases[i].type == 'diesel') {
-						totalDiesel += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
-					} else if (purchases[i].type == 'premium-gasoline-97') {
-						totalPremiumGasoline97 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
-					} else {
-						totalKerosene += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
-					}
-
-					/* Format the display of the purchase date from the Date object
-					 * stored in the database
-					 */
-					const month = purchases[i].date.getMonth() + 1;
-					let formattedMonth = month;
-					if (month.toString().length < 2) {
-						formattedMonth = '0' + month.toString();
-					}
-
-					const date = purchases[i].date.getDate();
-					let formattedDate = date;
-					if (date.toString().length < 2) {
-						formattedDate = '0' + date.toString();
-					}
-
-					const year = purchases[i].date.getFullYear();
-
-					/* Set all statuses to "In Stock" as depleted stocks are no longer displayed. */
-					const status = 'In Stock';
-
-					/* Store the purchase details in their respective arrays. */
-					ids[i] = purchases[i]._id;
-					types[i] = purchases[i].type;
-					dates[i] = formattedMonth + '/' + formattedDate + '/' + year;
-					suppliers[i] = purchases[i].supplier;
-					prices[i] = purchases[i].price;
-					locations[i] = purchases[i].location;
-					statuses[i] = status;
-				}
-			}
+			const details = inventoryControllerUtil.inventoryUtil(result);
 
 			/* Store the total fuel quantities, fuel statuses, and retrieved inventory details
 			 * in the variable data.
 			 */
 			const data = {
-				totalGasoline: totalGasoline,
-				totalPremiumGasoline95: totalPremiumGasoline95,
-				totalDiesel: totalDiesel,
-				totalPremiumGasoline97: totalPremiumGasoline97,
-				totalKerosene: totalKerosene,
-				inventoryIds: ids,
-				inventoryTypes: types,
-				inventoryDates: dates,
-				inventorySuppliers: suppliers,
-				inventoryPrices: prices,
-				inventoryLocations: locations,
-				inventoryStatuses: statuses,
+				totalGasoline: details.totalGasoline,
+				totalPremiumGasoline95: details.totalPremiumGasoline95,
+				totalDiesel: details.totalDiesel,
+				totalPremiumGasoline97: details.totalPremiumGasoline97,
+				totalKerosene: details.totalKerosene,
+				inventoryIds: details.ids,
+				inventoryTypes: details.types,
+				inventoryDates: details.dates,
+				inventorySuppliers: details.suppliers,
+				inventoryPrices: details.prices,
+				inventoryLocations: details.locations,
+				inventoryStatuses: details.statuses,
 
 				/* Additionally, store the role of the account to authorize the add and edit stock features. */
 				role: req.session.role
