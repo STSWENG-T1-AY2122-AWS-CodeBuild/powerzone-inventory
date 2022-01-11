@@ -10,14 +10,14 @@ const db = require('../models/db.js');
 
 describe('the function to get the home page', function() {
 	let res;
-	
+
 	beforeEach(function() {
 		res = {
 			render: sinon.spy(),
 			redirect: sinon.spy()
 		};
 	});
-	
+
 	it('should search the database for the selling prices only once', function() {
 		const req = {
 			session: {
