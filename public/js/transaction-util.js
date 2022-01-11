@@ -139,8 +139,8 @@ const sortZtoA = function(tableId) {
 
 		for (i = 0; i < rows.length - 1; i++) {
 			swap = false;
-			const name1 = rows[i].getElementsByTagName('td')[0].textContent;
-			const name2 = rows[i + 1].getElementsByTagName('td')[0].textContent;
+			const name1 = rows[i].getElementsByTagName('td')[2].textContent;
+			const name2 = rows[i + 1].getElementsByTagName('td')[2].textContent;
 
 			if (name1 < name2) {
 				swap = true;
