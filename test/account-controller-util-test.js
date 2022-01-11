@@ -5,8 +5,8 @@ const expect = require('chai').expect;
 const accountControllerUtil = require('../controllers/account-controller-util.js');
 
 describe('the utility function for retrieving the account details from the admin side', function() {
-    it('should return all the retrieved accounts', function() {
-        const dbResult = [
+	it('should return all the retrieved accounts', function() {
+		const dbResult = [
 			{
 				_id: '01234',
 				firstName: 'mark',
@@ -25,13 +25,13 @@ describe('the utility function for retrieving the account details from the admin
 			}
 		];
 
-        const result = accountControllerUtil.accountUtil(dbResult);
+		const result = accountControllerUtil.accountUtil(dbResult);
 
-        expect(result).to.deep.equalInAnyOrder({accountDetails: dbResult});
-    });
+		expect(result).to.deep.equalInAnyOrder({accountDetails: dbResult});
+	});
 
-    it('should exclude the administrator account from the retrieved accounts', function() {
-        const dbResult = [
+	it('should exclude the administrator account from the retrieved accounts', function() {
+		const dbResult = [
 			{
 				_id: '01234',
 				firstName: 'mark',
@@ -48,7 +48,7 @@ describe('the utility function for retrieving the account details from the admin
 				role: 'transaction-cashier',
 				status: 'rejected'
 			},
-            {
+			{
 				_id: '01236',
 				firstName: 'bork',
 				lastName: 'chua',
@@ -58,7 +58,7 @@ describe('the utility function for retrieving the account details from the admin
 			}
 		];
 
-        const expectedResult = [
+		const expectedResult = [
 			{
 				_id: '01234',
 				firstName: 'mark',
@@ -77,8 +77,8 @@ describe('the utility function for retrieving the account details from the admin
 			}
 		];
 
-        const result = accountControllerUtil.accountUtil(dbResult);
+		const result = accountControllerUtil.accountUtil(dbResult);
 
-        expect(result).to.deep.equalInAnyOrder({accountDetails: expectedResult});
-    });
+		expect(result).to.deep.equalInAnyOrder({accountDetails: expectedResult});
+	});
 });
