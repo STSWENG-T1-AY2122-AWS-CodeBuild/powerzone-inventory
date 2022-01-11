@@ -24,6 +24,11 @@ $(function() {
 	const currentEmail = $('#edit-account-email').val();
 	const currentUsername = $('#edit-account-username').val();
 
+	/**
+	 * Checks if there are any blank fields among those that are required for account registration.
+	 * 
+	 * @returns true if there is at least one blank field; false, otherwise
+	 */
 	function isThereBlankField() {
 		/* Do not trim the password. */
 		return (
@@ -36,6 +41,11 @@ $(function() {
 		);
 	}
 
+	/**
+	 * 
+	 * @param {HTMLElement} field 
+	 * @param {*} callback 
+	 */
 	function isEmailValid(field, callback) {
 		const emailField = $('#edit-account-email');
 		const nonUniqueEmail = $('#edit-invalid-unique-email');
