@@ -5,7 +5,8 @@ import {
 	enableButton,
 	disableButton,
 	hideErrorMessage,
-	displayErrorMessage
+	displayErrorMessage,
+	isBlankField
 } from './general-util.js';
 
 import {isValidPhoneNumber} from './transaction-validate-util.js';
@@ -42,9 +43,8 @@ $(function() {
 		});
 	}
 
-	/* Perform client-side validation of input fields. */
+	/* Perform client-side validation of all the input fields. */
 	$('input').on('keyup', function() {
-		/* Enable only if there are no errors. */
 		let noError = true;
 		for (const fuelType of fuelTypes) {
 			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
@@ -54,6 +54,17 @@ $(function() {
 			}
 		}
 
+		$('input').each(function() {
+			if (isBlankField($(this), true)) {
+				noError = false;
+				disableButton($('#confirm-edit-transaction-btn'));
+			}
+		});
+
+		/* 
+		 * Enable only if there are no blank fields, the phone number is valid, and the fuel quantities entered
+		 * are logically consistent with the available quantities. 
+		 */
 		if (noError && isValidPhoneNumber($('#edit-transaction-customer-number').val())) {
 			enableButton($('#confirm-edit-transaction-btn'));
 		}
