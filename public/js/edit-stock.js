@@ -26,7 +26,6 @@ $(function() {
 		if (currentQuantity >= 0) {
 			$('#edit-stock-current-quantity').val(currentQuantity);
 			hideErrorMessage($('#edit-stock-invalid-amount-quantity'));
-
 		} else if ($('#edit-stock-quantity-purchased').val().length > 0) {
 			/* Do not display any error message or adjust current quantity if input is null string. */
 			$('#edit-stock-current-quantity').val(0);
@@ -46,9 +45,9 @@ $(function() {
 			}
 		});
 
-		/* 
+		/*
 		 * Verify that there are no blank input fields and the purchased fuel quantity is logically consistent
-		 * with the available quantity. 
+		 * with the available quantity.
 		 */
 		if (noBlankFields) {
 			const currentQuantity =
