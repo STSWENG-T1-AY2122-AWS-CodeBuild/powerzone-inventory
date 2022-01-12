@@ -109,7 +109,7 @@ Open the following website: [INSERT LINK HERE].
    http://localhost:3000
    ```
    
-   <img src="https://drive.google.com/uc?export=view&id=1D4q9JWEl-TAl0YU9st7lD_1kQ6wKCAVw" alt="Homepage" width = 750> 
+   <img src="https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/public/assets/home-screenshot.PNG?raw=True" alt="Homepage" width = 750> 
 
 ### Credentials (For Testing Only)
 To log in as an administrator, enter the following credentials:
