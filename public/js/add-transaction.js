@@ -26,6 +26,11 @@ $(function() {
 		} else {
 			hideErrorMessage($('#add-transaction-invalid-customer-number'));
 		}
+
+		/* Hide the error message if no phone number isentered. */
+		if ($(this).val() == '') {
+			hideErrorMessage($('#add-transaction-invalid-customer-number'));
+		}
 	});
 
 	/* Check if the fuel quantity entered does not exceed available quantity. */
