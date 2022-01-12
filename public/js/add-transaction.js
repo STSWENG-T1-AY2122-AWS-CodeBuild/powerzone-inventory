@@ -10,7 +10,7 @@ import {
 	isBlankField
 } from './general-util.js';
 
-import {isValidPhoneNumber} from './transaction-validate-util.js';
+import {isValidPhoneNumber} from './transaction-delivery-validate-util.js';
 
 $(function() {
 	/* Display prices with exactly two decimal places. */

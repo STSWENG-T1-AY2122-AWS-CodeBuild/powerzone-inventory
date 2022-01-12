@@ -9,7 +9,7 @@ import {
 	isBlankField
 } from './general-util.js';
 
-import {isValidPhoneNumber} from './transaction-validate-util.js';
+import {isValidPhoneNumber} from './transaction-delivery-validate-util.js';
 
 $(function() {
 	/* Update the selected value in the status dropdown to reflect the value in the database. */
