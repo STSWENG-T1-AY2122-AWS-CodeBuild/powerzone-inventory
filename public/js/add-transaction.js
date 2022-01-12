@@ -62,7 +62,8 @@ $(function() {
 
 		/* 
 		 * Enable only if there are no blank fields, the phone number is valid, and the fuel quantities entered
-		 * are logically consistent with the available quantities. */
+		 * are logically consistent with the available quantities. 
+		 */
 		if (noError && isValidPhoneNumber($('#add-transaction-customer-number').val())) {
 			enableButton($('#confirm-add-transaction-btn'));
 		}
