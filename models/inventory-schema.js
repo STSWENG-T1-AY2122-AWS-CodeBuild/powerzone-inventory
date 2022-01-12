@@ -35,7 +35,12 @@ const inventorySchema = new mongoose.Schema({
 	},
 
 	/* Quantity purchased */
-	quantity: {
+	quantityPurchased: {
+		type: Number,
+		required: true
+	},
+
+	quantityDepleted: {
 		type: Number,
 		required: true
 	}

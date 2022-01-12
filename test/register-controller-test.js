@@ -15,21 +15,34 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 describe('the function to get the register page', function() {
-	it('should render the register page only once if the user is not logged in', function() {
+	let res;
+
+	beforeEach(function() {
+		res = {
+			render: sinon.spy(),
+			redirect: sinon.spy()
+		};
+	});
+
+	it('should render the page only once if the user is not logged in', function() {
 		const req = {
 			session: {
 				username: null
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
+		registerController.getRegister(req, res);
+		assert.isTrue(res.render.calledOnce);
+	});
+
+	it('should render the register page if the user is not logged in', function() {
+		const req = {
+			session: {
+				username: null
+			}
 		};
 
 		registerController.getRegister(req, res);
-
-		assert.isTrue(res.render.calledOnce);
 		assert.equal(res.render.firstCall.args[0], 'register');
 	});
 
@@ -40,31 +53,29 @@ describe('the function to get the register page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		registerController.getRegister(req, res);
-
 		assert.isTrue(res.redirect.notCalled);
 	});
 
-	it('should redirect to the register page if the user is logged in', function() {
+	it('should redirect to the next page only once if the user is logged in', function() {
 		const req = {
 			session: {
 				username: 'bettina'
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
+		registerController.getRegister(req, res);
+		assert.isTrue(res.redirect.calledOnce);
+	});
+
+	it('should redirect to the home page if the user is logged in', function() {
+		const req = {
+			session: {
+				username: 'bettina'
+			}
 		};
 
 		registerController.getRegister(req, res);
-
-		assert.isTrue(res.redirect.calledOnce);
 		assert.equal(res.redirect.firstCall.args[0], '/getHome');
 	});
 
@@ -75,13 +86,7 @@ describe('the function to get the register page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		registerController.getRegister(req, res);
-
 		assert.isTrue(res.render.notCalled);
 	});
 });
@@ -204,6 +209,12 @@ describe('the function to verify whether a username is unique', function() {
 		registerController.getCheckUsername(req, res);
 
 		assert.isTrue(db.findOne.calledOnce);
+	});
+
+	it('should search the database for the username with the correct arguments', function() {
+		sinon.stub(db, 'findOne').yields(expectedResult);
+		registerController.getCheckUsername(req, res);
+
 		assert.equal(db.findOne.firstCall.args[0], Account);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({username: req.query.username.toLowerCase()});
 		assert.equal(db.findOne.firstCall.args[2], 'username');
@@ -246,6 +257,12 @@ describe('the function to verify whether an email address is unique', function()
 		registerController.getCheckEmail(req, res);
 
 		assert.isTrue(db.findOne.calledOnce);
+	});
+
+	it('should search the database for the email address with the correct arguments', function() {
+		sinon.stub(db, 'findOne').yields(expectedResult);
+		registerController.getCheckEmail(req, res);
+
 		assert.equal(db.findOne.firstCall.args[0], Account);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({email: req.query.email.toLowerCase()});
 		assert.equal(db.findOne.firstCall.args[2], 'email');

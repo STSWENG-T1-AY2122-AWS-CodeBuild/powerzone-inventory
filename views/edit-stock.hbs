@@ -6,11 +6,10 @@
         <title>Edit Stock</title>
 
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">       
-        <link href = "https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href = "https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel = "stylesheet">
         <link href = "/css/style.css" rel = "stylesheet">
 
         <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
         <script src = "/js/edit-stock.js" type = "module"></script>
     </head>
     <body class = "bg-home">
@@ -44,18 +43,9 @@
                                     </div>
 
                                     <div class = "col">
-                                        <input id = "edit-stock-id" name = "editStockId" type = "hidden" value = "{{id}}">
-                                        
-                                        <label for = "edit-stock-quantity" class = "form-label fw-bold text-primary">Quantity (L)</label>
-                                        <input id = "edit-stock-quantity" name = "editStockQuantity" type = "number" placeholder = "Quantity" min = "0" step = "1" value = "{{quantity}}" class = "form-control p-2 rounded-pill" required>
-
-                                        <div id = "edit-stock-invalid-blank-quantity" class = "fw-bold invalid-feedback text-center">
-                                            Kindly input the quantity
-                                        </div>
-
-                                        <div id = "edit-stock-invalid-decimal-quantity" class = "fw-bold invalid-feedback text-center">
-                                            Quantity should have only up to 2 decimal points
-                                        </div>
+                                        <label for = "edit-stock-current-quantity" class = "form-label fw-bold text-primary">Current Quantity (L)</label>
+                                        <input id = "edit-stock-current-quantity" name = "editStockCurrentQuantity" type = "number" placeholder = "Current Quantity" min = "0" step = "1" class = "form-control p-2 rounded-pill" readonly = "readonly">
+                                        <input id = "edit-stock-quantity-depleted" name = "editStockQuantityDepleted" type = "hidden" placeholder = "Quantity Depleted" min = "0" step = "1" value = "{{quantityDepleted}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                                     </div>
                                 </div>
 
@@ -70,15 +60,21 @@
                                     </div>
 
                                     <div class = "col">
-                                        <label for = "edit-stock-price-purchased" class = "form-label fw-bold text-primary">Price Purchased (₱)</label>
-                                        <input id = "edit-stock-price-purchased" name = "editStockPricePurchased" type = "number" placeholder = "Price Purchased (₱)" min = "0" step = "0.01" value = "{{price}}" class = "form-control p-2 rounded-pill" required>
+                                        <input id = "edit-stock-id" name = "editStockId" type = "hidden" value = "{{id}}">
+                                        
+                                        <label for = "edit-stock-quantity-purchased" class = "form-label fw-bold text-primary">Purchased Quantity (L)</label>
+                                        <input id = "edit-stock-quantity-purchased" name = "editStockQuantityPurchased" type = "number" placeholder = "Quantity Purchased" min = "{{quantityDepleted}}" step = "1" value = "{{quantityPurchased}}" class = "form-control p-2 rounded-pill" required>
 
-                                        <div id = "edit-stock-invalid-blank-price-purchased" class = "fw-bold invalid-feedback text-center">
-                                            Kindly input the price purchased
+                                        <div id = "edit-stock-invalid-blank-quantity" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the quantity
                                         </div>
 
-                                        <div id = "edit-stock-invalid-decimal-price-purchased" class = "fw-bold invalid-feedback text-center">
-                                            Price should have only up to 2 decimal points
+                                        <div id = "edit-stock-invalid-decimal-quantity" class = "fw-bold invalid-feedback text-center">
+                                            Quantity should have only up to 2 decimal points
+                                        </div>
+
+                                        <div id = "edit-stock-invalid-amount-quantity" class = "fw-bold invalid-feedback text-center">
+                                            Depleted quantity exceeds purchased quantity. Minimum purchase is {{quantityDepleted}} L
                                         </div>
                                     </div>
                                 </div>
@@ -94,6 +90,21 @@
                                     </div>
 
                                     <div class = "col">
+                                        <label for = "edit-stock-price-purchased" class = "form-label fw-bold text-primary">Price Purchased (₱)</label>
+                                        <input id = "edit-stock-price-purchased" name = "editStockPricePurchased" type = "number" placeholder = "Price Purchased (₱)" min = "0" step = "0.01" value = "{{price}}" class = "form-control p-2 rounded-pill prices" required>
+
+                                        <div id = "edit-stock-invalid-blank-price-purchased" class = "fw-bold invalid-feedback text-center">
+                                            Kindly input the price purchased
+                                        </div>
+
+                                        <div id = "edit-stock-invalid-decimal-price-purchased" class = "fw-bold invalid-feedback text-center">
+                                            Price should have only up to 2 decimal points
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "m-4 row justify-content-md-center">
+                                    <div class = "col-md-6">
                                         <label for = "edit-stock-date-purchased" class = "form-label fw-bold text-primary">Date Purchased</label>   
                                         <input id = "edit-stock-date-purchased" name = "editStockDatePurchased" type = "date" placeholder = "Date Purchased" value = "{{date}}" class = "form-control p-2 rounded-pill" required>
                                     

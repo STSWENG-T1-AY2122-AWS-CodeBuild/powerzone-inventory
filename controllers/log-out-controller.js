@@ -1,6 +1,9 @@
 /* Controller for logging a user out of the web application */
-const logOutController = {
 
+/* A utility object is used for auxiliary functions. */
+const logOutControllerUtil = require('./log-out-controller-util.js');
+
+const logOutController = {
 	/**
      * Logs an active user out of the web application
      *
@@ -13,8 +16,7 @@ const logOutController = {
 			if (err) {
 				throw err;
 			} else {
-				req.session = null;
-				res.redirect('/');
+				logOutControllerUtil.logOutUtil(req, res);
 			}
 		});
 	}
