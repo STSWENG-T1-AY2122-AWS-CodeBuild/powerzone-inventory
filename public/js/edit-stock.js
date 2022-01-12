@@ -5,7 +5,8 @@ import {
 	disableButton,
 	toTwoDecimalPlaces,
 	displayErrorMessage,
-	hideErrorMessage
+	hideErrorMessage,
+	isBlankField
 } from './general-util.js';
 
 $(function() {
@@ -24,12 +25,38 @@ $(function() {
 
 		if (currentQuantity >= 0) {
 			$('#edit-stock-current-quantity').val(currentQuantity);
-			enableButton($('#confirm-edit-stock-btn'));
 			hideErrorMessage($('#edit-stock-invalid-amount-quantity'));
-		} else {
+
+		} else if ($('#edit-stock-quantity-purchased').val().length > 0) {
+			/* Do not display any error message or adjust current quantity if input is null string. */
 			$('#edit-stock-current-quantity').val(0);
 			disableButton($('#confirm-edit-stock-btn'));
 			displayErrorMessage($('#edit-stock-invalid-amount-quantity'));
+		}
+	});
+
+	/* Perform client-side validation of all the input fields. */
+	$('input').on('keyup change', function() {
+		let noBlankFields = true;
+
+		$('input').each(function() {
+			if (isBlankField($(this), true)) {
+				noBlankFields = false;
+				disableButton($('#confirm-edit-stock-btn'));
+			}
+		});
+
+		/* 
+		 * Verify that there are no blank input fields and the purchased fuel quantity is logically consistent
+		 * with the available quantity. 
+		 */
+		if (noBlankFields) {
+			const currentQuantity =
+				parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());
+
+			if (currentQuantity >= 0) {
+				enableButton($('#confirm-edit-stock-btn'));
+			}
 		}
 	});
 
