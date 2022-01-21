@@ -164,7 +164,7 @@ const inventoryController = {
 		const type = req.body.editStockName.trim();
 		const supplier = req.body.editStockSupplier.trim();
 		const location = req.body.editStockStorage.trim();
-		const quantity = req.body.editStockQuantity;
+		const quantity = req.body.editStockQuantityPurchased;
 		const price = req.body.editStockPricePurchased;
 		const date = req.body.editStockDatePurchased;
 
