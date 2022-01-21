@@ -288,7 +288,7 @@ describe('the function to register the details of a particular stock', function(
 			type: req.body.editStockName.trim(),
 			supplier: req.body.editStockSupplier.trim(),
 			location: req.body.editStockStorage.trim(),
-			quantityPurchased: req.body.editStockQuantity,
+			quantityPurchased: req.body.editStockQuantityPurchased,
 			price: req.body.editStockPricePurchased,
 			date: req.body.editStockDatePurchased
 		};
