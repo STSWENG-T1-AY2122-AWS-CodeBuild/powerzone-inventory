@@ -54,6 +54,74 @@ const deliveryControllerUtil = {
 
 		/* Return the initialized arrays. */
 		return {ids, dates, customers, dropoffs, statuses};
+	},
+
+	/**
+	 * Formats the database results for storing the transaction order amounts.
+	 *
+	 * @param {Object} result  Object that contains the result of the database retrieval.
+	 * @return {Object} Formatted transaction order amounts.
+	 */
+	 transactionOrdersUtil: function(result) {
+		/* Store the order amounts of all transactions in individual arrays. */
+		const litersGasoline = [];
+		const litersPremiumGasoline95 = [];
+		const litersDiesel = [];
+		const litersPremiumGasoline97 = [];
+		const litersKerosene = [];	
+
+		/* Assign the result of the database retrieval to the variable transactions. */
+		const transactions = result;
+
+		/* For each transaction, store the order amounts in the individual arrays. */
+		for (let i = 0; i < transactions.length; i++) {
+			litersGasoline[i] = transactions[i].litersGasoline;
+			litersPremiumGasoline95[i] = transactions[i].litersPremiumGasoline95;
+			litersDiesel[i] = transactions[i].litersDiesel;
+			litersPremiumGasoline97[i] = transactions[i].litersPremiumGasoline97;
+			litersKerosene[i] = transactions[i].litersKerosene;
+		}
+
+		/* Return the initialized arrays. */
+		return {litersGasoline, litersPremiumGasoline95, litersDiesel, litersPremiumGasoline97, litersKerosene};
+	},
+
+	/**
+	 * Formats the database results for storing the total amounts of each fuel type based on the inventory entries.
+	 *
+	 * @param {Object} result  Object that contains the result of the database retrieval.
+	 * @return {Object} Total amounts of each fuel type.
+	 */
+	 inventoryAmountsUtil: function(result) {
+		/* Store the total quantities of each type of fuel in the inventory. */
+		let totalGasoline = 0;
+		let totalPremiumGasoline95 = 0;
+		let totalDiesel = 0;
+		let totalPremiumGasoline97 = 0;
+		let totalKerosene = 0;
+
+		/* Assign the result of the database retrieval to the variable purchases. */
+		const purchases = result;
+
+		/* For each purchase, update the total fuel quantities accordingly and store the purchase
+		 * details in the individual arrays.
+		 */
+		for (let i = 0; i < purchases.length; i++) {
+			if (purchases[i].type == 'gasoline') {
+				totalGasoline += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+			} else if (purchases[i].type == 'premium-gasoline-95') {
+				totalPremiumGasoline95 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+			} else if (purchases[i].type == 'diesel') {
+				totalDiesel += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+			} else if (purchases[i].type == 'premium-gasoline-97') {
+				totalPremiumGasoline97 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+			} else {
+				totalKerosene += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+			}
+		}
+
+		/* Return the aggregated values. */
+		return {totalGasoline, totalPremiumGasoline95, totalDiesel, totalPremiumGasoline97, totalKerosene};
 	}
 };
 

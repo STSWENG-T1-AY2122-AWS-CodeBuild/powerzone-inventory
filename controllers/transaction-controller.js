@@ -18,16 +18,23 @@ const transactionController = {
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getTransaction: function(req, res) {
-		/* Store the details of all transactions in individual arrays to allow for further formatting. */
+		/* Store the details and order amounts of all transactions in individual arrays to allow 
+		 * for further formatting. 
+		 */
 		const ids = [];
 		const dates = [];
 		const customers = [];
 		const totals = [];
 		const statuses = [];
+		const litersGasoline = [];
+		const litersPremiumGasoline95 = [];
+		const litersDiesel = [];
+		const litersPremiumGasoline97 = [];
+		const litersKerosene = [];
 
 		/* Retrieve the details of all transactions. */
 		const query = {};
-		const projection = 'id date customer total status';
+		const projection = 'id date customer total status litersGasoline litersPremiumGasoline95 litersDiesel litersPremiumGasoline97 litersKerosene';
 
 		db.findMany(Transaction, query, projection, function(result) {
 			/* Assign the result of the database retrieval to the variable transactions. */
@@ -58,21 +65,71 @@ const transactionController = {
 				customers[i] = transactions[i].customer;
 				totals[i] = transactions[i].total;
 				statuses[i] = transactions[i].status;
+				litersGasoline[i] = transactions[i].litersGasoline;
+				litersPremiumGasoline95[i] = transactions[i].litersPremiumGasoline95;
+				litersDiesel[i] = transactions[i].litersDiesel;
+				litersPremiumGasoline97[i] = transactions[i].litersPremiumGasoline97;
+				litersKerosene[i] = transactions[i].litersKerosene;
 			}
 
-			/* Store the retrieved transaction details in the variable data. */
-			const data = {
-				transactionIds: ids,
-				transactionDates: dates,
-				transactionCustomers: customers,
-				transactionTotals: totals,
-				transactionStatuses: statuses,
+			/* Store the total quantities and statuses of each type of fuel in the inventory. */
+			let totalGasoline = 0;
+			let totalPremiumGasoline95 = 0;
+			let totalDiesel = 0;
+			let totalPremiumGasoline97 = 0;
+			let totalKerosene = 0;
 
-				/* Additionally, store the role of the account to authorize the add and edit transaction features. */
-				role: req.session.role
-			};
+			/* Retrieve the available fuel amounts in the inventory. */
+			const queryInventory = {};
+			const projectionInventory = '_id type quantityPurchased quantityDepleted';
 
-			res.render('transaction', data);
+			db.findMany(Inventory, queryInventory, projectionInventory, function(result) {
+				/* Assign the result of the database retrieval to the variable purchases. */
+				const purchases = result;
+
+				/* For each purchase, update the total fuel quantities accordingly and store the purchase
+				 * details in the individual arrays.
+				 */
+				for (let i = 0; i < purchases.length; i++) {
+					if (purchases[i].type == 'gasoline') {
+						totalGasoline += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					} else if (purchases[i].type == 'premium-gasoline-95') {
+						totalPremiumGasoline95 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					} else if (purchases[i].type == 'diesel') {
+						totalDiesel += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					} else if (purchases[i].type == 'premium-gasoline-97') {
+						totalPremiumGasoline97 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					} else {
+						totalKerosene += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+					}
+				}
+
+				/* Store the retrieved transaction details in the variable data. */
+				const data = {
+					transactionIds: ids,
+					transactionDates: dates,
+					transactionCustomers: customers,
+					transactionTotals: totals,
+					transactionStatuses: statuses,
+
+					transactionLitersGasoline: litersGasoline,
+					transactionLitersPremiumGasoline95: litersPremiumGasoline95,
+					transactionLitersDiesel: litersDiesel,
+					transactionLitersPremiumGasoline97: litersPremiumGasoline97,
+					transactionLitersKerosene: litersKerosene,
+
+					transactionTotalGasoline: totalGasoline,
+					transactionTotalPremiumGasoline95: totalPremiumGasoline95,
+					transactionTotalDiesel: totalDiesel,
+					transactionTotalPremiumGasoline97: totalPremiumGasoline97,
+					transactionTotalKerosene: totalKerosene,
+
+					/* Additionally, store the role of the account to authorize the add and edit transaction features. */
+					role: req.session.role
+				};
+
+				res.render('transaction', data);
+			});
 		});
 	},
 

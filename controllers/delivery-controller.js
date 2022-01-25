@@ -1,9 +1,10 @@
 /* Controller for displaying the delivery page */
 
-/* The db file, delivery schema, and transaction schema are used for the delivery page. */
+/* The db file, delivery schema, transaction schema, and inventory schema are used for the delivery page. */
 const db = require('../models/db.js');
 const Delivery = require('../models/delivery-schema.js');
 const Transaction = require('../models/transaction-schema.js');
+const Inventory = require('../models/inventory-schema.js');
 
 /* A utility object is used for auxiliary functions. */
 const deliveryControllerUtil = require('./delivery-controller-util.js');
@@ -24,21 +25,49 @@ const deliveryController = {
 		const projection = 'id date customer dropoff status';
 
 		db.findMany(Delivery, query, projection, function(result) {
-			const details = deliveryControllerUtil.deliveryUtil(result);
+			const deliveryDetails = deliveryControllerUtil.deliveryUtil(result);
 
-			/* Store the retrieved delivery details in the variable data. */
-			const data = {
-				deliveryIds: details.ids,
-				deliveryDates: details.dates,
-				deliveryCustomers: details.customers,
-				deliveryDropoffs: details.dropoffs,
-				deliveryStatuses: details.statuses,
+			/* Retrieve the details of all transactions. */
+			const queryTransaction = {};
+			const projectionTransaction = 'litersGasoline litersPremiumGasoline95 litersDiesel litersPremiumGasoline97 litersKerosene';
 
-				/* Additionally, store the role of the account to authorize the add and edit stock features. */
-				role: req.session.role
-			};
+			db.findMany(Transaction, queryTransaction, projectionTransaction, function(result) {
+				const transactionDetails = deliveryControllerUtil.transactionOrdersUtil(result);
 
-			res.render('delivery', data);
+				/* Retrieve the available fuel amounts in the inventory. */
+				const queryInventory = {};
+				const projectionInventory = '_id type quantityPurchased quantityDepleted';
+
+				db.findMany(Inventory, queryInventory, projectionInventory, function(result) {
+					const inventoryDetails = deliveryControllerUtil.inventoryAmountsUtil(result);
+
+					/* Store the details in the variable data. */
+					const data = {
+						deliveryIds: deliveryDetails.ids,
+						deliveryDates: deliveryDetails.dates,
+						deliveryCustomers: deliveryDetails.customers,
+						deliveryDropoffs: deliveryDetails.dropoffs,
+						deliveryStatuses: deliveryDetails.statuses,
+
+						deliveryLitersGasoline: transactionDetails.litersGasoline,
+						deliveryLitersPremiumGasoline95: transactionDetails.litersPremiumGasoline95,
+						deliveryLitersDiesel: transactionDetails.litersDiesel,
+						deliveryLitersPremiumGasoline97: transactionDetails.litersPremiumGasoline97,
+						deliveryLitersKerosene: transactionDetails.litersKerosene,
+
+						deliveryTotalGasoline: inventoryDetails.totalGasoline,
+						deliveryTotalPremiumGasoline95: inventoryDetails.totalPremiumGasoline95,
+						deliveryTotalDiesel: inventoryDetails.totalDiesel,
+						deliveryTotalPremiumGasoline97: inventoryDetails.totalPremiumGasoline97,
+						deliveryTotalKerosene: inventoryDetails.totalKerosene,
+
+						/* Additionally, store the role of the account to authorize the add and edit transaction features. */
+						role: req.session.role
+					};
+
+					res.render('delivery', data);
+				});
+			});
 		});
 	},
 
@@ -229,6 +258,9 @@ const deliveryController = {
 		const projection = 'id customer number date status warehouse dropoff manager driver';
 
 		db.findOne(Delivery, query, projection, function(result) {
+			/* Store the result of the database retrieval in the variable deliveryDetails. */
+			let deliveryDetails = result;
+
 			/* Format the display of the delivery date from the Date object, if applicable,
              * stored in the database.
              */
@@ -252,20 +284,79 @@ const deliveryController = {
 				cleanDate = year + '-' + formattedMonth + '-' + formattedDate;
 			}
 
-			/* Store the delivery details in the variable data. */
-			const data = {
-				id: result.id,
-				date: cleanDate,
-				status: result.status,
-				customer: result.customer,
-				number: result.number,
-				warehouse: result.warehouse,
-				dropoff: result.dropoff,
-				manager: result.manager,
-				driver: result.driver
-			};
+			/* The transaction ID corresponding to a delivery has a starting digit of 1 and the same
+			 * succeeding digits as the delivery ID.
+			 */
+			const transactionId = parseInt(id) - 10000000;
 
-			res.render('edit-delivery', data);
+			/* Retrieve the amounts of fuel ordered in the transaction. */
+			const queryTransaction = {id: transactionId};
+			const projectionTransaction = 'litersGasoline litersPremiumGasoline95 litersDiesel litersPremiumGasoline97 litersKerosene';
+
+			db.findOne(Transaction, queryTransaction, projectionTransaction, function(result) {
+				/* Store the result of the database retrieval in the variable transactionDetails. */
+				const transactionDetails = result;
+
+				/* Store the total quantities and statuses of each type of fuel in the inventory. */
+				let totalGasoline = 0;
+				let totalPremiumGasoline95 = 0;
+				let totalDiesel = 0;
+				let totalPremiumGasoline97 = 0;
+				let totalKerosene = 0;
+
+				/* Retrieve the available fuel amounts in the inventory. */
+				const queryInventory = {};
+				const projectionInventory = '_id type quantityPurchased quantityDepleted';
+
+				db.findMany(Inventory, queryInventory, projectionInventory, function(result) {
+					/* Assign the result of the database retrieval to the variable purchases. */
+					const purchases = result;
+
+					/* For each purchase, update the total fuel quantities accordingly and store the purchase
+					 * details in the individual arrays.
+					 */
+					for (let i = 0; i < purchases.length; i++) {
+						if (purchases[i].type == 'gasoline') {
+							totalGasoline += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+						} else if (purchases[i].type == 'premium-gasoline-95') {
+							totalPremiumGasoline95 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+						} else if (purchases[i].type == 'diesel') {
+							totalDiesel += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+						} else if (purchases[i].type == 'premium-gasoline-97') {
+							totalPremiumGasoline97 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+						} else {
+							totalKerosene += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+						}
+					}
+
+					/* Store the details and total fuel amounts in the variable data. */
+					const data = {
+						id: deliveryDetails.id,
+						date: cleanDate,
+						status: deliveryDetails.status,
+						customer: deliveryDetails.customer,
+						number: deliveryDetails.number,
+						warehouse: deliveryDetails.warehouse,
+						dropoff: deliveryDetails.dropoff,
+						manager: deliveryDetails.manager,
+						driver: deliveryDetails.driver,
+
+						litersGasoline: transactionDetails.litersGasoline,
+						litersPremiumGasoline95: transactionDetails.litersPremiumGasoline95,
+						litersDiesel: transactionDetails.litersDiesel,
+						litersPremiumGasoline97: transactionDetails.litersPremiumGasoline97,
+						litersKerosene: transactionDetails.litersKerosene,
+
+						totalGasoline: totalGasoline,
+						totalPremiumGasoline95: totalPremiumGasoline95,
+						totalDiesel: totalDiesel,
+						totalPremiumGasoline97: totalPremiumGasoline97,
+						totalKerosene: totalKerosene
+					};
+
+					res.render('edit-delivery', data);
+				});
+			});
 		});
 	},
 
