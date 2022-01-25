@@ -201,7 +201,7 @@
                     <td id = "date-{{lookup ../transactionIds @index}}">{{lookup ../transactionDates @index}}</td>
                     <td id = "customer-{{lookup ../transactionIds @index}}">{{lookup ../transactionCustomers @index}}</td>
                     <td class = "prices" id = "total-{{lookup ../transactionIds @index}}">₱ {{lookup ../transactionTotals @index}}</td>
-                    <td><img id = "status-img-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "table-icon"></td>
+                    <td><button id = "status-{{lookup ../transactionIds @index}}" class = "edit-transaction-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-transaction-status-modal"><img id = "status-img-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "table-icon"></button></td>
                     <td><a id = "more-info-{{lookup ../transactionIds @index}}" href = "/getMoreInfoTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/more.png" alt = "view-transaction-more-info" class = "view-transaction-more-info table-icon"></a></td>
                     <td><a class = "edit-transaction-clickable" id = "edit-{{lookup ../transactionIds @index}}" href = "/getEditTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/pencil.png" alt = "edit-transaction-details" class = "edit-transaction-details table-icon"></a></td>
                 </tr>
@@ -211,7 +211,7 @@
                     <td id = "date-{{lookup ../transactionIds @index}}">{{lookup ../transactionDates @index}}</td>
                     <td id = "customer-{{lookup ../transactionIds @index}}">{{lookup ../transactionCustomers @index}}</td>
                     <td class = "prices" id = "total-{{lookup ../transactionIds @index}}">₱ {{lookup ../transactionTotals @index}}</td>
-                    <td><img id = "status-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></td>
+                    <td><button id = "status-{{lookup ../transactionIds @index}}" class = "edit-transaction-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-transaction-status-modal"></button><img id = "status-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></button></td>
                     <td><a id = "more-info-{{lookup ../transactionIds @index}}" href = "/getMoreInfoTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/more.png" alt = "view-transaction-more-info" class = "view-transaction-more-info table-icon"></a></td>
                 </tr>
                 {{/if}}
