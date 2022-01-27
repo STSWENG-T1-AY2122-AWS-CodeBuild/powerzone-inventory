@@ -19,7 +19,7 @@ $(function() {
 	});
 
 	/* Validate the phone number. */
-	$('#add-transaction-customer-number').on('keyup', function() {
+	$('#add-transaction-customer-number').on('keyup change', function() {
 		if (!isValidPhoneNumber($(this).val())) {
 			displayErrorMessage($('#add-transaction-invalid-customer-number'));
 			disableButton($('#confirm-add-transaction-btn'));
@@ -37,7 +37,7 @@ $(function() {
 	const fuelTypes = getFuelTypes();
 
 	for (const fuelType of fuelTypes) {
-		$('#add-transaction-' + fuelType + '-liters').on('keyup', function() {
+		$('#add-transaction-' + fuelType + '-liters').on('keyup change', function() {
 			if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
 				displayErrorMessage($('#add-transaction-invalid-amount-' + fuelType));
 				disableButton($('#confirm-add-transaction-btn'));

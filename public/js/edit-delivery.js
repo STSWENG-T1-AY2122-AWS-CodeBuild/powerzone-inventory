@@ -15,7 +15,7 @@ $(function() {
 	$('#edit-delivery-status').val($('#edit-delivery-status-hidden').val());
 
 	/* Validate the phone number. */
-	$('#edit-delivery-customer-number').on('keyup', function() {
+	$('#edit-delivery-customer-number').on('keyup change', function() {
 		if (!isValidPhoneNumber($(this).val())) {
 			displayErrorMessage($('#edit-delivery-invalid-customer-number'));
 			disableButton($('#confirm-edit-delivery-btn'));
