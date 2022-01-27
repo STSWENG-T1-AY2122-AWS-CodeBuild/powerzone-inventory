@@ -185,6 +185,13 @@
                 </tr>
                 {{/if}}
             </thead>
+
+            <input id = "delivery-gasoline-total" name = "deliveryGasolineTotal" type = "hidden" value = "{{deliveryTotalGasoline}}">
+            <input id = "delivery-premium-gasoline-95-total" name = "deliveryPremiumGasoline95Total" type = "hidden" value = "{{deliveryTotalPremiumGasoline95}}">
+            <input id = "delivery-diesel-total" name = "deliveryDieselTotal" type = "hidden" value = "{{deliveryTotalDiesel}}">
+            <input id = "delivery-premium-gasoline-97-total" name = "deliveryPremiumGasoline97Total" type = "hidden" value = "{{deliveryTotalPremiumGasoline97}}">
+            <input id = "delivery-kerosene-total" name = "deliveryKeroseneTotal" type = "hidden" value = "{{deliveryTotalKerosene}}">
+
             <tbody id = "delivery-list">
             {{#each deliveryStatuses}}
                 {{#if (validDeliveryRole ../role)}}
@@ -207,6 +214,13 @@
                     <td><a href = "/getMoreInfoDelivery/{{lookup ../deliveryIds @index}}"><img src = "/assets/more.png" alt = "view-delivery-more-info" class = "view-delivery-more-info table-icon"></a></td>
                 </tr>
                 {{/if}}
+
+                 <input id = "delivery-gasoline-amount-{{lookup ../deliveryIds @index}}" name = "deliveryGasolineAmount" type = "hidden" value = "{{lookup ../deliveryLitersGasoline @index}}">
+                <input id = "delivery-premium-gasoline-95-amount-{{lookup ../deliveryIds @index}}" name = "deliveryPremiumGasoline95Amount" type = "hidden" value = "{{lookup ../deliveryLitersPremiumGasoline95 @index}}">
+                <input id = "delivery-diesel-amount-{{lookup ../deliveryIds @index}}" name = "deliveryDieselAmount" type = "hidden" value = "{{lookup ../deliveryLitersDiesel @index}}">
+                <input id = "delivery-premium-gasoline-97-amount-{{lookup ../deliveryIds @index}}" name = "deliveryPremiumGasoline97Amount" type = "hidden" value = "{{lookup ../deliveryLitersPremiumGasoline97 @index}}">
+                <input id = "delivery-kerosene-amount-{{lookup ../deliveryIds @index}}" name = "deliveryKeroseneAmount" type = "hidden" value = "{{lookup ../deliveryLitersKerosene @index}}">
+                
             {{/each}}
             </tbody>
         </table>

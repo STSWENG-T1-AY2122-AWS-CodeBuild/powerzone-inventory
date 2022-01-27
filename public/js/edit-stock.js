@@ -19,7 +19,7 @@ $(function() {
 	);
 
 	/* Perform client-side validation of purchased fuel quantity versus available quantity. */
-	$('#edit-stock-quantity-purchased').on('keyup', function() {
+	$('#edit-stock-quantity-purchased').on('keyup change', function() {
 		const currentQuantity =
 			parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());
 
