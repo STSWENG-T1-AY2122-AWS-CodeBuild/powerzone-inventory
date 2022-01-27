@@ -15,7 +15,7 @@ $(function() {
 	$('#edit-delivery-status').val($('#edit-delivery-status-hidden').val());
 
 	/* Validate the phone number. */
-	$('#edit-delivery-customer-number').on('keyup change', function() {
+	$('#edit-delivery-customer-number').on('keyup change paste', function() {
 		if (!isValidPhoneNumber($(this).val())) {
 			displayErrorMessage($('#edit-delivery-invalid-customer-number'));
 			disableButton($('#confirm-edit-delivery-btn'));
@@ -30,7 +30,7 @@ $(function() {
 	});
 
 	/* Perform client-side validation of all the input fields. */
-	$('input').on('keyup change', function() {
+	$('input').on('keyup change paste', function() {
 		let noBlankFields = true;
 
 		$('input').each(function() {

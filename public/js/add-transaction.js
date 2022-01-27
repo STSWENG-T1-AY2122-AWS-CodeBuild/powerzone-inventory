@@ -19,7 +19,7 @@ $(function() {
 	});
 
 	/* Validate the phone number. */
-	$('#add-transaction-customer-number').on('keyup change', function() {
+	$('#add-transaction-customer-number').on('keyup change paste', function() {
 		if (!isValidPhoneNumber($(this).val())) {
 			displayErrorMessage($('#add-transaction-invalid-customer-number'));
 			disableButton($('#confirm-add-transaction-btn'));
@@ -37,7 +37,7 @@ $(function() {
 	const fuelTypes = getFuelTypes();
 
 	for (const fuelType of fuelTypes) {
-		$('#add-transaction-' + fuelType + '-liters').on('keyup change', function() {
+		$('#add-transaction-' + fuelType + '-liters').on('keyup change paste', function() {
 			if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
 				displayErrorMessage($('#add-transaction-invalid-amount-' + fuelType));
 				disableButton($('#confirm-add-transaction-btn'));
@@ -48,7 +48,7 @@ $(function() {
 	}
 
 	/* Perform client-side validation of all the input fields. */
-	$('input').on('keyup change', function() {
+	$('input').on('keyup change paste', function() {
 		let noError = true;
 		for (const fuelType of fuelTypes) {
 			if (parseInt($('#add-transaction-' + fuelType + '-liters').val()) >

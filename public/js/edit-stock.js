@@ -19,7 +19,7 @@ $(function() {
 	);
 
 	/* Perform client-side validation of purchased fuel quantity versus available quantity. */
-	$('#edit-stock-quantity-purchased').on('keyup change', function() {
+	$('#edit-stock-quantity-purchased').on('keyup change paste', function() {
 		const currentQuantity =
 			parseInt($('#edit-stock-quantity-purchased').val()) - parseInt($('#edit-stock-quantity-depleted').val());
 
@@ -35,7 +35,7 @@ $(function() {
 	});
 
 	/* Perform client-side validation of all the input fields. */
-	$('input').on('keyup change', function() {
+	$('input').on('keyup change paste', function() {
 		let noBlankFields = true;
 
 		$('input').each(function() {
