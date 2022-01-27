@@ -393,29 +393,29 @@ $(function() {
 	}
 
 	/* Trigger client-side validation when a key is pressed on any of the input fields. */
-	$('#edit-account-email').on('keyup change', function() {
+	$('#edit-account-email').on('keyup change paste', function() {
 		isEmailStillValid = false;
 		didEmailChange = true;
 
 		validateField($('#edit-account-email'));
 	});
 
-	$('#edit-account-username').on('keyup change', function() {
+	$('#edit-account-username').on('keyup change paste', function() {
 		isUsernameStillValid = false;
 		didUsernameChange = true;
 
 		validateField($('#edit-account-username'));
 	});
 
-	$('#edit-account-new-pw').on('keyup change', function() {
+	$('#edit-account-new-pw').on('keyup change paste', function() {
 		validateField($('#edit-account-new-pw'));
 	});
 
-	$('#edit-account-fname').on('keyup change', function() {
+	$('#edit-account-fname').on('keyup change paste', function() {
 		validateField($('#edit-account-fname'));
 	});
 
-	$('#edit-account-lname').on('keyup change', function() {
+	$('#edit-account-lname').on('keyup change paste', function() {
 		validateField($('#edit-account-lname'));
 	});
 
@@ -423,7 +423,7 @@ $(function() {
 		validateField($('#edit-account-role'));
 	});
 
-	$('#edit-account-confirm-pw').on('keyup change', function() {
+	$('#edit-account-confirm-pw').on('keyup change paste', function() {
 		validateField($('#edit-account-confirm-pw'));
 	});
 });

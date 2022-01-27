@@ -8,7 +8,7 @@ import {
 
 $(function() {
 	/* Perform client-side validation of all the input fields. */
-	$('input').on('keyup change', function() {
+	$('input').on('keyup change paste', function() {
 		let noBlankFields = true;
 
 		$('input').each(function() {
