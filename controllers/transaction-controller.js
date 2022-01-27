@@ -10,9 +10,6 @@ const TransactionNumber = require('../models/transaction-number-schema.js');
 const Price = require('../models/selling-price-schema.js');
 const Delivery = require('../models/delivery-schema.js');
 
-/* The delivery controller is used to update the delivery status.*/
-const deliveryController = require('./delivery-controller.js');
-
 const transactionController = {
 	/**
 	 * Gets the transactions page.
