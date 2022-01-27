@@ -371,7 +371,7 @@ $(function() {
 		}
 	}
 
-	$('#signup-email').on('keyup', function() {
+	$('#signup-email').on('keyup change', function() {
 		isEmailStillValid = false;
 		didEmailChange = true;
 
@@ -379,22 +379,22 @@ $(function() {
 	});
 
 	/* Trigger client-side validation when a key is pressed on any of the input fields. */
-	$('#signup-username').on('keyup', function() {
+	$('#signup-username').on('keyup change', function() {
 		isUsernameStillValid = false;
 		didUsernameChange = true;
 
 		validateField($('#signup-username'));
 	});
 
-	$('#signup-password').on('keyup', function() {
+	$('#signup-password').on('keyup change', function() {
 		validateField($('#signup-password'));
 	});
 
-	$('#signup-fname').on('keyup', function() {
+	$('#signup-fname').on('keyup change', function() {
 		validateField($('#signup-fname'));
 	});
 
-	$('#signup-lname').on('keyup', function() {
+	$('#signup-lname').on('keyup change', function() {
 		validateField($('#signup-lname'));
 	});
 
@@ -402,7 +402,7 @@ $(function() {
 		validateField($('#signup-role'));
 	});
 
-	$('#signup-confirm-password').on('keyup', function() {
+	$('#signup-confirm-password').on('keyup change', function() {
 		validateField($('#signup-confirm-password'));
 	});
 });
