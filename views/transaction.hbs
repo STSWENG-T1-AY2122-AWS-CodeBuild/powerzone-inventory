@@ -193,6 +193,13 @@
                 </tr>
                 {{/if}}
             </thead>
+
+            <input id = "transaction-gasoline-total" name = "transactionGasolineTotal" type = "hidden" value = "{{transactionTotalGasoline}}">
+            <input id = "transaction-premium-gasoline-95-total" name = "transactionPremiumGasoline95Total" type = "hidden" value = "{{transactionTotalPremiumGasoline95}}">
+            <input id = "transaction-diesel-total" name = "transactionDieselTotal" type = "hidden" value = "{{transactionTotalDiesel}}">
+            <input id = "transaction-premium-gasoline-97-total" name = "transactionPremiumGasoline97Total" type = "hidden" value = "{{transactionTotalPremiumGasoline97}}">
+            <input id = "transaction-kerosene-total" name = "transactionKeroseneTotal" type = "hidden" value = "{{transactionTotalKerosene}}">
+            
             <tbody id = "transaction-list">
             {{#each transactionStatuses}}
                 {{#if (validTransactionRole ../role)}}
@@ -211,10 +218,17 @@
                     <td id = "date-{{lookup ../transactionIds @index}}">{{lookup ../transactionDates @index}}</td>
                     <td id = "customer-{{lookup ../transactionIds @index}}">{{lookup ../transactionCustomers @index}}</td>
                     <td class = "prices" id = "total-{{lookup ../transactionIds @index}}">₱ {{lookup ../transactionTotals @index}}</td>
-                    <td><img id = "status-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></td>
+                    <td><button id = "status-{{lookup ../transactionIds @index}}" class = "edit-transaction-status btn shadow-none" data-bs-toggle = "modal" data-bs-target = "#edit-transaction-status-modal"></button><img id = "status-{{lookup ../transactionIds @index}}" src = {{getStatusIcon this}} class = "edit-transaction-status table-icon"></button></td>
                     <td><a id = "more-info-{{lookup ../transactionIds @index}}" href = "/getMoreInfoTransaction/{{lookup ../transactionIds @index}}"><img src = "/assets/more.png" alt = "view-transaction-more-info" class = "view-transaction-more-info table-icon"></a></td>
                 </tr>
                 {{/if}}
+
+                <input id = "transaction-gasoline-amount-{{lookup ../transactionIds @index}}" name = "transactionGasolineAmount" type = "hidden" value = "{{lookup ../transactionLitersGasoline @index}}">
+                <input id = "transaction-premium-gasoline-95-amount-{{lookup ../transactionIds @index}}" name = "transactionPremiumGasoline95Amount" type = "hidden" value = "{{lookup ../transactionLitersPremiumGasoline95 @index}}">
+                <input id = "transaction-diesel-amount-{{lookup ../transactionIds @index}}" name = "transactionDieselAmount" type = "hidden" value = "{{lookup ../transactionLitersDiesel @index}}">
+                <input id = "transaction-premium-gasoline-97-amount-{{lookup ../transactionIds @index}}" name = "transactionPremiumGasoline97Amount" type = "hidden" value = "{{lookup ../transactionLitersPremiumGasoline97 @index}}">
+                <input id = "transaction-kerosene-amount-{{lookup ../transactionIds @index}}" name = "transactionKeroseneAmount" type = "hidden" value = "{{lookup ../transactionLitersKerosene @index}}">
+                
             {{/each}}
             </tbody>
         </table>
