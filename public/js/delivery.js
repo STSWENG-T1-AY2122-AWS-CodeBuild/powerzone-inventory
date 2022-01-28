@@ -1,12 +1,20 @@
 /* JavaScript file for handling the front-end of the delivery page */
 
-import {extractId} from './general-util.js';
+import {
+	extractId,
+	initializeTooltip,
+	removeTooltip,
+	disableButton,
+	enableButton
+} from './general-util.js';
 import {
 	filterBy,
 	sortAtoZ,
 	sortZtoA,
 	getStatusFromIcon
 } from './transaction-delivery-util.js';
+
+import {getFuelTypes} from './constant-util.js';
 
 $(function() {
 	/* Update the details in the modal when the edit status button is clicked. */
@@ -17,6 +25,31 @@ $(function() {
 		$('#edit-delivery-status-form-status').val(getStatusFromIcon($('#status-img-' + deliveryId).attr('src')));
 		$('#edit-delivery-status-form-display-id').text($('#id-' + deliveryId).text());
 		$('#edit-delivery-status-form-customer').text($('#customer-' + deliveryId).text());
+
+		const fuelTypes = getFuelTypes();
+		let canPend = true;
+
+		for (const fuelType of fuelTypes) {
+			if (parseInt($('#delivery-' + fuelType + '-amount-' + deliveryId).val()) >
+				parseInt($('#delivery-' + fuelType + '-total').val())) {
+				canPend = false;
+				break;
+			}
+		}
+
+		if (!canPend) {
+			initializeTooltip($('#pend-delivery-btn-tooltip'), 'Insufficient fuel in the inventory');
+			initializeTooltip($('#complete-delivery-btn-tooltip'), 'Insufficient fuel in the inventory');
+
+			disableButton($('#pend-delivery-btn'));
+			disableButton($('#complete-delivery-btn'));
+		} else {
+			removeTooltip($('#pend-delivery-btn-tooltip'));
+			removeTooltip($('#complete-delivery-btn-tooltip'));
+
+			enableButton($('#pend-delivery-btn'));
+			enableButton($('#complete-delivery-btn'));
+		}
 	});
 
 	/* Disable editing if the status is complete. */
