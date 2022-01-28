@@ -140,3 +140,50 @@ describe('the function to organizing the details across all the delivery items',
 		expect(result).to.deep.equalInAnyOrder(expectedResult);
 	});
 });
+
+describe('the function to format the database results for storing the transaction order amounts', function() {
+	it('should reflect the correct amount per fuel type', function() {
+		const dbResult = [
+			{
+				litersGasoline: 123,
+				litersPremiumGasoline95: 456,
+				litersDiesel: 789,
+				litersPremiumGasoline97: 234,
+				litersKerosene: 567
+			},
+			{
+				litersGasoline: 23,
+				litersPremiumGasoline95: 45,
+				litersDiesel: 89,
+				litersPremiumGasoline97: 24,
+				litersKerosene: 57
+			}
+		];
+
+		const expectedResult = {
+			  'litersDiesel': [
+			    89,
+			    789
+			  ],
+			  'litersGasoline': [
+			    23,
+			    123
+			  ],
+			  'litersKerosene': [
+			    57,
+			    567
+			  ],
+			  'litersPremiumGasoline95': [
+			    45,
+			    456
+			  ],
+			  'litersPremiumGasoline97': [
+			    24,
+			    234
+			  ]
+		};
+
+		const result = deliveryControllerUtil.transactionOrdersUtil(dbResult);
+		expect(result).to.deep.equalInAnyOrder(expectedResult);
+	});
+});
