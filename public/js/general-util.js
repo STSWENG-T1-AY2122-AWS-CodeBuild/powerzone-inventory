@@ -74,16 +74,28 @@ const toTwoDecimalPlaces = function(number) {
 	return (Math.round(number * 100) / 100).toFixed(2);
 };
 
+/**
+ * Creates a tooltip when hovering over the specified button.
+ * 
+ * @param {HTMLelement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ * @param {string} message Message shown in the tooltip.
+ */
 const initializeTooltip = function(button, message) {
 	button.attr('data-bs-toggle', 'tooltip');
 	button.attr('title', message);
 
+	/* Bootstrap 5 code for initializing the tooltip: https://getbootstrap.com/docs/5.0/components/tooltips/ */
 	const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
 	tooltipTriggerList.map(function(tooltipTriggerEl) {
 		return new bootstrap.Tooltip(tooltipTriggerEl);
 	});
 };
 
+/**
+ * Removes the tooltip anchored to the given button.
+ * 
+ * @param {HTMLelement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ */
 const removeTooltip = function(button) {
 	button.removeAttr('data-bs-toggle');
 	button.removeAttr('title');
