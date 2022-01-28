@@ -48,6 +48,20 @@ $(function() {
 		});
 	}
 
+	/* Disable status toggling if the inventory supplies are insufficient. */
+	let canPend = true;
+	for (const fuelType of fuelTypes) {
+		if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
+			parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
+			canPend = false;
+			break;
+		}
+	}
+
+	if (!canPend) {
+		$('#edit-transaction-status option[value = "pending"]').remove();
+	}
+
 	/* Perform client-side validation of all the input fields. */
 	$('input').on('keyup change paste', function() {
 		let noError = true;

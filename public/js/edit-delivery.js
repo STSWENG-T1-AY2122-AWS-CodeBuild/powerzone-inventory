@@ -16,6 +16,7 @@ $(function() {
 	/* Update the selected value in the status dropdown to reflect the value in the database. */
 	$('#edit-delivery-status').val($('#edit-delivery-status-hidden').val());
 
+	/* Disable status toggling if the inventory supplies are insufficient. */
 	const fuelTypes = getFuelTypes();
 	let canPend = true;
 
