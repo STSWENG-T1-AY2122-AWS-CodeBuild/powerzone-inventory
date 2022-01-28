@@ -74,6 +74,21 @@ const toTwoDecimalPlaces = function(number) {
 	return (Math.round(number * 100) / 100).toFixed(2);
 };
 
+const initializeTooltip = function(button, message) {
+	button.attr('data-bs-toggle', 'tooltip');
+	button.attr('title', message);
+
+	const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+	tooltipTriggerList.map(function (tooltipTriggerEl) {
+		return new bootstrap.Tooltip(tooltipTriggerEl)
+	});
+}
+
+const removeTooltip = function(button) {
+	button.removeAttr('data-bs-toggle');
+	button.removeAttr('title');
+}
+
 export {
 	displayErrorMessage,
 	hideErrorMessage,
@@ -81,5 +96,7 @@ export {
 	disableButton,
 	isBlankField,
 	extractId,
-	toTwoDecimalPlaces
+	toTwoDecimalPlaces,
+	initializeTooltip,
+	removeTooltip
 };
