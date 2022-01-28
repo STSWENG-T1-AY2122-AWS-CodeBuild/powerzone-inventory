@@ -11,7 +11,8 @@
   },
   "nyc": {
     "exclude": [
-      "models/db.js"
+      "models",
+      "test"
     ]
   },
   "repository": {
