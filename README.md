@@ -174,6 +174,8 @@ To implement continuous integration and continuous delivery (CI/CD), the followi
 
 <a href = "https://eslint.org/">ESLint</a> is used for linting and enforcing uniform and consistent coding style. 
 
+<a href = "https://www.gitguardian.com/">GitGuardian</a> has been added to the CI/CD pipeline to protect against the leakage of secrets (e.g., database connection URLs).
+
 This web application is deployed on <a href = "https://dashboard.heroku.com/">Heroku</a>, a cloud platform as a service (PaaS).
    
 ## Contributing
