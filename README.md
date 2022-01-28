@@ -152,7 +152,8 @@ The following table lists the development dependencies:
 | [<code>esm</code>](https://www.npmjs.com/package/esm) | 3.2.25 | Babel-less, bundle-less ECMAScript module loader | MIT License
 | [<code>jsdom</code>](https://www.npmjs.com/package/jsdom) | 18.1.1 | Pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards, for use with Node.js |  MIT License |
 | [<code>mocha</code>](https://www.npmjs.com/package/mocha) | 9.1.3 | Simple and flexible JavaScript test framework for Node.js and the browser | MIT License  |
-| [<code>mocha-jsdom</code>](https://www.npmjs.com/package/mocha-jsdom) | 2.0.0 | Test frontend libraries in the console using Node.js, Mocha and JSDom. | MIT License  |
+| [<code>mocha-jsdom</code>](https://www.npmjs.com/package/mocha-jsdom) | 2.0.0 | Test framework for frontend libraries in the console using Node.js, Mocha, and JSDom | MIT License  |
+| [<code>mochawesome</code>](https://www.npmjs.com/package/mochawesome) | 7.0.1 | Custom reporter for use with Mocha for generating an HTML/CSS report to help visualize test runs | MIT License  |
 | [<code>nyc</code>](https://www.npmjs.com/package/nyc) | 15.1.0 | Istanbul's state of the art command line interface with support for applications that spawn subprocesses | ISC License |
 | [<code>sinon</code>](https://www.npmjs.com/package/nyc) | 12.0.1 | Standalone and test framework agnostic JavaScript test spies, stubs, and mocks | BSD-3-Clause License |
 
