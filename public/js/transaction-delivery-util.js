@@ -20,7 +20,6 @@ const getStatusFromIcon = function(icon) {
 	}
 };
 
-
 /**
  * Displays all the entries of the transactions table.
  *
@@ -48,6 +47,23 @@ const filterBy = function(tableId, statusTypes, dateString) {
 	/* Set the time component to 0 in preparation for time-agnostic date comparison. */
 	filterDate.setHours(0, 0, 0);
 
+	filterByUtil(tableId, statusTypes, dateString, filterDate);
+};
+
+/**
+ * Utility function for filtering the entries of the transactions table based on the status
+ * and the string representation of the transaction date (with the time component reset to 00:00:00
+ * to allow comparison between two dates).
+ *
+ * @param {string} tableId ID of the transactions table.
+ * @param {array} statusTypes Statuses used for filtering; empty array if no filtering
+ * is to be performed based on status.
+ * @param {string} dateString String representation of the transaction date used for filtering;
+ * empty string if no filtering is to be performed based on date.
+ * @param {string} filterDate String representation of the transaction date with the time component
+ * reset to 00:00:00 to allow comparison between two dates.
+ */
+const filterByUtil = function(tableId, statusTypes, dateString, filterDate) {
 	$('#' + tableId + ' > tbody > tr').each(function() {
 		if (statusTypes.length == 0 && dateString.length == 0) {
 			$(this).show();
@@ -105,8 +121,8 @@ const sortAtoZ = function(tableId) {
 
 		for (i = 0; i < rows.length - 1; i++) {
 			swap = false;
-			const name1 = rows[i].getElementsByTagName('td')[2].textContent;
-			const name2 = rows[i + 1].getElementsByTagName('td')[2].textContent;
+			const name1 = getName1(rows, i);
+			const name2 = getName2(rows, i);
 
 			if (name1 > name2) {
 				swap = true;
@@ -139,8 +155,8 @@ const sortZtoA = function(tableId) {
 
 		for (i = 0; i < rows.length - 1; i++) {
 			swap = false;
-			const name1 = rows[i].getElementsByTagName('td')[2].textContent;
-			const name2 = rows[i + 1].getElementsByTagName('td')[2].textContent;
+			const name1 = getName1(rows, i);
+			const name2 = getName2(rows, i);
 
 			if (name1 < name2) {
 				swap = true;
@@ -153,6 +169,28 @@ const sortZtoA = function(tableId) {
 			stillSorting = true;
 		}
 	}
+};
+
+/**
+ * Returns the name of the first row between the rows being swapped during table sorting.
+ *
+ * @param {array} rows Rows in the table being sorted.
+ * @param {number} i Index of the first row between the rows being swapped.
+ * @return {string} Name of the first row between the rows being swapped.
+ */
+const getName1 = function(rows, i) {
+	return rows[i].getElementsByTagName('td')[2].textContent;
+};
+
+/**
+ * Returns the name of the second row between the rows being swapped during table sorting.
+ *
+ * @param {array} rows Rows in the table being sorted.
+ * @param {number} i Index of the first row between the rows being swapped.
+ * @return {string} Name of the second row between the rows being swapped.
+ */
+const getName2 = function(rows, i) {
+	return rows[i + 1].getElementsByTagName('td')[2].textContent;
 };
 
 /**
@@ -174,8 +212,8 @@ const sortLowToHigh = function(tableId) {
 			swap = false;
 
 			/* Ignore the peso sign and the space after the peso sign. */
-			const price1 = rows[i].getElementsByTagName('td')[3].textContent.substring(2);
-			const price2 = rows[i + 1].getElementsByTagName('td')[3].textContent.substring(2);
+			const price1 = getPrice1(rows, i);
+			const price2 = getPrice2(rows, i);
 
 			if (parseInt(price1) > parseInt(price2)) {
 				swap = true;
@@ -209,8 +247,8 @@ const sortHighToLow = function(tableId) {
 			swap = false;
 
 			/* Ignore the peso sign and the space after the peso sign. */
-			const price1 = rows[i].getElementsByTagName('td')[3].textContent.substring(2);
-			const price2 = rows[i + 1].getElementsByTagName('td')[3].textContent.substring(2);
+			const price1 = getPrice1(rows, i);
+			const price2 = getPrice2(rows, i);
 
 			if (parseInt(price1) < parseInt(price2)) {
 				swap = true;
@@ -223,6 +261,28 @@ const sortHighToLow = function(tableId) {
 			stillSorting = true;
 		}
 	}
+};
+
+/**
+ * Returns the price of the first row between the rows being swapped during table sorting.
+ *
+ * @param {array} rows Rows in the table being sorted.
+ * @param {number} i Index of the first row between the rows being swapped.
+ * @return {string} Price of the first row between the rows being swapped.
+ */
+const getPrice1 = function(rows, i) {
+	return rows[i].getElementsByTagName('td')[3].textContent.substring(2);
+};
+
+/**
+ * Returns the price of the second row between the rows being swapped during table sorting.
+ *
+ * @param {array} rows Rows in the table being sorted.
+ * @param {number} i Index of the first row between the rows being swapped.
+ * @return {string} Price of the second row between the rows being swapped.
+ */
+const getPrice2 = function(rows, i) {
+	return rows[i + 1].getElementsByTagName('td')[3].textContent.substring(2);
 };
 
 export {

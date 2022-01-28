@@ -54,23 +54,23 @@ const isBlankField = function(field, trimmed) {
 
 /**
  * Checks if the user entered a null input after trimming the input value.
- * 
+ *
  * @param {HTMLElement} field Input field
- * @returns {boolean} true if the user entered a null input after trimming the input value; false, otherwise.
+ * @return {boolean} true if the user entered a null input after trimming the input value; false, otherwise.
  */
 const isBlankFieldTrimmed = function(field) {
 	return field.val().trim().length == 0;
-}
+};
 
 /**
  * Checks if the user entered a null input without trimming the input value.
- * 
+ *
  * @param {HTMLElement} field Input field
- * @returns {boolean} true if the user entered a null input without trimming the input value; false, otherwise.
+ * @return {boolean} true if the user entered a null input without trimming the input value; false, otherwise.
  */
 const isBlankFieldUntrimmed = function(field) {
 	return field.val().length == 0;
-}
+};
 
 /**
  * Gets the database ID of the entry associated with an HTML element based on this element's DOM ID.
@@ -101,10 +101,35 @@ const toTwoDecimalPlaces = function(number) {
  * @param {string} message Message shown in the tooltip.
  */
 const initializeTooltip = function(button, message) {
-	button.attr('data-bs-toggle', 'tooltip');
-	button.attr('title', message);
+	addDataToggle(button);
+	addTooltipMessage(button, message);
+	initializeBootstrapTooltip();
+};
 
-	/* Bootstrap 5 code for initializing the tooltip: https://getbootstrap.com/docs/5.0/components/tooltips/ */
+/**
+ * Adds the data toggling behavior associated with a button that displays a tooltip on hover.
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ */
+const addDataToggle = function(button) {
+	button.attr('data-bs-toggle', 'tooltip');
+};
+
+/**
+ * Adds the message associated with a button that displays a tooltip on hover.
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ * @param {string} message Message shown in the tooltip.
+ */
+const addTooltipMessage = function(button, message) {
+	button.attr('title', message);
+};
+
+/**
+ * Initializes the display of the tooltip following the specifications in the Bootstrap framework:
+ * https://getbootstrap.com/docs/5.0/components/tooltips/
+ */
+const initializeBootstrapTooltip = function() {
 	const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
 	tooltipTriggerList.map(function(tooltipTriggerEl) {
 		return new bootstrap.Tooltip(tooltipTriggerEl);
@@ -117,7 +142,25 @@ const initializeTooltip = function(button, message) {
  * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
  */
 const removeTooltip = function(button) {
+	removeDataToggle(button);
+	removeTooltipMessage(button);
+};
+
+/**
+ * Removes the data toggling behavior associated with a button (previously with a tooltip).
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ */
+const removeDataToggle = function(button) {
 	button.removeAttr('data-bs-toggle');
+};
+
+/**
+ * Removes the message associated with a button (previously with a tooltip).
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ */
+const removeTooltipMessage = function(button) {
 	button.removeAttr('title');
 };
 
