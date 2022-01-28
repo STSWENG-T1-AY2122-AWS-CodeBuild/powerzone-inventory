@@ -17,7 +17,7 @@ import {
 	disableButton,
 	enableButton
 } from './general-util.js';
-import { getFuelTypes } from './constant-util.js';
+import {getFuelTypes} from './constant-util.js';
 
 $(function() {
 	/* Display prices with exactly two decimal places. */
@@ -49,7 +49,7 @@ $(function() {
 		let canPend = true;
 
 		for (const fuelType of fuelTypes) {
-			if (parseInt($('#transaction-' + fuelType + '-amount-' + transactionId).val()) > 
+			if (parseInt($('#transaction-' + fuelType + '-amount-' + transactionId).val()) >
 				parseInt($('#transaction-' + fuelType + '-total').val())) {
 				canPend = false;
 				break;

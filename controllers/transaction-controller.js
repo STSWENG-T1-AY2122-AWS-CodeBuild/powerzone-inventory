@@ -18,8 +18,8 @@ const transactionController = {
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getTransaction: function(req, res) {
-		/* Store the details and order amounts of all transactions in individual arrays to allow 
-		 * for further formatting. 
+		/* Store the details and order amounts of all transactions in individual arrays to allow
+		 * for further formatting.
 		 */
 		const ids = [];
 		const dates = [];
