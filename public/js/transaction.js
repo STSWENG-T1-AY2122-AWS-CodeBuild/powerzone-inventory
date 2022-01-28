@@ -17,6 +17,7 @@ import {
 	disableButton,
 	enableButton
 } from './general-util.js';
+
 import {getFuelTypes} from './constant-util.js';
 
 $(function() {
