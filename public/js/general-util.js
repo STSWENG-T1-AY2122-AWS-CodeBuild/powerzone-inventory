@@ -76,7 +76,7 @@ const toTwoDecimalPlaces = function(number) {
 
 /**
  * Creates a tooltip when hovering over the specified button.
- * 
+ *
  * @param {HTMLelement} button Button (technically, the wrapper) to which the tooltip is anchored.
  * @param {string} message Message shown in the tooltip.
  */
@@ -93,7 +93,7 @@ const initializeTooltip = function(button, message) {
 
 /**
  * Removes the tooltip anchored to the given button.
- * 
+ *
  * @param {HTMLelement} button Button (technically, the wrapper) to which the tooltip is anchored.
  */
 const removeTooltip = function(button) {
