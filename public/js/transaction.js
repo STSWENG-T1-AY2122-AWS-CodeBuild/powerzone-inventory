@@ -11,8 +11,13 @@ import {
 
 import {
 	extractId,
-	toTwoDecimalPlaces
+	toTwoDecimalPlaces,
+	initializeTooltip,
+	removeTooltip,
+	disableButton,
+	enableButton
 } from './general-util.js';
+import { getFuelTypes } from './constant-util.js';
 
 $(function() {
 	/* Display prices with exactly two decimal places. */
@@ -39,6 +44,25 @@ $(function() {
 		$('#edit-transaction-status-form-status').val(getStatusFromIcon($('#status-img-' + transactionId).attr('src')));
 		$('#edit-transaction-status-form-display-id').text($('#id-' + transactionId).text());
 		$('#edit-transaction-status-form-customer').text($('#customer-' + transactionId).text());
+
+		const fuelTypes = getFuelTypes();
+		let canPend = true;
+
+		for (const fuelType of fuelTypes) {
+			if (parseInt($('#transaction-' + fuelType + '-amount-' + transactionId).val()) > 
+				parseInt($('#transaction-' + fuelType + '-total').val())) {
+				canPend = false;
+				break;
+			}
+		}
+
+		if (!canPend) {
+			initializeTooltip($('#pend-transaction-btn-tooltip'), 'Insufficient fuel in the inventory');
+			disableButton($('#pend-transaction-btn'));
+		} else {
+			removeTooltip($('#pend-transaction-btn-tooltip'));
+			enableButton($('#pend-transaction-btn'));
+		}
 	});
 
 	/* Display the original transaction table upon reset of filters and sorting. */

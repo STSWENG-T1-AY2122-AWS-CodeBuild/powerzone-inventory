@@ -44,7 +44,9 @@
                             </div>
                             
                             <div class = "col">
-                                <button id = "pend-transaction-btn" class = "btn btn-white fw-bold px-5 text-primary rounded-pill">Pending</button>
+                                <div id = "pend-transaction-btn-tooltip">
+                                    <button id = "pend-transaction-btn" class = "btn btn-white fw-bold px-5 text-primary rounded-pill">Pending</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -228,7 +230,6 @@
                 <input id = "transaction-diesel-amount-{{lookup ../transactionIds @index}}" name = "transactionDieselAmount" type = "hidden" value = "{{lookup ../transactionLitersDiesel @index}}">
                 <input id = "transaction-premium-gasoline-97-amount-{{lookup ../transactionIds @index}}" name = "transactionPremiumGasoline97Amount" type = "hidden" value = "{{lookup ../transactionLitersPremiumGasoline97 @index}}">
                 <input id = "transaction-kerosene-amount-{{lookup ../transactionIds @index}}" name = "transactionKeroseneAmount" type = "hidden" value = "{{lookup ../transactionLitersKerosene @index}}">
-                
             {{/each}}
             </tbody>
         </table>
