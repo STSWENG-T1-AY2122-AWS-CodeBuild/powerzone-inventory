@@ -215,7 +215,7 @@ describe('the function to format the database results for storing the fuel amoun
 				type: 'kerosene',
 				quantityPurchased: '765',
 				quantityDepleted: '0'
-			},
+			}
 		];
 
 		const expectedResult = {
