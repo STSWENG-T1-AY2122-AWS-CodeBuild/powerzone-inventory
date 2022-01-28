@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.49% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>41/59</span>
+                <span class='fraction'>59/59</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.64% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>39/56</span>
+                <span class='fraction'>56/56</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -287,34 +287,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -413,36 +413,36 @@ const deliveryControllerUtil = {
 	 * @param {Object} result  Object that contains the result of the database retrieval.
 	 * @return {Object} Total amounts of each fuel type.
 	 */
-	inventoryAmountsUtil: <span class="fstat-no" title="function not covered" >fu</span>nction(result) {
+	inventoryAmountsUtil: function(result) {
 		/* Store the total quantities of each type of fuel in the inventory. */
-		let totalGasoline = <span class="cstat-no" title="statement not covered" >0;</span>
-		let totalPremiumGasoline95 = <span class="cstat-no" title="statement not covered" >0;</span>
-		let totalDiesel = <span class="cstat-no" title="statement not covered" >0;</span>
-		let totalPremiumGasoline97 = <span class="cstat-no" title="statement not covered" >0;</span>
-		let totalKerosene = <span class="cstat-no" title="statement not covered" >0;</span>
+		let totalGasoline = 0;
+		let totalPremiumGasoline95 = 0;
+		let totalDiesel = 0;
+		let totalPremiumGasoline97 = 0;
+		let totalKerosene = 0;
 &nbsp;
 		/* Assign the result of the database retrieval to the variable purchases. */
-		const purchases = <span class="cstat-no" title="statement not covered" >result;</span>
+		const purchases = result;
 &nbsp;
 		/* For each purchase, update the total fuel quantities accordingly and store the purchase
 		 * details in the individual arrays.
 		 */
-<span class="cstat-no" title="statement not covered" >		for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; purchases.length; i++) {</span>
-<span class="cstat-no" title="statement not covered" >			if (purchases[i].type == 'gasoline') {</span>
-<span class="cstat-no" title="statement not covered" >				totalGasoline += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);</span>
-			} else <span class="cstat-no" title="statement not covered" >if (purchases[i].type == 'premium-gasoline-95') {</span>
-<span class="cstat-no" title="statement not covered" >				totalPremiumGasoline95 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);</span>
-			} else <span class="cstat-no" title="statement not covered" >if (purchases[i].type == 'diesel') {</span>
-<span class="cstat-no" title="statement not covered" >				totalDiesel += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);</span>
-			} else <span class="cstat-no" title="statement not covered" >if (purchases[i].type == 'premium-gasoline-97') {</span>
-<span class="cstat-no" title="statement not covered" >				totalPremiumGasoline97 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);</span>
+		for (let i = 0; i &lt; purchases.length; i++) {
+			if (purchases[i].type == 'gasoline') {
+				totalGasoline += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+			} else if (purchases[i].type == 'premium-gasoline-95') {
+				totalPremiumGasoline95 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+			} else if (purchases[i].type == 'diesel') {
+				totalDiesel += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
+			} else if (purchases[i].type == 'premium-gasoline-97') {
+				totalPremiumGasoline97 += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
 			} else {
-<span class="cstat-no" title="statement not covered" >				totalKerosene += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);</span>
+				totalKerosene += (purchases[i].quantityPurchased - purchases[i].quantityDepleted);
 			}
 		}
 &nbsp;
 		/* Return the aggregated values. */
-<span class="cstat-no" title="statement not covered" >		return {totalGasoline, totalPremiumGasoline95, totalDiesel, totalPremiumGasoline97, totalKerosene};</span>
+		return {totalGasoline, totalPremiumGasoline95, totalDiesel, totalPremiumGasoline97, totalKerosene};
 	}
 };
 &nbsp;
@@ -454,7 +454,7 @@ module.exports = deliveryControllerUtil;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Sat Jan 29 2022 02:45:11 GMT+0800 (China Standard Time)
+                at Sat Jan 29 2022 03:06:45 GMT+0800 (China Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
