@@ -46,11 +46,31 @@ const disableButton = function(button) {
  */
 const isBlankField = function(field, trimmed) {
 	if (trimmed) {
-		return field.val().trim().length == 0;
+		return isBlankFieldTrimmed(field);
 	}
 
-	return field.val().length == 0;
+	return isBlankFieldUntrimmed(field);
 };
+
+/**
+ * Checks if the user entered a null input after trimming the input value.
+ * 
+ * @param {HTMLElement} field Input field
+ * @returns {boolean} true if the user entered a null input after trimming the input value; false, otherwise.
+ */
+const isBlankFieldTrimmed = function(field) {
+	return field.val().trim().length == 0;
+}
+
+/**
+ * Checks if the user entered a null input without trimming the input value.
+ * 
+ * @param {HTMLElement} field Input field
+ * @returns {boolean} true if the user entered a null input without trimming the input value; false, otherwise.
+ */
+const isBlankFieldUntrimmed = function(field) {
+	return field.val().length == 0;
+}
 
 /**
  * Gets the database ID of the entry associated with an HTML element based on this element's DOM ID.
