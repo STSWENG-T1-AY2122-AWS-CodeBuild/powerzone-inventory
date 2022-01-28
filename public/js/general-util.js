@@ -21,7 +21,7 @@ const hideErrorMessage = function(field) {
 /**
  * Enables a button.
  *
- * @param {HTMLelement} button Button to be enabled.
+ * @param {HTMLElement} button Button to be enabled.
  */
 const enableButton = function(button) {
 	button.prop('disabled', false);
@@ -30,7 +30,7 @@ const enableButton = function(button) {
 /**
  * Disables a button.
  *
- * @param {HTMLelement} button Button to be disabled.
+ * @param {HTMLElement} button Button to be disabled.
  */
 const disableButton = function(button) {
 	button.prop('disabled', true);
@@ -97,7 +97,7 @@ const toTwoDecimalPlaces = function(number) {
 /**
  * Creates a tooltip when hovering over the specified button.
  *
- * @param {HTMLelement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
  * @param {string} message Message shown in the tooltip.
  */
 const initializeTooltip = function(button, message) {
@@ -114,7 +114,7 @@ const initializeTooltip = function(button, message) {
 /**
  * Removes the tooltip anchored to the given button.
  *
- * @param {HTMLelement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
  */
 const removeTooltip = function(button) {
 	button.removeAttr('data-bs-toggle');
