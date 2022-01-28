@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lint-fix": "eslint --ext .js --ignore-path .gitignore --fix .",
-    "test": "nyc mocha --require esm --exit --timeout 10000"
+    "test": "nyc --reporter html --reporter text mocha --require esm --exit --timeout 10000"
   },
   "nyc": {
     "exclude": [
