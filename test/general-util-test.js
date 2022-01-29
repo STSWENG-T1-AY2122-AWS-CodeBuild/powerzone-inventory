@@ -13,7 +13,9 @@ const {
 	disableButton,
 	isBlankField,
 	extractId,
-	toTwoDecimalPlaces
+	toTwoDecimalPlaces,
+	initializeTooltip,
+	removeTooltip
 } = require('.././public/js/general-util.js');
 
 describe('the function to display an error message', function() {
@@ -170,5 +172,57 @@ describe('the function to display a number to two decimal places', function() {
 	it('should round the number to two decimal places if it has more than two decimal places', function() {
 		const result = toTwoDecimalPlaces(24.336);
 		assert.equal(result, '24.34');
+	});
+});
+
+describe('the function to create a tooltip when hovering over a specified button', function() {
+	beforeEach(function() {
+		const dom = new JSDOM(
+			htmlDom,
+			{url: 'http://localhost'});
+
+		global.window = dom.window;
+		global.document = dom.window.document;
+		global.$ = global.jQuery = require('jquery');
+	});
+
+	it('should set the data-bs-toggle attribute to tooltip', function() {
+		$('#register').prop('disabled', false);
+		initializeTooltip($('#register'), 'Hello');
+		assert.equal($('#register').attr('data-bs-toggle'), 'tooltip');
+	});
+
+	it('should display the correct message', function() {
+		$('#register').prop('disabled', false);
+		initializeTooltip($('#register'), 'Hello');
+		assert.equal($('#register').attr('title'), 'Hello');
+	});
+});
+
+describe('the function to remove the tooltip anchored to a specified button', function() {
+	beforeEach(function() {
+		const dom = new JSDOM(
+			htmlDom,
+			{url: 'http://localhost'});
+
+		global.window = dom.window;
+		global.document = dom.window.document;
+		global.$ = global.jQuery = require('jquery');
+	});
+
+	it('should not trigger any behavior associated with data toggling', function() {
+		$('#register').prop('disabled', false);
+		initializeTooltip($('#register'), 'Hello');
+		removeTooltip($('#register'));
+
+		assert.equal(typeof $('#register').attr('data-bs-toggle'), 'undefined');
+	});
+
+	it('should not display any tooltip message', function() {
+		$('#register').prop('disabled', false);
+		initializeTooltip($('#register'), 'Hello');
+		removeTooltip($('#register'));
+
+		assert.equal(typeof $('#register').attr('title'), 'undefined');
 	});
 });

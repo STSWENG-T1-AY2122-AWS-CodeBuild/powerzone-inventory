@@ -11,6 +11,7 @@
         "ecmaVersion": 13,
         "sourceType": "module"
     },
+    "ignorePatterns": ["mochawesome-report/"],
     "rules": {
         "semi": ["error", "always"],
         "quotes": ["error", "single"],

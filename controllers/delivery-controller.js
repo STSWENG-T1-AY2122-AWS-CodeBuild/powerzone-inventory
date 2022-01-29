@@ -99,9 +99,9 @@ const deliveryController = {
 			projection = 'id status';
 
 			db.findOne(Transaction, query, projection, function(result) {
-			   /* Assign the retrieved transaction details to the body of the request object
-				* and set the status of the transaction to "Cancelled."
-				*/
+				/* Assign the retrieved transaction details to the body of the request object
+				 * and set the status of the transaction to "Cancelled."
+				 */
 				req.body.transactionId = result.id;
 				req.body.transactionStatusOld = result.status;
 
@@ -177,9 +177,9 @@ const deliveryController = {
 			projection = 'id status';
 
 			db.findOne(Transaction, query, projection, function(result) {
-			   /* Assign the retrieved transaction details to the body of the request object
-				* and set the status of the transaction to "Pending."
-				*/
+				/* Assign the retrieved transaction details to the body of the request object
+				 * and set the status of the transaction to "Pending."
+				 */
 				req.body.transactionId = result.id;
 				req.body.transactionStatusOld = result.status;
 
@@ -259,7 +259,7 @@ const deliveryController = {
 
 		db.findOne(Delivery, query, projection, function(result) {
 			/* Store the result of the database retrieval in the variable deliveryDetails. */
-			let deliveryDetails = result;
+			const deliveryDetails = result;
 
 			/* Format the display of the delivery date from the Date object, if applicable,
              * stored in the database.
@@ -408,9 +408,9 @@ const deliveryController = {
 				projection = 'id status';
 
 				db.findOne(Transaction, query, projection, function(result) {
-				   /* Assign the retrieved transaction details to the body of the request object
-					* and set the status of the transaction to "Completed."
-					*/
+					/* Assign the retrieved transaction details to the body of the request object
+					 * and set the status of the transaction to "Completed."
+					 */
 					req.body.transactionId = result.id;
 					req.body.transactionStatusOld = result.status;
 
@@ -440,29 +440,29 @@ const deliveryController = {
 					transactionController.postEditStatusPending(req, res);
 				});
 
-		   /* Otherwise, if the delivery status is set to "Cancelled", set the status of its 
-		    * corresponding transaction to "Cancelled."
-			*/
-		    } else {
-			   /* The transaction ID corresponding to a delivery has a starting digit of 1 and the same
-				* succeeding digits as the delivery ID.
-				*/
-			   const transactionId = parseInt(id) - 10000000;
+			/* Otherwise, if the delivery status is set to "Cancelled", set the status of its
+			 * corresponding transaction to "Cancelled."
+			 */
+			} else {
+				/* The transaction ID corresponding to a delivery has a starting digit of 1 and the same
+				 * succeeding digits as the delivery ID.
+				 */
+				const transactionId = parseInt(id) - 10000000;
 
-			   /* Get the original status of the corresponding transaction. */
-			   query = {id: transactionId};
-			   projection = 'id status';
+				/* Get the original status of the corresponding transaction. */
+				query = {id: transactionId};
+				projection = 'id status';
 
-			   db.findOne(Transaction, query, projection, function(result) {
-				   /* Assign the retrieved transaction details to the body of the request object
-				   * and set the status of the transaction to "Cancelled."
-				   */
-				   req.body.transactionId = result.id;
-				   req.body.transactionStatusOld = result.status;
+				db.findOne(Transaction, query, projection, function(result) {
+					/* Assign the retrieved transaction details to the body of the request object
+					 * and set the status of the transaction to "Cancelled."
+					 */
+					req.body.transactionId = result.id;
+					req.body.transactionStatusOld = result.status;
 
-				   transactionController.postEditStatusCancelled(req, res);
-			   });
-		   }
+					transactionController.postEditStatusCancelled(req, res);
+				});
+			}
 		});
 	}
 };

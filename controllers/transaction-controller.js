@@ -18,8 +18,8 @@ const transactionController = {
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
 	getTransaction: function(req, res) {
-		/* Store the details and order amounts of all transactions in individual arrays to allow 
-		 * for further formatting. 
+		/* Store the details and order amounts of all transactions in individual arrays to allow
+		 * for further formatting.
 		 */
 		const ids = [];
 		const dates = [];
@@ -457,15 +457,43 @@ const transactionController = {
 							db.updateOneIterative(Inventory, filter, update);
 						}
 
-						res.status(200).json('Status updated successfully!');
-						res.send();
+						/* The delivery ID corresponding to a transaction has a starting digit of 2 and the same
+			 			 * succeeding digits as the transaction ID.
+			 			 */
+						const deliveryId = parseInt(transactionId) + 10000000;
+
+						/* Set the status of the selected delivery to "Cancelled". */
+						const update = {status: 'cancelled'};
+
+						/* Use the delivery ID for database retrieval. */
+						const filter = {id: deliveryId};
+
+						/* Update the status of the delivery. */
+						db.updateOne(Delivery, filter, update, function(flag) {
+							res.status(200).json('Delivery status updated successfully!');
+							res.send();
+						});
 					});
 				});
 
-			/* Otherwise, finish updating the transaction status. */
+			/* Otherwise, update the transaction status of the delivery. */
 			} else {
-				res.status(200).json('Status updated successfully!');
-				res.send();
+				/* The delivery ID corresponding to a transaction has a starting digit of 2 and the same
+			 	 * succeeding digits as the transaction ID.
+			     */
+				const deliveryId = parseInt(transactionId) + 10000000;
+
+				/* Set the status of the selected delivery to "Cancelled". */
+				const update = {status: 'cancelled'};
+
+				/* Use the delivery ID for database retrieval. */
+				const filter = {id: deliveryId};
+
+				/* Update the status of the delivery. */
+				db.updateOne(Delivery, filter, update, function(flag) {
+					res.status(200).json('Delivery status updated successfully!');
+					res.send();
+				});
 			}
 		});
 	},
@@ -794,15 +822,43 @@ const transactionController = {
 							db.updateOneIterative(Inventory, filter, update);
 						}
 
-						res.status(200).json('Status updated successfully!');
-						res.send();
+						/* The delivery ID corresponding to a transaction has a starting digit of 2 and the same
+			 	 		 * succeeding digits as the transaction ID.
+			     		 */
+						const deliveryId = parseInt(transactionId) + 10000000;
+
+						/* Set the status of the selected delivery to "Completed". */
+						const update = {status: 'completed'};
+
+						/* Use the delivery ID for database retrieval. */
+						const filter = {id: deliveryId};
+
+						/* Update the status of the delivery. */
+						db.updateOne(Delivery, filter, update, function(flag) {
+							res.status(200).json('Delivery status updated successfully!');
+							res.send();
+						});
 					});
 				});
 
-			/* Otherwise, finish updating the transaction status. */
+			/* Otherwise, update the status of the delivery. */
 			} else {
-				res.status(200).json('Status updated successfully!');
-				res.send();
+				/* The delivery ID corresponding to a transaction has a starting digit of 2 and the same
+			 	 * succeeding digits as the transaction ID.
+			     */
+				const deliveryId = parseInt(transactionId) + 10000000;
+
+				/* Set the status of the selected delivery to "Completed". */
+				const update = {status: 'completed'};
+
+				/* Use the delivery ID for database retrieval. */
+				const filter = {id: deliveryId};
+
+				/* Update the status of the delivery. */
+				db.updateOne(Delivery, filter, update, function(flag) {
+					res.status(200).json('Delivery status updated successfully!');
+					res.send();
+				});
 			}
 		});
 	},
@@ -1131,15 +1187,43 @@ const transactionController = {
 							db.updateOneIterative(Inventory, filter, update);
 						}
 
-						res.status(200).json('Status updated successfully!');
-						res.send();
+						/* The delivery ID corresponding to a transaction has a starting digit of 2 and the same
+						 * succeeding digits as the transaction ID.
+						 */
+						const deliveryId = parseInt(transactionId) + 10000000;
+
+						/* Set the status of the selected delivery to "Pending". */
+						const update = {status: 'pending'};
+
+						/* Use the delivery ID for database retrieval. */
+						const filter = {id: deliveryId};
+
+						/* Update the status of the delivery. */
+						db.updateOne(Delivery, filter, update, function(flag) {
+							res.status(200).json('Delivery status updated successfully!');
+							res.send();
+						});
 					});
 				});
 
-			/* Otherwise, finish updating the transaction status. */
+			/* Otherwise, update the delivery status. */
 			} else {
-				res.status(200).json('Status updated successfully!');
-				res.send();
+				/* The delivery ID corresponding to a transaction has a starting digit of 2 and the same
+				 * succeeding digits as the transaction ID.
+				 */
+				const deliveryId = parseInt(transactionId) + 10000000;
+
+				/* Set the status of the selected delivery to "Pending". */
+				const update = {status: 'pending'};
+
+				/* Use the delivery ID for database retrieval. */
+				const filter = {id: deliveryId};
+
+				/* Update the status of the delivery. */
+				db.updateOne(Delivery, filter, update, function(flag) {
+					res.status(200).json('Delivery status updated successfully!');
+					res.send();
+				});
 			}
 		});
 	},
@@ -1717,49 +1801,6 @@ const transactionController = {
 						}
 
 
-						/* If the transaction originally involves a purchase of Premium Gasoline 95, arrange the stocks in
-						 * chronological order and return the quantity purchased beginning from the
-						 * latest stock, as the inventory is consumed via the FIFO method.
-						 */
-						if (litersPremiumGasoline95Old > 0) {
-							/* If there are multiple stocks for the fuel type, arrange them in chronological order. */
-							if (stocksPremiumGasoline95.length >= 2) {
-								stocksPremiumGasoline95.sort(function(a, b) {
-									const keyA = a.date;
-									const keyB = b.date;
-
-									if (keyA > keyB) {
-										return 1;
-									}
-									if (keyA < keyB) {
-										return -1;
-									}
-									return 0;
-								});
-							}
-
-							/* Return fuel quantities to the stocks, starting from the latest stock,
-							 * until the original quantity requested in the transaction has been depleted.
-							 */
-							let transactionQuantity = litersPremiumGasoline95Old;
-							let i = stocksPremiumGasoline95.length - 1;
-
-							while (transactionQuantity > 0) {
-								const depletedStock = stocksPremiumGasoline95[i].quantityDepleted;
-
-								if (transactionQuantity >= depletedStock) {
-									transactionQuantity = transactionQuantity - depletedStock;
-									stocksPremiumGasoline95[i].quantityDepleted = 0;
-								} else {
-									stocksPremiumGasoline95[i].quantityDepleted = parseInt(stocksPremiumGasoline95[i].quantityDepleted) - parseInt(transactionQuantity);
-									transactionQuantity = 0;
-								}
-
-								i--;
-							}
-						}
-
-
 						/* If the transaction originally involves a purchase of diesel, arrange the stocks in
 						 * chronological order and return the quantity purchased beginning from the
 						 * latest stock, as the inventory is consumed via the FIFO method.
@@ -2278,8 +2319,22 @@ const transactionController = {
 					db.updateOneIterative(Inventory, filter, update);
 				}
 
-				res.status(200).json('Transaction edited successfully.');
-				res.send();
+				/* The delivery ID corresponding to a transaction has a starting digit of 2 and the same
+				 * succeeding digits as the transaction ID.
+				 */
+				const deliveryId = parseInt(transactionId) + 10000000;
+
+				/* Set the status of the selected delivery to the status of its corresponding transaction. */
+				const updateDelivery = {status: status};
+
+				/* Use the delivery ID for database retrieval. */
+				const filterDelivery = {id: deliveryId};
+
+				/* Update the status of the delivery. */
+				db.updateOne(Delivery, filterDelivery, updateDelivery, function(flag) {
+					res.status(200).json('Delivery status updated successfully!');
+					res.send();
+				});
 			});
 		});
 	},

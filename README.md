@@ -152,7 +152,8 @@ The following table lists the development dependencies:
 | [<code>esm</code>](https://www.npmjs.com/package/esm) | 3.2.25 | Babel-less, bundle-less ECMAScript module loader | MIT License
 | [<code>jsdom</code>](https://www.npmjs.com/package/jsdom) | 18.1.1 | Pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards, for use with Node.js |  MIT License |
 | [<code>mocha</code>](https://www.npmjs.com/package/mocha) | 9.1.3 | Simple and flexible JavaScript test framework for Node.js and the browser | MIT License  |
-| [<code>mocha-jsdom</code>](https://www.npmjs.com/package/mocha-jsdom) | 2.0.0 | Test frontend libraries in the console using Node.js, Mocha and JSDom. | MIT License  |
+| [<code>mocha-jsdom</code>](https://www.npmjs.com/package/mocha-jsdom) | 2.0.0 | Test framework for frontend libraries in the console using Node.js, Mocha, and JSDom | MIT License  |
+| [<code>mochawesome</code>](https://www.npmjs.com/package/mochawesome) | 7.0.1 | Custom reporter for use with Mocha for generating an HTML/CSS report to help visualize test runs | MIT License  |
 | [<code>nyc</code>](https://www.npmjs.com/package/nyc) | 15.1.0 | Istanbul's state of the art command line interface with support for applications that spawn subprocesses | ISC License |
 | [<code>sinon</code>](https://www.npmjs.com/package/nyc) | 12.0.1 | Standalone and test framework agnostic JavaScript test spies, stubs, and mocks | BSD-3-Clause License |
 
@@ -167,11 +168,13 @@ This project follows the Model-View-Controller (MVC) architectural pattern. In l
 - **Front-end**: <a href = "https://handlebarsjs.com/">Handlebars</a> as the template engine and <a href = "https://getbootstrap.com/">Bootstrap</a> as the primary CSS framework
 
 To implement continuous integration and continuous delivery (CI/CD), the following technologies are also included:
-- **Unit Testing**: <a href = "https://mochajs.org/">Mocha</a> as the primary test framework, <a href = "https://www.chaijs.com/">Chai</a> as the assertion library, Sinon as the test framework for spies, stubs, and mocks, and <a href = "https://istanbul.js.org/">Istanbul</a> as the code coverage tool
+- **Unit Testing**: <a href = "https://mochajs.org/">Mocha</a> as the primary test framework, <a href = "https://www.chaijs.com/">Chai</a> as the assertion library, [Sinon](https://sinonjs.org/) as the test framework for spies, stubs, and mocks, and <a href = "https://istanbul.js.org/">Istanbul</a> as the code coverage tool
 - **Task Runner**: <a href = "https://docs.github.com/en/actions">GitHub Actions</a> as the CI/CD platform
 - **Automated Testing**: <a href = "http://selenium.dev/">Selenium</a> as an automated testing tool and <a href = "https://robotframework.org/">Robot Framework</a> as the automtion framework
 
 <a href = "https://eslint.org/">ESLint</a> is used for linting and enforcing uniform and consistent coding style. 
+
+<a href = "https://www.gitguardian.com/">GitGuardian</a> has been added to the CI/CD pipeline to protect against the leakage of secrets (e.g., database connection URLs).
 
 This web application is deployed on <a href = "https://dashboard.heroku.com/">Heroku</a>, a cloud platform as a service (PaaS).
    

@@ -27,6 +27,11 @@ Before submitting a pull request, contributors are requested to observe the foll
    npm run test
    ```
 
+   To generate HTML files for the unit test and code coverage reports (which may be helpful for visualizing failed test cases or uncovered code), run the following command:
+   ```
+   npm run test-report
+   ```
+
 **IMPORTANT:**
 The workflow currently includes three pull request-triggered checks:
 - Node.js CI / build

@@ -21,7 +21,7 @@ const hideErrorMessage = function(field) {
 /**
  * Enables a button.
  *
- * @param {HTMLelement} button Button to be enabled.
+ * @param {HTMLElement} button Button to be enabled.
  */
 const enableButton = function(button) {
 	button.prop('disabled', false);
@@ -30,7 +30,7 @@ const enableButton = function(button) {
 /**
  * Disables a button.
  *
- * @param {HTMLelement} button Button to be disabled.
+ * @param {HTMLElement} button Button to be disabled.
  */
 const disableButton = function(button) {
 	button.prop('disabled', true);
@@ -46,9 +46,29 @@ const disableButton = function(button) {
  */
 const isBlankField = function(field, trimmed) {
 	if (trimmed) {
-		return field.val().trim().length == 0;
+		return isBlankFieldTrimmed(field);
 	}
 
+	return isBlankFieldUntrimmed(field);
+};
+
+/**
+ * Checks if the user entered a null input after trimming the input value.
+ *
+ * @param {HTMLElement} field Input field
+ * @return {boolean} true if the user entered a null input after trimming the input value; false, otherwise.
+ */
+const isBlankFieldTrimmed = function(field) {
+	return field.val().trim().length == 0;
+};
+
+/**
+ * Checks if the user entered a null input without trimming the input value.
+ *
+ * @param {HTMLElement} field Input field
+ * @return {boolean} true if the user entered a null input without trimming the input value; false, otherwise.
+ */
+const isBlankFieldUntrimmed = function(field) {
 	return field.val().length == 0;
 };
 
@@ -74,6 +94,76 @@ const toTwoDecimalPlaces = function(number) {
 	return (Math.round(number * 100) / 100).toFixed(2);
 };
 
+/**
+ * Creates a tooltip when hovering over the specified button.
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ * @param {string} message Message shown in the tooltip.
+ */
+const initializeTooltip = function(button, message) {
+	addDataToggle(button);
+	addTooltipMessage(button, message);
+	initializeBootstrapTooltip();
+};
+
+/**
+ * Adds the data toggling behavior associated with a button that displays a tooltip on hover.
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ */
+const addDataToggle = function(button) {
+	button.attr('data-bs-toggle', 'tooltip');
+};
+
+/**
+ * Adds the message associated with a button that displays a tooltip on hover.
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ * @param {string} message Message shown in the tooltip.
+ */
+const addTooltipMessage = function(button, message) {
+	button.attr('title', message);
+};
+
+/**
+ * Initializes the display of the tooltip following the specifications in the Bootstrap framework:
+ * https://getbootstrap.com/docs/5.0/components/tooltips/
+ */
+const initializeBootstrapTooltip = function() {
+	const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+	tooltipTriggerList.map(function(tooltipTriggerEl) {
+		return new bootstrap.Tooltip(tooltipTriggerEl);
+	});
+};
+
+/**
+ * Removes the tooltip anchored to the given button.
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ */
+const removeTooltip = function(button) {
+	removeDataToggle(button);
+	removeTooltipMessage(button);
+};
+
+/**
+ * Removes the data toggling behavior associated with a button (previously with a tooltip).
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ */
+const removeDataToggle = function(button) {
+	button.removeAttr('data-bs-toggle');
+};
+
+/**
+ * Removes the message associated with a button (previously with a tooltip).
+ *
+ * @param {HTMLElement} button Button (technically, the wrapper) to which the tooltip is anchored.
+ */
+const removeTooltipMessage = function(button) {
+	button.removeAttr('title');
+};
+
 export {
 	displayErrorMessage,
 	hideErrorMessage,
@@ -81,5 +171,7 @@ export {
 	disableButton,
 	isBlankField,
 	extractId,
-	toTwoDecimalPlaces
+	toTwoDecimalPlaces,
+	initializeTooltip,
+	removeTooltip
 };

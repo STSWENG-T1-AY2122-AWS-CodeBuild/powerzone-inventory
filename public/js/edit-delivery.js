@@ -10,9 +10,28 @@ import {
 
 import {isValidPhoneNumber} from './transaction-delivery-validate-util.js';
 
+import {getFuelTypes} from './constant-util.js';
+
 $(function() {
 	/* Update the selected value in the status dropdown to reflect the value in the database. */
 	$('#edit-delivery-status').val($('#edit-delivery-status-hidden').val());
+
+	/* Disable status toggling if the inventory supplies are insufficient. */
+	const fuelTypes = getFuelTypes();
+	let canPend = true;
+
+	for (const fuelType of fuelTypes) {
+		if (parseInt($('#edit-delivery-' + fuelType + '-amount').val()) >
+			parseInt($('#edit-delivery-' + fuelType + '-total').val())) {
+			canPend = false;
+			break;
+		}
+	}
+
+	if (!canPend) {
+		$('#edit-delivery-status option[value = "pending"]').remove();
+		$('#edit-delivery-status option[value = "completed"]').remove();
+	}
 
 	/* Validate the phone number. */
 	$('#edit-delivery-customer-number').on('keyup change paste', function() {

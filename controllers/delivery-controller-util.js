@@ -62,13 +62,13 @@ const deliveryControllerUtil = {
 	 * @param {Object} result  Object that contains the result of the database retrieval.
 	 * @return {Object} Formatted transaction order amounts.
 	 */
-	 transactionOrdersUtil: function(result) {
+	transactionOrdersUtil: function(result) {
 		/* Store the order amounts of all transactions in individual arrays. */
 		const litersGasoline = [];
 		const litersPremiumGasoline95 = [];
 		const litersDiesel = [];
 		const litersPremiumGasoline97 = [];
-		const litersKerosene = [];	
+		const litersKerosene = [];
 
 		/* Assign the result of the database retrieval to the variable transactions. */
 		const transactions = result;
@@ -92,7 +92,7 @@ const deliveryControllerUtil = {
 	 * @param {Object} result  Object that contains the result of the database retrieval.
 	 * @return {Object} Total amounts of each fuel type.
 	 */
-	 inventoryAmountsUtil: function(result) {
+	inventoryAmountsUtil: function(result) {
 		/* Store the total quantities of each type of fuel in the inventory. */
 		let totalGasoline = 0;
 		let totalPremiumGasoline95 = 0;
