@@ -30,7 +30,7 @@ Before submitting a pull request, contributors are requested to observe the foll
    
    The linter also flags missing and invalid JSDoc documentation as errors. Hence, it is imperative to properly document additional methods and update the documentation of modified functions, especially if the changes are substantial.
    
-4. **Unit Testing**. Write unit tests for additional methods and maintain a code coverage of least 80%. Note that unit tests should **not** include any database connections (even to mock databases) since these already fall under the purview of integration tests (performed by the Quality Assurance team). To test controller methods, use spying, stubbing, or mocking instead. 
+4. **Unit Testing**. Write unit tests for additional methods and maintain a code coverage of least 80%. Note that unit tests should **not** include any database connections (even to mock databases) since these already fall under the purview of integration tests (performed by the Quality Assurance team). To test controller methods that involve database operations, use spying, stubbing, or mocking instead. 
 
    The command to run the unit tests is as follows:
    ```
