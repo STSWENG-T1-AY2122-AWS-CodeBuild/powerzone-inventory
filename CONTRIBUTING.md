@@ -37,7 +37,7 @@ Before submitting a pull request, contributors are requested to observe the foll
    npm run test
    ```
 
-   To generate HTML reports for the unit test and code coverage (which may be helpful for visualizing failed test cases or uncovered code), run the following command:
+   To generate HTML reports for the unit test results and code coverage (which may be helpful for visualizing failed test cases or uncovered code), run the following command:
    ```
    npm run test-report
    ```
