@@ -5,8 +5,13 @@ Before submitting a pull request, contributors are requested to observe the foll
 1. **Documents**. Read the following documents and comply with the guidelines stated therein:
    - [Project Proposal and Standards](https://drive.google.com/file/d/1M4Yia4GSVdtk8iS_J5kjrANo8KcG4avp/view?usp=sharing) - Refer to this document for the coding standards and the team workflow.
    - [Continuous Integration Plan](https://drive.google.com/file/d/17Da54zUm8k1dcB4syzvPqWraSlaZumCS/view?usp=sharing) - Refer to this document for the updated team workflow with the addition of the CI/CD pipeline.
-   
-2. **Linting**. This project uses ESLint for linting and enforcing uniform and consistent coding style. Run the following command to flag issues:
+
+2. **`.env`**. Secure a copy of the `.env` file from the developers. 
+
+   **IMPORTANT:** Make sure that the `testing-mode`
+variable is set to `on` (not case-sensitive). This directs all the database operations to the test database (leaving the production database unaffected).
+
+3. **Linting**. This project uses ESLint for linting and enforcing uniform and consistent coding style. Run the following command to flag issues:
    ```
    npm run lint
    ```
@@ -20,7 +25,7 @@ Before submitting a pull request, contributors are requested to observe the foll
    
    The linter also flags missing and invalid JSDoc documentation as errors. Hence, it is imperative to properly document additional methods and update the documentation of modified functions, especially if the changes are substantial.
    
-3. **Unit Testing**. Write unit tests for additional methods and maintain a code coverage of least 80%. Note that unit tests should **not** include any database connections (even to mock databases) since these already fall under the purview of integration tests (performed by the Quality Assurance team). To test controller methods, use spying, stubbing, or mocking instead. 
+4. **Unit Testing**. Write unit tests for additional methods and maintain a code coverage of least 80%. Note that unit tests should **not** include any database connections (even to mock databases) since these already fall under the purview of integration tests (performed by the Quality Assurance team). To test controller methods, use spying, stubbing, or mocking instead. 
 
    The command to run the unit tests is as follows:
    ```
