@@ -8,8 +8,9 @@ Before submitting a pull request, contributors are requested to observe the foll
 
 2. **`.env`**. Secure a copy of the `.env` file from the developers. 
 
-   **IMPORTANT:** Make sure that the `testing-mode`
-variable is set to `on` (not case-sensitive). This directs all the database operations to the test database (leaving the production database unaffected).
+   **IMPORTANT:** Make sure that the `testing-mode` variable is set to `on` (not case-sensitive). This directs all the database operations to the test database (leaving the production database unaffected).
+
+   On the off chance that it is set to a different value, kill all `node` processes and restart the server after setting `testing-mode` to `on`. Verify that you are working with the test database before proceeding.
 
 3. **Linting**. This project uses ESLint for linting and enforcing uniform and consistent coding style. Run the following command to flag issues:
    ```
