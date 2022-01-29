@@ -12,7 +12,12 @@ const options = {
 
 /* Configure dotenv with the needed data */
 dotenv.config();
-const url = process.env.DB_URL;
+let url = process.env.DB_URL;
+const testing_mode = process.env.TESTING_MODE;
+
+if (testing_mode.toLowerCase() != 'off') {
+	url = process.env.DB_URL_TEST;
+}
 
 /* Specify database operations (i.e., connecting to the database, creating the GridFS storage, and the database
  * CRUD operations)
