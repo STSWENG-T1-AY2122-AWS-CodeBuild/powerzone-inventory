@@ -13,9 +13,9 @@ const options = {
 /* Configure dotenv with the needed data */
 dotenv.config();
 let url = process.env.DB_URL;
-const testing_mode = process.env.TESTING_MODE;
+const testingMode = process.env.TESTING_MODE;
 
-if (testing_mode.toLowerCase() != 'off') {
+if (testingMode.toLowerCase() != 'off') {
 	url = process.env.DB_URL_TEST;
 }
 
@@ -24,10 +24,10 @@ if (testing_mode.toLowerCase() != 'off') {
  */
 const database = {
 	/**
-     * Connects to the database
-     */
-	connect: function() {
-		mongoose.connect(url, options, function(error) {
+	 * Connects to the database
+	 */
+	connect: function () {
+		mongoose.connect(url, options, function (error) {
 			if (error) throw error;
 		});
 	},
@@ -40,14 +40,14 @@ const database = {
 	 */
 
 	/**
-     * Inserts one document into the database
-     *
-     * @param {Object} model collection to be accessed
-     * @param {Object} doc document to be inserted
-     * @param {dbCallback} callback callback for indicating whether the insertion succeeded
-     */
-	insertOne: function(model, doc, callback) {
-		model.create(doc, function(error, result) {
+	 * Inserts one document into the database
+	 *
+	 * @param {Object} model collection to be accessed
+	 * @param {Object} doc document to be inserted
+	 * @param {dbCallback} callback callback for indicating whether the insertion succeeded
+	 */
+	insertOne: function (model, doc, callback) {
+		model.create(doc, function (error, result) {
 			if (error) return callback(false);
 
 			return callback(result);
@@ -55,14 +55,14 @@ const database = {
 	},
 
 	/**
-     * Inserts multiple documents into the database
-     *
-     * @param {Object} model collection to be accessed
-     * @param {Object} docs documents to be inserted
-     * @param {dbCallback} callback callback for indicating whether the insertion succeeded
-     */
-	insertMany: function(model, docs, callback) {
-		model.insertMany(docs, function(error, result) {
+	 * Inserts multiple documents into the database
+	 *
+	 * @param {Object} model collection to be accessed
+	 * @param {Object} docs documents to be inserted
+	 * @param {dbCallback} callback callback for indicating whether the insertion succeeded
+	 */
+	insertMany: function (model, docs, callback) {
+		model.insertMany(docs, function (error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -70,45 +70,45 @@ const database = {
 	},
 
 	/**
-     * Retrieves one document from the database
-     *
-     * @param {Object} model collection to be accessed
-     * @param {Object} query query to be executed on the collection
-     * @param {string} projection projection fields to be returned
-     * @param {dbCallback} callback false if the searching did not succeed; otherwise, the specified fields to be returned
-     */
-	findOne: function(model, query, projection, callback) {
-		model.findOne(query, projection, function(error, result) {
+	 * Retrieves one document from the database
+	 *
+	 * @param {Object} model collection to be accessed
+	 * @param {Object} query query to be executed on the collection
+	 * @param {string} projection projection fields to be returned
+	 * @param {dbCallback} callback false if the searching did not succeed; otherwise, the specified fields to be returned
+	 */
+	findOne: function (model, query, projection, callback) {
+		model.findOne(query, projection, function (error, result) {
 			if (error) return callback(false);
 			return callback(result);
 		});
 	},
 
 	/**
-     * Retrieves multiple documents from the database
-     *
-     * @param {Object} model collection to be accessed
-     * @param {Object} query query to be executed on the collection
-     * @param {string} projection projection fields to be returned
-     * @param {dbCallback} callback false if the searching did not succeed; otherwise, the specified fields to be returned
-     */
-	findMany: function(model, query, projection, callback) {
-		model.find(query, projection, function(error, result) {
+	 * Retrieves multiple documents from the database
+	 *
+	 * @param {Object} model collection to be accessed
+	 * @param {Object} query query to be executed on the collection
+	 * @param {string} projection projection fields to be returned
+	 * @param {dbCallback} callback false if the searching did not succeed; otherwise, the specified fields to be returned
+	 */
+	findMany: function (model, query, projection, callback) {
+		model.find(query, projection, function (error, result) {
 			if (error) return callback(false);
 			return callback(result);
 		});
 	},
 
 	/**
-     * Updates one document in the database
-     *
-     * @param {Object} model collection to be accessed
-     * @param {Object} filter query with which to filter the collection documents
-     * @param {Object} update revisions to the document data
-     * @param {dbCallback} callback callback for indicating whether the update succeeded
-     */
-	updateOne: function(model, filter, update, callback) {
-		model.updateOne(filter, update, function(error, result) {
+	 * Updates one document in the database
+	 *
+	 * @param {Object} model collection to be accessed
+	 * @param {Object} filter query with which to filter the collection documents
+	 * @param {Object} update revisions to the document data
+	 * @param {dbCallback} callback callback for indicating whether the update succeeded
+	 */
+	updateOne: function (model, filter, update, callback) {
+		model.updateOne(filter, update, function (error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -116,15 +116,15 @@ const database = {
 	},
 
 	/**
-     * Updates multiple documents in the database
-     *
-     * @param {Object} model collection to be accessed
-     * @param {Object} filter query with which to filter the collection documents
-     * @param {Object} update revisions to the document data
-     * @param {dbCallback} callback callback for indicating whether the update succeeded
-     */
-	updateMany: function(model, filter, update, callback) {
-		model.updateMany(filter, update, function(error, result) {
+	 * Updates multiple documents in the database
+	 *
+	 * @param {Object} model collection to be accessed
+	 * @param {Object} filter query with which to filter the collection documents
+	 * @param {Object} update revisions to the document data
+	 * @param {dbCallback} callback callback for indicating whether the update succeeded
+	 */
+	updateMany: function (model, filter, update, callback) {
+		model.updateMany(filter, update, function (error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -132,14 +132,14 @@ const database = {
 	},
 
 	/**
-     * Deletes one document in the database
-     *
-     * @param {Object} model collection to be accessed
-     * @param {Object} conditions query with which to obtain the document to be deleted
-     * @param {dbCallback} callback callback for indicating whether the deletion succeeded
-     */
-	deleteOne: function(model, conditions, callback) {
-		model.deleteOne(conditions, function(error, result) {
+	 * Deletes one document in the database
+	 *
+	 * @param {Object} model collection to be accessed
+	 * @param {Object} conditions query with which to obtain the document to be deleted
+	 * @param {dbCallback} callback callback for indicating whether the deletion succeeded
+	 */
+	deleteOne: function (model, conditions, callback) {
+		model.deleteOne(conditions, function (error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -147,14 +147,14 @@ const database = {
 	},
 
 	/**
-     * Deletes multiple documents in the database
-     *
-     * @param {Object} model collection to be accessed
-     * @param {Object} conditions query with which to obtain the documents to be deleted
-     * @param {dbCallback} callback callback for indicating whether the deletion succeeded
-     */
-	deleteMany: function(model, conditions, callback) {
-		model.deleteMany(conditions, function(error, result) {
+	 * Deletes multiple documents in the database
+	 *
+	 * @param {Object} model collection to be accessed
+	 * @param {Object} conditions query with which to obtain the documents to be deleted
+	 * @param {dbCallback} callback callback for indicating whether the deletion succeeded
+	 */
+	deleteMany: function (model, conditions, callback) {
+		model.deleteMany(conditions, function (error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -162,25 +162,24 @@ const database = {
 	},
 
 	/**
-     * Converts a string to the ObjectId data type
-     *
-     * @param {string} id string to be converted
-     * @return {mongoose.ObjectId} ObjectId variable of the input string
-     */
-	convertToObjectId: function(id) {
+	 * Converts a string to the ObjectId data type
+	 *
+	 * @param {string} id string to be converted
+	 * @return {mongoose.ObjectId} ObjectId variable of the input string
+	 */
+	convertToObjectId: function (id) {
 		return mongoose.Types.ObjectId(id);
 	},
 
 	/**
-     * Updates one document in the database using an iterative rather than callback process
-     *
-     * @param {Object} model collection to be accessed
-     * @param {Object} filter query with which to filter the collection documents
-     * @param {Object} update revisions to the document data
-     */
-	updateOneIterative: function(model, filter, update) {
-		model.updateOne(filter, update, function() {
-		});
+	 * Updates one document in the database using an iterative rather than callback process
+	 *
+	 * @param {Object} model collection to be accessed
+	 * @param {Object} filter query with which to filter the collection documents
+	 * @param {Object} update revisions to the document data
+	 */
+	updateOneIterative: function (model, filter, update) {
+		model.updateOne(filter, update, function () {});
 	}
 };
 
