@@ -38,7 +38,8 @@ $(function() {
 				$('#edit-transaction-' + fuelType + '-liters').val(0);
 			}
 
-			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
+			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) -
+				parseInt($('#edit-transaction-' + fuelType + '-liters-orig').val()) >
                 parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
 				displayErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
 				disableButton($('#confirm-edit-transaction-btn'));
