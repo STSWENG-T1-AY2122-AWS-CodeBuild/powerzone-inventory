@@ -93,7 +93,6 @@ $(function() {
 	/* Cancel the delivery. */
 	$('#cancel-delivery-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const deliveryId = $('#edit-delivery-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -118,7 +117,6 @@ $(function() {
 	/* Pend the delivery. */
 	$('#pend-delivery-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const deliveryId = $('#edit-delivery-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -143,7 +141,6 @@ $(function() {
 	/* Complete the delivery. */
 	$('#complete-delivery-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const deliveryId = $('#edit-delivery-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
