@@ -103,7 +103,6 @@ $(function() {
 	/* Cancel the transation. */
 	$('#cancel-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -128,7 +127,6 @@ $(function() {
 	/* Pend the transaction. */
 	$('#pend-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({

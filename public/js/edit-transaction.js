@@ -15,6 +15,9 @@ $(function() {
 	/* Update the selected value in the status dropdown to reflect the value in the database. */
 	$('#edit-transaction-status').val($('#edit-transaction-status-hidden').val());
 
+	/* Enable button at the start to prevent AJAX lag issues. */
+	enableButton($('#confirm-edit-transaction-btn'));
+
 	/* Validate the phone number. */
 	$('#edit-transaction-customer-number').on('keyup change paste', function() {
 		if (!isValidPhoneNumber($(this).val())) {
@@ -30,8 +33,21 @@ $(function() {
 		}
 	});
 
-	/* Check if the fuel quantity entered does not exceed available quantity. */
+	/*
+	 * Update the available fuel quantity if transaction status is pending.
+	 * The available fuel quantity should be the sum of the current inventory quantity and the quantity
+	 * reserved as part of this transaction.
+	 */
 	const fuelTypes = getFuelTypes();
+	if ($('#edit-transaction-status-hidden').val() == 'pending') {
+		for (const fuelType of fuelTypes) {
+			const inventoryQuantity = parseInt($('#total-' + fuelType + '-error').text());
+			const reservedQuantity = parseInt($('#edit-transaction-' + fuelType + '-liters-old').val());
+			$('#total-' + fuelType + '-error').text(inventoryQuantity + reservedQuantity);
+		}
+	}
+
+	/* Check if the fuel quantity entered does not exceed available quantity. */
 	for (const fuelType of fuelTypes) {
 		$('#edit-transaction-' + fuelType + '-liters').on('keyup change paste', function() {
 			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) < 0) {
@@ -53,6 +69,7 @@ $(function() {
 	let canPend = true;
 	for (const fuelType of fuelTypes) {
 		if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
+			parseInt($('#edit-transaction-' + fuelType + '-liters-orig').val()) >
 			parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
 			canPend = false;
 			break;
@@ -68,6 +85,7 @@ $(function() {
 		let noError = true;
 		for (const fuelType of fuelTypes) {
 			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
+				parseInt($('#edit-transaction-' + fuelType + '-liters-orig').val()) >
 				parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
 				noError = false;
 				break;
