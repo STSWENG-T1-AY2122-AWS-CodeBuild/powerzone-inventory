@@ -93,7 +93,6 @@ $(function() {
 	/* Cancel the delivery. */
 	$('#cancel-delivery-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const deliveryId = $('#edit-delivery-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -102,12 +101,9 @@ $(function() {
 			data: $('#edit-delivery-status-form').serialize(),
 			statusCode: {
 
-				/* If the cancellation is successful, redirect the user to the delivery page. */
+				/* If the cancellation is successful, refresh the delivery page. */
 				200: function() {
-					$('#status-img-' + deliveryId).attr('src', '/assets/rejected.png');
-					$('#edit-delivery-status-modal').modal('hide');
-
-					$('#edit-' + deliveryId).css('pointer-events', 'auto');
+					location.href = '/getDelivery';
 				},
 
 				/* Otherwise, display an error message. */
@@ -121,7 +117,6 @@ $(function() {
 	/* Pend the delivery. */
 	$('#pend-delivery-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const deliveryId = $('#edit-delivery-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -130,12 +125,9 @@ $(function() {
 			data: $('#edit-delivery-status-form').serialize(),
 			statusCode: {
 
-				/* If the status update is successful, redirect the user to the delivery page. */
+				/* If the cancellation is successful, refresh the delivery page. */
 				200: function() {
-					$('#status-img-' + deliveryId).attr('src', '/assets/pending.png');
-					$('#edit-delivery-status-modal').modal('hide');
-
-					$('#edit-' + deliveryId).css('pointer-events', 'auto');
+					location.href = '/getDelivery';
 				},
 
 				/* Otherwise, display an error message. */
@@ -149,7 +141,6 @@ $(function() {
 	/* Complete the delivery. */
 	$('#complete-delivery-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const deliveryId = $('#edit-delivery-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -158,12 +149,9 @@ $(function() {
 			data: $('#edit-delivery-status-form').serialize(),
 			statusCode: {
 
-				/* If the status update is successful, redirect the user to the delivery page. */
+				/* If the cancellation is successful, refresh the delivery page. */
 				200: function() {
-					$('#status-img-' + deliveryId).attr('src', '/assets/accepted.png');
-					$('#edit-delivery-status-modal').modal('hide');
-
-					$('#edit-' + deliveryId).css('pointer-events', 'none');
+					location.href = '/getDelivery';
 				},
 
 				/* Otherwise, display an error message. */

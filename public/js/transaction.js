@@ -103,7 +103,6 @@ $(function() {
 	/* Cancel the transation. */
 	$('#cancel-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -112,12 +111,9 @@ $(function() {
 			data: $('#edit-transaction-status-form').serialize(),
 			statusCode: {
 
-				/* If the cancellation is successful, redirect the user to the landing page. */
+				/* If the cancellation is successful, refresh the transaction page. */
 				200: function() {
-					$('#status-img-' + transactionId).attr('src', '/assets/rejected.png');
-					$('#edit-transaction-status-modal').modal('hide');
-
-					$('#edit-' + transactionId).css('pointer-events', 'auto');
+					location.href = '/getTransaction';
 				},
 
 				/* Otherwise, display an error message. */
@@ -131,7 +127,6 @@ $(function() {
 	/* Pend the transaction. */
 	$('#pend-transaction-btn').on('click', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
-		const transactionId = $('#edit-transaction-status-form-id').val();
 		e.preventDefault();
 
 		$.ajax({
@@ -140,12 +135,9 @@ $(function() {
 			data: $('#edit-transaction-status-form').serialize(),
 			statusCode: {
 
-				/* If the pending is successful, redirect the user to the landing page. */
+				/* If the cancellation is successful, refresh the transaction page. */
 				200: function() {
-					$('#status-img-' + transactionId).attr('src', '/assets/pending.png');
-					$('#edit-transaction-status-modal').modal('hide');
-
-					$('#edit-' + transactionId).css('pointer-events', 'auto');
+					location.href = '/getTransaction';
 				},
 
 				/* Otherwise, display an error message. */
