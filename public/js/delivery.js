@@ -52,11 +52,11 @@ $(function() {
 		}
 
 		/* Place additional check to ensure that tooltip is not mistakenly displayed when button is enabled. */
-		if (!$('#pend-delivery-btn').prop('disabled')) {
+		if (!$('#pend-delivery-btn').is(':disabled')) {
 			removeTooltip($('#pend-delivery-btn-tooltip'));
 		}
 
-		if (!$('#complete-delivery-btn').prop('disabled')) {
+		if (!$('#complete-delivery-btn').is(':disabled')) {
 			removeTooltip($('#complete-delivery-btn-tooltip'));
 		}
 	});
