@@ -64,6 +64,11 @@ $(function() {
 			removeTooltip($('#pend-transaction-btn-tooltip'));
 			enableButton($('#pend-transaction-btn'));
 		}
+
+		/* Place additional check to ensure that tooltip is not mistakenly displayed when button is enabled. */
+		if (!$('#pend-transaction-btn').prop('disabled')) {
+			removeTooltip($('#pend-transaction-btn-tooltip'));
+		}
 	});
 
 	/* Display the original transaction table upon reset of filters and sorting. */
