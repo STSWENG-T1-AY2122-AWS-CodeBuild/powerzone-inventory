@@ -37,7 +37,7 @@ $(function() {
 			}
 		}
 
-		if (!canPend) {
+		if (!canPend && $('#edit-delivery-status-form-status').val() == 'cancelled') {
 			initializeTooltip($('#pend-delivery-btn-tooltip'), 'Insufficient fuel in the inventory');
 			initializeTooltip($('#complete-delivery-btn-tooltip'), 'Insufficient fuel in the inventory');
 

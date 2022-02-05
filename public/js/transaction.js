@@ -57,7 +57,7 @@ $(function() {
 			}
 		}
 
-		if (!canPend) {
+		if (!canPend && $('#edit-transaction-status-form-status').val() == 'cancelled') {
 			initializeTooltip($('#pend-transaction-btn-tooltip'), 'Insufficient fuel in the inventory');
 			disableButton($('#pend-transaction-btn'));
 		} else {
