@@ -66,7 +66,8 @@ $(function() {
 		}
 
 		/* Place additional check to ensure that tooltip is not mistakenly displayed when button is enabled. */
-		if (!$('#pend-transaction-btn').prop('disabled')) {
+		if (!$('#pend-transaction-btn').is(':disabled')) {
+			$('#pend-transaction-btn-tooltip').tooltip('dispose');
 			removeTooltip($('#pend-transaction-btn-tooltip'));
 		}
 	});
