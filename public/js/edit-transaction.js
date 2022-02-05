@@ -15,9 +15,6 @@ $(function() {
 	/* Update the selected value in the status dropdown to reflect the value in the database. */
 	$('#edit-transaction-status').val($('#edit-transaction-status-hidden').val());
 
-	/* Enable button at the start to prevent AJAX lag issues. */
-	enableButton($('#confirm-edit-transaction-btn'));
-
 	/* Validate the phone number. */
 	$('#edit-transaction-customer-number').on('keyup change paste', function() {
 		if (!isValidPhoneNumber($(this).val())) {
