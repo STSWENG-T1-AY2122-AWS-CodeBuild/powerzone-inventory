@@ -37,7 +37,7 @@ $(function() {
 			}
 		}
 
-		if (!canPend) {
+		if (!canPend && $('#edit-delivery-status-form-status').val() == 'cancelled') {
 			initializeTooltip($('#pend-delivery-btn-tooltip'), 'Insufficient fuel in the inventory');
 			initializeTooltip($('#complete-delivery-btn-tooltip'), 'Insufficient fuel in the inventory');
 
@@ -49,6 +49,17 @@ $(function() {
 
 			enableButton($('#pend-delivery-btn'));
 			enableButton($('#complete-delivery-btn'));
+		}
+
+		/* Place additional check to ensure that tooltip is not mistakenly displayed when button is enabled. */
+		if (!$('#pend-delivery-btn').is(':disabled')) {
+			$('#pend-delivery-btn-tooltip').tooltip('dispose');
+			removeTooltip($('#pend-delivery-btn-tooltip'));
+		}
+
+		if (!$('#complete-delivery-btn').is(':disabled')) {
+			$('#complete-delivery-btn-tooltip').tooltip('dispose');
+			removeTooltip($('#complete-delivery-btn-tooltip'));
 		}
 	});
 
