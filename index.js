@@ -105,7 +105,7 @@ hbs.handlebars.registerHelper('openTransaction', function(status) {
 });
 
 hbs.handlebars.registerHelper('validDeliveryRole', function(role) {
-	if (role == 'administrator' || role == 'delivery-manager') {
+	if (role == 'administrator' || role == 'delivery-manager' || role == 'transaction-cashier') {
 		return true;
 	} else {
 		return false;
