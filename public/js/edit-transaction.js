@@ -44,6 +44,12 @@ $(function() {
 		}
 	}
 
+	function isSufficientFuel(fuelType) {
+		return parseInt($('#edit-transaction-' + fuelType + '-liters').val()) -
+			parseInt($('#edit-transaction-' + fuelType + '-liters-orig').val()) <=
+			parseInt($('#edit-transaction-' + fuelType + '-total').val());
+	}
+
 	/* Check if the fuel quantity entered does not exceed available quantity. */
 	for (const fuelType of fuelTypes) {
 		$('#edit-transaction-' + fuelType + '-liters').on('keyup change paste', function() {
@@ -51,9 +57,7 @@ $(function() {
 				$('#edit-transaction-' + fuelType + '-liters').val(0);
 			}
 
-			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) -
-				parseInt($('#edit-transaction-' + fuelType + '-liters-orig').val()) >
-                parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
+			if (!isSufficientFuel(fuelType)) {
 				displayErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
 				disableButton($('#confirm-edit-transaction-btn'));
 			} else {
@@ -65,9 +69,7 @@ $(function() {
 	/* Disable status toggling if the inventory supplies are insufficient. */
 	let canPend = true;
 	for (const fuelType of fuelTypes) {
-		if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
-			parseInt($('#edit-transaction-' + fuelType + '-liters-orig').val()) >
-			parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
+		if (!isSufficientFuel(fuelType)) {
 			canPend = false;
 			break;
 		}
@@ -81,9 +83,7 @@ $(function() {
 	$('input').on('keyup change paste', function() {
 		let noError = true;
 		for (const fuelType of fuelTypes) {
-			if (parseInt($('#edit-transaction-' + fuelType + '-liters').val()) >
-				parseInt($('#edit-transaction-' + fuelType + '-liters-orig').val()) >
-				parseInt($('#edit-transaction-' + fuelType + '-total').val())) {
+			if (!isSufficientFuel(fuelType)) {
 				noError = false;
 				break;
 			}
