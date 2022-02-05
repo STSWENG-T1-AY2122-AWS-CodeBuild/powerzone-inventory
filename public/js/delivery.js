@@ -53,12 +53,12 @@ $(function() {
 
 		/* Place additional check to ensure that tooltip is not mistakenly displayed when button is enabled. */
 		if (!$('#pend-delivery-btn').is(':disabled')) {
-			$('#pend-transaction-btn-tooltip').tooltip('dispose');
+			$('#pend-delivery-btn-tooltip').tooltip('dispose');
 			removeTooltip($('#pend-delivery-btn-tooltip'));
 		}
 
 		if (!$('#complete-delivery-btn').is(':disabled')) {
-			$('#pend-transaction-btn-tooltip').tooltip('dispose');
+			$('#complete-delivery-btn-tooltip').tooltip('dispose');
 			removeTooltip($('#complete-delivery-btn-tooltip'));
 		}
 	});
