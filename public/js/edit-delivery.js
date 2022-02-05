@@ -28,7 +28,7 @@ $(function() {
 		}
 	}
 
-	if (!canPend) {
+	if (!canPend && $('#edit-delivery-status').val() == 'cancelled') {
 		$('#edit-delivery-status option[value = "pending"]').remove();
 		$('#edit-delivery-status option[value = "completed"]').remove();
 	}

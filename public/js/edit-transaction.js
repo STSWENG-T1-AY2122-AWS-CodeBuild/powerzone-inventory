@@ -75,7 +75,7 @@ $(function() {
 		}
 	}
 
-	if (!canPend) {
+	if (!canPend && $('#edit-transaction-status').val() == 'cancelled') {
 		$('#edit-transaction-status option[value = "pending"]').remove();
 	}
 
