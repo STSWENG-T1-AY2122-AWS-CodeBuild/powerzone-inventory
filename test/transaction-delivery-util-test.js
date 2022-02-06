@@ -187,3 +187,15 @@ describe('the function to sort the entries of the table in descending order base
 		assert.equal(rows[0].getElementsByTagName('td')[3].textContent, '₱ 120');
 	});
 });
+
+describe('the function to compute the discounted amount after application of bulk order discount scheme', function() {
+	beforeEach(function() {
+		const dom = new JSDOM(
+			htmlDom,
+			{url: 'http://localhost'});
+
+		global.window = dom.window;
+		global.document = dom.window.document;
+		global.$ = global.jQuery = require('jquery');
+	})
+});
