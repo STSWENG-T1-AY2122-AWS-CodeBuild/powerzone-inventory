@@ -285,6 +285,21 @@ const getPrice2 = function(rows, i) {
 	return rows[i + 1].getElementsByTagName('td')[3].textContent.substring(2);
 };
 
+/**
+ * Returns the discount rate (in percent) and the discounted amount after application
+ * of the discount scheme for bulk orders:
+ * - 2% discount for orders with gross total of 50,000 L but less than 150,000 L
+ * - 5% discount for orders with gross total of 150,000 L and above
+ * 
+ * @param {string} operation Either 'edit' or 'add' depending on whether the transaction entry
+ * is already existing in the database.
+ * @param {array} fuelTypes Types of fuel recognized by the system.
+ * @param {array} discountPercents Discount rates (in percent) in the bulk order discount scheme.
+ * @param {array} discountCutoffs Cut-offs (in terms of liters of fuel ordered) in the bulk 
+ * order discount scheme.
+ * @returns {array} An array with the first element corresponding to the discount rate
+ * and the second element corresponding to the discounted amount.
+ */
 const getDiscountedAmount = function(operation, fuelTypes, discountPercents, discountCutoffs) {
 	let origAmount = 0;
 	let discountPercent = 0;
