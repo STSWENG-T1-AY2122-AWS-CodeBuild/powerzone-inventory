@@ -1,6 +1,7 @@
-/* JavaScript file for handling the front end of the register page */
+/* JavaScript file for handling the front-end of the register page */
 
 $(function() {
+	/* Submit the form for registering a user account. */
 	$('#signup-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
@@ -11,24 +12,16 @@ $(function() {
 			data: $('#signup-form').serialize(),
 			statusCode: {
 
-				/* If the log in is successful, redirect the user to the successful sign up page. */
+				/* If the registration is successful, redirect the user to the successful registration page. */
 				200: function() {
 					location.href = '/getSuccessfulRegistration';
 				},
 
-				/* Otherwise, display an error message. */
+				/* Otherwise, launch an alert message. */
 				401: function() {
-					registerError();
+					alert('Register error');
 				}
 			}
 		});
 	});
-
-	/**
-	 * Highlights the erroneous text field and resets the password text field when there is a log in error
-	 * concerning the user's input.
-	 */
-	function registerError() {
-		alert('Register error');
-	}
 });

@@ -9,21 +9,34 @@ const Account = require('../models/account-schema.js');
 const db = require('../models/db.js');
 
 describe('the function to get the log-in page', function() {
-	it('should render the log-in page only once if the user is not logged in', function() {
+	let res;
+
+	beforeEach(function() {
+		res = {
+			render: sinon.spy(),
+			redirect: sinon.spy()
+		};
+	});
+
+	it('should render the page only once if the user is not logged in', function() {
 		const req = {
 			session: {
 				username: null
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
+		logInController.getLogIn(req, res);
+		assert.isTrue(res.render.calledOnce);
+	});
+
+	it('should render the log-in page if the user is not logged in', function() {
+		const req = {
+			session: {
+				username: null
+			}
 		};
 
 		logInController.getLogIn(req, res);
-
-		assert.isTrue(res.render.calledOnce);
 		assert.equal(res.render.firstCall.args[0], 'log-in');
 	});
 
@@ -34,14 +47,19 @@ describe('the function to get the log-in page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
+		logInController.getLogIn(req, res);
+		assert.isTrue(res.redirect.notCalled);
+	});
+
+	it('should redirect to the next page only once if the user is logged in', function() {
+		const req = {
+			session: {
+				username: 'bettina'
+			}
 		};
 
 		logInController.getLogIn(req, res);
-
-		assert.isTrue(res.redirect.notCalled);
+		assert.isTrue(res.redirect.calledOnce);
 	});
 
 	it('should redirect to the home page if the user is logged in', function() {
@@ -51,14 +69,7 @@ describe('the function to get the log-in page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		logInController.getLogIn(req, res);
-
-		assert.isTrue(res.redirect.calledOnce);
 		assert.equal(res.redirect.firstCall.args[0], '/getHome');
 	});
 
@@ -69,13 +80,7 @@ describe('the function to get the log-in page', function() {
 			}
 		};
 
-		const res = {
-			render: sinon.spy(),
-			redirect: sinon.spy()
-		};
-
 		logInController.getLogIn(req, res);
-
 		assert.isTrue(res.render.notCalled);
 	});
 });
@@ -113,6 +118,10 @@ describe('the function to log a user into the application', function() {
 
 	it('should search the database for the username only once', function() {
 		assert.isTrue(db.findOne.calledOnce);
+		db.findOne.restore();
+	});
+
+	it('should search the database for the username with the correct arguments', function() {
 		assert.equal(db.findOne.firstCall.args[0], Account);
 		expect(db.findOne.firstCall.args[1]).to.deep.equalInAnyOrder({username: req.body.loginUsername});
 

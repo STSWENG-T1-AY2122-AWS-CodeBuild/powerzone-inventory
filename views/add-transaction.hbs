@@ -6,10 +6,11 @@
         <title>Add Transaction</title>
 
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel = "stylesheet">       
-        <link href = "https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href = "https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500&display=swap" rel = "stylesheet">
         <link href = "/css/style.css" rel = "stylesheet">
 
         <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src = "/js/add-transaction.js" type = "module"></script>
     </head>
     <body class = "bg-home">
         <!-- as of now, its set to non-admin ung nav, but admin should be included -->
@@ -31,7 +32,7 @@
                             <td>
                                 <div class = "m-4">
                                     <label for = "add-transaction-id" class = "form-label fw-bold text-primary">Transaction ID</label>
-                                    <input id = "add-transaction-id" name = "addTransactionId" type = "text" placeholder = "Transaction ID" class = "form-control p-2 rounded-pill" required>
+                                    <input id = "add-transaction-id" name = "addTransactionId" type = "text" placeholder = "Transaction ID" value = "{{id}}" class = "form-control p-2 rounded-pill" required readonly = "readonly">
 
                                     <div id = "add-transaction-invalid-blank-id" class = "fw-bold invalid-feedback text-center">
                                         Kindly input the Transaction ID
@@ -60,7 +61,7 @@
                                     </div>
                                     
                                     <div id = "add-transaction-invalid-customer-number" class = "fw-bold invalid-feedback text-center">
-                                        The customer's phone number should only contain 10 integers
+                                        Invalid phone number (should have 7 to 15 digits)
                                     </div>
                                 </div>
 
@@ -72,6 +73,15 @@
                                         Kindly input the transaction date
                                     </div>
                                 </div>
+
+                                <!-- <div class = "m-4">
+                                    <label for = "add-transaction-discount" class = "form-label fw-bold text-primary">Discount Amount (%)</label>
+                                    <input id = "add-transaction-discount" name = "addTransactionDiscount" type = "text" placeholder = "Discount Amount" class = "form-control p-2 rounded-pill" required>
+
+                                    <div id = "add-transaction-invalid-blank-discount" class = "fw-bold invalid-feedback text-center">
+                                        Kindly input the discount amount
+                                    </div>
+                                </div> -->
                             </td>
                     
                             <td>
@@ -79,7 +89,7 @@
                                     <table class = "align-middle text-center table table-borderless">
                                         <thead class = "bg-primary table-fixed text-white">
                                             <th scope = "col" class = "w-25">PRODUCT</th>
-                                            <th scope = "col" class = "w-25">PRICE (P)</th>
+                                            <th scope = "col" class = "w-25">PRICE (₱)</th>
                                             <th scope = "col" class = "w-25">LITERS (L)</th>
                                         </thead>
                                         <tbody class = "fw-bold text-primary">
@@ -87,19 +97,24 @@
                                                 <td>GASOLINE</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-gasoline-price" name = "addTransactionGasolinePrice" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-gasoline-price" name = "addTransactionGasolinePrice" type = "number" value = "{{priceGasoline}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-gasoline-liters" name = "addTransactionGasolineLiters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-gasoline-liters" name = "addTransactionGasolineLiters" type = "number" value = "0" min = "0" max = "{{totalGasoline}}" step = "1" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "add-transaction-gasoline-max" name = "addTransactionGasolineMax" type = "hidden" value = "{{totalGasoline}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">
                                                     <div id = "add-transaction-invalid-decimal-gasoline" class = "fw-bold invalid-feedback text-center">
-                                                        Price/Liters should have only up to 2 decimal points
+                                                        Amount should have only up to 2 decimal points
+                                                    </div>
+
+                                                    <div id = "add-transaction-invalid-amount-gasoline" class = "fw-bold invalid-feedback text-center">
+                                                        Amount exceeds available fuel: {{totalGasoline}} L
                                                     </div>
                                                 </td>
                                             </tr>
@@ -108,19 +123,24 @@
                                                 <td>PREMIUM GASOLINE 95</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-premium-gasoline-95-price" name = "addTransactionPremiumGasoline95Price" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-premium-gasoline-95-price" name = "addTransactionPremiumGasoline95Price" type = "number" value = "{{pricePremiumGasoline95}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-premium-gasoline-95-liters" name = "addTransactionPremiumGasoline95Liters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-premium-gasoline-95-liters" name = "addTransactionPremiumGasoline95Liters" type = "number" value = "0" min = "0"  max = "{{totalPremiumGasoline95}}" step = "1" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "add-transaction-premium-gasoline-95-max" name = "addTransactionPremiumGasoline95Max" type = "hidden" value = "{{totalPremiumGasoline95}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">
                                                     <div id = "add-transaction-invalid-decimal-premium-gasoline-95" class = "fw-bold invalid-feedback text-center">
-                                                        Price/Liters should have only up to 2 decimal points
+                                                        Amount should have only up to 2 decimal points
+                                                    </div>
+
+                                                    <div id = "add-transaction-invalid-amount-premium-gasoline-95" class = "fw-bold invalid-feedback text-center">
+                                                        Amount exceeds available fuel: {{totalPremiumGasoline95}} L
                                                     </div>
                                                 </td>
                                             </tr>
@@ -129,19 +149,24 @@
                                                 <td>DIESEL</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-diesel-price" name = "addTransactionDieselPrice" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-diesel-price" name = "addTransactionDieselPrice" type = "number" value = "{{priceDiesel}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-diesel-liters" name = "addTransactionDieselLiters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-diesel-liters" name = "addTransactionDieselLiters" type = "number" value = "0" min = "0" max = "{{totalDiesel}}" step = "1" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "add-transaction-diesel-max" name = "addTransactionDieselMax" type = "hidden" value = "{{totalDiesel}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">
                                                     <div id = "add-transaction-invalid-decimal-diesel" class = "fw-bold invalid-feedback text-center">
-                                                        Price/Liters should have only up to 2 decimal points
+                                                        Amount should have only up to 2 decimal points
+                                                    </div>
+
+                                                    <div id = "add-transaction-invalid-amount-diesel" class = "fw-bold invalid-feedback text-center">
+                                                        Amount exceeds available fuel: {{totalDiesel}} L
                                                     </div>
                                                 </td>
                                             </tr>
@@ -150,19 +175,24 @@
                                                 <td>PREMIUM GASOLINE 97</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-premium-gasoline-97-price" name = "addTransactionPremiumGasoline97Price" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-premium-gasoline-97-price" name = "addTransactionPremiumGasoline97Price" type = "number" value = "{{pricePremiumGasoline97}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-premium-gasoline-97-liters" name = "addTransactionPremiumGasoline97Liters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-premium-gasoline-97-liters" name = "addTransactionPremiumGasoline97Liters" type = "number" value = "0" min = "0" max = "{{totalPremiumGasoline97}}" step = "1" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "add-transaction-premium-gasoline-97-max" name = "addTransactionPremiumGasoline97Max" type = "hidden" value = "{{totalPremiumGasoline97}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">
                                                     <div id = "add-transaction-invalid-decimal-premium-gasoline-97" class = "fw-bold invalid-feedback text-center">
-                                                        Price/Liters should have only up to 2 decimal points
+                                                        Amount should have only up to 2 decimal points
+                                                    </div>
+
+                                                    <div id = "add-transaction-invalid-amount-premium-gasoline-97" class = "fw-bold invalid-feedback text-center">
+                                                        Amount exceeds available fuel: {{totalPremiumGasoline97}} L
                                                     </div>
                                                 </td>
                                             </tr>
@@ -171,19 +201,24 @@
                                                 <td>KEROSENE</td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-kerosene-price" name = "addTransactionKerosenePrice" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-kerosene-price" name = "addTransactionKerosenePrice" type = "number" value = "{{priceKerosene}}" class = "form-control text-center input-sm w-75 prices" readonly = "readonly">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex aligns-items-center justify-content-center">
-                                                        <input id = "add-transaction-kerosene-liters" name = "addTransactionKeroseneLiters" type = "number" placeholder = "-" class = "form-control text-center input-sm w-75">
+                                                        <input id = "add-transaction-kerosene-liters" name = "addTransactionKeroseneLiters" type = "number" value = "0" min = "0" max = "{{totalKerosene}}" step = "1" class = "form-control text-center input-sm w-75">
                                                     </div>
                                                 </td>
+                                                <input id = "add-transaction-kerosene-max" name = "addTransactionKeroseneMax" type = "hidden" value = "{{totalKerosene}}">
                                             </tr>
                                             <tr>  
                                                 <td colspan = "3">
                                                     <div id = "add-transaction-invalid-decimal-kerosene" class = "fw-bold invalid-feedback text-center">
-                                                        Price/Liters should have only up to 2 decimal points
+                                                        Amount should have only up to 2 decimal points
+                                                    </div>
+
+                                                    <div id = "add-transaction-invalid-amount-kerosene" class = "fw-bold invalid-feedback text-center">
+                                                        Amount exceeds available fuel: {{totalKerosene}} L
                                                     </div>
                                                 </td>
                                             </tr>
@@ -198,7 +233,7 @@
 
             <div class = "mx-5 my-3"> 
                 <a href = "/getTransaction" class = "btn btn-primary fw-bold float-start px-5 rounded-pill shadow-sm text-white">Cancel</a>
-                <button id = "confirm-add-transaction-btn" type = "submit" class = "btn btn-primary fw-bold float-end px-5 rounded-pill shadow-sm text-white">Confirm</button>
+                <button id = "confirm-add-transaction-btn" type = "submit" class = "btn btn-primary fw-bold float-end px-5 rounded-pill shadow-sm text-white" disabled>Confirm</button>
             </div> 
         </form>
     </body>

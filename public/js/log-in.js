@@ -1,8 +1,9 @@
-/* JavaScript file for handling the front end of the log in page */
+/* JavaScript file for handling the front-end of the log-in page */
 
 import {displayErrorMessage} from './general-util.js';
 
 $(function() {
+	/* Submit the form for logging into the system. */
 	$('#login-form').on('submit', function(e) {
 		/* Override the default submit behavior and insert AJAX. */
 		e.preventDefault();
@@ -13,7 +14,7 @@ $(function() {
 			data: $('#login-form').serialize(),
 			statusCode: {
 
-				/* If the log in is successful, redirect the user to the landing page. */
+				/* If the log-in is successful, redirect the user to the landing (home) page. */
 				200: function() {
 					location.href = '/getHome';
 				},

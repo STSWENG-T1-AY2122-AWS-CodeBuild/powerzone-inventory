@@ -11,6 +11,7 @@
         "ecmaVersion": 13,
         "sourceType": "module"
     },
+    "ignorePatterns": ["mochawesome-report/"],
     "rules": {
         "semi": ["error", "always"],
         "quotes": ["error", "single"],
@@ -19,6 +20,7 @@
         "no-tabs": 0,
         "max-len": 0,
         "no-invalid-this": 0,
+        "new-cap": 0,
         "one-var-declaration-per-line": ["error", "always"],
         "comma-dangle": ["error", "never"]
     }

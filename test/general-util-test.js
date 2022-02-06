@@ -2,25 +2,9 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 const assert = require('chai').assert;
 
-const htmlDom = `<html>
-	<body>
-		<div id = "error"></div>
-		<input type = "text" id = "fname">
-		<button id = "register" disabled></button>
-		<table id = "tbl" style = "visibility: visible;">
-			<tbody>
-				<tr id = "r1"><td>Premium Gasoline 95</td><td>01/01/2022</td><td></td><td>₱ 60</td></tr>
-				<tr id = "r2"><td>Gasoline</td><td>01/01/2022</td><td></td><td>₱ 55</td></tr>
-				<tr id = "r3"><td>Kerosene</td><td>01/01/2022</td><td></td><td>₱ 55</td></tr>
-				<tr id = "r4"><td>Premium Gasoline 97</td><td>01/01/2022</td><td></td><td>₱ 55</td></tr>
-				<tr id = "r5"><td>Diesel</td><td>01/01/2022</td><td></td><td>₱ 55</td></tr>
-				<tr id = "r6"><td>Gasoline</td><td>01/01/2022</td><td></td><td>₱ 60</td></tr>
-				<tr id = "r7"><td>Kerosene</td><td>01/01/2022</td><td></td><td>₱ 111</td></tr>
-				<tr id = "r8"><td>Diesel</td><td>01/01/2022</td><td></td><td>₱ 234</td></tr>
-			</tbody>
-		</table>
-	</body>
-</html>`;
+const {getDom} = require('./const-test.js');
+
+const htmlDom = getDom();
 
 const {
 	displayErrorMessage,
@@ -29,7 +13,9 @@ const {
 	disableButton,
 	isBlankField,
 	extractId,
-	toTwoDecimalPlaces
+	toTwoDecimalPlaces,
+	initializeTooltip,
+	removeTooltip
 } = require('.././public/js/general-util.js');
 
 describe('the function to display an error message', function() {
@@ -186,5 +172,57 @@ describe('the function to display a number to two decimal places', function() {
 	it('should round the number to two decimal places if it has more than two decimal places', function() {
 		const result = toTwoDecimalPlaces(24.336);
 		assert.equal(result, '24.34');
+	});
+});
+
+describe('the function to create a tooltip when hovering over a specified button', function() {
+	beforeEach(function() {
+		const dom = new JSDOM(
+			htmlDom,
+			{url: 'http://localhost'});
+
+		global.window = dom.window;
+		global.document = dom.window.document;
+		global.$ = global.jQuery = require('jquery');
+	});
+
+	it('should set the data-bs-toggle attribute to tooltip', function() {
+		$('#register').prop('disabled', false);
+		initializeTooltip($('#register'), 'Hello');
+		assert.equal($('#register').attr('data-bs-toggle'), 'tooltip');
+	});
+
+	it('should display the correct message', function() {
+		$('#register').prop('disabled', false);
+		initializeTooltip($('#register'), 'Hello');
+		assert.equal($('#register').attr('title'), 'Hello');
+	});
+});
+
+describe('the function to remove the tooltip anchored to a specified button', function() {
+	beforeEach(function() {
+		const dom = new JSDOM(
+			htmlDom,
+			{url: 'http://localhost'});
+
+		global.window = dom.window;
+		global.document = dom.window.document;
+		global.$ = global.jQuery = require('jquery');
+	});
+
+	it('should not trigger any behavior associated with data toggling', function() {
+		$('#register').prop('disabled', false);
+		initializeTooltip($('#register'), 'Hello');
+		removeTooltip($('#register'));
+
+		assert.equal(typeof $('#register').attr('data-bs-toggle'), 'undefined');
+	});
+
+	it('should not display any tooltip message', function() {
+		$('#register').prop('disabled', false);
+		initializeTooltip($('#register'), 'Hello');
+		removeTooltip($('#register'));
+
+		assert.equal(typeof $('#register').attr('title'), 'undefined');
 	});
 });

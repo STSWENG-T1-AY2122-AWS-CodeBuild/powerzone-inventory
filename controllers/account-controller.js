@@ -10,6 +10,9 @@ const bcrypt = require('bcrypt');
 /* Use ten salt rounds for password hashing. */
 const saltRounds = 10;
 
+/* A utility object is used for auxiliary functions. */
+const accountControllerUtil = require('./account-controller-util.js');
+
 const accountController = {
 	/**
 	 * Gets the account page.
@@ -25,25 +28,7 @@ const accountController = {
 			const projection = '_id firstName lastName username role status';
 
 			db.findMany(Account, query, projection, function(result) {
-				/* Assign the result of the database retrieval to the variable accounts. */
-				const accounts = result;
-
-				/* For each account, push its details to the accountDetails array if the account
-				 * does not belong to the administrator.
-				 */
-				const accountDetails = [];
-				for (let i = 0; i < accounts.length; i++) {
-					if (accounts[i].role != 'administrator') {
-						accountDetails.push(accounts[i]);
-					}
-				}
-
-				/* Store the retrieved account details in the variable data. */
-				const data = {
-					accountDetails: accountDetails
-				};
-
-				res.render('account', data);
+				res.render('account', accountControllerUtil.accountUtil(result));
 			});
 		} else {
 			/* Retrieve the account details of the logged in user if a regular user accesses the account tab. */
@@ -105,7 +90,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusPending: function(req, res) {
+	postEditStatusPending: function(req, res) {
 		/* Retrieve the ID of the selected account. */
 		const accountId = req.body.accountId;
 
@@ -127,7 +112,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditStatusAccept: function(req, res) {
+	postEditStatusAccept: function(req, res) {
 		/* Retrieve the ID of the selected account. */
 		const accountId = req.body.accountId;
 
@@ -149,7 +134,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditRole: function(req, res) {
+	postEditRole: function(req, res) {
 		/* Retrieve the ID and role of the selected account. */
 		const accountId = req.body.accountId;
 		const accountRole = req.body.editAccountRole;
@@ -172,7 +157,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postDeleteAccount: function(req, res) {
+	postDeleteAccount: function(req, res) {
 		/* Retrieve the ID of the selected account. */
 		const accountId = req.body.accountId;
 
@@ -191,7 +176,7 @@ const accountController = {
 	 * @param {Express.Request} req  Object that contains information on the HTTP request from the client.
 	 * @param {Express.Response} res  Object that contains information on the HTTP response from the server.
 	 */
-	 postEditAccount: function(req, res) {
+	postEditAccount: function(req, res) {
 		/* Retrieve the updated details of the user account. */
 		const email = req.body.editAccountEmail.trim();
 		const newUsername = req.body.editAccountUsername.trim();
