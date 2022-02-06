@@ -87,7 +87,7 @@
 
                                 <div class = "m-4">
                                     <label for = "edit-transaction-discounted" class = "form-label fw-bold text-primary">Discounted Amount (<span id = "discount-percent">0</span>%)</label>
-                                    <input id = "edit-transaction-discounted" name = "editTransactionDiscount" type = "text" placeholder = "Discount Amount" class = "form-control p-2 rounded-pill" value = "0.00" readonly required>
+                                    <input id = "edit-transaction-discounted" name = "editTransactionDiscount" type = "text" value = "{{priceDiscounted}}" class = "form-control p-2 rounded-pill" value = "0.00" readonly required>
 
                                     <div id = "edit-transaction-invalid-blank-date" class = "fw-bold invalid-feedback text-center">
                                         Kindly input the transaction date

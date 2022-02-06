@@ -98,6 +98,12 @@ const transactionSchema = new mongoose.Schema({
 	litersKerosene: {
 		type: Number,
 		required: true
+	},
+
+	/* Total price of the transaction after the bulk discount, if applicable */
+	priceDiscounted: {
+		type: Number,
+		required: true
 	}
 });
 

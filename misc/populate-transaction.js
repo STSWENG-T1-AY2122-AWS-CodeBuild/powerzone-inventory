@@ -24,7 +24,8 @@ const transaction = {
 	pricePremiumGasoline97: 59.04,
 	litersPremiumGasoline97: 50,
 	priceKerosene: 59.04,
-	litersKerosene: 50
+	litersKerosene: 50,
+	priceDiscounted: 15186.00
 };
 
 /* Insert the initialized transaction into the database. */
