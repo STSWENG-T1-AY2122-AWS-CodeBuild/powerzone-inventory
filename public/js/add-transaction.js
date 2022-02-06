@@ -70,6 +70,14 @@ $(function() {
 
 			$('#discount-percent').text(discountInfo[0] * 100);
 			$('#add-transaction-discounted').val(toTwoDecimalPlaces(discountInfo[1]));
+
+			/*
+			 * If the discounted amount is not a number (as a result of one of the fuel quantities being blank),
+			 * display 0.00 instead.
+			 */
+			if (Number.isNaN(discountInfo[1])) {
+				$('#add-transaction-discounted').val('0.00');
+			}
 		} else {
 			$('#discount-percent').text(0);
 			$('#add-transaction-discounted').val('0.00');
