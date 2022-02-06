@@ -285,6 +285,28 @@ const getPrice2 = function(rows, i) {
 	return rows[i + 1].getElementsByTagName('td')[3].textContent.substring(2);
 };
 
+const getDiscountedAmount = function(operation, fuelTypes, discountPercents, discountCutoffs) {
+	let origAmount = 0;
+	let discountPercent = 0;
+	let totalLiters = 0;
+
+	for (const fuelType of fuelTypes) {
+		origAmount += parseInt($('#' + operation + '-transaction-' + fuelType + '-liters').val()) *
+						parseFloat($('#' + operation + '-transaction-' + fuelType + '-price').val());
+		totalLiters += parseInt($('#' + operation + '-transaction-' + fuelType + '-liters').val());
+	}
+
+	if (discountCutoffs[0] <= totalLiters && totalLiters < discountCutoffs[1]) {
+		discountPercent = discountPercents[0];
+	} else if (discountCutoffs[1] <= totalLiters) {
+		discountPercent = discountPercents[1];
+	}
+
+	const discountedAmount = (1 - discountPercent) * origAmount;
+
+	return [discountPercent, discountedAmount];
+};
+
 export {
 	showAll,
 	filterBy,
@@ -292,5 +314,6 @@ export {
 	sortZtoA,
 	sortLowToHigh,
 	sortHighToLow,
-	getStatusFromIcon
+	getStatusFromIcon,
+	getDiscountedAmount
 };
