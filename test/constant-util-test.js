@@ -42,7 +42,7 @@ describe('the function to return the discount rates for bulk orders', function()
 		assert.equal(result[0], 0.02);
 	});
 
-    it('should have 5% as the second discount rate', function() {
+	it('should have 5% as the second discount rate', function() {
 		const result = getDiscountPercents();
 		assert.equal(result[1], 0.05);
 	});
@@ -59,7 +59,7 @@ describe('the function to return the cut-offs (in terms of liters of fuel ordere
 		assert.equal(result[0], 50000);
 	});
 
-    it('should have 150,000 L as the second cut-off for the bulk order discount scheme', function() {
+	it('should have 150,000 L as the second cut-off for the bulk order discount scheme', function() {
 		const result = getDiscountCutOffs();
 		assert.equal(result[1], 150000);
 	});

@@ -197,5 +197,5 @@ describe('the function to compute the discounted amount after application of bul
 		global.window = dom.window;
 		global.document = dom.window.document;
 		global.$ = global.jQuery = require('jquery');
-	})
+	});
 });
