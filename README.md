@@ -21,8 +21,8 @@
 This project is a software solution for **Powerzone Inventory**, a fuel company based in Catanduanes, Bicol. This web application seeks to serve as an all-in-one management system for tracking the three major components handled by Powerzone: inventory, transactions, and deliveries. The inventory management system in the application will log all products that come in and out the inventory of the company. This includes both the purchasing of products from suppliers and the selling of products through transactions.
 
 This is the major course output in an advanced software engineering class:
-- **Deployed Website**:
-- **Video Walkthrough**: 
+- **Deployed Website**: https://powerzone-inventory.herokuapp.com/
+- **Project Presentation**: 
 
 ## Project Structure
 The project consists of the following folders:
@@ -47,15 +47,11 @@ It also includes the following files:
 | [<code>index.js</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/index.js) | Entry point of the web application |
 | [<code>Procfile</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/Procfile)| Specifies the commands run by the application's dynos on Heroku
 
-## Entity Relationship Diagram
-
-The entity relationship diagram to illustrate the schemas can be viewed here [INSERT ERD HERE].
-
 ## Running the Application
 
 ### Running on the Web
 
-Open the following website: [INSERT LINK HERE].
+Open the following website: https://powerzone-inventory.herokuapp.com/
 
 ### Running Locally
 
