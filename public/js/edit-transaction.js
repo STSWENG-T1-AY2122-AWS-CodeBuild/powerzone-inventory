@@ -77,7 +77,7 @@ $(function() {
 				$('#edit-transaction-' + fuelType + '-liters').val(0);
 			}
 
-			if (!isSufficientFuel(fuelType)) {
+			if (!isSufficientFuel(fuelType) && !isBlankField($('#edit-transaction-' + fuelType + '-liters'), true)) {
 				displayErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
 				disableButton($('#confirm-edit-transaction-btn'));
 			} else {
