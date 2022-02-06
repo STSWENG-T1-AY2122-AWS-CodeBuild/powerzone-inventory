@@ -44,6 +44,12 @@ $(function() {
 		}
 	}
 
+	/**
+	 * Checks if there is sufficient fuel in the inventory to perform the transaction.
+	 *
+	 * @param {String} fuelType Fuel type in the transaction.
+	 * @return {boolean} true if there is sufficient fuel to perform the transaction; false, otherwise.
+	 */
 	function isSufficientFuel(fuelType) {
 		return parseInt($('#edit-transaction-' + fuelType + '-liters').val()) -
 			parseInt($('#edit-transaction-' + fuelType + '-liters-orig').val()) <=
