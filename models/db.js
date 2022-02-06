@@ -15,7 +15,7 @@ dotenv.config();
 let url = process.env.DB_URL;
 const testingMode = process.env.TESTING_MODE;
 
-if (testingMode.toLowerCase() != 'off') {
+if (typeof testingMode != 'undefined' && testingMode.toLowerCase() != 'off') {
 	url = process.env.DB_URL_TEST;
 }
 
@@ -26,8 +26,8 @@ const database = {
 	/**
 	 * Connects to the database
 	 */
-	connect: function () {
-		mongoose.connect(url, options, function (error) {
+	connect: function() {
+		mongoose.connect(url, options, function(error) {
 			if (error) throw error;
 		});
 	},
@@ -46,8 +46,8 @@ const database = {
 	 * @param {Object} doc document to be inserted
 	 * @param {dbCallback} callback callback for indicating whether the insertion succeeded
 	 */
-	insertOne: function (model, doc, callback) {
-		model.create(doc, function (error, result) {
+	insertOne: function(model, doc, callback) {
+		model.create(doc, function(error, result) {
 			if (error) return callback(false);
 
 			return callback(result);
@@ -61,8 +61,8 @@ const database = {
 	 * @param {Object} docs documents to be inserted
 	 * @param {dbCallback} callback callback for indicating whether the insertion succeeded
 	 */
-	insertMany: function (model, docs, callback) {
-		model.insertMany(docs, function (error, result) {
+	insertMany: function(model, docs, callback) {
+		model.insertMany(docs, function(error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -77,8 +77,8 @@ const database = {
 	 * @param {string} projection projection fields to be returned
 	 * @param {dbCallback} callback false if the searching did not succeed; otherwise, the specified fields to be returned
 	 */
-	findOne: function (model, query, projection, callback) {
-		model.findOne(query, projection, function (error, result) {
+	findOne: function(model, query, projection, callback) {
+		model.findOne(query, projection, function(error, result) {
 			if (error) return callback(false);
 			return callback(result);
 		});
@@ -92,8 +92,8 @@ const database = {
 	 * @param {string} projection projection fields to be returned
 	 * @param {dbCallback} callback false if the searching did not succeed; otherwise, the specified fields to be returned
 	 */
-	findMany: function (model, query, projection, callback) {
-		model.find(query, projection, function (error, result) {
+	findMany: function(model, query, projection, callback) {
+		model.find(query, projection, function(error, result) {
 			if (error) return callback(false);
 			return callback(result);
 		});
@@ -107,8 +107,8 @@ const database = {
 	 * @param {Object} update revisions to the document data
 	 * @param {dbCallback} callback callback for indicating whether the update succeeded
 	 */
-	updateOne: function (model, filter, update, callback) {
-		model.updateOne(filter, update, function (error, result) {
+	updateOne: function(model, filter, update, callback) {
+		model.updateOne(filter, update, function(error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -123,8 +123,8 @@ const database = {
 	 * @param {Object} update revisions to the document data
 	 * @param {dbCallback} callback callback for indicating whether the update succeeded
 	 */
-	updateMany: function (model, filter, update, callback) {
-		model.updateMany(filter, update, function (error, result) {
+	updateMany: function(model, filter, update, callback) {
+		model.updateMany(filter, update, function(error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -138,8 +138,8 @@ const database = {
 	 * @param {Object} conditions query with which to obtain the document to be deleted
 	 * @param {dbCallback} callback callback for indicating whether the deletion succeeded
 	 */
-	deleteOne: function (model, conditions, callback) {
-		model.deleteOne(conditions, function (error, result) {
+	deleteOne: function(model, conditions, callback) {
+		model.deleteOne(conditions, function(error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -153,8 +153,8 @@ const database = {
 	 * @param {Object} conditions query with which to obtain the documents to be deleted
 	 * @param {dbCallback} callback callback for indicating whether the deletion succeeded
 	 */
-	deleteMany: function (model, conditions, callback) {
-		model.deleteMany(conditions, function (error, result) {
+	deleteMany: function(model, conditions, callback) {
+		model.deleteMany(conditions, function(error, result) {
 			if (error) return callback(false);
 
 			return callback(true);
@@ -167,7 +167,7 @@ const database = {
 	 * @param {string} id string to be converted
 	 * @return {mongoose.ObjectId} ObjectId variable of the input string
 	 */
-	convertToObjectId: function (id) {
+	convertToObjectId: function(id) {
 		return mongoose.Types.ObjectId(id);
 	},
 
@@ -178,8 +178,8 @@ const database = {
 	 * @param {Object} filter query with which to filter the collection documents
 	 * @param {Object} update revisions to the document data
 	 */
-	updateOneIterative: function (model, filter, update) {
-		model.updateOne(filter, update, function () {});
+	updateOneIterative: function(model, filter, update) {
+		model.updateOne(filter, update, function() {});
 	}
 };
 
