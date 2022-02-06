@@ -18,7 +18,17 @@ const getFuelTypeNames = function() {
 	return ['Gasoline', 'Premium Gasoline 95', 'Diesel', 'Premium Gasoline 97', 'Kerosene'];
 };
 
+const getDiscountPercents = function() {
+	return [0.02, 0.05];
+};
+
+const getDiscountCutOffs = function() {
+	return [50000, 150000];
+};
+
 export {
 	getFuelTypes,
-	getFuelTypeNames
+	getFuelTypeNames,
+	getDiscountPercents,
+	getDiscountCutOffs
 };
