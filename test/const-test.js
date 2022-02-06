@@ -45,6 +45,19 @@ const getDom = function() {
                         <span id = "premium-gasoline-97-price"></span>
                         <span id = "kerosene-price"></span>
                     </div>
+                    <div>
+                        <input type = "number" id = "edit-transaction-gasoline-liters">
+                        <input type = "number" id = "edit-transaction-premium-gasoline-95-liters">
+                        <input type = "number" id = "edit-transaction-diesel-liters">
+                        <input type = "number" id = "edit-transaction-premium-gasoline-97-liters">
+                        <input type = "number" id = "edit-transaction-kerosene-liters">
+
+                        <input type = "number" id = "edit-transaction-gasoline-price">
+                        <input type = "number" id = "edit-transaction-premium-gasoline-95-price">
+                        <input type = "number" id = "edit-transaction-diesel-price">
+                        <input type = "number" id = "edit-transaction-premium-gasoline-97-price">
+                        <input type = "number" id = "edit-transaction-kerosene-price">
+                    </div>
                 </body>
             </html>`;
 };
