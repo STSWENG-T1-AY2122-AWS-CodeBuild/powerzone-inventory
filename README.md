@@ -28,7 +28,7 @@ This is the major course output in an advanced software engineering class:
 The project consists of the following folders:
 | Folder | Description |
 | --- | --- |
-[<code>.github/workflows</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/.github/workflows) | Contains the YML file for the continuous integration/continuous delivery (CI/CD) pipeline
+[<code>.github</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/.github) | Contains the YML file for the continuous integration/continuous delivery (CI/CD) pipeline and the template for issues
 | [<code>controllers</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/controllers) | Contains the JavaScript files that define callback functions for client-side requests |
 | [<code>helpers</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/helpers) | Contains the JavaScript files that define helper functions for server-side validation | 
 | [<code>misc</code>](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/tree/main/misc) | Contains the JavaScript files for initial database population |
