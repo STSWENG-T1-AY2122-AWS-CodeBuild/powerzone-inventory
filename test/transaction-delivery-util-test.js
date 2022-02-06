@@ -9,7 +9,8 @@ const {
 	sortAtoZ,
 	sortZtoA,
 	sortLowToHigh,
-	sortHighToLow
+	sortHighToLow,
+	getDiscountedAmount
 } = require('../public/js/transaction-delivery-util.js');
 
 const {getDom} = require('./const-test.js');
@@ -188,7 +189,12 @@ describe('the function to sort the entries of the table in descending order base
 	});
 });
 
-describe('the function to compute the discounted amount after application of bulk order discount scheme', function() {
+describe('the function to return the discount rate (percent) and discounted amount per bulk order discount scheme', function() {
+	const fuelTypes = ['gasoline', 'premium-gasoline-95', 'diesel', 'premium-gasoline-97', 'kerosene'];
+	const discountPercents = [0.02, 0.05];
+	const discountCutOffs = [50000, 150000];
+	const epsilon = 1e-2;
+
 	beforeEach(function() {
 		const dom = new JSDOM(
 			htmlDom,
@@ -197,5 +203,112 @@ describe('the function to compute the discounted amount after application of bul
 		global.window = dom.window;
 		global.document = dom.window.document;
 		global.$ = global.jQuery = require('jquery');
+	});
+
+	it('should return an array', function() {
+		$('#edit-transaction-gasoline-liters').val('1000');
+		$('#edit-transaction-premium-gasoline-95-liters').val('2000');
+		$('#edit-transaction-diesel-liters').val('3000');
+		$('#edit-transaction-premium-gasoline-97-liters').val('4000');
+		$('#edit-transaction-kerosene-liters').val('5000');
+
+		$('#edit-transaction-gasoline-price').val('40.11');
+		$('#edit-transaction-premium-gasoline-95-price').val('50.20');
+		$('#edit-transaction-diesel-price').val('60.31');
+		$('#edit-transaction-premium-gasoline-97-price').val('70.86');
+		$('#edit-transaction-kerosene-price').val('90.53');
+
+		const result = getDiscountedAmount('edit', fuelTypes, discountPercents, discountCutOffs);
+		assert.isArray(result);
+	});
+
+	it('should not apply any discount if the total liters of fuel ordered is less than 50,000 L', function() {
+		$('#edit-transaction-gasoline-liters').val('1000');
+		$('#edit-transaction-premium-gasoline-95-liters').val('2000');
+		$('#edit-transaction-diesel-liters').val('3000');
+		$('#edit-transaction-premium-gasoline-97-liters').val('4000');
+		$('#edit-transaction-kerosene-liters').val('5000');
+
+		$('#edit-transaction-gasoline-price').val('40.11');
+		$('#edit-transaction-premium-gasoline-95-price').val('50.20');
+		$('#edit-transaction-diesel-price').val('60.31');
+		$('#edit-transaction-premium-gasoline-97-price').val('70.86');
+		$('#edit-transaction-kerosene-price').val('90.53');
+
+		const result = getDiscountedAmount('edit', fuelTypes, discountPercents, discountCutOffs);
+		assert.approximately(result[0], 0, epsilon);
+		assert.approximately(result[1], 1057530, epsilon);
+	});
+
+	it('should apply a 2% discount if the total liters of fuel ordered is 50,000 L', function() {
+		$('#edit-transaction-gasoline-liters').val('10000');
+		$('#edit-transaction-premium-gasoline-95-liters').val('5000');
+		$('#edit-transaction-diesel-liters').val('10000');
+		$('#edit-transaction-premium-gasoline-97-liters').val('15000');
+		$('#edit-transaction-kerosene-liters').val('10000');
+
+		$('#edit-transaction-gasoline-price').val('40.11');
+		$('#edit-transaction-premium-gasoline-95-price').val('50.20');
+		$('#edit-transaction-diesel-price').val('60.31');
+		$('#edit-transaction-premium-gasoline-97-price').val('70.86');
+		$('#edit-transaction-kerosene-price').val('90.53');
+
+		const result = getDiscountedAmount('edit', fuelTypes, discountPercents, discountCutOffs);
+		assert.approximately(result[0], 0.02, epsilon);
+		assert.approximately(result[1], 3158932, epsilon);
+	});
+
+	it('should apply a 2% discount if the total liters of fuel ordered is above 50,000 L but less than 150,000 L', function() {
+		$('#edit-transaction-gasoline-liters').val('10000');
+		$('#edit-transaction-premium-gasoline-95-liters').val('75000');
+		$('#edit-transaction-diesel-liters').val('10000');
+		$('#edit-transaction-premium-gasoline-97-liters').val('15000');
+		$('#edit-transaction-kerosene-liters').val('10000');
+
+		$('#edit-transaction-gasoline-price').val('40.11');
+		$('#edit-transaction-premium-gasoline-95-price').val('50.20');
+		$('#edit-transaction-diesel-price').val('60.31');
+		$('#edit-transaction-premium-gasoline-97-price').val('70.86');
+		$('#edit-transaction-kerosene-price').val('90.53');
+
+		const result = getDiscountedAmount('edit', fuelTypes, discountPercents, discountCutOffs);
+		assert.approximately(result[0], 0.02, epsilon);
+		assert.approximately(result[1], 6602652, epsilon);
+	});
+
+	it('should apply a 5% discount if the total liters of fuel ordered is 150,000 L', function() {
+		$('#edit-transaction-gasoline-liters').val('5000');
+		$('#edit-transaction-premium-gasoline-95-liters').val('75000');
+		$('#edit-transaction-diesel-liters').val('25000');
+		$('#edit-transaction-premium-gasoline-97-liters').val('15001');
+		$('#edit-transaction-kerosene-liters').val('29999');
+
+		$('#edit-transaction-gasoline-price').val('40.11');
+		$('#edit-transaction-premium-gasoline-95-price').val('50.20');
+		$('#edit-transaction-diesel-price').val('60.31');
+		$('#edit-transaction-premium-gasoline-97-price').val('70.86');
+		$('#edit-transaction-kerosene-price').val('90.53');
+
+		const result = getDiscountedAmount('edit', fuelTypes, discountPercents, discountCutOffs);
+		assert.approximately(result[0], 0.05, epsilon);
+		assert.approximately(result[1], 8789476.31, epsilon);
+	});
+
+	it('should apply a 5% discount if the total liters of fuel ordered is above 150,000 L', function() {
+		$('#edit-transaction-gasoline-liters').val('50001');
+		$('#edit-transaction-premium-gasoline-95-liters').val('750003');
+		$('#edit-transaction-diesel-liters').val('250005');
+		$('#edit-transaction-premium-gasoline-97-liters').val('15001');
+		$('#edit-transaction-kerosene-liters').val('29999');
+
+		$('#edit-transaction-gasoline-price').val('40.11');
+		$('#edit-transaction-premium-gasoline-95-price').val('50.20');
+		$('#edit-transaction-diesel-price').val('60.31');
+		$('#edit-transaction-premium-gasoline-97-price').val('70.86');
+		$('#edit-transaction-kerosene-price').val('90.53');
+
+		const result = getDiscountedAmount('edit', fuelTypes, discountPercents, discountCutOffs);
+		assert.approximately(result[0], 0.05, epsilon);
+		assert.approximately(result[1], 55586658.96, epsilon);
 	});
 });
