@@ -24,7 +24,7 @@ const transactionController = {
 		const ids = [];
 		const dates = [];
 		const customers = [];
-		const totals = [];
+		const discountedTotals = [];
 		const statuses = [];
 		const litersGasoline = [];
 		const litersPremiumGasoline95 = [];
@@ -34,7 +34,7 @@ const transactionController = {
 
 		/* Retrieve the details of all transactions. */
 		const query = {};
-		const projection = 'id date customer total status litersGasoline litersPremiumGasoline95 litersDiesel litersPremiumGasoline97 litersKerosene';
+		const projection = 'id date customer priceDiscounted status litersGasoline litersPremiumGasoline95 litersDiesel litersPremiumGasoline97 litersKerosene';
 
 		db.findMany(Transaction, query, projection, function(result) {
 			/* Assign the result of the database retrieval to the variable transactions. */
@@ -63,7 +63,7 @@ const transactionController = {
 				ids[i] = transactions[i].id;
 				dates[i] = formattedMonth + '/' + formattedDate + '/' + year;
 				customers[i] = transactions[i].customer;
-				totals[i] = transactions[i].total;
+				discountedTotals[i] = transactions[i].priceDiscounted;
 				statuses[i] = transactions[i].status;
 				litersGasoline[i] = transactions[i].litersGasoline;
 				litersPremiumGasoline95[i] = transactions[i].litersPremiumGasoline95;
@@ -109,7 +109,7 @@ const transactionController = {
 					transactionIds: ids,
 					transactionDates: dates,
 					transactionCustomers: customers,
-					transactionTotals: totals,
+					transactionDiscountedTotals: discountedTotals,
 					transactionStatuses: statuses,
 
 					transactionLitersGasoline: litersGasoline,
@@ -1240,7 +1240,7 @@ const transactionController = {
 
 		/* Retrieve the data corresponding to the ID of the selected transaction. */
 		const query = {id: transactionId};
-		const projection = 'id status customer number date total priceGasoline litersGasoline pricePremiumGasoline95 litersPremiumGasoline95 priceDiesel litersDiesel pricePremiumGasoline97 litersPremiumGasoline97 priceKerosene litersKerosene';
+		const projection = 'id status customer number date total priceDiscounted priceGasoline litersGasoline pricePremiumGasoline95 litersPremiumGasoline95 priceDiesel litersDiesel pricePremiumGasoline97 litersPremiumGasoline97 priceKerosene litersKerosene';
 
 		db.findOne(Transaction, query, projection, function(result) {
 			/* Format the display of the purchase date from the Date object
@@ -1277,6 +1277,7 @@ const transactionController = {
 				number: result.number,
 				date: cleanDate,
 				total: result.total,
+				priceDiscounted: result.priceDiscounted,
 				priceGasoline: result.priceGasoline,
 				litersGasoline: result.litersGasoline,
 				totalGasoline: totalGasoline,
@@ -1310,7 +1311,7 @@ const transactionController = {
 
 		/* Retrieve the data corresponding to the ID of the selected transaction. */
 		const query = {id: id};
-		const projection = 'id status customer number date priceGasoline litersGasoline pricePremiumGasoline95 litersPremiumGasoline95 priceDiesel litersDiesel pricePremiumGasoline97 litersPremiumGasoline97 priceKerosene litersKerosene';
+		const projection = 'id status customer number date priceGasoline litersGasoline pricePremiumGasoline95 litersPremiumGasoline95 priceDiesel litersDiesel pricePremiumGasoline97 litersPremiumGasoline97 priceKerosene litersKerosene priceDiscounted';
 
 		db.findOne(Transaction, query, projection, function(result) {
 			/* Store the result of the database retrieval in the variable transactionDetails. */
@@ -1384,6 +1385,7 @@ const transactionController = {
 					litersPremiumGasoline97: transactionDetails.litersPremiumGasoline97,
 					priceKerosene: transactionDetails.priceKerosene,
 					litersKerosene: transactionDetails.litersKerosene,
+					priceDiscounted: transactionDetails.priceDiscounted,
 
 					totalGasoline: totalGasoline,
 					totalPremiumGasoline95: totalPremiumGasoline95,
@@ -1426,6 +1428,7 @@ const transactionController = {
 		const priceKerosene = req.body.editTransactionKerosenePrice;
 		const litersKerosene = req.body.editTransactionKeroseneLiters;
 		const litersKeroseneOld = req.body.editTransactionKeroseneLitersOld;
+		const priceDiscounted = req.body.editTransactionDiscount;
 
 		/* Compute for the total cost of the transaction. */
 		const total = (priceGasoline * litersGasoline) + (pricePremiumGasoline95 * litersPremiumGasoline95) +
@@ -1451,7 +1454,8 @@ const transactionController = {
 			pricePremiumGasoline97: pricePremiumGasoline97,
 			litersPremiumGasoline97: litersPremiumGasoline97,
 			priceKerosene: priceKerosene,
-			litersKerosene: litersKerosene
+			litersKerosene: litersKerosene,
+			priceDiscounted: priceDiscounted
 		};
 
 		/* Update the transaction in the database. */
@@ -2438,6 +2442,7 @@ const transactionController = {
 		const litersPremiumGasoline97 = req.body.addTransactionPremiumGasoline97Liters;
 		const priceKerosene = req.body.addTransactionKerosenePrice;
 		const litersKerosene = req.body.addTransactionKeroseneLiters;
+		const discountAmount = req.body.addTransactionDiscount;
 
 		/* Compute for the total cost of the transaction. */
 		const total = (priceGasoline * litersGasoline) + (pricePremiumGasoline95 * litersPremiumGasoline95) +
@@ -2461,7 +2466,8 @@ const transactionController = {
 			pricePremiumGasoline97: pricePremiumGasoline97,
 			litersPremiumGasoline97: litersPremiumGasoline97,
 			priceKerosene: priceKerosene,
-			litersKerosene: litersKerosene
+			litersKerosene: litersKerosene,
+			priceDiscounted: discountAmount
 		};
 
 		/* Add the new transaction to the database. */
