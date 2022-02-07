@@ -1,19 +1,34 @@
 /* JavaScript file for handling the front-end of the edit transaction page */
 
-import {getFuelTypes} from './constant-util.js';
+import {
+	getDiscountCutOffs,
+	getDiscountPercents,
+	getFuelTypes
+} from './constant-util.js';
+
 import {
 	enableButton,
 	disableButton,
 	hideErrorMessage,
 	displayErrorMessage,
-	isBlankField
+	isBlankField,
+	toTwoDecimalPlaces
 } from './general-util.js';
+
+import {getDiscountedAmount} from './transaction-delivery-util.js';
 
 import {isValidPhoneNumber} from './transaction-delivery-validate-util.js';
 
 $(function() {
+	const fuelTypes = getFuelTypes();
+
 	/* Update the selected value in the status dropdown to reflect the value in the database. */
 	$('#edit-transaction-status').val($('#edit-transaction-status-hidden').val());
+
+	/* Properly compute the discounted amount when the page is loaded. */
+	const discountInfo = getDiscountedAmount('edit', fuelTypes, getDiscountPercents(), getDiscountCutOffs());
+	$('#discount-percent').text(discountInfo[0] * 100);
+	$('#edit-transaction-discounted').val(toTwoDecimalPlaces(discountInfo[1]));
 
 	/* Validate the phone number. */
 	$('#edit-transaction-customer-number').on('keyup change paste', function() {
@@ -35,7 +50,6 @@ $(function() {
 	 * The available fuel quantity should be the sum of the current inventory quantity and the quantity
 	 * reserved as part of this transaction.
 	 */
-	const fuelTypes = getFuelTypes();
 	if ($('#edit-transaction-status-hidden').val() == 'pending') {
 		for (const fuelType of fuelTypes) {
 			const inventoryQuantity = parseInt($('#total-' + fuelType + '-error').text());
@@ -63,7 +77,7 @@ $(function() {
 				$('#edit-transaction-' + fuelType + '-liters').val(0);
 			}
 
-			if (!isSufficientFuel(fuelType)) {
+			if (!isSufficientFuel(fuelType) && !isBlankField($('#edit-transaction-' + fuelType + '-liters'), true)) {
 				displayErrorMessage($('#edit-transaction-invalid-amount-' + fuelType));
 				disableButton($('#confirm-edit-transaction-btn'));
 			} else {
@@ -108,6 +122,13 @@ $(function() {
 		 */
 		if (noError && isValidPhoneNumber($('#edit-transaction-customer-number').val())) {
 			enableButton($('#confirm-edit-transaction-btn'));
+			const discountInfo = getDiscountedAmount('edit', fuelTypes, getDiscountPercents(), getDiscountCutOffs());
+
+			$('#discount-percent').text(discountInfo[0] * 100);
+			$('#edit-transaction-discounted').val(toTwoDecimalPlaces(discountInfo[1]));
+		} else {
+			$('#discount-percent').text(0);
+			$('#edit-transaction-discounted').val('0.00');
 		}
 	});
 

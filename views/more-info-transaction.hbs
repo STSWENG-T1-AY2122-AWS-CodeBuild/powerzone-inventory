@@ -61,10 +61,10 @@
                                 <input id = "more-info-transaction-amount" name = "moreInfoTransactionAmount" type = "text" placeholder = "Total Amount" value = "{{total}}" class = "form-control p-2 rounded-pill" readonly = "readonly">
                             </div>
 
-                            <!-- <div class = "m-4">
-                                <label for = "more-info-transaction-discount" class = "form-label fw-bold text-primary">Discount Amount (%)</label>
-                                <input id = "more-info-transaction-discount" name = "moreInfoTransactionDiscount" type = "text" placeholder = "Discount Amount"  class = "form-control p-2 rounded-pill" readonly = "readonly">
-                            </div> -->
+                            <div class = "m-4 prices">
+                                <label for = "more-info-transaction-discount" class = "form-label fw-bold text-primary">Discounted Amount</label>
+                                <input id = "more-info-transaction-discount" name = "moreInfoTransactionDiscount" type = "text" value = "{{priceDiscounted}}"  class = "form-control p-2 rounded-pill" readonly = "readonly">
+                            </div>
                         </td>
                 
                         <td>
@@ -84,7 +84,7 @@
                                                     <input id = "more-info-transaction-gasoline-price" name = "moreInfoTransactionGasolinePrice" type = "number" placeholder = "-" value = "{{priceGasoline}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
                                             </td>
-                                            <td class = "prices">
+                                            <td>
                                                 <div class = "d-flex aligns-items-center justify-content-center">
                                                     <input id = "more-info-transaction-gasoline-liters" name = "moreInfoTransactionGasolineLiters" type = "number" placeholder = "-" value = "{{litersGasoline}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
@@ -108,7 +108,7 @@
                                                     <input id = "more-info-transaction-premium-gasoline-95-price" name = "moreInfoTransactionPremiumGasoline95Price" type = "number" placeholder = "-" value = "{{pricePremiumGasoline95}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
                                             </td>
-                                            <td class = "prices">
+                                            <td>
                                                 <div class = "d-flex aligns-items-center justify-content-center">
                                                     <input id = "more-info-transaction-premium-gasoline-95-liters" name = "moreInfoTransactionPremiumGasoline95Liters" type = "number" placeholder = "-" value = "{{litersPremiumGasoline95}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
@@ -132,7 +132,7 @@
                                                     <input id = "more-info-transaction-diesel-price" name = "moreInfoTransactionDieselPrice" type = "number" placeholder = "-" value = "{{priceDiesel}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
                                             </td>
-                                            <td class = "prices">
+                                            <td>
                                                 <div class = "d-flex aligns-items-center justify-content-center">
                                                     <input id = "more-info-transaction-diesel-liters" name = "moreInfoTransactionDieselLiters" type = "number" placeholder = "-" value = "{{litersDiesel}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
@@ -156,7 +156,7 @@
                                                     <input id = "more-info-transaction-premium-gasoline-97-price" name = "moreInfoTransactionPremiumGasoline97Price" type = "number" placeholder = "-" value = "{{pricePremiumGasoline97}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
                                             </td>
-                                            <td class = "prices">
+                                            <td>
                                                 <div class = "d-flex aligns-items-center justify-content-center">
                                                     <input id = "more-info-transaction-premium-gasoline-97-liters" name = "moreInfoTransactionPremiumGasoline97Liters" type = "number" placeholder = "-" value = "{{litersPremiumGasoline97}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
@@ -180,7 +180,7 @@
                                                     <input id = "more-info-transaction-kerosene-price" name = "moreInfoTransactionKerosenePrice" type = "number" placeholder = "-" value = "{{priceKerosene}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
                                             </td>
-                                            <td class = "prices">
+                                            <td>
                                                 <div class = "d-flex aligns-items-center justify-content-center">
                                                     <input id = "more-info-transaction-kerosene-liters" name = "moreInfoTransactionKeroseneLiters" type = "number" placeholder = "-" value = "{{litersKerosene}}" class = "form-control text-center input-sm w-75" readonly = "readonly">
                                                 </div>
