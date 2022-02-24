@@ -22,7 +22,7 @@ This project is a software solution for **Powerzone Inventory**, a fuel company 
 
 This is the major course output in an advanced software engineering class:
 - **Deployed Website**: https://powerzone-inventory.herokuapp.com/
-- **Project Presentation**: 
+- **Project Presentation**: https://www.youtube.com/watch?v=jStybNtI8gE
 
 ## Project Structure
 The project consists of the following folders:
