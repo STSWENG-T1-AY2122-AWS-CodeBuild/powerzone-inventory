@@ -11,12 +11,9 @@
 ![badge][badge-mocha]
 ![badge][badge-chai]
 ![badge][badge-selenium]
-![badge][badge-heroku] 
 
 [![Actions Status](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/workflows/Node.js%20CI/badge.svg)](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/actions)
 ![badge][badge-github-actions]
-
-***--- THIS PROJECT IS A WORK IN PROGRESS ---***
 
 This project is a software solution for **Powerzone Inventory**, a fuel company based in Catanduanes, Bicol. This web application seeks to serve as an all-in-one management system for tracking the three major components handled by Powerzone: inventory, transactions, and deliveries. The inventory management system in the application will log all products that come in and out the inventory of the company. This includes both the purchasing of products from suppliers and the selling of products through transactions.
 
