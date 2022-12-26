@@ -3,8 +3,8 @@
 Before submitting a pull request, contributors are requested to observe the following procedure:
 
 1. **Documents**. Read the following documents and comply with the guidelines stated therein:
-   - [Project Proposal and Standards](https://drive.google.com/file/d/1M4Yia4GSVdtk8iS_J5kjrANo8KcG4avp/view?usp=sharing) - Refer to this document for the coding standards and the team workflow.
-   - [Continuous Integration Plan](https://drive.google.com/file/d/17Da54zUm8k1dcB4syzvPqWraSlaZumCS/view?usp=sharing) - Refer to this document for the updated team workflow with the addition of the CI/CD pipeline.
+   - [Project Proposal and Standards](https://github.com/memgonzales/powerzone-inventory/blob/main/docs/Project%20Proposal%20and%20Standards.pdf) - Refer to this document for the coding standards and the team workflow.
+   - [Continuous Integration Plan](https://github.com/memgonzales/powerzone-inventory/blob/main/docs/Continuous%20Integration%20Plan.pdf) - Refer to this document for the updated team workflow with the addition of the CI/CD pipeline.
 
 2. **`.env`**. Secure a copy of the `.env` file from the developers. 
 
