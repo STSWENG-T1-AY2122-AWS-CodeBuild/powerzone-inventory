@@ -18,8 +18,10 @@
 This project is a software solution for **Powerzone Inventory**, a fuel company based in Catanduanes, Bicol. This web application seeks to serve as an all-in-one management system for tracking the three major components handled by Powerzone: inventory, transactions, and deliveries. The inventory management system in the application will log all products that come in and out the inventory of the company. This includes both the purchasing of products from suppliers and the selling of products through transactions.
 
 This is the major course output in an advanced software engineering class:
-- **Deployed Website**: https://powerzone-inventory.herokuapp.com/
+- **Deployed Website**: https://powerzone-inventory.up.railway.app/
 - **Project Presentation**: https://www.youtube.com/watch?v=jStybNtI8gE
+
+💡 **UPDATE (12/27/2022): With the shutting down of free Heroku services, we have migrated to Railway: https://powerzone-inventory.up.railway.app/**
 
 ## Project Structure
 The project consists of the following folders:
@@ -48,7 +50,7 @@ It also includes the following files:
 
 ### Running on the Web
 
-Open the following website: https://powerzone-inventory.herokuapp.com/
+Open the following website: https://powerzone-inventory.up.railway.app/
 
 ### Running Locally
 
@@ -170,6 +172,8 @@ To implement continuous integration and continuous delivery (CI/CD), the followi
 <a href = "https://www.gitguardian.com/">GitGuardian</a> has been added to the CI/CD pipeline to protect against the leakage of secrets (e.g., database connection URLs).
 
 This web application is deployed on <a href = "https://dashboard.heroku.com/">Heroku</a>, a cloud platform as a service (PaaS).
+
+💡 **UPDATE (12/27/2022):** With the shutting down of free Heroku services, we have migrated to [Railway](https://railway.app/), another cloud PaaS.
    
 ## Contributing
 Kindly refer to this [page](https://github.com/STSWENG-T1-AY2122-AWS-CodeBuild/powerzone-inventory/blob/main/CONTRIBUTING.md) for the documents and guidelines on contributing to this repository. 
