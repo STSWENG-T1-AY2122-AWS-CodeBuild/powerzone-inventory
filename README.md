@@ -165,7 +165,7 @@ This project follows the Model-View-Controller (MVC) architectural pattern. In l
 To implement continuous integration and continuous delivery (CI/CD), the following technologies are also included:
 - **Unit Testing**: <a href = "https://mochajs.org/">Mocha</a> as the primary test framework, <a href = "https://www.chaijs.com/">Chai</a> as the assertion library, [Sinon](https://sinonjs.org/) as the test framework for spies, stubs, and mocks, and <a href = "https://istanbul.js.org/">Istanbul</a> as the code coverage tool
 - **Task Runner**: <a href = "https://docs.github.com/en/actions">GitHub Actions</a> as the CI/CD platform
-- **Automated Testing**: <a href = "http://selenium.dev/">Selenium</a> as an automated testing tool and <a href = "https://robotframework.org/">Robot Framework</a> as the automtion framework
+- **Automation Testing**: <a href = "http://selenium.dev/">Selenium</a> as the automation testing tool and <a href = "https://robotframework.org/">Robot Framework</a> as the automation framework
 
 <a href = "https://eslint.org/">ESLint</a> is used for linting and enforcing uniform and consistent coding style. 
 
